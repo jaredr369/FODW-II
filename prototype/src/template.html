@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Course Plan Builder Prototype</title>
+<style>
+:root {
+  --maroon: #500000; --maroon-2: #732f2f; --ink: #1d1d1f; --muted: #5b5b60; --line: #dedbd6;
+  --bg: #f7f5f2; --card: #ffffff; --tint: #f3ece9; --ok: #2e6b3a; --warn: #8a5a00; --focus: #1f5fbf;
+}
+* { box-sizing: border-box; }
+body { margin: 0; font: 16px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; color: var(--ink); background: var(--bg); }
+a { color: var(--maroon); }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+header { background: var(--maroon); color: #fff; display: flex; align-items: center; gap: 16px; padding: 10px 20px; flex-wrap: wrap; position: sticky; top: 0; z-index: 5; }
+header h1 { font-size: 17px; margin: 0; font-weight: 600; }
+header .badge { font-size: 12px; background: rgba(255,255,255,.18); padding: 2px 8px; border-radius: 10px; }
+header .spacer { flex: 1; }
+.seg { display: inline-flex; border: 1px solid rgba(255,255,255,.5); border-radius: 6px; overflow: hidden; }
+.seg button { background: transparent; color: #fff; border: 0; padding: 5px 10px; font: inherit; font-size: 14px; cursor: pointer; }
+.seg button[aria-pressed="true"] { background: #fff; color: var(--maroon); font-weight: 600; }
+.hbtn { background: #fff; color: var(--maroon); border: 0; border-radius: 6px; padding: 6px 12px; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer; }
+.layout { display: grid; grid-template-columns: 290px 1fr; min-height: calc(100vh - 52px); }
+nav { border-right: 1px solid var(--line); background: #fff; padding: 12px 0; overflow-y: auto; max-height: calc(100vh - 52px); position: sticky; top: 52px; }
+nav h2 { font-size: 13px; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); margin: 14px 16px 4px; }
+nav button { display: flex; gap: 8px; width: 100%; text-align: left; background: none; border: 0; padding: 6px 16px; font: inherit; font-size: 14px; color: var(--ink); cursor: pointer; align-items: baseline; }
+nav button:hover { background: var(--tint); }
+nav button[aria-current="page"] { background: var(--tint); font-weight: 600; box-shadow: inset 3px 0 0 var(--maroon); }
+nav .mark { width: 16px; flex: none; color: var(--ok); }
+main { padding: 24px clamp(16px, 4vw, 48px) 80px; max-width: 900px; }
+.crumb { color: var(--muted); font-size: 14px; margin: 0 0 4px; }
+main h2.step { font-size: 28px; margin: 0 0 6px; color: var(--maroon); }
+.meta { color: var(--muted); font-size: 14px; margin-bottom: 18px; }
+.part { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 18px 22px; margin: 14px 0; }
+.part > h3 { margin: 0 0 8px; font-size: 18px; display: flex; gap: 10px; align-items: center; }
+.part > h3 .tag { font-size: 12px; font-weight: 600; background: var(--tint); color: var(--maroon); padding: 2px 8px; border-radius: 10px; }
+.part.ai { border-color: #c9b8b3; background: #fffdfc; }
+table { border-collapse: collapse; width: 100%; margin: 10px 0; font-size: 14px; }
+th, td { border: 1px solid var(--line); padding: 6px 8px; text-align: left; vertical-align: top; }
+th { background: var(--tint); }
+.scroll { overflow-x: auto; }
+pre { background: #f4f2ef; padding: 10px 12px; border-radius: 6px; white-space: pre-wrap; font-size: 13px; }
+code { font-size: .92em; background: #f1eeea; padding: 0 3px; border-radius: 3px; }
+blockquote { margin: 10px 0; padding: 8px 14px; border-left: 4px solid var(--maroon-2); background: var(--tint); }
+details { margin: 10px 0; }
+summary { cursor: pointer; color: var(--muted); font-size: 14px; }
+.btn { background: var(--maroon); color: #fff; border: 0; border-radius: 6px; padding: 8px 16px; font: inherit; font-weight: 600; cursor: pointer; }
+.btn.sec { background: #fff; color: var(--maroon); border: 1px solid var(--maroon); }
+.btn:disabled { opacity: .5; cursor: default; }
+.row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-top: 12px; }
+.thinking { color: var(--muted); font-style: italic; }
+.kv { margin: 6px 0; }
+.kv > .k { font-weight: 600; color: var(--maroon-2); font-size: 13px; text-transform: capitalize; }
+.card { border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; margin: 8px 0; background: #fff; }
+.checklist label { display: flex; gap: 8px; margin: 6px 0; align-items: flex-start; }
+.flag { border-left: 4px solid var(--warn); background: #fff8e8; padding: 8px 12px; margin: 8px 0; border-radius: 4px; }
+.flag.ok { border-color: var(--ok); background: #eef7ef; }
+.cite { color: var(--maroon-2); font-weight: 600; }
+.welcome { max-width: 720px; }
+.choice { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 18px 0; }
+.choice button { text-align: left; background: #fff; border: 2px solid var(--line); border-radius: 10px; padding: 16px; font: inherit; cursor: pointer; }
+.choice button:hover, .choice button[aria-pressed="true"] { border-color: var(--maroon); }
+.choice strong { display: block; color: var(--maroon); font-size: 18px; margin-bottom: 4px; }
+.doc { position: fixed; inset: 52px 0 0 auto; width: min(860px, 100%); background: #fff; border-left: 1px solid var(--line); box-shadow: -8px 0 24px rgba(0,0,0,.08); overflow-y: auto; padding: 24px 32px 60px; z-index: 6; }
+.doc[hidden] { display: none; }
+.doc h2 { color: var(--maroon); margin-top: 0; }
+.doc h3 { margin: 22px 0 6px; font-size: 17px; border-bottom: 1px solid var(--line); padding-bottom: 4px; }
+.doc .empty { color: var(--muted); font-style: italic; }
+.doc td ul { margin: 0; padding-left: 16px; }
+.done-note { color: var(--ok); font-weight: 600; }
+@media (max-width: 760px) {
+  .layout { grid-template-columns: 1fr; }
+  nav { position: static; max-height: 38vh; border-right: 0; border-bottom: 1px solid var(--line); }
+  header { position: static; }
+  .doc { inset: 0; }
+  .choice { grid-template-columns: 1fr; }
+  .doc { padding: 18px 16px; }
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Course Plan Builder</h1>
+  <span class="badge">Prototype · Demo mode: MGMT 615, recorded AI responses</span>
+  <span class="spacer"></span>
+  <div class="seg" role="group" aria-label="Track">
+    <button type="button" data-track="full">Full build</button>
+    <button type="button" data-track="refresh">Refresh</button>
+  </div>
+  <button type="button" class="hbtn" id="docBtn" aria-expanded="false" aria-controls="doc">Planning document</button>
+</header>
+<div class="layout">
+  <nav id="nav" aria-label="Workshop modules"></nav>
+  <main id="main" tabindex="-1"></main>
+</div>
+<aside class="doc" id="doc" hidden aria-label="Course Planning Document preview"></aside>
+
+<script>
+const DATA = /*DATA*/null;
+const KEY = 'course-plan-builder-prototype:state';
+let state = { track: null, done: {}, at: 'welcome', showAll: false };
+
+function load() { try { const s = JSON.parse(localStorage.getItem(KEY) || 'null'); if (s) state = Object.assign(state, s); } catch (e) {} }
+function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
+const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const $ = s => document.querySelector(s);
+
+/* ---------- content parsing ---------- */
+function stripNotes(text) {
+  const out = []; let skipping = false;
+  for (const line of text.split('\n')) {
+    if (line.startsWith('> Review note')) { skipping = true; continue; }
+    if (skipping && line.startsWith('>')) continue;
+    skipping = false; out.push(line);
+  }
+  return out.join('\n');
+}
+function splitBy(text, marker) {
+  const parts = []; let cur = { head: null, body: [] };
+  for (const line of text.split('\n')) {
+    if (line.startsWith(marker)) { parts.push(cur); cur = { head: line.slice(marker.length).trim(), body: [] }; }
+    else cur.body.push(line);
+  }
+  parts.push(cur);
+  return parts.map(p => ({ head: p.head, body: p.body.join('\n').trim() }));
+}
+function parseModule(m) {
+  const text = stripNotes(m.raw);
+  const title = (text.match(/^# (.+)$/m) || [, m.id])[1];
+  const top = splitBy(text, '## ');
+  const mod = { id: m.id, title, intro: top[0].body.replace(/^# .+$/m, '').trim(), reflection: null, prep: null, steps: [] };
+  for (const sec of top.slice(1)) {
+    if (/^Refresh reflection/.test(sec.head)) mod.reflection = sec.body;
+    else if (/^Check-in prep/.test(sec.head)) mod.prep = sec.body;
+    else {
+      const subs = splitBy(sec.body, '### ');
+      const lead = subs[0].body;
+      const step = { key: sec.head.split(' ')[0], title: sec.head, lead, parts: {} };
+      for (const s of subs.slice(1)) step.parts[s.head] = s.body;
+      mod.steps.push(step);
+    }
+  }
+  return mod;
+}
+const MODULES = DATA.modules.map(parseModule);
+
+/* ---------- markdown ---------- */
+function inline(s) {
+  s = esc(s);
+  s = s.replace(/`src:([a-z0-9-]+)`/g, (_, id) => {
+    const src = DATA.sources[id];
+    if (!src) return '<span class="cite">' + esc(id) + '</span>';
+    const label = esc(src.citation || src.title);
+    return src.url ? '<a class="cite" href="' + esc(src.url) + '" target="_blank" rel="noopener">' + label + '</a>' : '<span class="cite">' + label + '</span>';
+  });
+  s = s.replace(/`([^`]+)`/g, '<code>$1</code>');
+  s = s.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+  s = s.replace(/(^|[\s(])\*([^*\s][^*]*)\*/g, '$1<em>$2</em>');
+  s = s.replace(/\[([^\]]+)\]\((https?:[^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+  return s;
+}
+function md(text, opts = {}) {
+  const lines = text.split('\n'); let html = ''; let i = 0;
+  while (i < lines.length) {
+    let line = lines[i];
+    if (/^```/.test(line)) {
+      const lang = line.slice(3).trim(); const buf = []; i++;
+      while (i < lines.length && !/^```/.test(lines[i])) buf.push(lines[i++]);
+      i++;
+      html += codeBlock(lang, buf.join('\n'), opts); continue;
+    }
+    if (/^\|/.test(line)) {
+      const rows = []; while (i < lines.length && /^\|/.test(lines[i])) rows.push(lines[i++]);
+      const cells = r => r.replace(/^\||\|$/g, '').split('|').map(c => c.trim());
+      const head = cells(rows[0]); const body = rows.slice(2).map(cells);
+      html += '<div class="scroll"><table><thead><tr>' + head.map(h => '<th>' + inline(h) + '</th>').join('') + '</tr></thead><tbody>' +
+        body.map(r => '<tr>' + r.map(c => '<td>' + inline(c) + '</td>').join('') + '</tr>').join('') + '</tbody></table></div>';
+      continue;
+    }
+    if (/^>/.test(line)) {
+      const buf = []; while (i < lines.length && /^>/.test(lines[i])) buf.push(lines[i++].replace(/^>\s?/, ''));
+      html += '<blockquote>' + md(buf.join('\n')) + '</blockquote>'; continue;
+    }
+    if (/^\s*(-|\d+\.)\s/.test(line)) {
+      const ordered = /^\s*\d+\./.test(line); const items = [];
+      while (i < lines.length && (/^\s*(-|\d+\.)\s/.test(lines[i]) || (/^\s{2,}\S/.test(lines[i]) && items.length))) {
+        if (/^\s*(-|\d+\.)\s/.test(lines[i])) items.push(lines[i].replace(/^\s*(-|\d+\.)\s/, ''));
+        else items[items.length - 1] += ' ' + lines[i].trim();
+        i++;
+      }
+      const tag = ordered ? 'ol' : 'ul';
+      html += '<' + tag + '>' + items.map(t => '<li>' + inline(t) + '</li>').join('') + '</' + tag + '>'; continue;
+    }
+    if (/^#{3,6}\s/.test(line)) { html += '<h4>' + inline(line.replace(/^#+\s/, '')) + '</h4>'; i++; continue; }
+    if (/^---\s*$/.test(line) || !line.trim()) { i++; continue; }
+    const buf = []; while (i < lines.length && lines[i].trim() && !/^(```|\||>|\s*(-|\d+\.)\s|#{3,6}\s)/.test(lines[i])) buf.push(lines[i++]);
+    html += '<p>' + inline(buf.join(' ')) + '</p>';
+  }
+  return html;
+}
+function codeBlock(lang, code, opts) {
+  if (lang === 'json') {
+    let v; try { v = JSON.parse(code); } catch (e) { return '<pre>' + esc(code) + '</pre>'; }
+    return '<div class="demo-out" ' + (opts.hideDemo ? 'hidden' : '') + '>' + renderValue(v) + '</div>';
+  }
+  if (lang === 'text') return '<details><summary>What the AI is asked to do</summary><pre>' + esc(code) + '</pre></details>';
+  return '<pre>' + esc(code) + '</pre>';
+}
+function renderValue(v) {
+  if (v === null || v === undefined) return '<span class="empty">none</span>';
+  if (Array.isArray(v)) {
+    if (!v.length) return '<span class="empty">none</span>';
+    if (v.every(x => typeof x !== 'object' || x === null)) return '<ul>' + v.map(x => '<li>' + esc(x) + '</li>').join('') + '</ul>';
+    return v.map(x => '<div class="card">' + renderValue(x) + '</div>').join('');
+  }
+  if (typeof v === 'object') {
+    return Object.entries(v).map(([k, val]) => '<div class="kv"><div class="k">' + esc(k.replace(/([A-Z])/g, ' $1')) + '</div>' + renderValue(val) + '</div>').join('');
+  }
+  if (typeof v === 'boolean') return v ? 'yes' : 'no';
+  return '<div>' + esc(v) + '</div>';
+}
+
+/* ---------- views ---------- */
+const STEP_DOC = { 'GS.2': ['title'], '1.1': ['catalog', 'plos', 'learners'], '1.2': ['vision'], '1.3': ['clos'], '1.4': ['modules'],
+  '2.1': ['interaction'], '2.2': ['character'], '3.1': ['premise'], '3.2': ['scenario'], '4.1': ['activities', 'tools'],
+  '5.1': ['materials'], '6.1': ['media'], '7.1': ['cohort'], '8.2': ['communication'] };
+function shown(section) {
+  if (state.showAll) return true;
+  return Object.entries(STEP_DOC).some(([k, v]) => v.includes(section) && state.done[k]);
+}
+
+function renderNav() {
+  let h = '<button type="button" data-go="welcome"' + (state.at === 'welcome' ? ' aria-current="page"' : '') + '><span class="mark"></span>Welcome</button>';
+  for (const m of MODULES) {
+    h += '<h2>' + esc(m.title.replace(/^Module (\d+)\. /, 'M$1 · ')) + '</h2>';
+    if (m.reflection && state.track === 'refresh') h += navBtn(m.id + ':reflection', 'Reflection', state.done[m.id + ':reflection']);
+    for (const s of m.steps) h += navBtn(m.id + ':' + s.key, s.title.replace(/\s*\(optional\)/, ''), state.done[s.key]);
+    if (m.prep) h += navBtn(m.id + ':prep', 'Check-in prep', state.done[m.id + ':prep']);
+  }
+  $('#nav').innerHTML = h;
+}
+function navBtn(go, label, done) {
+  return '<button type="button" data-go="' + esc(go) + '"' + (state.at === go ? ' aria-current="page"' : '') + '><span class="mark" aria-hidden="true">' + (done ? '✓' : '') + '</span><span>' + esc(label) + (done ? '<span class="sr-only" style="position:absolute;left:-9999px"> (done)</span>' : '') + '</span></button>';
+}
+function order() {
+  const list = ['welcome'];
+  for (const m of MODULES) {
+    if (m.reflection && state.track === 'refresh') list.push(m.id + ':reflection');
+    for (const s of m.steps) list.push(m.id + ':' + s.key);
+    if (m.prep) list.push(m.id + ':prep');
+  }
+  return list;
+}
+function go(where) { state.at = where; save(); render(); $('#main').focus(); window.scrollTo(0, 0); }
+function next() { const o = order(); const i = o.indexOf(state.at); if (i < o.length - 1) go(o[i + 1]); }
+
+function renderWelcome() {
+  return '<div class="welcome"><p class="crumb">Flex Online Design Workshop II</p><h2 class="step">Plan your Flex Online course</h2>' +
+    '<p>This prototype walks through the workshop with MGMT 615: Managing People and Performance, a fictional course, and plays back recorded AI responses so the demo never depends on a live connection. Every step builds or reviews one section of the Course Planning Document; open it any time with <strong>Planning document</strong>.</p>' +
+    '<h3>Choose a track</h3><div class="choice">' +
+    '<button type="button" data-track="full" aria-pressed="' + (state.track === 'full') + '"><strong>Full build</strong>A new course, or a course rebuilt from the beginning. Each step drafts its section from your course details.</button>' +
+    '<button type="button" data-track="refresh" aria-pressed="' + (state.track === 'refresh') + '"><strong>Refresh</strong>A course that already runs online. You upload your course map, and each step reviews your current section with flags and suggested revisions.</button></div>' +
+    '<div class="row"><button type="button" class="btn" data-next ' + (state.track ? '' : 'disabled') + '>Start</button>' +
+    '<button type="button" class="btn sec" id="reset">Reset the demo</button></div></div>';
+}
+function findStep(go) {
+  const [mid, key] = go.split(':');
+  const m = MODULES.find(x => x.id === mid);
+  return { m, key, step: m && m.steps.find(s => s.key === key) };
+}
+function aiPart(title, body) {
+  // Everything from the first "Demo response" on is the recorded AI output, revealed by the button.
+  const at = body.search(/(^|\n)Demo (response|answers)/);
+  const before = at < 0 ? body : body.slice(0, at);
+  const after = at < 0 ? '' : body.slice(at).replace(/^\n/, '');
+  const recorded = after ? '<div class="demo-out" hidden><p class="crumb">Recorded response, MGMT 615</p>' + md(after) + '</div>' : '';
+  return '<section class="part ai"><h3>' + esc(title) + ' <span class="tag">AI</span></h3>' + md(before, { hideDemo: true }) + recorded +
+    demoFiles(body) +
+    '<div class="row"><button type="button" class="btn" data-draft>' + (state.track === 'refresh' ? 'Review with AI' : 'Draft with AI') + '</button><span class="thinking" hidden>Working…</span></div></section>';
+}
+function demoFiles(body) {
+  const files = [...new Set((body.match(/demo\/mgmt615-[a-z]+\.json/g) || []))];
+  return files.map(f => {
+    const d = DATA.demo[f.replace('demo/', '')]; if (!d) return '';
+    const v = d.modules ? d.modules.map(x => { const c = Object.assign({}, x); return c; }) : d;
+    return '<div class="demo-out" hidden><p class="crumb">Recorded responses, MGMT 615</p>' + renderValue(v) + '</div>';
+  }).join('');
+}
+function renderStep(goKey) {
+  const { m, key, step } = findStep(goKey);
+  const crumb = '<p class="crumb">' + esc(m.title) + '</p>';
+  if (key === 'reflection' || key === 'prep') {
+    const body = key === 'reflection' ? m.reflection : m.prep;
+    const t = key === 'reflection' ? 'Refresh reflection' : 'Check-in prep';
+    const done = state.done[goKey];
+    return crumb + '<h2 class="step">' + t + '</h2>' +
+      (key === 'prep' ? aiPart('Summary for your ID', body) : '<section class="part">' + md(body) + '</section>') +
+      '<div class="row"><button type="button" class="btn" data-save="' + esc(goKey) + '">' + (key === 'prep' ? 'Ready for check-in' : 'Save answers') + '</button>' + (done ? '<span class="done-note">Saved</span>' : '') + '</div>';
+  }
+  const p = step.parts;
+  let h = crumb + '<h2 class="step">' + esc(step.title) + '</h2><div class="meta">' + md(step.lead).replace(/<\/?p>/g, ' ') + '</div>';
+  if (p['Learn']) h += '<section class="part"><h3>Learn</h3>' + md(p['Learn']) + '</section>';
+  if (p['See it']) h += '<section class="part"><h3>See it <span class="tag">MGMT 615</span></h3>' + md(p['See it']) + '</section>';
+  const both = p['Draft (full build) and Review (refresh)'];
+  if (both) h += aiPart(state.track === 'refresh' ? 'Review' : 'Draft', both);
+  else if (state.track === 'refresh' && p['Review (refresh)']) h += aiPart('Review', p['Review (refresh)']);
+  else if (p['Draft (full build)']) h += aiPart('Draft', p['Draft (full build)']);
+  if (p['Decide']) {
+    const dec = p['Decide'].replace(/(^|\n)- (.+)/g, '$1[[CHK]]$2');
+    const parts = dec.split('\n'); let txt = [], checks = [];
+    for (const l of parts) (l.startsWith('[[CHK]]') ? checks : txt).push(l.replace('[[CHK]]', ''));
+    h += '<section class="part"><h3>Decide</h3>' + md(txt.join('\n').replace(/Checklist[^:\n]*:/, '')) +
+      (checks.length ? '<div class="checklist" role="group" aria-label="Checklist">' + checks.map((c, i) => '<label><input type="checkbox" id="c' + i + '"> <span>' + inline(c) + '</span></label>').join('') + '</div>' : '') + '</section>';
+  }
+  if (p['Checks']) h += '<section class="part" id="checks" hidden><h3>Checks <span class="tag">ran on save</span></h3>' + md(p['Checks']) +
+    '<div class="flag ok">Every flag is fixed or has a note. This section is ready for your ID.</div></section>';
+  if (p['Save']) h += '<section class="part"><h3>Save</h3>' + md(p['Save']) + '</section>';
+  if (p['Go deeper (optional)']) h += '<details class="part"><summary>Go deeper (optional)</summary>' + md(p['Go deeper (optional)']) + '</details>';
+  h += '<div class="row"><button type="button" class="btn" data-save="' + esc(key) + '">Save to plan</button>' + (state.done[key] ? '<span class="done-note">Saved to your planning document</span>' : '') + '</div>';
+  return h;
+}
+
+/* ---------- planning document ---------- */
+function renderDoc() {
+  const f = DATA.demo['mgmt615-foundation.json'];
+  const by = name => (DATA.demo[name] || { modules: [] }).modules;
+  const sc = DATA.demo['mgmt615-scenarios.json'].modules, act = by('mgmt615-activities.json'), mat = by('mgmt615-materials.json'), med = by('mgmt615-media.json'), coh = by('mgmt615-cohort.json');
+  const empty = '<p class="empty">Not filled in yet.</p>';
+  const sec = (name, title, body) => '<h3>' + title + '</h3>' + (shown(name) ? body : empty);
+  const ul = arr => '<ul>' + arr.map(x => '<li>' + esc(x) + '</li>').join('') + '</ul>';
+  const isTool = a => /Perusall|Peerceptiv|Poll/i.test(a.type);
+  const rows = [
+    ['M1', 'Module Titles', 'modules', i => esc(f.modules[i].title)],
+    ['M1', 'CLOs met', 'modules', i => esc(f.modules[i].closMet.join(', '))],
+    ['M1', 'Module Topics', 'modules', i => ul(f.modules[i].topics)],
+    ['M3', 'Scenario', 'scenario', i => '<strong>' + esc(sc[i].chosen.title) + '.</strong> ' + esc(sc[i].chosen.premise)],
+    ['M4', 'Learning Activities Plan Part 1 (Canvas Assignments)', 'activities', i => ul(act[i].activities.filter(a => !isTool(a)).map(a => a.type + ': ' + a.title + ' (' + a.clos.join(', ') + ', ' + a.weight + (a.rsi ? ', RSI ' + a.rsi : '') + ')'))],
+    ['M4', 'Learning Activities Plan Part 2 (Third-Party Tool Activities)', 'tools', i => { const t = act[i].activities.filter(isTool); return t.length ? ul(t.map(a => a.type + ': ' + a.title)) : '<span class="empty">None</span>'; }],
+    ['M5', 'Learning Materials Plan', 'materials', i => ul(mat[i].materials.map(x => x.type + ': ' + x.title + ' (' + x.pages + ' pp., ' + x.rights + ')'))],
+    ['M6', 'Learning Media Plan', 'media', i => ul(med[i].media.map(x => x.kind + ': ' + x.title + (x.minutes ? ', ' + x.minutes + ' min' : '') + (x.where === 'xr-stage' ? ' (XR stage)' : '')))],
+    ['M7', 'Learning Activities Plan Part 3 (Cohort Session Activities)', 'cohort', i => esc(coh[i].title + ': ' + coh[i].live.toLowerCase())]
+  ];
+  const table = (from, n) => '<div class="scroll"><table><thead><tr><th>FODW</th><th>Course Item</th>' + [0, 1, 2, 3].map(k => '<th>Module ' + (from + k + 1) + '</th>').join('') + '</tr></thead><tbody>' +
+    rows.map(([w, label, name, fn]) => '<tr><td>' + w + '</td><th scope="row">' + label + '</th>' + [0, 1, 2, 3].map(k => '<td>' + (shown(name) ? fn(from + k) : '<span class="empty">[Enter]</span>') + '</td>').join('') + '</tr>').join('') + '</tbody></table></div>';
+  const c = f.character;
+  let h = '<div class="row" style="margin-top:0"><button type="button" class="btn sec" id="closeDoc">Close</button>' +
+    '<label><input type="checkbox" id="showAll"' + (state.showAll ? ' checked' : '') + '> Show the finished plan</label>' +
+    '<button type="button" class="btn" id="download">Download (Word)</button></div>';
+  h += '<h2>' + (shown('title') ? esc(f.course.number + ' ' + f.course.title) : '[Course Name and Number]') + ' Course Planning Document</h2>';
+  h += sec('catalog', 'TAMU Catalog Course Description', '<p>' + esc(f.catalog) + '</p>');
+  h += sec('plos', 'Program-Level Outcomes', ul(f.programOutcomes));
+  h += sec('vision', 'Course Vision', '<p>' + esc(f.vision) + '</p>');
+  h += sec('learners', 'Learners', '<p>' + esc(f.learners) + '</p>');
+  h += sec('clos', 'Course-Level Objectives (CLOs)', ul(f.clos));
+  h += '<h3>Table 1: Course Planning Modules 1-4</h3>' + table(0) + '<h3>Table 2: Course Planning Modules 5-8</h3>' + table(4);
+  h += sec('premise', 'Storyline', '<p>' + esc(DATA.demo['mgmt615-scenarios.json'].storylinePremise) + '</p>') +
+    (shown('character') ? '<h4>Character Profile</h4><p><strong>Premise:</strong> ' + esc(c.premise) + '</p><p><strong>Position:</strong> ' + esc(c.position) + '</p><p><strong>Conflict:</strong> ' + esc(c.conflict) + '</p><p><strong>Peers:</strong> ' + esc(c.peers) + '</p><p><strong>Values and fears:</strong> ' + esc(c.valuesFears) + '</p><p><strong>Backstory:</strong> ' + esc(c.backstory) + '</p>' : '');
+  h += sec('interaction', 'Instructor Interaction', '<p>' + esc(f.interactionStatement) + '</p>' + (shown('communication') ? '<h4>Communication and feedback plan</h4>' + ul(f.communicationPlan) : ''));
+  return h;
+}
+function downloadDoc() {
+  const body = $('#doc').cloneNode(true); body.querySelector('.row').remove();
+  const html = '<html><head><meta charset="utf-8"><style>body{font-family:Calibri,Arial,sans-serif}table{border-collapse:collapse}td,th{border:1px solid #999;padding:4px;vertical-align:top}</style></head><body>' + body.innerHTML + '</body></html>';
+  const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([html], { type: 'application/msword' }));
+  a.download = 'MGMT 615 Course Planning Document (prototype).doc'; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+}
+
+/* ---------- render and events ---------- */
+function render() {
+  document.querySelectorAll('header [data-track]').forEach(b => b.setAttribute('aria-pressed', String(state.track === b.dataset.track)));
+  renderNav();
+  $('#main').innerHTML = state.at === 'welcome' ? renderWelcome() : renderStep(state.at);
+  if (!$('#doc').hidden) $('#doc').innerHTML = renderDoc();
+}
+document.addEventListener('click', e => {
+  const t = e.target.closest('button, input'); if (!t) return;
+  if (t.dataset.track) { state.track = t.dataset.track; save(); render(); return; }
+  if (t.dataset.go) { go(t.dataset.go); return; }
+  if (t.hasAttribute('data-next')) { next(); return; }
+  if (t.id === 'reset') { state = { track: null, done: {}, at: 'welcome', showAll: false }; save(); render(); return; }
+  if (t.hasAttribute('data-draft')) {
+    const sec = t.closest('section'); const wait = sec.querySelector('.thinking');
+    t.disabled = true; wait.hidden = false;
+    setTimeout(() => { wait.hidden = true; t.textContent = 'Ask for another version'; t.disabled = false;
+      sec.querySelectorAll('.demo-out').forEach(d => d.hidden = false); }, 900);
+    return;
+  }
+  if (t.dataset.save) {
+    state.done[t.dataset.save] = true; save();
+    const checks = $('#checks');
+    render();
+    const c2 = $('#checks'); if (c2) { c2.hidden = false; c2.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+    const row = document.querySelector('[data-save]').parentElement;
+    if (!row.querySelector('[data-next]')) row.insertAdjacentHTML('beforeend', '<button type="button" class="btn sec" data-next>Next step</button>');
+    return;
+  }
+  if (t.id === 'docBtn') { const d = $('#doc'); d.hidden = !d.hidden; t.setAttribute('aria-expanded', String(!d.hidden)); if (!d.hidden) { d.innerHTML = renderDoc(); d.focus(); } return; }
+  if (t.id === 'closeDoc') { $('#doc').hidden = true; $('#docBtn').setAttribute('aria-expanded', 'false'); $('#docBtn').focus(); return; }
+  if (t.id === 'showAll') { state.showAll = t.checked; save(); $('#doc').innerHTML = renderDoc(); return; }
+  if (t.id === 'download') { downloadDoc(); return; }
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && !$('#doc').hidden) $('#closeDoc').click(); });
+$('#doc').tabIndex = -1;
+load(); render();
+</script>
+</body>
+</html>

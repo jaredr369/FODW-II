@@ -1,0 +1,43 @@
+{
+  "about": "MGMT 615 (fictional) foundation sections after the refresh, used by the prototype's planning document preview. Program outcomes are fictional.",
+  "course": {"number": "MGMT 615", "title": "Managing People and Performance", "credits": 3, "program": "[Program name]", "idName": "[ID name]"},
+  "catalog": "MGMT 615 prepares working professionals to manage the people side of organizational performance. Students learn to diagnose why employees and teams underperform, deliver feedback that actually changes behavior, build and repair team dynamics, delegate and make decision-rights calls under pressure, lead a team through change, and hire well. 3 credit hours.",
+  "programOutcomes": ["PLO 1: Lead individuals and teams to meet organizational goals.", "PLO 2: Analyze business problems using evidence and established frameworks.", "PLO 3: Communicate decisions clearly to varied audiences."],
+  "vision": "MGMT 615 turns people who are good at their jobs into people who are good at running a team. Every module asks students to work out what is actually wrong before they choose a fix, and to defend that call to peers in a live cohort session. Students leave with work they can use on the job: a feedback script, a delegation memo, a change announcement and a structured interview scorecard. They finish ready to manage a larger team and to explain the reasoning behind each call.",
+  "learners": "Students are working professionals in a first management role or about to step into one, most promoted after strong work as individual contributors. They arrive with years of workplace experience and plenty of stories about good and bad managers, but little formal training in managing people. They take the course to handle the conversations and decisions their new role puts in front of them. Most work full time and study in the evenings and on weekends.",
+  "clos": [
+    "CLO 1: Diagnose why an employee or team is underperforming using core theories of motivation and performance.",
+    "CLO 2: Design a feedback or coaching conversation that targets a specific behavior and states the change expected.",
+    "CLO 3: Evaluate team dynamics and organizational context to select a management intervention appropriate to the actual problem.",
+    "CLO 4: Justify a delegation or decision-rights call, including the trade-offs involved.",
+    "CLO 5: Draft a management decision message that states the decision and the next steps a direct report must take.",
+    "CLO 6: Evaluate candidates for a role using a structured interview scorecard."
+  ],
+  "modules": [
+    {"title": "What Managers Actually Do", "closMet": ["CLO 1", "CLO 5"], "topics": ["What management is and isn't", "From doing the work to getting work done through others", "Common first-90-days mistakes"]},
+    {"title": "Motivating People", "closMet": ["CLO 1", "CLO 5"], "topics": ["Expectancy and self-determination theory", "Why incentives backfire", "Diagnosing a motivation problem before choosing a fix"]},
+    {"title": "Performance Management and Feedback", "closMet": ["CLO 2", "CLO 5"], "topics": ["Setting expectations", "The SBI feedback model", "Coaching vs. disciplinary conversations"]},
+    {"title": "Building and Leading Teams", "closMet": ["CLO 3", "CLO 1"], "topics": ["What predicts team performance", "Structural vs. motivational fixes", "Role clarity and ownership of handoffs"]},
+    {"title": "Managing Conflict and Difficult Conversations", "closMet": ["CLO 3", "CLO 2"], "topics": ["Task, process and relationship conflict", "Structuring a difficult conversation"]},
+    {"title": "Delegation and Decision-Making", "closMet": ["CLO 4", "CLO 5"], "topics": ["Sorting tasks by delegation readiness", "Decision rights", "Where AI helps a management decision, and where it misleads"]},
+    {"title": "Leading Through Change", "closMet": ["CLO 5", "CLO 3"], "topics": ["Why change efforts stall", "Sources of resistance", "Communicating change"]},
+    {"title": "Hiring and Building Your Team", "closMet": ["CLO 6", "CLO 1"], "topics": ["Why gut-feel hiring fails", "Structured interviews and scorecards", "Proven experience vs. potential"]}
+  ],
+  "interactionStatement": "Every Monday I'll post an announcement that picks up Dana's story, names the week's decision and responds to what I saw in your last assignment. You'll get written feedback on each module's main assignment within five days of the due date. I check activity every Wednesday, and if you've missed a module's work, I'll contact you that week.",
+  "character": {
+    "premise": "A story about Dana Ortiz, a newly promoted operations manager at a regional distribution center, who struggles to find the real causes of her site's slipping performance and coach, delegate, communicate and hire her way to a fix when leadership has already decided who to blame.",
+    "position": "Operations manager at a regional distribution center for a mid-size home-goods retailer; leads 3 shift leads and about 45 associates; promoted 8 months ago from day-shift lead.",
+    "conflict": "The quick fix against the right fix. Six weeks before peak season, on-time shipping has dropped from 97% to 89%, and her director has already blamed one shift lead. Dana sees a speed bonus and a handoff no one owns.",
+    "peers": "Ray Kowalski, night-shift lead; Jordan Pike, day-shift lead; Alicia Grant, manager at a sister site; Luis Ferreira, associate.",
+    "valuesFears": "Values reliability, fairness and loyalty to the floor. Fears being wrong about her boss, losing the crew's trust, and missing peak season in her first year.",
+    "backstory": "Started as a seasonal picker; known as the lead who \"just fixes it\"; her first review called her a bottleneck."
+  },
+  "communicationPlan": [
+    "Monday: opening announcement that carries Dana's story and names the week's decision.",
+    "Wednesday: midpoint announcement responding to what I see in drafts and polls.",
+    "Monday before each Tuesday cohort session: what to prepare or bring.",
+    "Main assignments: clickable rubric plus a 2-minute video comment within five days.",
+    "AI-drafted comments are read and edited before release.",
+    "Opening and closing announcements drafted before the term and scheduled, so they hold up mid-term."
+  ]
+}
