@@ -1,11 +1,10 @@
 # Module 3. Scenario Planning and the Learner's Journey
 
 Module id: `m3`
-Steps: 5
+Steps: 2
 ID check-in: live review of this module's sections, at the end of the week or sooner
 
-Faculty complete: the course storyline premise, one scenario per module, and a scenario plan for
-one module.
+Faculty complete: the course storyline premise and one scenario per module.
 
 Refresh checks for this module: each scenario calls for that module's objectives; pressure builds
 across modules.
@@ -24,7 +23,8 @@ Demo data: `demo/mgmt615-scenarios.json`
 
 ## 3.1 Your storyline
 
-Time: about 20 minutes
+Time: about 15 minutes
+Pattern: interview, then draft (full build) or edit in place (refresh)
 
 ### Learn
 
@@ -107,7 +107,7 @@ Demo response (MGMT 615): no storyline in the course map, so this step runs as a
 ### Decide
 
 The faculty member edits the premise and the arc. Episode titles stay working titles until step
-3.2 and 3.3.
+3.2.
 
 Checklist:
 
@@ -115,6 +115,11 @@ Checklist:
 - Pressure rises across the modules.
 - Every CLO drives at least one module's decision.
 - At least one module is in a different setting, if transfer matters for your course.
+
+### Checks
+
+On save: the premise names the character, the goal and the conflict; every CLO drives at least
+one module in the arc.
 
 ### Save
 
@@ -129,9 +134,10 @@ Project file: `story.premise`, `story.arc`.
 
 ---
 
-## 3.2 Scenarios for Modules 1 to 4
+## 3.2 Scenarios for every module
 
-Time: about 30 minutes
+Time: about 45 minutes, about 5 minutes a module
+Pattern: pick and combine, one module at a time (full build); edit in place (refresh)
 
 ### Learn
 
@@ -158,7 +164,10 @@ the course wants instead of making a judgment.
 A clear scenario now saves work later. The same moment can anchor a module overview, a
 discussion, an assignment and a cohort session.
 
-In this step you choose scenarios for Modules 1 to 4. Step 3.3 covers Modules 5 to 8.
+Work one module at a time, in order. The second half is usually where pressure peaks, and earlier
+decisions can come back: in MGMT 615, the bonus Dana questions in Module 2 is the change she
+announces in Module 7. A scenario that depends on an earlier decision shows students that the
+skills build on each other.
 
 ### See it
 
@@ -192,8 +201,15 @@ one or two sentences. The first option should follow the arc; the second can dep
 Return: {"modules": [{"module": int, "options": [{"title": string, "premise": string, "clos": [string], "situation": string, "trigger": string, "stakeholders": string, "decision": string, "outcome": string}]}]}
 ```
 
-Demo response (MGMT 615): modules 1 to 4 from `demo/mgmt615-scenarios.json`, with `chosen` as
-the first option and `alternative` as the second.
+For modules after the first, add:
+
+```text
+Where it fits, connect a scenario to a decision the character made in an earlier module, and
+say which one.
+```
+
+Demo response (MGMT 615): each module from `demo/mgmt615-scenarios.json`, with `chosen` as the
+first option and `alternative` as the second.
 
 ### Review (refresh)
 
@@ -230,99 +246,13 @@ Checklist (for each scenario):
 - The stakes are visible.
 - Names, numbers and relationships match your character profile.
 
-### Save
+### Checks
 
-Planning document: the Scenario row in Table 1 (episode title and premise for each module).
-Project file: `modules[0..3].scenario` (all five elements, title, premise and CLOs).
+On save of each scenario: the decision calls for the module's CLOs; two or three defensible
+options; character details match the profile.
 
----
-
-## 3.3 Scenarios for Modules 5 to 8
-
-Time: about 30 minutes
-
-### Learn
-
-Same process as step 3.2, for the second half of your course.
-
-The second half is usually where pressure peaks. By now your character has made decisions that
-have consequences, and earlier choices can come back. In MGMT 615, the bonus Dana questions in
-Module 2 is the change she has to announce in Module 7, and the handoff she diagnoses in Module 4
-is the role she hires for in Module 8.
-
-Look for those callbacks. A scenario that depends on an earlier decision shows students that the
-skills build on each other.
-
-### See it
-
-MGMT 615, Module 8, "Proven vs. Potential": Dana has approval for a new shift-lead role that will
-own the handoff, the permanent fix for the gap that started the story. The finalists are an
-outside candidate who has run shift operations elsewhere and Luis, a highly accurate associate
-who has never supervised anyone. The night-shift lead backs the outside hire, and the crew is
-watching to see whether Luis gets a shot. A structured interview scorecard keeps Dana from
-deciding on experience or loyalty alone.
-
-### Draft (full build) and Review (refresh)
-
-Same instructions as step 3.2, for modules 5 to 8. The AI also receives the scenarios saved in
-step 3.2, so it can build callbacks.
-
-Additional instruction:
-
-```text
-Where it fits, connect a scenario to a decision the character made in an earlier module, and
-say which one.
-```
-
-Demo response (MGMT 615): modules 5 to 8 from `demo/mgmt615-scenarios.json`.
-
-### Decide
-
-Same as step 3.2.
-
-### Save
-
-Planning document: the Scenario row in Table 2.
-Project file: `modules[4..7].scenario`.
-
-> Review note: the MGMT 615 scenarios now use the revised CLO numbers from step 1.4. Module 8
-> maps to CLO 6 (hiring) instead of CLO 4. Module 2's alternative ("Luis Checks Out"), Module 4's
-> ("Two Shifts, Two Rulebooks") and Module 7's ("The Overlap Window") are new, written to give the
-> AI two options in every module. The other alternatives are the side plots from
-> `src:example-mgmt615-character`.
-
----
-
-## 3.4 Check the storyline
-
-Time: about 20 minutes
-
-### Learn
-
-Read your eight scenarios in order, as a student would meet them. Scenarios that each work alone
-can still fail as a story.
-
-Look for:
-
-- **Flat pressure.** If Module 7 feels no harder than Module 2, raise the stakes or tighten the
-  time.
-- **A missing CLO.** Every CLO should drive at least one scenario's decision.
-- **Drift.** A name, number or relationship that changed along the way.
-- **Repeats.** Two scenarios with the same decision in different clothes.
-- **One setting throughout.** If transfer matters for your course, put one scenario somewhere
-  else.
-
-This step runs one check across all eight. Fix what you can; anything you keep gets a short note.
-
-### See it
-
-MGMT 615's check passed with one note: every scenario takes place at Dana's site. The instructor
-kept it, with the note "Module 5 uses data from a sister site, and the existing cases in Modules
-1, 2, 4 and 7 give students other companies to compare."
-
-### Draft (full build) and Review (refresh)
-
-Same instructions for both tracks.
+When all scenarios are saved, a storyline check runs across them and shows flags on the modules
+involved.
 
 AI instructions:
 
@@ -352,120 +282,44 @@ Demo response (MGMT 615):
 }
 ```
 
-### Decide
-
-For each issue, Fix (opens the scenario) or Keep with a note.
-
-Checklist:
-
-- Every issue is fixed or has a note.
+Demo kept note: MGMT 615's check passed with one note: every scenario takes place at Dana's site. The instructor
+kept it, with the note "Module 5 uses data from a sister site, and the existing cases in Modules
+1, 2, 4 and 7 give students other companies to compare."
 
 ### Save
 
-Planning document: nothing new. In refresh, the change log covers any scenario changes.
-Project file: `alignment.m3` (checks and notes).
+Planning document: the Scenario row in Tables 1 and 2 (episode title and premise).
+Project file: `modules[].scenario` (all five elements, title, premise and CLOs); `alignment.m3`.
 
----
-
-## 3.5 Plan one scenario
-
-Time: about 30 minutes
-
-### Learn
-
-A scenario tells you what happens. A scenario plan tells someone how to build it. Pick one
-module's scenario and lay it out row by row, in a table with four columns:
-
-| What happens | Students see | Students read or hear | Students do |
-|---|---|---|---|
-
-Break the scenario into two to four rows, one for each moment. Keep the last column busy:
-every row should give students something to decide, answer or produce, tied to the decision at
-the center of the scenario.
-
-Check each row against three of Mayer's principles (Mayer, 2021):
-
-- **Coherence.** Cut details that don't help with the decision.
-- **Signaling.** Mark what matters with a heading, a highlight or an arrow.
-- **Segmenting.** Split a dense moment into two shorter ones.
-
-Then choose how to deliver it. The decision stays the same whatever the medium.
-
-| Medium | Best for | Needs the media team? |
-|---|---|---|
-| Module overview page | Introducing the week's story and decision | No |
-| Interactive reading | A self-paced walk-through with short checks between moments | No |
-| Interactive case | Using a course tool mid-story, such as an analysis or a calculation | No |
-| Branching simulation | Practicing a decision and seeing its consequences | No, but the heaviest lift |
-| Discussion case | Students argue what the character should do | No |
-| Narrated slide deck | A paced visual story you record yourself | No |
-| Short video | Setting tone and stakes fast, or modeling an expert's reasoning | Yes |
-| Audio narrative | Tone and tension through voice, for listening on the go | Yes |
-
-You'll plan all your media in Module 6. Choosing now tells your ID which scenarios might need
-production.
-
-### See it
-
-MGMT 615 planned Module 4, "The Handoff Nobody Owns," as an interactive case:
-
-| What happens | Students see | Students read or hear | Students do |
-|---|---|---|---|
-| 4:45 p.m. handoff: day shift leaves, night shift finds 60 orders with no notes | Photo of the dock; the handoff sheet, half blank | Ray's message to Dana: "Same as every day." | List what's missing from the handoff sheet |
-| Ray and Jordan each blame the other | Two short messages side by side | Both leads' accounts | Use the team-effectiveness framework to name the real problem |
-| Greg suggests a team-building lunch | Greg's email | "Let's get everyone on the same page." | Choose an intervention and justify it in 150 words |
-| Debrief | Dana's handoff checklist and overlap window | What happened two weeks later | Compare your choice with Dana's |
-
-### Draft (full build) and Review (refresh)
-
-The faculty member picks a module. The AI drafts the plan from that module's saved scenario.
-
-AI instructions:
-
-```text
-Turn the saved scenario for the chosen module into a scenario plan: 2 to 4 rows, one per moment,
-with four columns: what happens, students see, students read or hear, students do. Write any
-narration in natural spoken language. Every "students do" cell must point to the scenario's
-decision or a concept from the module, never to decorative detail. Apply coherence, signaling
-and segmenting. Then recommend one medium from: module overview page, interactive reading,
-interactive case, branching simulation, discussion case, narrated slide deck, short video, audio
-narrative. Give a one-sentence reason and say whether it needs the media team.
-
-Return: {"module": int, "rows": [{"happens": string, "see": string, "readHear": string, "do": string}], "medium": string, "reason": string, "needsMediaTeam": boolean}
-```
-
-Demo response (MGMT 615): the Module 4 plan above, with medium "interactive case" and reason
-"Students apply the team-effectiveness framework mid-story, which a case supports without
-filming."
-
-Refresh track: the same step. If the uploaded document already has a scenario plan or a case
-write-up for a module, the faculty member can start from it.
-
-### Decide
-
-The faculty member edits the rows and the medium.
-
-Checklist:
-
-- Each row has something for students to do.
-- Every "do" ties back to the decision or a module concept.
-- Nothing on screen or in the narration is there only for color.
-- You know whether this scenario needs the media team.
-
-### Save
-
-Planning document: nothing yet. Module 6 adds the medium to the Learning Media Plan row.
-Project file: `modules[n].scenarioPlan` (rows, medium, reason, needsMediaTeam).
-
-> Review note: the V3 course map plans XR stage recordings in Module 4 and XR cohort sessions in
-> Module 7. An XR-stage video is a production option that belongs in the medium table above, but
-> no source file describes what the XR stage offers or when to use it. Can you share a
-> description, or should XR wait for Module 6?
+> Review note: the MGMT 615 scenarios now use the revised CLO numbers from step 1.3. Module 8
+> maps to CLO 6 (hiring) instead of CLO 4. Module 2's alternative ("Luis Checks Out"), Module 4's
+> ("Two Shifts, Two Rulebooks") and Module 7's ("The Overlap Window") are new, written to give the
+> AI two options in every module. The other alternatives are the side plots from
+> `src:example-mgmt615-character`.
 
 ### Go deeper (optional)
 
-- `src:guide-storytelling`: Turning Your Storyline into Scenarios, and Scenario Planning.
+- `src:guide-storytelling`: includes scenario planning, which you'll do with your ID during
+  development for scenarios that need production.
 - `src:jobaid-media-selection-matrix`
 - `src:guide-active-learning`
 - `src:guide-adult-learners`
 - `src:ext-mayer-2021`
+
+---
+
+## Check-in prep
+
+Same instructions as Module 1.
+
+Demo response (MGMT 615):
+
+```json
+{
+  "changed": ["Storyline premise: new", "Scenarios for all eight modules: new"],
+  "keptFlags": ["Every scenario is at Dana's site: Module 5 uses sister-site data, and existing cases give other companies to compare"],
+  "questions": ["Which scenarios are worth producing as video, and which work as readings or discussion cases?", "Does the Module 5 scenario, where Dana challenges her director, need framing for students?"]
+}
+```
+
+Project file: `checkins.prep.m3`.

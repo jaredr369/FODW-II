@@ -28,5 +28,5 @@ Writing style for anything the faculty member will read:
 Return only the JSON object described in the step instructions, with no text before or after it.
 ```
 
-> Review note: the endpoint and model for TAMU AI Chat are still open. These instructions do
-> not depend on either.
+> Review note: the app calls TAMU AI Chat as described in GS.1 (OpenAI-compatible endpoint,
+> model picked from the key's model list). These instructions don't depend on the model.

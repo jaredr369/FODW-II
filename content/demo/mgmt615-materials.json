@@ -1,0 +1,46 @@
+{
+  "about": "Recorded demo data for Module 5 (MGMT 615, fictional; every source below is fictional). 'materials' are each module's required materials after the refresh. 'rights' values: library (link to TAMU Libraries record), open (open license, named), public (publicly available web page or video, linked), created (made for the course), ai-assisted (created with AI help; needs a disclosure note), unclear. 'review' holds refresh flags and the faculty member's resolution.",
+  "modules": [
+    {"module": 1, "pages": 20, "materials": [
+      {"type": "Book chapter", "title": "Whitfield (2019), Ch. 2: The Manager's Dilemma", "pages": 14, "rights": "library", "supports": "Case analysis"},
+      {"type": "Case", "title": "Maria's First Ninety Days", "pages": 4, "rights": "unclear", "supports": "Case analysis"},
+      {"type": "Scenario exhibit", "title": "Dana's Monday report and Greg's email", "pages": 1, "rights": "created", "supports": "Case analysis"},
+      {"type": "Interactive reading", "title": "Setting Your Management Baseline", "pages": 2, "rights": "created", "supports": "Discussion"}
+    ], "review": ["Maria's First Ninety Days has no author or source listed, so its rights are unclear. Resolution: the instructor wrote it in 2022; marked created.", "Whitfield (2019) is seven years old. Resolution: kept; the instructor confirmed no newer edition."]},
+    {"module": 2, "pages": 24, "materials": [
+      {"type": "Book chapter", "title": "Whitfield (2019), Ch. 5: What People Actually Want From Work", "pages": 16, "rights": "library", "supports": "Motivation memo"},
+      {"type": "Article", "title": "Han & Okafor (2023), The incentive trap", "pages": 6, "rights": "library", "supports": "Motivation memo"},
+      {"type": "Scenario exhibit", "title": "Pick-rate bonus sheet and mis-pick report", "pages": 1, "rights": "ai-assisted", "supports": "Motivation memo"}
+    ], "review": ["The bonus sheet was drafted with AI. Resolution: disclosure note added and numbers checked against the scenario."]},
+    {"module": 3, "pages": 19, "materials": [
+      {"type": "Book chapter", "title": "Marsh (2021), Ch. 4: Feedback That Lands", "pages": 13, "rights": "library", "supports": "Perusall and feedback script"},
+      {"type": "Job aid", "title": "The SBI Feedback Model, One Page", "pages": 1, "rights": "unclear", "supports": "Feedback script"},
+      {"type": "Interactive reading", "title": "Script Your Feedback Conversation", "pages": 4, "rights": "created", "supports": "Feedback script"}
+    ], "review": ["The SBI job aid copies a published model diagram with no attribution. Resolution: redraw it as created content with an attribution line for the model."]},
+    {"module": 4, "pages": 21, "materials": [
+      {"type": "Article", "title": "Park & Marsh (2024), What actually predicts team performance", "pages": 11, "rights": "library", "supports": "Team diagnosis memo"},
+      {"type": "Case", "title": "The Team That Couldn't Ship", "pages": 6, "rights": "created", "supports": "Contrast case for the memo"},
+      {"type": "Interactive reading", "title": "Diagnose the Team, Not the Person", "pages": 4, "rights": "created", "supports": "Team diagnosis memo"}
+    ], "review": ["Supplemental article 'Designing team assignments every learner can do' is a course-design reading, not content for students. Resolution: removed."]},
+    {"module": 5, "pages": 18, "materials": [
+      {"type": "Book chapter", "title": "Marsh (2021), Ch. 7: The Conversation You're Avoiding", "pages": 12, "rights": "library", "supports": "Perusall and conflict plan"},
+      {"type": "Scenario exhibit", "title": "Alicia's handoff dashboard", "pages": 1, "rights": "created", "supports": "Conflict plan"},
+      {"type": "Interactive reading", "title": "Root-Cause the Conflict", "pages": 3, "rights": "created", "supports": "Conflict plan"}
+    ], "review": []},
+    {"module": 6, "pages": 20, "materials": [
+      {"type": "Article", "title": "Han (2025), The delegation trap", "pages": 9, "rights": "library", "supports": "Delegation memo"},
+      {"type": "Job aid", "title": "Where AI Helps (and Where It Doesn't) in a Management Decision", "pages": 2, "rights": "ai-assisted", "supports": "Delegation memo"},
+      {"type": "Interactive reading", "title": "Sort the Tasks", "pages": 5, "rights": "created", "supports": "Delegation memo"}
+    ], "review": ["The AI job aid was drafted with AI and has no disclosure. Resolution: disclosure note added."]},
+    {"module": 7, "pages": 17, "materials": [
+      {"type": "Book chapter", "title": "Whitfield (2019), Ch. 9: Announcing Change Without Losing the Room", "pages": 11, "rights": "library", "supports": "Change message"},
+      {"type": "Case", "title": "The Reorg Nobody Saw Coming", "pages": 4, "rights": "created", "supports": "Discussion"},
+      {"type": "Interactive reading", "title": "Draft Your Change Message", "pages": 2, "rights": "created", "supports": "Change message"}
+    ], "review": []},
+    {"module": 8, "pages": 19, "materials": [
+      {"type": "Article", "title": "Han & Diallo (2023), Structured interviews outperform gut feel", "pages": 10, "rights": "library", "supports": "Scorecard and hiring memo"},
+      {"type": "Scenario exhibit", "title": "Two candidate files: Luis and the outside finalist", "pages": 2, "rights": "created", "supports": "Scorecard and hiring memo"},
+      {"type": "Interactive reading", "title": "Potential vs. Proven: Make the Call", "pages": 4, "rights": "created", "supports": "Hiring memo"}
+    ], "review": ["Scenario exhibits were missing from the plan for Modules 1, 2, 5 and 8. Resolution: added as created content."]}
+  ]
+}

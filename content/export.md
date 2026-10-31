@@ -122,3 +122,10 @@ choice is made.
 **Google Docs.** A saved .docx opens in Google Docs for reading and comments. Keep the .docx as
 the official copy, since converting the planning document's tables back and forth can shift
 their formatting.
+
+## Downloads
+
+Three steps also offer a Word file to download: the video script (6.2), the run of show for the
+first cohort session (7.2) and the Module 1 announcement sequence (8.2). They show faculty what
+these documents look like and give them a head start for development. They aren't part of the
+planning document, and faculty don't fill them out or submit them.

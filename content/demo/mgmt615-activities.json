@@ -1,0 +1,323 @@
+{
+  "about": "Recorded demo data for Module 4 (MGMT 615, fictional). 'activities' are the module's activities after the refresh review. Each has type, title, CLOs, weight (high, medium, low), estimated student hours, RSI category (null if it doesn't count on its own) and AI-completion risk for graded work. 'review' holds the refresh findings for steps 4.1 and 4.2. Activities from the course map are kept unless a finding says otherwise.",
+  "modules": [
+    {
+      "module": 1,
+      "activities": [
+        {
+          "type": "Discussion",
+          "title": "Introductions and Your Management Story",
+          "clos": [
+            "CLO 1"
+          ],
+          "weight": "low",
+          "hours": 1,
+          "rsi": 4,
+          "aiRisk": "low"
+        },
+        {
+          "type": "Assignment",
+          "title": "Case Analysis: Maria's First Ninety Days and Dana's First Bad Week",
+          "clos": [
+            "CLO 1"
+          ],
+          "weight": "medium",
+          "hours": 3,
+          "rsi": 2,
+          "aiRisk": "medium"
+        },
+        {
+          "type": "Quiz",
+          "title": "Manager vs. Individual Contributor Sort",
+          "clos": [
+            "CLO 1"
+          ],
+          "weight": "low",
+          "hours": 0.5,
+          "rsi": null,
+          "aiRisk": "low"
+        }
+      ],
+      "review": [
+        "Case analysis: keep, and add Dana's first bad week as the comparison case so the assignment sits at the storyline's first decision.",
+        "The sort is auto-graded, so it doesn't count for RSI. The module still has two categories from the discussion and the case feedback.",
+        "About 4.5 hours of activities in a 4-hour first week. Resolution: the Manager vs. Individual Contributor Sort becomes optional practice, and the case analysis is shortened."
+      ]
+    },
+    {
+      "module": 2,
+      "activities": [
+        {
+          "type": "Assignment",
+          "title": "Motivation Diagnosis Memo: Why the Bonus Backfired",
+          "clos": [
+            "CLO 1"
+          ],
+          "weight": "high",
+          "hours": 3,
+          "rsi": 2,
+          "aiRisk": "medium"
+        },
+        {
+          "type": "Quiz",
+          "title": "Motivation Theory Check",
+          "clos": [
+            "CLO 1"
+          ],
+          "weight": "low",
+          "hours": 0.5,
+          "rsi": null,
+          "aiRisk": "low"
+        },
+        {
+          "type": "Interactive",
+          "title": "Fix the Incentive",
+          "clos": [
+            "CLO 5"
+          ],
+          "weight": "low",
+          "hours": 0.5,
+          "rsi": null,
+          "aiRisk": "low"
+        }
+      ],
+      "review": [
+        "Motivation memo: tie it to Dana's bonus decision. It was a general memo on a problem of the student's choice; students can still add their own team as a second case."
+      ]
+    },
+    {
+      "module": 3,
+      "activities": [
+        {
+          "type": "Assignment",
+          "title": "Feedback Conversation Script: Dana and Jordan",
+          "clos": [
+            "CLO 2"
+          ],
+          "weight": "high",
+          "hours": 3,
+          "rsi": 2,
+          "aiRisk": "high"
+        },
+        {
+          "type": "Perusall",
+          "title": "Feedback That Lands (Chapter 4)",
+          "clos": [
+            "CLO 2"
+          ],
+          "weight": "low",
+          "hours": 1.5,
+          "rsi": 4,
+          "aiRisk": "low"
+        },
+        {
+          "type": "Interactive",
+          "title": "Coaching or Discipline? Scenario Sort",
+          "clos": [
+            "CLO 2"
+          ],
+          "weight": "low",
+          "hours": 0.5,
+          "rsi": null,
+          "aiRisk": "low"
+        }
+      ],
+      "review": [
+        "Perusall now counts for RSI (category 4) with the Thursday replies planned in step 2.2."
+      ]
+    },
+    {
+      "module": 4,
+      "activities": [
+        {
+          "type": "Assignment",
+          "title": "Team Diagnosis and Structural Fix Memo: The Handoff Nobody Owns",
+          "clos": [
+            "CLO 3"
+          ],
+          "weight": "high",
+          "hours": 3,
+          "rsi": 2,
+          "aiRisk": "medium"
+        },
+        {
+          "type": "Discussion",
+          "title": "Your Best and Worst Team Experience",
+          "clos": [
+            "CLO 3"
+          ],
+          "weight": "low",
+          "hours": 1,
+          "rsi": 4,
+          "aiRisk": "low"
+        }
+      ],
+      "review": [
+        "The memo used a separate case, The Team That Couldn't Ship. Keep that case as a reading and move the memo to Dana's handoff decision, which the Module 4 scenario plan already sets up."
+      ]
+    },
+    {
+      "module": 5,
+      "activities": [
+        {
+          "type": "Assignment",
+          "title": "Conflict Root-Cause Analysis and Conversation Plan: Telling Greg",
+          "clos": [
+            "CLO 3",
+            "CLO 2"
+          ],
+          "weight": "high",
+          "hours": 3,
+          "rsi": 2,
+          "aiRisk": "medium"
+        },
+        {
+          "type": "Interactive",
+          "title": "Conflict Type Diagnostic Practice",
+          "clos": [
+            "CLO 3"
+          ],
+          "weight": "low",
+          "hours": 0.5,
+          "rsi": null,
+          "aiRisk": "low"
+        },
+        {
+          "type": "Perusall",
+          "title": "The Conversation You're Avoiding (Chapter 7)",
+          "clos": [
+            "CLO 2"
+          ],
+          "weight": "low",
+          "hours": 1.5,
+          "rsi": null,
+          "aiRisk": "low"
+        }
+      ],
+      "review": [
+        "Perusall in Module 5 has the same gap Module 3 had: students see only Perusall's score. Apply the same Thursday replies so it counts for RSI."
+      ]
+    },
+    {
+      "module": 6,
+      "activities": [
+        {
+          "type": "Assignment",
+          "title": "Delegation Sort and Decision-Rights Memo: Twelve Things on Dana's List",
+          "clos": [
+            "CLO 4"
+          ],
+          "weight": "high",
+          "hours": 3,
+          "rsi": 2,
+          "aiRisk": "medium"
+        },
+        {
+          "type": "Quiz",
+          "title": "Delegation Framework Check",
+          "clos": [
+            "CLO 4"
+          ],
+          "weight": "low",
+          "hours": 0.5,
+          "rsi": null,
+          "aiRisk": "low"
+        }
+      ],
+      "review": []
+    },
+    {
+      "module": 7,
+      "activities": [
+        {
+          "type": "Assignment",
+          "title": "Change-Communication Draft and Resistance Map: Ending the Bonus",
+          "clos": [
+            "CLO 5"
+          ],
+          "weight": "high",
+          "hours": 3,
+          "rsi": 2,
+          "aiRisk": "high"
+        },
+        {
+          "type": "Discussion",
+          "title": "A Change That Was Announced Badly",
+          "clos": [
+            "CLO 5"
+          ],
+          "weight": "low",
+          "hours": 1,
+          "rsi": 4,
+          "aiRisk": "low"
+        }
+      ],
+      "review": []
+    },
+    {
+      "module": 8,
+      "activities": [
+        {
+          "type": "Assignment",
+          "title": "Interview Scorecard and Hiring Decision Memo: Proven vs. Potential",
+          "clos": [
+            "CLO 6"
+          ],
+          "weight": "high",
+          "hours": 3,
+          "rsi": 2,
+          "aiRisk": "medium"
+        },
+        {
+          "type": "Assignment",
+          "title": "Management Approach Summary",
+          "clos": [
+            "CLO 1",
+            "CLO 2",
+            "CLO 3",
+            "CLO 4",
+            "CLO 5",
+            "CLO 6"
+          ],
+          "weight": "high",
+          "hours": 3,
+          "rsi": 2,
+          "aiRisk": "high"
+        }
+      ],
+      "review": [
+        "Two high-stakes assignments in the last week, about 6 hours before readings and the cohort session. Consider moving the Management Approach Summary's first draft into Module 7 or shortening it."
+      ]
+    }
+  ],
+  "aiCheck": [
+    {
+      "module": 3,
+      "activity": "Feedback Conversation Script",
+      "risk": "high",
+      "why": "A general AI tool writes a plausible SBI feedback script from the scenario alone, with no student judgment visible.",
+      "change": "Students annotate their own script with why each line is there, and rehearse it with a partner in the cohort session. The annotations and the rehearsal are graded."
+    },
+    {
+      "module": 7,
+      "activity": "Change-Communication Draft and Resistance Map",
+      "risk": "high",
+      "why": "Drafting an announcement from a brief is a strength of AI tools.",
+      "change": "Grade the resistance map first and require the message to answer each mapped source of resistance, then hold a table read in the cohort session where classmates play the crew."
+    },
+    {
+      "module": 8,
+      "activity": "Management Approach Summary",
+      "risk": "high",
+      "why": "A general reflection on management approach can be produced without the course.",
+      "change": "Students build it from their own earlier submissions, quoting at least three of them and saying what they would now do differently."
+    },
+    {
+      "module": 2,
+      "activity": "Motivation Diagnosis Memo",
+      "risk": "medium",
+      "why": "AI can apply expectancy theory to the bonus case, but the second case from the student's own team needs their knowledge.",
+      "change": "Keep the student's own team as a required second case."
+    }
+  ]
+}

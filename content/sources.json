@@ -355,6 +355,355 @@
       "citation": "Gick, M. L., & Holyoak, K. J. (1983). Schema induction and analogical transfer. Cognitive Psychology, 15(1), 1-38.",
       "module": "m3",
       "use": "cited"
+    },
+    {
+      "id": "reading-m4-crafting-part-1",
+      "kind": "reading",
+      "title": "Crafting the Activities (Part 1)",
+      "module": "m4",
+      "use": "basis for 4.1 to 4.4",
+      "file": "M4 - Cidi, Crafting the Activities (Part 1) v2.docx",
+      "folder": "04 - Learning Materials/Module 4"
+    },
+    {
+      "id": "reading-m4-crafting-part-2",
+      "kind": "reading",
+      "title": "Crafting the Activities (Part 2)",
+      "module": "m4",
+      "use": "basis for 4.5",
+      "file": "M4 - Cidi, Crafting the Activities (Part 2) v2.docx",
+      "folder": "04 - Learning Materials/Module 4"
+    },
+    {
+      "id": "assignment-m4-assessment-interaction-plan",
+      "kind": "assignment",
+      "title": "Assessment and Interaction Plan",
+      "module": "m4",
+      "use": "basis",
+      "file": "M4 FR Individual Assignment - Assessment and Interaction Plan.docx",
+      "folder": "03 - Learning Activities/Assignments"
+    },
+    {
+      "id": "assignment-m4-learning-activities-plan",
+      "kind": "assignment",
+      "title": "Learning Activities Plan (full build)",
+      "module": "m4",
+      "use": "background",
+      "file": "M4 F Individual Assignment - Learning Activities Plan.docx",
+      "folder": "03 - Learning Activities/Assignments"
+    },
+    {
+      "id": "assignment-m4-course-tutor",
+      "kind": "assignment",
+      "title": "Building a Course Tutor with AI",
+      "module": "m4",
+      "use": "basis for 4.6; supplemental",
+      "file": "M4 FR Interactive Assignment- Building a Course Tutor with AI.docx",
+      "folder": "03 - Learning Activities/Interactive Assignments",
+      "notes": "Also covers a faculty grading-assistant Gem, left out of the tool for now."
+    },
+    {
+      "id": "guide-learning-activities",
+      "kind": "guide",
+      "title": "Learning Activities",
+      "citation": "TLI. (2026). Learning Activities [Guide].",
+      "module": "m4",
+      "use": "supplemental",
+      "file": "Guide - Learning Activities.docx",
+      "folder": "04 - Learning Materials/Module 4"
+    },
+    {
+      "id": "guide-rubrics",
+      "kind": "guide",
+      "title": "Rubrics",
+      "citation": "TLI. (2026). Rubrics [Guide].",
+      "module": "m4",
+      "use": "supplemental",
+      "file": "Guide - Rubrics.docx",
+      "folder": "04 - Learning Materials/Module 4"
+    },
+    {
+      "id": "guide-third-party-tools",
+      "kind": "guide",
+      "title": "Third-Party Tools",
+      "citation": "TLI. (2026). Third-Party Tools [Guide].",
+      "module": "m4",
+      "use": "supplemental",
+      "file": "Guide - Third Party Tools.docx",
+      "folder": "04 - Learning Materials/Module 4"
+    },
+    {
+      "id": "ext-tamu-ai-guidelines",
+      "kind": "ext",
+      "title": "Use guidelines and ethics (Texas A&M AI)",
+      "citation": "Texas A&M University. (n.d.). Use guidelines and ethics. Artificial Intelligence.",
+      "module": "m4",
+      "use": "supplemental",
+      "url": "https://ai.tamu.edu/teach-with-ai/use-guidelines-and-ethics.html"
+    },
+    {
+      "id": "ext-bowen-watson-2025-ch15",
+      "kind": "ext",
+      "title": "Teaching with AI, Chapter 15: Custom bots and beyond",
+      "citation": "Bowen, J. A., & Watson, C. E. (2025). Custom bots and beyond. In Teaching with AI: A practical guide to a new era of human learning (2nd ed., pp. 124-133). Johns Hopkins University Press.",
+      "module": "m4",
+      "use": "supplemental",
+      "file": "JoséAntonioBowe_2025_Chapter15CustomBotsan_TeachingwithAIAPracti.pdf",
+      "folder": "04 - Learning Materials/Module 6",
+      "notes": "The course map gives pp. 131-151, which is Chapter 7's range. The PDF's printed page numbers show Chapter 15 on pp. 124-133. The PDF sits in the Module 6 folder."
+    },
+    {
+      "id": "ext-terry-2023",
+      "kind": "ext",
+      "title": "I'm a student. You have no idea how much we're using ChatGPT.",
+      "citation": "Terry, O. K. (2023). I'm a student. You have no idea how much we're using ChatGPT. The Chronicle of Higher Education, 69(19).",
+      "module": "m4",
+      "use": "supplemental"
+    },
+    {
+      "id": "reading-m5-materials-plan",
+      "kind": "reading",
+      "title": "Developing a Learning Materials Plan",
+      "module": "m5",
+      "use": "basis",
+      "file": "M5 - Cidi, Developing a Learning Materials Plan v2.docx",
+      "folder": "04 - Learning Materials/Module 5"
+    },
+    {
+      "id": "assignment-m5-materials-rights-review",
+      "kind": "assignment",
+      "title": "Materials and Rights Review",
+      "module": "m5",
+      "use": "basis",
+      "file": "M5 FR Individual Assignment - Materials and Rights Review.docx",
+      "folder": "03 - Learning Activities/Assignments"
+    },
+    {
+      "id": "assignment-m5-writing-attributions",
+      "kind": "assignment",
+      "title": "Writing Attributions",
+      "module": "m5",
+      "use": "supplemental",
+      "file": "M5 FR Interactive Assignment - Writing Attributions.docx",
+      "folder": "03 - Learning Activities/Interactive Assignments"
+    },
+    {
+      "id": "guide-copyright",
+      "kind": "guide",
+      "title": "Copyright and Fair Use",
+      "module": "m5",
+      "use": "supplemental",
+      "file": "Guide - Copyright and Fair Use.docx",
+      "folder": "04 - Learning Materials/Module 5",
+      "citation": "TLI. (2026). Copyright and Fair Use [Guide]."
+    },
+    {
+      "id": "guide-curating-creating",
+      "kind": "guide",
+      "title": "Curating and Creating Content",
+      "module": "m5",
+      "use": "supplemental",
+      "file": "Guide - Curating and Creating Content.docx",
+      "folder": "04 - Learning Materials/Module 5",
+      "citation": "TLI. (2026). Curating and Creating Content [Guide]."
+    },
+    {
+      "id": "guide-instructor-authored-reading",
+      "kind": "guide",
+      "title": "Instructor-Authored Reading",
+      "module": "m5",
+      "use": "supplemental",
+      "file": "Guide - Instructor Authored Reading.docx",
+      "folder": "04 - Learning Materials/Module 5",
+      "citation": "TLI. (2026). Instructor-Authored Reading [Guide]."
+    },
+    {
+      "id": "guide-accessibility",
+      "kind": "guide",
+      "title": "Accessibility",
+      "module": "m5",
+      "use": "supplemental",
+      "file": "Guide - Accessibility.docx",
+      "folder": "04 - Learning Materials/Module 5",
+      "citation": "TLI. (2026). Accessibility [Guide]."
+    },
+    {
+      "id": "reading-m6-planning-media",
+      "kind": "reading",
+      "title": "Planning Media Intentionally",
+      "module": "m6",
+      "use": "basis",
+      "file": "M6 - Cidi, Planning Media Intentionally v2.docx",
+      "folder": "04 - Learning Materials/Module 6"
+    },
+    {
+      "id": "assignment-m6-media-planning",
+      "kind": "assignment",
+      "title": "Media Planning",
+      "module": "m6",
+      "use": "basis",
+      "file": "M6 F Individual Assignment - Media Planning.docx",
+      "folder": "03 - Learning Activities/Assignments"
+    },
+    {
+      "id": "template-av-script",
+      "kind": "template",
+      "title": "A/V script template",
+      "module": "m6",
+      "use": "export template for 6.2",
+      "file": "AVE_Script_Template_v1.docx",
+      "folder": "06 - Media Production"
+    },
+    {
+      "id": "guide-script-writing",
+      "kind": "guide",
+      "title": "Script Writing",
+      "module": "m6",
+      "use": "supplemental",
+      "file": "Guide - Script Writing.docx",
+      "folder": "04 - Learning Materials/Module 6",
+      "citation": "TLI. (2026). Script Writing [Guide]."
+    },
+    {
+      "id": "guide-planning-media",
+      "kind": "guide",
+      "title": "Planning Media Intentionally",
+      "module": "m6",
+      "use": "supplemental",
+      "file": "Guide - Planning Media Intentionally.docx",
+      "folder": "04 - Learning Materials/Module 6",
+      "citation": "TLI. (2026). Planning Media Intentionally [Guide]."
+    },
+    {
+      "id": "reading-m7-going-live",
+      "kind": "reading",
+      "title": "Going Live with Cohorts",
+      "module": "m7",
+      "use": "basis",
+      "file": "M7 - Cidi Going Live with Cohorts v2.docx",
+      "folder": "04 - Learning Materials/Module 7",
+      "notes": "Also cites Morris et al. (2019) and Donelan et al. (2025), used in step 7.1."
+    },
+    {
+      "id": "reading-m7-active-learning-tools",
+      "kind": "reading",
+      "title": "Active Learning Tools for Cohort Sessions (draft outline)",
+      "module": "m7",
+      "use": "supplemental",
+      "file": "M7 - Cidi, Active Learning Tools for Cohort Sessions (Draft Outline).docx",
+      "folder": "04 - Learning Materials/Module 7"
+    },
+    {
+      "id": "assignment-m7-cohort-planning",
+      "kind": "assignment",
+      "title": "Cohort Planning",
+      "module": "m7",
+      "use": "basis",
+      "file": "M7 F Individual Assignment - Cohort Planning.docx",
+      "folder": "03 - Learning Activities/Assignments"
+    },
+    {
+      "id": "assignment-m7-cohort-materials",
+      "kind": "assignment",
+      "title": "Cohort Session Materials",
+      "module": "m7",
+      "use": "background",
+      "file": "M7 F Individual Assignment - Cohort Session Materials.docx",
+      "folder": "03 - Learning Activities/Assignments"
+    },
+    {
+      "id": "guide-cohort-sessions",
+      "kind": "guide",
+      "title": "Cohort Sessions",
+      "module": "m7",
+      "use": "supplemental",
+      "file": "REVISION Guide - Cohort Sessions.docx",
+      "folder": "04 - Learning Materials/Module 7",
+      "citation": "TLI. (2026). Cohort Sessions [Guide]."
+    },
+    {
+      "id": "template-run-of-show",
+      "kind": "template",
+      "title": "Run of show",
+      "module": "m7",
+      "use": "export template for 7.2",
+      "file": "Run_of_Show.docx",
+      "folder": "05 - Cohort Sessions"
+    },
+    {
+      "id": "reading-m8-preparing-for-development",
+      "kind": "reading",
+      "title": "Preparing for Development",
+      "module": "m8",
+      "use": "basis",
+      "file": "M8 - Cidi, Preparing for Development v2.docx",
+      "folder": "04 - Learning Materials/Module 8",
+      "notes": "The Fink PDF in the Module 8 folder (a copy of Fink's book from bookzz.org, an unauthorized source) is not used."
+    },
+    {
+      "id": "assignment-m8-course-planning-document",
+      "kind": "assignment",
+      "title": "Course Planning Document",
+      "module": "m8",
+      "use": "basis",
+      "file": "M8 F Individual Assignment - Course Planning Document.docx",
+      "folder": "03 - Learning Activities/Assignments"
+    },
+    {
+      "id": "guide-online-teaching-practices",
+      "kind": "guide",
+      "title": "Best Practices for Designing and Teaching Online Courses",
+      "module": "m8",
+      "use": "supplemental",
+      "file": "Guide - Best Practices for Designing and Teaching Online Courses.docx",
+      "folder": "04 - Learning Materials/Module 8",
+      "citation": "TLI. (2026). Best Practices for Designing and Teaching Online Courses [Guide]."
+    },
+    {
+      "id": "guide-grading-weight",
+      "kind": "guide",
+      "title": "Grading & Weight",
+      "module": "m8",
+      "use": "supplemental",
+      "file": "Guide - Grading & Weight.docx",
+      "folder": "04 - Learning Materials/Module 8",
+      "citation": "TLI. (2026). Grading & Weight [Guide]."
+    },
+    {
+      "id": "guide-large-enrollment",
+      "kind": "guide",
+      "title": "Strategies for Large Enrollment Courses",
+      "module": "m8",
+      "use": "supplemental",
+      "file": "Guide - Strategies for Large Enrollment Courses.docx",
+      "folder": "04 - Learning Materials/Module 8",
+      "citation": "TLI. (2026). Strategies for Large Enrollment Courses [Guide]."
+    },
+    {
+      "id": "ext-copyright-office-ai",
+      "kind": "ext",
+      "title": "Copyright and artificial intelligence",
+      "citation": "U.S. Copyright Office. (2025). Copyright and artificial intelligence.",
+      "module": "m5",
+      "use": "supplemental",
+      "url": "https://copyright.gov/ai/"
+    },
+    {
+      "id": "ext-guo-2014",
+      "kind": "ext",
+      "title": "How video production affects student engagement",
+      "citation": "Guo, P. J., Kim, J., & Rubin, R. (2014). How video production affects student engagement: An empirical study of MOOC videos. Proceedings of the First ACM Conference on Learning @ Scale, 41-50.",
+      "module": "m6",
+      "use": "cited",
+      "url": "https://doi.org/10.1145/2556325.2566239"
+    },
+    {
+      "id": "tool-scriptwise",
+      "kind": "tool",
+      "title": "ScriptWise",
+      "module": "m6",
+      "use": "supplemental: AI script development",
+      "notes": "Listed in the V3 course map. Add the link when known."
     }
   ]
 }
