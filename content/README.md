@@ -20,6 +20,11 @@ Each step has the same parts, in this order:
 - **Save**: where the result goes in the planning document and in the project file.
 - **Go deeper**: optional supplemental material.
 
+Without AI (faculty who chose Continue without AI in GS.1): Learn, See it, Decide and Save
+work the same. Draft and Review are replaced by a text box (empty in the full build, holding the
+current section in the refresh track) next to the step's checklist. The refresh reflection is
+still shown and saved for the ID.
+
 Notes for reviewers are in blocks that start with `> Review note:`. The app ignores them.
 
 ## Example course

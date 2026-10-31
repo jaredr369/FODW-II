@@ -30,15 +30,26 @@ Treat every draft as a starting point. In each step you can edit what the AI wro
 another version, or write the section yourself. Nothing goes into your planning document until
 you select Save, and you can change a saved section later.
 
-How to create a key:
+**We strongly recommend connecting the AI.** This workshop is built around it. You can continue
+without it, but then you write every section yourself. You will not get first drafts, the
+checks on your objectives and alignment, or, in the refresh track, the review of your existing
+course. You still see the readings, the MGMT 615 examples and each step's checklist. You can
+connect the AI later from Settings.
 
-1. [Steps for chat.tamu.ai, to be written once TAMU IT confirms the process.]
-2. Copy the key.
-3. Paste it below and select Test connection.
+How to get your key (about a minute):
 
-> Review note: the key steps, the endpoint and the model list wait on TAMU IT. Also confirm
-> with IT what we can say about how TAMU AI Chat handles course content, and add one plain
-> sentence here once we know.
+1. Open TAMU AI Chat at chat.tamu.ai in a new tab and sign in with your NetID.
+2. Select your name or profile picture in the lower-left corner, then select Settings.
+3. Select Account. Next to API keys, select Show.
+4. Select Create new secret key. If a key is already listed, you can use that one.
+5. Copy the key. It starts with `sk-`.
+6. Come back here, paste the key in the box below and select Test connection.
+
+Treat the key like a password. If you don't see API keys in your settings, contact your ID.
+
+> Review note: steps adapted from Course Creator 3.1.28, which uses the same TAMU AI Chat key
+> flow. Still for TAMU IT: confirm this is the supported way for faculty to get a key, and what
+> we can say about how TAMU AI Chat handles course content.
 
 ### See it
 
@@ -66,19 +77,47 @@ Demo response:
 ### Decide
 
 The faculty member pastes the key and selects Test connection. If the test fails, the app shows
-the error in plain words (wrong key, no network, service unavailable) and offers Try again.
+the cause in plain words and offers Try again:
+
+| Problem | Message shown |
+|---|---|
+| Key not accepted (401 or 403) | TAMU AI Chat didn't accept the key. Check that you copied all of it and that it hasn't been deleted. |
+| Can't reach the service | Couldn't reach TAMU AI Chat. Check your internet connection. Off campus, you may need the university VPN. |
+| Too many requests (429) | TAMU AI Chat is busy right now. Wait a moment and try again. |
+
+App notes (from Course Creator 3.1.28, for reference only): TAMU AI Chat is OpenAI-compatible.
+Course Creator calls `https://chat.tamu.ai/api` and falls back to
+`https://chat-api.tamu.ai/openai`, sends the key as a Bearer token, lists models from
+`/models` and posts to `/chat/completions`. It prefers Claude Sonnet, then other Claude
+models, then GPT models. A key can only be tested by a real call, so the test request above
+uses a small token limit.
 
 Checklist:
 
 - The connection test passed.
 - You know where to create a new key if you change computers or the key stops working.
 
+**Continue without AI.** A smaller link below Test connection. Selecting it asks for
+confirmation before going on:
+
+> Without the AI you'll write every section of your plan yourself. You won't get first drafts,
+> checks on your objectives and alignment, or a review of your existing course. You can connect
+> the AI later from Settings.
+>
+> [Connect the AI] [Continue without AI]
+
+Connect the AI is the default button. Until a key is connected, every module shows a short
+banner, "Your AI guide is off. Connect it to get drafts and checks for this step.", with a
+Connect button. In each step the Draft or Review part is replaced by an empty text box, or the
+faculty member's current section in the refresh track, next to the step's checklist.
+
 Demo mode skips this step and uses recorded AI responses for MGMT 615.
 
 ### Save
 
 Planning document: nothing.
-Browser only: the API key, under `course-plan-builder:apiKey`.
+Browser only: the API key, under `course-plan-builder:apiKey`; the choice to continue without
+AI, under `course-plan-builder:aiSkipped`.
 Project file: nothing.
 
 ---
@@ -352,7 +391,8 @@ Fields:
 ### Review (refresh)
 
 The faculty member fills in the same form, then uploads or pastes their course document. The AI
-sorts its contents into the planning document's sections.
+sorts its contents into the planning document's sections. Without AI, the app skips the upload,
+and the faculty member pastes each current section when they reach it.
 
 AI instructions:
 
