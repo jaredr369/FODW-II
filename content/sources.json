@@ -7,41 +7,354 @@
     "An id never changes once used. If a source is replaced by a new version, add a new id and set 'replacedBy' on the old one."
   ],
   "sources": [
-    {"id": "coursemap-v3", "kind": "coursemap", "title": "Course Map, FODW II V3", "module": "all", "use": "source of truth", "file": "Course Map - FODW II V3.docx", "folder": ""},
-    {"id": "template-planning-doc", "kind": "template", "title": "Course Planning Document template", "module": "all", "use": "export template", "file": "TEMPLATE -Course Planning Document - FODW.docx", "folder": "", "notes": "Section labels say 'Covered in FODW Module 2' for Module 1 content; the Program-Level Outcomes placeholder repeats the catalog placeholder; no Learners, Instructor Interaction or Storyline sections."},
-    {"id": "tool-course-creator", "kind": "tool", "title": "Course Creator 3.1.28", "module": "gs", "use": "basis for GS.1 key steps and error messages", "file": "Course Creator 3.1.28.html", "folder": "(Jared's Downloads)", "notes": "Ideas and wording only. No code is carried over."},
-
-    {"id": "reading-gs-flex-online-process", "kind": "reading", "title": "Engaging in the Flex Online Process", "module": "gs", "use": "basis", "file": "GS - Cidi, Engaging in the Flex Online Process v2.docx", "folder": "04 - Learning Materials/Getting Started", "notes": "One knowledge check answer says 16 weeks of development; 13 is correct."},
-    {"id": "guide-course-development-process", "kind": "guide", "title": "Flex Online Course Development Process", "citation": "TLI. (2026). Flex Online Course Development Process [Guide].", "module": "gs", "use": "basis; supplemental in m1", "file": "Guide - Flex Online Course Development Process.docx", "folder": "04 - Learning Materials/Getting Started", "notes": "Workload table reflects the 8-week Canvas workshop."},
-    {"id": "ext-garrison-2000", "kind": "ext", "title": "Critical inquiry in a text-based environment", "citation": "Garrison, D. R., Anderson, T., & Archer, W. (2000). Critical inquiry in a text-based environment: Computer conferencing in higher education. The Internet and Higher Education, 2(2-3), 87-105.", "module": "gs", "use": "supplemental"},
-    {"id": "ext-richardson-swan-2003", "kind": "ext", "title": "Examining social presence in online courses", "citation": "Richardson, J. C., & Swan, K. (2003). Examining social presence in online courses in relation to students' perceived learning and satisfaction. Journal of Asynchronous Learning Networks, 7(1), 68-88.", "module": "gs", "use": "supplemental"},
-    {"id": "ext-pacansky-brock-2020", "kind": "ext", "title": "How to humanize your online course", "citation": "Pacansky-Brock, M. (2020). How to humanize your online course.", "module": "gs", "use": "supplemental", "url": "https://brocansky.com/humanizing"},
-
-    {"id": "reading-m1-setting-the-foundation", "kind": "reading", "title": "Setting the Foundation", "module": "m1", "use": "basis", "file": "M1 - Cidi, Setting the Foundation v2.docx", "folder": "04 - Learning Materials/Module 1", "notes": "Says 3 to 7 CLOs; the tool uses 3 to 6."},
-    {"id": "guide-course-alignment", "kind": "guide", "title": "Course Alignment", "citation": "TLI. (2026). Course Alignment [Guide].", "module": "m1", "use": "supplemental", "file": "Guide - Course Alignment.docx", "folder": "04 - Learning Materials/Module 1"},
-    {"id": "guide-learning-objectives", "kind": "guide", "title": "Course-Level Learning Objectives", "citation": "TLI. (2026). Course-Level Learning Objectives [Guide].", "module": "m1", "use": "supplemental", "file": "Guide - Course-Level Learning Objectives.docx", "folder": "04 - Learning Materials/Module 1"},
-    {"id": "assignment-m1-building-the-framework", "kind": "assignment", "title": "Building the Framework (full build)", "module": "m1", "use": "basis", "file": "M1 F Interactive Assignment - Building the Framework.docx", "folder": "03 - Learning Activities/Interactive Assignments", "notes": "Its embedded submission template is the storytelling template, which belongs to Module 2."},
-    {"id": "assignment-m1-redesign-and-refine", "kind": "assignment", "title": "Redesign and Refine (refresh)", "module": "m1", "use": "basis", "file": "M1 R Interactive Assignment - Redesign and Refine.docx", "folder": "03 - Learning Activities/Interactive Assignments", "notes": "Worked example audits the MGMT 615 CLOs and flags CLO 2 and CLO 5 on purpose."},
-    {"id": "perusall-m1-clues-to-a-great-story", "kind": "perusall", "title": "The Clues to a Great Story", "module": "m1", "use": "supplemental (not yet used)", "file": "M1 FR Perusall Assignment - The Clues to a Great Story v2.docx", "folder": "03 - Learning Activities/Third Party Tools"},
-    {"id": "ext-knowles-2015", "kind": "ext", "title": "The adult learner", "citation": "Knowles, M. S., Holton, E. F., & Swanson, R. A. (2015). The adult learner (8th ed.). Routledge.", "module": "m1", "use": "supplemental"},
-    {"id": "ext-wiggins-mctighe-2005", "kind": "ext", "title": "Understanding by design", "citation": "Wiggins, G., & McTighe, J. (2005). Understanding by design (2nd ed.). ASCD.", "module": "m1", "use": "supplemental"},
-    {"id": "ext-cast-2018", "kind": "ext", "title": "Universal Design for Learning guidelines", "citation": "CAST. (2018). Universal Design for Learning guidelines version 2.2.", "module": "m1", "use": "supplemental", "url": "https://udlguidelines.cast.org"},
-    {"id": "ext-anderson-krathwohl-2001", "kind": "ext", "title": "A taxonomy for learning, teaching, and assessing", "citation": "Anderson, L. W., & Krathwohl, D. R. (Eds.). (2001). A taxonomy for learning, teaching, and assessing. Longman.", "module": "m1", "use": "supplemental"},
-    {"id": "ext-freeman-2014", "kind": "ext", "title": "Active learning increases student performance", "citation": "Freeman, S., Eddy, S. L., McDonough, M., Smith, M. K., Okoroafor, N., Jordt, H., & Wenderoth, M. P. (2014). Active learning increases student performance in science, engineering, and mathematics. PNAS, 111(23), 8410-8415.", "module": "m1", "use": "cited", "url": "https://doi.org/10.1073/pnas.1319030111"},
-
-    {"id": "guide-rsi", "kind": "guide", "title": "Regular and Substantive Interaction (RSI)", "citation": "TLI. (2026). Regular and Substantive Interaction (RSI) [Guide].", "module": "m2", "use": "required; basis for 2.1", "file": "Guide - Regular & Substantive Interaction (RSI).docx", "folder": "02 - Guides", "library": "guides", "notes": "Lives in the team Guides folder, not the FODW II folder."},
-    {"id": "assignment-m2-understanding-rsi", "kind": "assignment", "title": "Understanding RSI", "module": "m2", "use": "basis for 2.1 and 2.2", "file": "M2 F Interactive Assignment - Understanding RSI.docx", "folder": "03 - Learning Activities/Interactive Assignments"},
-    {"id": "assignment-m2-character-conflict", "kind": "assignment", "title": "Build Your Character and Conflict", "module": "m2", "use": "basis for 2.4 and 2.5", "file": "M2 FR Interactive Assignment - Build Your Character and Conflict.docx", "folder": "03 - Learning Activities/Interactive Assignments", "notes": "The document's own heading says M1. It belongs to Module 2."},
-    {"id": "guide-storytelling", "kind": "guide", "title": "Storytelling", "citation": "TLI. (2026). Storytelling [Guide].", "module": "m2", "use": "supplemental; also m3", "file": "Guide - Storytelling (ID-Faculty).docx", "folder": "04 - Learning Materials/Module 2", "notes": "A 'Guide - Storytelling (merged).docx' also sits in 04 - Learning Materials; the course map links the ID-Faculty version."},
-    {"id": "jobaid-media-selection-matrix", "kind": "jobaid", "title": "The Media Selection Matrix", "module": "m2", "use": "supplemental; also m3 and m6", "file": "The_Media_Selection_Matrix_Guide.png", "folder": "04 - Learning Materials/Module 2", "notes": "Listed in the course map as 'Matching Medium to Best Use'. The image carries a Gemini Notebook mark."},
-    {"id": "article-maxwell-2026", "kind": "article", "title": "If AI can teach, what exactly is the professor for?", "citation": "Maxwell, A. (2026, April 24). If AI can teach, what exactly is the professor for? Andrew Maxwell's Substack.", "module": "m2", "use": "supplemental", "url": "https://innovationdoctor.substack.com/p/if-ai-can-teach-what-exactly-is-the", "notes": "About 2,100 words, roughly 9 minutes."},
-    {"id": "script-m2-learner-experience", "kind": "script", "title": "Learner Experience and RSI (V2 redraft)", "module": "m2", "use": "background", "file": "M2 - Learner Experience and RSI (redraft).docx", "folder": "06 - Media Production/02 - Scripts & Slides/Scripts V2"},
-    {"id": "ext-greene-2020", "kind": "ext", "title": "Instructional story design", "citation": "Greene, R. (2020). Instructional story design: Develop stories that train. ATD Press.", "module": "m2", "use": "supplemental"},
-    {"id": "ext-mayer-2021", "kind": "ext", "title": "Multimedia learning", "citation": "Mayer, R. E. (2021). Multimedia learning (3rd ed.). Cambridge University Press.", "module": "m2", "use": "cited"},
-    {"id": "ext-cfr-600-2", "kind": "ext", "title": "34 CFR 600.2, Definitions", "citation": "U.S. Department of Education. (2025). 34 CFR 600.2, Definitions: Distance education and substantive interaction.", "module": "m2", "use": "cited by guide-rsi", "url": "https://www.ecfr.gov/current/title-34/subtitle-B/chapter-VI/part-600/subpart-A/section-600.2"},
-
-    {"id": "example-mgmt615-course-map", "kind": "example", "title": "MGMT 615 course map", "module": "all", "use": "refresh demo input", "file": "Course Map_MGMT 615.docx", "folder": "MGMT 615 Example", "notes": "Fictional course. Its flaws are kept as the refresh demo's starting point."},
-    {"id": "example-mgmt615-character", "kind": "example", "title": "MGMT 615 character profile, Dana Ortiz", "module": "m2", "use": "See it and demo responses", "file": "MGMT 615 Character Profile - Dana Ortiz.docx", "folder": "MGMT 615 Example"},
-    {"id": "example-mgmt615-episodes", "kind": "example", "title": "MGMT 615 story episodes by module", "module": "m3", "use": "See it and demo responses", "file": "MGMT 615 Story Episodes by Module.docx", "folder": "MGMT 615 Example", "notes": "Uses the original CLO numbers. Module 8 should map to the new CLO 6."}
+    {
+      "id": "coursemap-v3",
+      "kind": "coursemap",
+      "title": "Course Map, FODW II V3",
+      "module": "all",
+      "use": "source of truth",
+      "file": "Course Map - FODW II V3.docx",
+      "folder": ""
+    },
+    {
+      "id": "template-planning-doc",
+      "kind": "template",
+      "title": "Course Planning Document template",
+      "module": "all",
+      "use": "export template",
+      "file": "TEMPLATE -Course Planning Document - FODW.docx",
+      "folder": "",
+      "notes": "Section labels say 'Covered in FODW Module 2' for Module 1 content; the Program-Level Outcomes placeholder repeats the catalog placeholder; no Learners, Instructor Interaction or Storyline sections."
+    },
+    {
+      "id": "tool-course-creator",
+      "kind": "tool",
+      "title": "Course Creator 3.1.28",
+      "module": "gs",
+      "use": "basis for GS.1 key steps and error messages",
+      "file": "Course Creator 3.1.28.html",
+      "folder": "(Jared's Downloads)",
+      "notes": "Ideas and wording only. No code is carried over."
+    },
+    {
+      "id": "reading-gs-flex-online-process",
+      "kind": "reading",
+      "title": "Engaging in the Flex Online Process",
+      "module": "gs",
+      "use": "basis",
+      "file": "GS - Cidi, Engaging in the Flex Online Process v2.docx",
+      "folder": "04 - Learning Materials/Getting Started",
+      "notes": "One knowledge check answer says 16 weeks of development; 13 is correct."
+    },
+    {
+      "id": "guide-course-development-process",
+      "kind": "guide",
+      "title": "Flex Online Course Development Process",
+      "citation": "TLI. (2026). Flex Online Course Development Process [Guide].",
+      "module": "gs",
+      "use": "basis; supplemental in m1",
+      "file": "Guide - Flex Online Course Development Process.docx",
+      "folder": "04 - Learning Materials/Getting Started",
+      "notes": "Workload table reflects the 8-week Canvas workshop."
+    },
+    {
+      "id": "ext-garrison-2000",
+      "kind": "ext",
+      "title": "Critical inquiry in a text-based environment",
+      "citation": "Garrison, D. R., Anderson, T., & Archer, W. (2000). Critical inquiry in a text-based environment: Computer conferencing in higher education. The Internet and Higher Education, 2(2-3), 87-105.",
+      "module": "gs",
+      "use": "supplemental"
+    },
+    {
+      "id": "ext-richardson-swan-2003",
+      "kind": "ext",
+      "title": "Examining social presence in online courses",
+      "citation": "Richardson, J. C., & Swan, K. (2003). Examining social presence in online courses in relation to students' perceived learning and satisfaction. Journal of Asynchronous Learning Networks, 7(1), 68-88.",
+      "module": "gs",
+      "use": "supplemental"
+    },
+    {
+      "id": "ext-pacansky-brock-2020",
+      "kind": "ext",
+      "title": "How to humanize your online course",
+      "citation": "Pacansky-Brock, M. (2020). How to humanize your online course.",
+      "module": "gs",
+      "use": "supplemental",
+      "url": "https://brocansky.com/humanizing"
+    },
+    {
+      "id": "reading-m1-setting-the-foundation",
+      "kind": "reading",
+      "title": "Setting the Foundation",
+      "module": "m1",
+      "use": "basis",
+      "file": "M1 - Cidi, Setting the Foundation v2.docx",
+      "folder": "04 - Learning Materials/Module 1",
+      "notes": "Says 3 to 7 CLOs; the tool uses 3 to 6."
+    },
+    {
+      "id": "guide-course-alignment",
+      "kind": "guide",
+      "title": "Course Alignment",
+      "citation": "TLI. (2026). Course Alignment [Guide].",
+      "module": "m1",
+      "use": "supplemental",
+      "file": "Guide - Course Alignment.docx",
+      "folder": "04 - Learning Materials/Module 1"
+    },
+    {
+      "id": "guide-learning-objectives",
+      "kind": "guide",
+      "title": "Course-Level Learning Objectives",
+      "citation": "TLI. (2026). Course-Level Learning Objectives [Guide].",
+      "module": "m1",
+      "use": "supplemental",
+      "file": "Guide - Course-Level Learning Objectives.docx",
+      "folder": "04 - Learning Materials/Module 1"
+    },
+    {
+      "id": "assignment-m1-building-the-framework",
+      "kind": "assignment",
+      "title": "Building the Framework (full build)",
+      "module": "m1",
+      "use": "basis",
+      "file": "M1 F Interactive Assignment - Building the Framework.docx",
+      "folder": "03 - Learning Activities/Interactive Assignments",
+      "notes": "Its embedded submission template is the storytelling template, which belongs to Module 2."
+    },
+    {
+      "id": "assignment-m1-redesign-and-refine",
+      "kind": "assignment",
+      "title": "Redesign and Refine (refresh)",
+      "module": "m1",
+      "use": "basis",
+      "file": "M1 R Interactive Assignment - Redesign and Refine.docx",
+      "folder": "03 - Learning Activities/Interactive Assignments",
+      "notes": "Worked example audits the MGMT 615 CLOs and flags CLO 2 and CLO 5 on purpose."
+    },
+    {
+      "id": "perusall-m1-clues-to-a-great-story",
+      "kind": "perusall",
+      "title": "The Clues to a Great Story",
+      "module": "m1",
+      "use": "supplemental (not yet used)",
+      "file": "M1 FR Perusall Assignment - The Clues to a Great Story v2.docx",
+      "folder": "03 - Learning Activities/Third Party Tools"
+    },
+    {
+      "id": "ext-knowles-2015",
+      "kind": "ext",
+      "title": "The adult learner",
+      "citation": "Knowles, M. S., Holton, E. F., & Swanson, R. A. (2015). The adult learner (8th ed.). Routledge.",
+      "module": "m1",
+      "use": "supplemental"
+    },
+    {
+      "id": "ext-wiggins-mctighe-2005",
+      "kind": "ext",
+      "title": "Understanding by design",
+      "citation": "Wiggins, G., & McTighe, J. (2005). Understanding by design (2nd ed.). ASCD.",
+      "module": "m1",
+      "use": "supplemental"
+    },
+    {
+      "id": "ext-cast-2018",
+      "kind": "ext",
+      "title": "Universal Design for Learning guidelines",
+      "citation": "CAST. (2018). Universal Design for Learning guidelines version 2.2.",
+      "module": "m1",
+      "use": "supplemental",
+      "url": "https://udlguidelines.cast.org"
+    },
+    {
+      "id": "ext-anderson-krathwohl-2001",
+      "kind": "ext",
+      "title": "A taxonomy for learning, teaching, and assessing",
+      "citation": "Anderson, L. W., & Krathwohl, D. R. (Eds.). (2001). A taxonomy for learning, teaching, and assessing. Longman.",
+      "module": "m1",
+      "use": "supplemental"
+    },
+    {
+      "id": "ext-freeman-2014",
+      "kind": "ext",
+      "title": "Active learning increases student performance",
+      "citation": "Freeman, S., Eddy, S. L., McDonough, M., Smith, M. K., Okoroafor, N., Jordt, H., & Wenderoth, M. P. (2014). Active learning increases student performance in science, engineering, and mathematics. PNAS, 111(23), 8410-8415.",
+      "module": "m1",
+      "use": "cited",
+      "url": "https://doi.org/10.1073/pnas.1319030111"
+    },
+    {
+      "id": "guide-rsi",
+      "kind": "guide",
+      "title": "Regular and Substantive Interaction (RSI)",
+      "citation": "TLI. (2026). Regular and Substantive Interaction (RSI) [Guide].",
+      "module": "m2",
+      "use": "required; basis for 2.1",
+      "file": "Guide - Regular & Substantive Interaction (RSI).docx",
+      "folder": "02 - Guides",
+      "library": "guides",
+      "notes": "Lives in the team Guides folder, not the FODW II folder."
+    },
+    {
+      "id": "assignment-m2-understanding-rsi",
+      "kind": "assignment",
+      "title": "Understanding RSI",
+      "module": "m2",
+      "use": "basis for 2.1 and 2.2",
+      "file": "M2 F Interactive Assignment - Understanding RSI.docx",
+      "folder": "03 - Learning Activities/Interactive Assignments"
+    },
+    {
+      "id": "assignment-m2-character-conflict",
+      "kind": "assignment",
+      "title": "Build Your Character and Conflict",
+      "module": "m2",
+      "use": "basis for 2.4 and 2.5",
+      "file": "M2 FR Interactive Assignment - Build Your Character and Conflict.docx",
+      "folder": "03 - Learning Activities/Interactive Assignments",
+      "notes": "The document's own heading says M1. It belongs to Module 2."
+    },
+    {
+      "id": "guide-storytelling",
+      "kind": "guide",
+      "title": "Storytelling",
+      "citation": "TLI. (2026). Storytelling [Guide].",
+      "module": "m2",
+      "use": "supplemental; also m3",
+      "file": "Guide - Storytelling (ID-Faculty).docx",
+      "folder": "04 - Learning Materials/Module 2",
+      "notes": "A 'Guide - Storytelling (merged).docx' also sits in 04 - Learning Materials; the course map links the ID-Faculty version."
+    },
+    {
+      "id": "jobaid-media-selection-matrix",
+      "kind": "jobaid",
+      "title": "The Media Selection Matrix",
+      "module": "m2",
+      "use": "supplemental; also m3 and m6",
+      "file": "The_Media_Selection_Matrix_Guide.png",
+      "folder": "04 - Learning Materials/Module 2",
+      "notes": "Listed in the course map as 'Matching Medium to Best Use'. The image carries a Gemini Notebook mark."
+    },
+    {
+      "id": "article-maxwell-2026",
+      "kind": "article",
+      "title": "If AI can teach, what exactly is the professor for?",
+      "citation": "Maxwell, A. (2026, April 24). If AI can teach, what exactly is the professor for? Andrew Maxwell's Substack.",
+      "module": "m2",
+      "use": "supplemental",
+      "url": "https://innovationdoctor.substack.com/p/if-ai-can-teach-what-exactly-is-the",
+      "notes": "About 2,100 words, roughly 9 minutes."
+    },
+    {
+      "id": "script-m2-learner-experience",
+      "kind": "script",
+      "title": "Learner Experience and RSI (V2 redraft)",
+      "module": "m2",
+      "use": "background",
+      "file": "M2 - Learner Experience and RSI (redraft).docx",
+      "folder": "06 - Media Production/02 - Scripts & Slides/Scripts V2"
+    },
+    {
+      "id": "ext-greene-2020",
+      "kind": "ext",
+      "title": "Instructional story design",
+      "citation": "Greene, R. (2020). Instructional story design: Develop stories that train. ATD Press.",
+      "module": "m2",
+      "use": "supplemental"
+    },
+    {
+      "id": "ext-mayer-2021",
+      "kind": "ext",
+      "title": "Multimedia learning",
+      "citation": "Mayer, R. E. (2021). Multimedia learning (3rd ed.). Cambridge University Press.",
+      "module": "m2",
+      "use": "cited"
+    },
+    {
+      "id": "ext-cfr-600-2",
+      "kind": "ext",
+      "title": "34 CFR 600.2, Definitions",
+      "citation": "U.S. Department of Education. (2025). 34 CFR 600.2, Definitions: Distance education and substantive interaction.",
+      "module": "m2",
+      "use": "cited by guide-rsi",
+      "url": "https://www.ecfr.gov/current/title-34/subtitle-B/chapter-VI/part-600/subpart-A/section-600.2"
+    },
+    {
+      "id": "example-mgmt615-course-map",
+      "kind": "example",
+      "title": "MGMT 615 course map",
+      "module": "all",
+      "use": "refresh demo input",
+      "file": "Course Map_MGMT 615.docx",
+      "folder": "MGMT 615 Example",
+      "notes": "Fictional course. Its flaws are kept as the refresh demo's starting point."
+    },
+    {
+      "id": "example-mgmt615-character",
+      "kind": "example",
+      "title": "MGMT 615 character profile, Dana Ortiz",
+      "module": "m2",
+      "use": "See it and demo responses",
+      "file": "MGMT 615 Character Profile - Dana Ortiz.docx",
+      "folder": "MGMT 615 Example"
+    },
+    {
+      "id": "example-mgmt615-episodes",
+      "kind": "example",
+      "title": "MGMT 615 story episodes by module",
+      "module": "m3",
+      "use": "See it and demo responses",
+      "file": "MGMT 615 Story Episodes by Module.docx",
+      "folder": "MGMT 615 Example",
+      "notes": "Uses the original CLO numbers. Module 8 should map to the new CLO 6."
+    },
+    {
+      "id": "assignment-m3-identifying-scenarios",
+      "kind": "assignment",
+      "title": "Identifying Module Scenarios",
+      "module": "m3",
+      "use": "basis for 3.2 to 3.4",
+      "file": "M3 FR Interactive Assignment - Identifying Module Scenarios.docx",
+      "folder": "03 - Learning Activities/Interactive Assignments",
+      "notes": "Its overview says the character was built in Module 1; it was built in Module 2. The other Module 3 assignment files (Single Module Scenario, Single Module Scene Redesign, Single Module Scenario Design) are blank templates."
+    },
+    {
+      "id": "example-mgmt615-scenarios",
+      "kind": "example",
+      "title": "MGMT 615 story scenarios by module",
+      "module": "m3",
+      "use": "See it and demo data",
+      "file": "MGMT 615 Story Scenarios by Module - Submission Format.docx",
+      "folder": "MGMT 615 Example",
+      "notes": "Uses the original CLO numbers; the demo data in demo/mgmt615-scenarios.json uses the revised ones."
+    },
+    {
+      "id": "guide-active-learning",
+      "kind": "guide",
+      "title": "Active Learning",
+      "citation": "TLI. (2026). Active Learning [Guide].",
+      "module": "m3",
+      "use": "supplemental",
+      "file": "Guide - Active Learning.docx",
+      "folder": "04 - Learning Materials/Module 3"
+    },
+    {
+      "id": "guide-adult-learners",
+      "kind": "guide",
+      "title": "Strategies for Teaching Adult Learners",
+      "citation": "TLI. (2026). Strategies for Teaching Adult Learners [Guide].",
+      "module": "m3",
+      "use": "supplemental",
+      "file": "Guide - Strategies for Teaching Adult Learners.docx",
+      "folder": "04 - Learning Materials/Module 3"
+    },
+    {
+      "id": "ext-gick-holyoak-1983",
+      "kind": "ext",
+      "title": "Schema induction and analogical transfer",
+      "citation": "Gick, M. L., & Holyoak, K. J. (1983). Schema induction and analogical transfer. Cognitive Psychology, 15(1), 1-38.",
+      "module": "m3",
+      "use": "cited"
+    }
   ]
 }

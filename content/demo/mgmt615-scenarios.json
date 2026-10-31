@@ -1,0 +1,142 @@
+{
+  "about": "Recorded demo data for Module 3, steps 3.2 and 3.3 (MGMT 615, fictional). 'chosen' is the scenario the demo faculty member keeps; 'alternative' is the second option the AI offers. CLO numbers follow the revised CLOs from step 1.4.",
+  "storylinePremise": "MGMT 615 is a story about Dana Ortiz, a newly promoted operations manager, who struggles to find and fix the real causes of her site's slipping performance before peak season, when her director has already decided who to blame.",
+  "modules": [
+    {
+      "module": 1,
+      "chosen": {
+        "title": "The First Bad Week",
+        "premise": "Dana struggles to step back and find out why on-time shipping has dropped, when her instinct is to work extra floor shifts and push the number back up herself.",
+        "clos": ["CLO 1", "CLO 5"],
+        "situation": "Eight months into her first management job, Dana runs a distribution center with three shift leads and about 45 associates. Her job now is to hit site targets through her leads.",
+        "trigger": "The Monday report shows on-time shipping down from 97% to 89%, six weeks before peak season. Her director, Greg, has already named the cause: \"Jordan's shift is the problem.\"",
+        "stakeholders": "Dana; shift leads Jordan Pike and Ray Kowalski; the hourly crew; Greg; customers waiting on late orders.",
+        "decision": "How to spend her week: work the floor to recover the number, accept Greg's read and focus on Jordan, or step back and find out what is driving the drop.",
+        "outcome": "Working the floor would lift the number for a few days and hide the cause. Separating a manager's job from a lead's job shows Dana the habit she has carried over. She pulls the error reports instead, which starts the investigation that runs through the course."
+      },
+      "alternative": {
+        "title": "The Jammed Sorter",
+        "premise": "Dana struggles to decide whether to clear a sorter jam herself or hand it to Jordan, with trucks waiting and the crew watching."
+      }
+    },
+    {
+      "module": 2,
+      "chosen": {
+        "title": "The Bonus That Backfired",
+        "premise": "Dana struggles to figure out why a bonus her crew is hitting is making performance worse, and why Luis, one of her most accurate associates, keeps missing it.",
+        "clos": ["CLO 1", "CLO 5"],
+        "situation": "The site pays a pick-rate bonus for speed. The crew is hitting its targets, but on-time shipping keeps falling.",
+        "trigger": "Mis-picks and reworked orders are climbing. Luis keeps missing the bonus because he checks the orders others rush.",
+        "stakeholders": "Luis and the crew who count on the bonus; Jordan and Ray; Greg; customers.",
+        "decision": "Leave the bonus alone and coach for accuracy, add an accuracy threshold, or propose replacing it before peak season.",
+        "outcome": "Expectancy theory explains the drop: the crew believes speed earns the reward, so speed is what they deliver. Dana takes Greg a revised bonus tied to accurate, on-time orders, which sets up Module 7."
+      },
+      "alternative": {
+        "title": "Luis Checks Out",
+        "premise": "Dana struggles to re-engage Luis, passed over for a lead role last spring, when the only reward the site offers is a bonus he refuses to chase."
+      }
+    },
+    {
+      "module": 3,
+      "chosen": {
+        "title": "The Conversation With Jordan",
+        "premise": "Dana struggles to run a coaching conversation that changes how Jordan closes out his shift, when her director wants it documented as a formal warning.",
+        "clos": ["CLO 2", "CLO 5"],
+        "situation": "Dana needs Jordan, her day-shift lead, to change how he hands off to night shift. He came up under her and avoids hard conversations with his crew.",
+        "trigger": "Orders keep slipping in the hour around shift change, and Jordan has turned defensive. Greg tells Dana to issue a formal warning.",
+        "stakeholders": "Jordan; Dana; Greg; Ray, whose shift inherits the unfinished work; the day-shift crew.",
+        "decision": "Issue the warning Greg wants, hold a coaching conversation with no record, or coach first and document only the next steps they agree on.",
+        "outcome": "A warning would put Jordan on record without changing how he closes out his shift. Separating coaching from discipline lets Dana name one behavior and the change she expects, while keeping a record Greg can see."
+      },
+      "alternative": {
+        "title": "The Repeated Shortcut",
+        "premise": "Dana struggles to decide whether a repeated safety shortcut on Ray's shift calls for coaching or for discipline."
+      }
+    },
+    {
+      "module": 4,
+      "chosen": {
+        "title": "The Handoff Nobody Owns",
+        "premise": "Dana struggles to fix the broken handoff between her two shifts with a structural change, when her director is pushing a team-building lunch.",
+        "clos": ["CLO 3", "CLO 1"],
+        "situation": "The two shifts pass work to each other every afternoon, but no one owns the handoff. Unfinished orders and staffing gaps fall between the leads.",
+        "trigger": "Ray and Jordan now blame each other's shifts for the late orders. Greg suggests a team-building lunch to get everyone on the same page.",
+        "stakeholders": "Jordan and Ray; both crews; Dana; Greg; customers.",
+        "decision": "Host the lunch, hold a joint meeting to air the tension, or change the structure: name a handoff owner and add a shared checklist and an overlap window.",
+        "outcome": "A team-effectiveness framework shows the problem is unclear roles and process, so a lunch won't touch it. Dana proposes the structural fix and has to explain to Greg why it beats his idea."
+      },
+      "alternative": {
+        "title": "Two Shifts, Two Rulebooks",
+        "premise": "Dana struggles to get day and night shift working from one set of procedures, when each lead insists his shift's way is the reason it performs."
+      }
+    },
+    {
+      "module": 5,
+      "chosen": {
+        "title": "Telling Greg He's Wrong",
+        "premise": "Dana struggles to disagree with her director, using evidence, before he replaces Jordan for a problem Jordan didn't cause alone.",
+        "clos": ["CLO 3", "CLO 2"],
+        "situation": "Dana has data from Alicia Grant's dashboard showing late orders clustered around shift change on both shifts, and mis-picks rising since the bonus started.",
+        "trigger": "Greg emails: \"Fix him or replace him. I want a plan by Friday.\" On a follow-up call he says he doesn't need a study.",
+        "stakeholders": "Greg; Jordan, whose job is at risk; Dana, whose credibility is on the line; Ray and Alicia, who favor replacing Jordan; the crew.",
+        "decision": "Send the replacement plan, agree to a warning and fix the handoff quietly, or ask for 30 minutes to walk Greg through the data and propose a two-week handoff fix first.",
+        "outcome": "Mapping the conflict shows a process problem, which changes what the conversation is about. A structured plan lets Dana open with evidence instead of defending Jordan."
+      },
+      "alternative": {
+        "title": "Ray vs. Jordan",
+        "premise": "Dana struggles to settle a floor argument between her shift leads that looks personal but is really about a process neither one owns."
+      }
+    },
+    {
+      "module": 6,
+      "chosen": {
+        "title": "Twelve Things on Dana's List",
+        "premise": "Dana struggles to decide which of her twelve peak-season responsibilities to keep and which to hand off, after a lead gets an overtime call wrong.",
+        "clos": ["CLO 4", "CLO 5"],
+        "situation": "Peak season has started. Dana has twelve responsibilities, from carrier escalations to overtime approvals, and her first review called her a bottleneck.",
+        "trigger": "In the first week of the peak push, her leads miss an overtime rule. Dana's instinct is to take every overtime call back.",
+        "stakeholders": "Dana; Jordan and Ray; associates working overtime; Greg; Alicia, who delegates heavily.",
+        "decision": "Sort the list into keep, hand off, and hand off with checkpoints. The hardest call is who owns the shift handoff and overtime approvals.",
+        "outcome": "A delegation framework helps Dana hand the shift handoff to one lead with a weekly checkpoint and keep overtime approvals for now, with a date to revisit. She has to justify that trade-off to Greg."
+      },
+      "alternative": {
+        "title": "The Scheduling Tool Says Cut",
+        "premise": "Dana struggles to decide whether to follow an AI scheduling tool's recommendation to cut a shift, with a carrier deadline in two days and no time to check its assumptions."
+      }
+    },
+    {
+      "module": 7,
+      "chosen": {
+        "title": "Ending the Bonus",
+        "premise": "Dana struggles to announce a change to the bonus in a way her crew will understand and accept, when the floor already calls it a pay cut.",
+        "clos": ["CLO 5", "CLO 3"],
+        "situation": "Greg has approved Dana's revised bonus, which pays for accurate, on-time orders. It starts next pay period.",
+        "trigger": "The crew likes the old bonus, and the fastest pickers earn more under it. Before Dana says anything, she hears people calling it a pay cut.",
+        "stakeholders": "The crew; Luis, who stands to gain; Jordan and Ray, who will field questions; Greg; Dana.",
+        "decision": "Send a written notice, have her leads announce it at shift start, or meet each shift herself and walk through what changes and why.",
+        "outcome": "Naming the likely sources of resistance, such as lost income and distrust of a new manager, tells Dana what her message has to answer. She drafts it in plain language: what changes, when it starts and how to earn the new bonus."
+      },
+      "alternative": {
+        "title": "The Overlap Window",
+        "premise": "Dana struggles to introduce a thirty-minute shift overlap that both crews see as unpaid extra work."
+      }
+    },
+    {
+      "module": 8,
+      "chosen": {
+        "title": "Proven vs. Potential",
+        "premise": "Dana struggles to choose between an experienced outside candidate and Luis, a high-potential associate, for the new shift-lead role that will own the handoff.",
+        "clos": ["CLO 6", "CLO 1"],
+        "situation": "Dana has approval for a new shift-lead role that owns the handoff between shifts, the permanent fix for the gap that started the story.",
+        "trigger": "Two finalists: an outside candidate who has run shift operations elsewhere, and Luis, highly accurate but never a supervisor. Ray backs the outside hire, and the crew is watching to see whether Luis gets a shot.",
+        "stakeholders": "Luis; the outside candidate; Ray and Jordan; the crew; Greg.",
+        "decision": "Hire the proven candidate, hire Luis, or hire one and build a development path for the other.",
+        "outcome": "A structured scorecard tied to skills from earlier modules, like coaching and owning a handoff, keeps Dana from deciding on experience or loyalty alone. Whichever she picks, she has to justify the trade-off."
+      },
+      "alternative": {
+        "title": "Twenty Temps in Ten Days",
+        "premise": "Dana struggles to hire twenty seasonal associates in ten days without falling back on gut feel."
+      }
+    }
+  ]
+}

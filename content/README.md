@@ -10,6 +10,8 @@ One file per module. The app reads these files; faculty never see this README.
 | `00-getting-started.md` | Getting Started |
 | `01-vision-and-foundation.md` | Module 1. Creating Vision and Foundation |
 | `02-ai-and-rsi.md` | Module 2. AI & RSI in Strategic Course Design |
+| `03-scenario-planning.md` | Module 3. Scenario Planning and the Learner's Journey |
+| `demo/` | Recorded MGMT 615 demo data too long to keep inside a module file |
 
 ## How a step is written
 
