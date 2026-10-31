@@ -146,6 +146,21 @@ You can work ahead. The AI drafts and checks each section as you go, so many fac
 more than one module in a week. If you do, ask your ID to meet more often, so each module still
 gets reviewed before the next one builds on it.
 
+**Saving and sharing your work.** There is nothing to submit. Your work saves in this browser
+as you go, and you save two files whenever you want a copy outside it:
+
+- **Planning document (Word).** The plan as your ID will read it. Before each check-in it also
+  ends with a short summary of what changed since your last meeting.
+- **Project file.** Everything you've entered, including notes that aren't in the Word
+  document. Open it in this tool to keep working on another computer.
+
+When you save, you choose the folder. Pick one your ID can see, such as a OneDrive or Teams
+folder you share with them. Then you never need to send anything: save before each check-in
+and your ID has the latest version. After the first save, Save again updates the same files.
+
+This works best in Microsoft Edge or Google Chrome. In other browsers the files go to your
+Downloads folder, and you move them to the shared folder yourself.
+
 **Kick-off.** After the workshop your ID schedules a kick-off meeting. Together you go through
 the planning document, confirm what is ready to build, and set milestone dates.
 
@@ -221,16 +236,22 @@ Knowledge check (feedback shown after each answer, not scored):
 The faculty member enters their ID's name, the weekly check-in day and time, and whether it
 is by Zoom or in person. Any of these can stay blank and be added later.
 
+They then select Choose save folder and pick where the two files will go. The app saves both
+files there once, so the folder holds a copy from the start. If they skip this, the app asks
+the first time they select Save.
+
 Checklist:
 
 - You have a weekly check-in time with your ID, or you know who to ask to set one.
 - You know to ask for extra check-ins if you work ahead.
+- Your files save to a folder your ID can see, or you know to ask your ID for one.
 
 ### Save
 
 Planning document: ID name on the cover section.
 Project file: `course.idName`, `checkins.day`, `checkins.time`, `checkins.format`,
 `checkins.log[]` (module, date, notes).
+Browser only: the save folder handle (see `export.md`, Saving).
 
 ---
 

@@ -73,6 +73,52 @@ change notes, practice and reflection answers, and open items (unchecked checkli
 AI flags the faculty member chose to keep). The app leaves it out when the faculty member
 exports the final version for kick-off.
 
-> Review note: the check-in summary assumes faculty share the exported Word document and
-> project file with their ID before each check-in, for example in a shared OneDrive or Teams
-> folder. That sharing workflow is not yet written into Getting Started.
+Two save actions:
+
+- **Save** writes a working copy, with the check-in summary.
+- **Save final version** (shown once all eight modules are complete) writes the copy for
+  kick-off, without the check-in summary and, if the faculty member chooses, without the
+  change log.
+
+## Saving
+
+Nothing is submitted. Faculty share their plan by saving into a folder their ID can see.
+Confirmed with Jared on Oct 31.
+
+**Files.** Each save writes two files with fixed names, so later saves replace them:
+
+- `[COURSE NUMBER] Course Planning Document.docx`, for example `MGMT 615 Course Planning Document.docx`
+- `[COURSE NUMBER] Course Plan Builder project.json`
+
+**Choosing the folder.** In browsers that support the File System Access API (Edge and Chrome),
+Choose save folder opens the system folder picker (`showDirectoryPicker`). The app keeps the
+folder handle in IndexedDB under `course-plan-builder:saveFolder`, so Save writes to the same
+folder without asking again. The browser may ask the faculty member to allow access again in a
+new session; the app requests write permission when Save is selected and explains why.
+
+Any folder the computer can reach works: a local folder, a OneDrive or Teams folder synced to
+the computer, or a Google Drive folder through Google Drive for desktop. Sharing the folder with
+the ID is how the ID sees the plan.
+
+**Other browsers.** Firefox and Safari have no folder picker. Save downloads both files, which
+go to the Downloads folder, and the app reminds the faculty member to move them into the
+shared folder.
+
+**Opening a project.** Open project reads a project file (file picker, or drag and drop) and
+replaces the work in this browser after a confirmation. This is how faculty move between
+computers and how an ID can look at a plan in the tool.
+
+**Browser autosave.** Separately from saving files, the app keeps the current work in
+`localStorage` under `course-plan-builder:project` after every change, so closing the tab loses
+nothing. Autosave holds one project per browser.
+
+**One place for storage.** All reading and writing goes through two functions, `load()` and
+`save()`, with the destination as a setting. A later direct save to Google Drive or OneDrive
+is then one more destination. Neither is planned now: both need an app registration that TAMU
+administrators approve (a Google Cloud project for Drive, a Microsoft Entra app for OneDrive).
+The team currently works in OneDrive and is exploring Google Drive and Docs; revisit once that
+choice is made.
+
+**Google Docs.** A saved .docx opens in Google Docs for reading and comments. Keep the .docx as
+the official copy, since converting the planning document's tables back and forth can shift
+their formatting.
