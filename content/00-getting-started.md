@@ -7,6 +7,9 @@ ID check-in: none (first check-in follows Module 1)
 Faculty complete: AI key setup, course details, the Flex Online process. Refresh track also
 uploads the current course map or syllabus.
 
+Sources: `src:reading-gs-flex-online-process`, `src:guide-course-development-process`,
+`src:tool-course-creator`, `src:example-mgmt615-course-map`
+
 ---
 
 ## GS.1 Connect your AI key
@@ -47,7 +50,7 @@ How to get your key (about a minute):
 
 Treat the key like a password. If you don't see API keys in your settings, contact your ID.
 
-> Review note: steps adapted from Course Creator 3.1.28, which uses the same TAMU AI Chat key
+> Review note: steps adapted from `src:tool-course-creator`, which uses the same TAMU AI Chat key
 > flow. Still for TAMU IT: confirm this is the supported way for faculty to get a key, and what
 > we can say about how TAMU AI Chat handles course content.
 
@@ -85,7 +88,7 @@ the cause in plain words and offers Try again:
 | Can't reach the service | Couldn't reach TAMU AI Chat. Check your internet connection. Off campus, you may need the university VPN. |
 | Too many requests (429) | TAMU AI Chat is busy right now. Wait a moment and try again. |
 
-App notes (from Course Creator 3.1.28, for reference only): TAMU AI Chat is OpenAI-compatible.
+App notes (from `src:tool-course-creator`, for reference only): TAMU AI Chat is OpenAI-compatible.
 Course Creator calls `https://chat.tamu.ai/api` and falls back to
 `https://chat-api.tamu.ai/openai`, sends the key as a Bearer token, lists models from
 `/models` and posts to `/chat/completions`. It prefers Claude Sonnet, then other Claude
@@ -330,13 +333,9 @@ answer.
 
 ### Go deeper (optional)
 
-- Pacansky-Brock, M. (2020). How to humanize your online course.
-- Richardson, J. C., & Swan, K. (2003). Examining social presence in online courses in relation
-  to students' perceived learning and satisfaction. *Journal of Asynchronous Learning
-  Networks, 7*(1), 68–88.
-- Garrison, D. R., Anderson, T., & Archer, W. (2000). Critical inquiry in a text-based
-  environment: Computer conferencing in higher education. *The Internet and Higher Education,
-  2*(2–3), 87–105.
+- `src:ext-pacansky-brock-2020`
+- `src:ext-richardson-swan-2003`
+- `src:ext-garrison-2000`
 
 ---
 

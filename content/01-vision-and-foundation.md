@@ -11,6 +11,11 @@ Refresh checks for this module: CLOs are measurable, with one verb each, and lin
 catalog description and program outcomes; every CLO appears in at least one module; topics are
 current.
 
+Sources: `src:reading-m1-setting-the-foundation`, `src:guide-course-alignment`,
+`src:guide-learning-objectives`, `src:assignment-m1-building-the-framework`,
+`src:assignment-m1-redesign-and-refine`, `src:template-planning-doc`,
+`src:example-mgmt615-course-map`
+
 ## Refresh reflection
 
 Shown once, in the refresh track only, before step 1.1. The answers go to the AI in every
@@ -172,11 +177,10 @@ Project file: `learners.profile`. Every later AI step receives it as context.
 
 ### Go deeper (optional)
 
-- Knowles, M. S., Holton, E. F., & Swanson, R. A. (2015). *The adult learner* (8th ed.).
-  Routledge.
-- Wiggins, G., & McTighe, J. (2005). *Understanding by design* (2nd ed.). ASCD.
-- CAST. (2018). *Universal Design for Learning guidelines version 2.2.*
-- Guide: TLI. (2026). Flex Online Course Development Process.
+- `src:ext-knowles-2015`
+- `src:ext-wiggins-mctighe-2005`
+- `src:ext-cast-2018`
+- `src:guide-course-development-process`
 
 ---
 
@@ -294,7 +298,7 @@ as supported).
 Project file: `catalog.text`, `catalog.commitments`, `programOutcomes`,
 `programDirectorReview.status`.
 
-> Review note: the template labels these sections "Covered in FODW Module 2", and the
+> Review note: `src:template-planning-doc` labels these sections "Covered in FODW Module 2", and the
 > Program-Level Outcomes placeholder repeats the catalog description placeholder. The export
 > will use "Module 1" and a correct placeholder.
 
@@ -564,12 +568,13 @@ Project file: `clos` (text, verb, level, commitments, programOutcomes, decision)
 
 ### Go deeper (optional)
 
-- Guide: TLI. (2026). Course-Level Learning Objectives.
-- Anderson, L. W., & Krathwohl, D. R. (Eds.). (2001). *A taxonomy for learning, teaching, and
-  assessing.* Longman.
+- `src:guide-learning-objectives`
+- `src:ext-anderson-krathwohl-2001`
 
-> Review note: the sources disagree on how many CLOs to write: 3 to 7 in the M1 reading, 3 to 6
-> in the CLO guide and the M1 assignment, 3 to 5 in the template. I used 3 to 6.
+> Review note: sources disagree on how many CLOs to write: 3 to 7 in
+> `src:reading-m1-setting-the-foundation`, 3 to 6 in `src:guide-learning-objectives` and
+> `src:assignment-m1-building-the-framework`, 3 to 5 in `src:template-planning-doc`. Jared
+> confirmed 3 to 6.
 
 ---
 
@@ -703,14 +708,15 @@ Refresh change notes, demo examples:
 
 ### Save
 
-Planning document: Module Titles, CLOs met and Module Topics rows in Tables 1 and 2.
+Planning document: Module Titles, CLOs met and Module Topics rows in Tables 1 and 2. See
+`export.md` for the full table layout.
 Project file: `modules[].title`, `modules[].closMet`, `modules[].topics`; in refresh,
 `modules[].original`, `modules[].changeNote`. Module objectives and other columns found in an
 uploaded course map stay in `source.sections` for later modules.
 
 ### Go deeper (optional)
 
-- Guide: TLI. (2026). Course Alignment.
+- `src:guide-course-alignment`
 
 ---
 

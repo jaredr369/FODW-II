@@ -5,8 +5,11 @@ One file per module. The app reads these files; faculty never see this README.
 | File | Module |
 |---|---|
 | `ai-rules.md` | Instructions shared by every AI call |
+| `sources.json` | Every source the content draws on, with a stable id |
+| `export.md` | Layout of the Word planning document the app exports |
 | `00-getting-started.md` | Getting Started |
 | `01-vision-and-foundation.md` | Module 1. Creating Vision and Foundation |
+| `02-ai-and-rsi.md` | Module 2. AI & RSI in Strategic Course Design |
 
 ## How a step is written
 
@@ -24,6 +27,20 @@ Without AI (faculty who chose Continue without AI in GS.1): Learn, See it, Decid
 work the same. Draft and Review are replaced by a text box (empty in the full build, holding the
 current section in the refresh track) next to the step's checklist. The refresh reflection is
 still shown and saved for the ID.
+
+## Sources
+
+Content files never name a source file directly. They use its id from `sources.json`, written
+as `` `src:<id>` ``, for example `` `src:guide-rsi` ``. The app turns each id into the citation
+and, for public sources, a link. Each module file lists the sources it draws on under its
+header, and Go deeper lists are made of ids.
+
+Ids follow `<kind>-<slug>`, such as `guide-storytelling` or `assignment-m2-character-conflict`.
+The module a source belongs to is a field in the registry and follows the V3 course map, even
+when the source file itself is labeled with a different module. Ids never change once used.
+
+The reference files are internal and read-only. They stay out of this repo; the registry holds
+only their names, so a maintainer can find them.
 
 Notes for reviewers are in blocks that start with `> Review note:`. The app ignores them.
 
