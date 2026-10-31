@@ -2,7 +2,7 @@
 
 Module id: `gs`
 Steps: 4
-Gate: none
+ID check-in: none (first check-in follows Module 1)
 
 Faculty complete: AI key setup, course details, the Flex Online process. Refresh track also
 uploads the current course map or syllabus.
@@ -92,48 +92,53 @@ Time: about 20 minutes
 A Flex Online course is planned first, then built, then reviewed, and then taught. This tool
 covers the planning.
 
-**Planning (this workshop).** You work through Getting Started and eight modules at your own
-pace. Each module adds sections to your Course Planning Document, the plan your ID will build
-from. You meet with your ID three times, by Zoom or in person. Each meeting is a gate: you
-move on once your ID has reviewed that part of the plan with you.
+**Planning (this workshop).** You work through Getting Started and eight modules. Each module
+adds sections to your Course Planning Document, the plan your ID will build from. The expected
+pace is one module a week, so the workshop takes about eight weeks.
 
-| Meeting | After | What you bring |
-|---|---|---|
-| Gate 1 | Module 2 | Course vision, CLOs, module titles and topics, your character and conflict, and your syllabus statement on when students hear from you |
-| Gate 2 | Module 4 | Your storyline, one scenario per module, and the learning activities for each module |
-| Gate 3 | Module 8 | The finished planning document and your communication and feedback plan |
+Each week you meet with your ID, by Zoom or in person. Bring your planning document as it
+stands. Your ID reviews the sections you added that week, and you leave knowing what to change
+before you go on.
+
+You can work ahead. The AI drafts and checks each section as you go, so many faculty can finish
+more than one module in a week. If you do, ask your ID to meet more often, so each module still
+gets reviewed before the next one builds on it.
 
 **Kick-off.** After the workshop your ID schedules a kick-off meeting. Together you go through
 the planning document, confirm what is ready to build, and set milestone dates.
 
-**Content development.** Over about 13 weeks you write the course materials and your ID builds
-the course in a Canvas development shell. Shortly after kick-off you meet with your ID and the
+**Content development (13 weeks).** You write the course materials and your ID builds the
+course in a Canvas development shell. Shortly after kick-off you meet with your ID and the
 Director of Learning Media to confirm which videos and graphics will be produced. If a scenario
 needs filming, bring your scenario plan to that meeting.
 
-**Quality review.** A peer review checks that objectives, activities and materials line up. A
-technical review checks accessibility, links, the gradebook and due dates. In the week before
-launch you look over the finished course and make small fixes.
+**Quality review (2 weeks).** A peer review checks that objectives, activities and materials
+line up. A technical review checks accessibility, links, the gradebook and due dates.
 
-**Teaching.** You and your ID meet for facilitation training, and then the course is yours to
-run. The Learning Delivery team supports your live cohort sessions and contacts you once the
-term begins.
+**Final review and facilitation training (1 week).** You look over the finished course and
+make small fixes. You and your ID also meet for facilitation training, where you practice
+grading and communicating with students in Canvas.
+
+**Teaching.** After training the course is yours to run. The Learning Delivery team supports
+your live cohort sessions and contacts you once the term begins.
 
 **Your ID's role.** You are the expert on what the course teaches. Your ID is the expert on how
 to teach it online. Expect your ID to question choices, point out accessibility and copyright
 issues, and keep the project on schedule. Your ID will not make content decisions for you.
 
-> Review note: the source reading says 13 weeks for content development in one place and a
-> 16-week timeline in a knowledge check answer. I used 13. The three-week timeline for this
-> tool is still open, so no workshop length is stated here.
+> Review note: confirmed by Jared on Oct 31: 13 weeks content development, 2 weeks quality
+> review, 1 week final review and facilitation training; weekly live check-ins with the ID at
+> one module a week, with working ahead and extra meetings allowed. This replaces the three
+> gates in the handoff.
 
 ### See it
 
-At Gate 1, the MGMT 615 instructor brought five CLOs, eight module titles and a character,
-Dana Ortiz, a new operations manager whose director has already decided who to blame for a
-drop in on-time shipping. The ID's first question was which CLO each of Dana's decisions came
-from. Two decisions in the draft had no CLO behind them, so the instructor cut one and tied the
-other to the hiring CLO before moving on to scenarios.
+The MGMT 615 instructor finished Module 1 and Module 2 in the first week and asked for a second
+meeting that week. At the Module 2 check-in they brought a character, Dana Ortiz, a new
+operations manager whose director has already decided who to blame for a drop in on-time
+shipping. The ID's first question was which CLO each of Dana's decisions came from. Two
+decisions in the draft had no CLO behind them, so the instructor cut one and tied the other to
+the hiring CLO before moving on to scenarios.
 
 ### Draft (full build) and Review (refresh)
 
@@ -150,15 +155,15 @@ Knowledge check (feedback shown after each answer, not scored):
    Feedback: The planning document is what the workshop produces and what content development
    starts from. A complete, specific plan shortens the build.
 
-2. When is your first gate meeting?
-   - a) Before Module 1
-   - **b) After Module 2**
-   - c) After Module 4
-   - d) At kick-off
+2. You finish Module 3 in the same week as Module 2. What should you do?
+   - a) Wait until next week to start Module 4
+   - **b) Ask your ID for an extra check-in this week**
+   - c) Skip the Module 2 review
+   - d) Send your ID the document and keep going without a meeting
 
-   Feedback: Gate 1 comes after Module 2, once your CLOs, modules, character and conflict are
-   drafted. Your ID checks them before you plan scenarios, because every scenario depends on
-   them.
+   Feedback: Working ahead is fine. Each module still gets a live review with your ID before
+   the next one builds on it, so ask for another meeting when you move faster than one module a
+   week.
 
 3. Who decides what topics your course covers?
    - **a) You**
@@ -171,18 +176,19 @@ Knowledge check (feedback shown after each answer, not scored):
 
 ### Decide
 
-The faculty member enters their ID's name and, if known, a date for each gate meeting. Dates
-can stay blank and be added later.
+The faculty member enters their ID's name, the weekly check-in day and time, and whether it
+is by Zoom or in person. Any of these can stay blank and be added later.
 
 Checklist:
 
-- You know which modules come before each gate.
-- You have your ID's name, or you know who to ask for it.
+- You have a weekly check-in time with your ID, or you know who to ask to set one.
+- You know to ask for extra check-ins if you work ahead.
 
 ### Save
 
 Planning document: ID name on the cover section.
-Project file: `course.idName`, `gates[1..3].date`.
+Project file: `course.idName`, `checkins.day`, `checkins.time`, `checkins.format`,
+`checkins.log[]` (module, date, notes).
 
 ---
 
