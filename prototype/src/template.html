@@ -124,12 +124,19 @@ const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;'
 const $ = s => document.querySelector(s);
 
 /* ---------- content parsing ---------- */
+// Faculty never see notes for reviewers or the app's builders: "> Review note" and "> App note"
+// blocks, Pattern and AI-instructions labels, and project-file or browser storage details.
 function stripNotes(text) {
-  const out = []; let skipping = false;
+  const out = []; let skipping = false, label = false;
   for (const line of text.split('\n')) {
-    if (line.startsWith('> Review note')) { skipping = true; continue; }
+    if (/^> (Review|App) note/.test(line)) { skipping = true; continue; }
     if (skipping && line.startsWith('>')) continue;
-    skipping = false; out.push(line);
+    skipping = false;
+    if (/^(Project file|Browser only):/.test(line)) { label = true; continue; }
+    if (label && line.trim() && !/^[A-Z][A-Za-z ]+: /.test(line)) continue;
+    label = false;
+    if (/^Pattern:/.test(line) || /^AI instructions[^:]*:\s*$/.test(line)) continue;
+    out.push(line);
   }
   return out.join('\n');
 }
@@ -417,7 +424,7 @@ function renderStep(goKey) {
     const t = key === 'reflection' ? 'Refresh reflection' : 'Check-in prep';
     const done = state.done[goKey];
     return crumb + '<h2 class="step">' + t + '</h2>' +
-      (key === 'prep' ? aiPart('Summary for your ID', body) : '<section class="part">' + md(body) + '</section>') +
+      (key === 'prep' ? '<section class="part"><p>Before your weekly check-in, the tool summarizes what you built in this module, lists any flags you kept, and suggests two questions for your ID. It takes about a minute. Review it, then select Ready for check-in.</p></section>' + aiPart('Summary for your ID', body) : '<section class="part">' + md(body) + '</section>') +
       '<div class="row"><button type="button" class="btn" data-save="' + esc(goKey) + '">' + (key === 'prep' ? 'Ready for check-in' : 'Save answers') + '</button>' + (done ? '<span class="done-note">Saved</span>' : '') + '</div>';
   }
   const p = step.parts;
@@ -437,7 +444,7 @@ function renderStep(goKey) {
   }
   if (p['Checks']) h += '<section class="part" id="checks" hidden><h3>Checks <span class="tag">ran on save</span></h3>' + md(p['Checks']) +
     '<div class="flag ok">Every flag is fixed or has a note. This section is ready for your ID.</div></section>';
-  if (p['Save']) h += '<section class="part"><h3>Save</h3>' + md(p['Save']) + '</section>';
+  if (p['Save']) h += '<section class="part"><h3>Save</h3>' + md(p['Save'].replace(/^Planning document:/gm, 'Goes into your Course Planning Document:').replace(/\s*\((?:[^()]*?;\s*)?see\s+`export\.md`\)/g, '')) + '</section>';
   if (p['Go deeper (optional)']) h += '<details class="part"><summary>Go deeper (optional)</summary>' + md(p['Go deeper (optional)']) + '</details>';
   h += '<div class="row"><button type="button" class="btn" data-save="' + esc(key) + '">Save to plan</button>' + (state.done[key] ? '<span class="done-note">Saved to your planning document</span>' : '') + '</div>';
   return h;

@@ -18,11 +18,11 @@ Sources: `src:reading-m1-setting-the-foundation`, `src:guide-course-alignment`,
 
 ## Refresh reflection
 
-Shown once, in the refresh track only, before step 1.1. The answers go to the AI in every Review
-step of this module.
+> App note: shown once, in the refresh track only, before step 1.1. The answers go to the AI in
+> every Review step of this module.
 
-Prompt shown: "Think about the last time you taught this course. Answer whichever of these
-apply. Short notes are fine."
+Think about the last time you taught this course. Answer whichever of these questions apply.
+Short notes are fine. The AI uses your answers when it reviews each section in this module.
 
 1. Which course objectives did students struggle to meet? What did you see in their work?
 2. Were there weeks that felt overloaded or thin, or topics that came too early or too late?
@@ -47,9 +47,9 @@ Demo answers (MGMT 615):
 3. "Hiring comes up every term in Module 8 and students want more of it."
 4. "The diagnosis-first approach. Students tell me it's what they use most at work."
 
-Each answer connects to the demo review: the CLO 2 revision answers the first, the Module 4
-topic change the second, the new hiring CLO the third, and the vision revision keeps the
-diagnosis-first approach.
+> App note: each answer connects to the demo review: the CLO 2 revision answers the first, the
+> Module 4 topic change the second, the new hiring CLO the third, and the vision revision keeps
+> the diagnosis-first approach.
 
 Project file: `reflection.m1`.
 
@@ -68,32 +68,40 @@ order of this workshop. Module 1 sets the end point.
 
 Start with who the students are. They're working professionals who connect new ideas to their
 own experience, want to know why something matters before they invest time, and want to use it
-soon (Knowles, Holton, & Swanson, 2015). Every AI draft from here on uses the learner profile
-you write in this step.
+soon (Knowles, Holton, & Swanson, 2015). Every AI draft from here on uses the learner profile, a
+short description of who takes your course, that you write in this step.
 
-Your catalog description is the course's public promise, so your vision and CLOs stay inside it.
-Paste the official text; the AI won't write or change it. Program outcomes describe what students
-can do after the whole degree; mark the two to four this course supports. Your ID can find them
-if you don't have them. Before you start Module 2, confirm your vision and CLOs with your program
-director, since your character and scenarios build on them.
+Your catalog description is the course's public promise, so your course vision and course-level
+objectives (CLOs), which you'll write in steps 1.2 and 1.3, stay within it. Paste the official
+text from the TAMU course catalog (catalog.tamu.edu); the AI won't write or change it.
+
+The AI then breaks the description into a list of commitments: each separate thing the catalog
+promises students will learn to do. Check that the list is complete and accurate. It matters
+later: when you write your CLOs in step 1.3, the tool checks them against this list and flags any
+promise your course doesn't cover yet.
+
+Program outcomes describe what students can do after the whole degree; mark the two to four this
+course supports. Your ID can find them if you don't have them. Before you start Module 2, confirm
+your vision and CLOs with your program director, since the storyline you'll build in Modules 2
+and 3 builds on them.
 
 ### See it
 
 MGMT 615's students are new or soon-to-be managers, promoted for being good at their own jobs.
 Its catalog description makes six commitments, from diagnosing underperformance to hiring well.
-Later checks hold the CLOs to that list, which is how the refresh found that no CLO covered
-hiring.
+Later checks hold the CLOs to that list, which is how the review of the existing course found
+that no CLO covered hiring.
 
 ### Draft (full build)
 
-The AI asks four questions, then drafts a learner profile:
+The AI asks you four questions, then drafts a learner profile:
 
 1. What jobs do most students hold while they take the course?
 2. What do they already know about the subject when they start?
 3. What will they do differently at work after the course?
 4. Anything about their schedules or situations the course should plan around?
 
-Then the faculty member pastes the catalog description and program outcomes.
+Then you paste the catalog description and program outcomes.
 
 AI instructions:
 
@@ -128,9 +136,10 @@ Demo response (MGMT 615):
 
 ### Review (refresh)
 
-Edit in place. The app shows the learner description, catalog description and program outcomes
-found in the upload. Missing parts run as the full build. The AI lists the catalog commitments
-and checks the learner description names students' roles, what they bring and what they need.
+You'll see the learner description, catalog description and program outcomes found in your
+Course Map. The AI drafts any missing part from scratch. It also lists the catalog's commitments
+and checks that your learner description names students' roles, what they bring and what they
+need.
 
 Demo response (MGMT 615): learners and program outcomes are missing, so those run as the full
 build; the catalog is found and its commitments match the list above. The app asks the faculty
@@ -142,7 +151,7 @@ Checklist:
 
 - The profile describes the students who actually take your course.
 - The catalog text is the current official version.
-- The commitment list covers everything the catalog promises.
+- The commitment list includes every promise in the catalog description, and nothing extra.
 - You've marked the program outcomes this course supports.
 - You've planned a meeting with your program director before Module 2.
 
@@ -175,24 +184,24 @@ Your vision says what students will be able to do, and who they'll become, becau
 your course. Try this: a student runs into you a year after the course. What do you hope they
 tell you they now do differently at work? That answer is the core of your vision.
 
-Write 3 or 4 sentences about what students do in their professional setting, inside the catalog
-description, and say what sets the course apart. A vision drives every later choice: each topic,
+Write 3 or 4 sentences about what students do in their professional setting, within the scope
+of your catalog description, and say what sets the course apart. A vision drives every later choice: each topic,
 activity and reading has to help students get there.
 
 ### See it
 
 MGMT 615: "MGMT 615 turns people who are good at their jobs into people who are good at running
 a team. Every module asks students to work out what is actually wrong before they choose a fix,
-and to defend that call to peers in a live cohort session. Students leave with work they can use
+and to defend that call to peers in a live cohort session (a scheduled live class meeting on Zoom;
+you'll plan these in Module 7). Students leave with work they can use
 on the job: a feedback script, a delegation memo, a change announcement and a structured
 interview scorecard. They finish ready to manage a larger team and to explain the reasoning
 behind each call."
 
 ### Draft (full build)
 
-The AI asks one question, "What do you hope a student tells you a year after the course?", then
-drafts two versions with different emphasis. The faculty member picks one, combines them or
-writes their own.
+The AI asks you one question, "What do you hope a student tells you a year after the course?",
+then drafts two versions with different emphasis. Pick one, combine them or write your own.
 
 AI instructions:
 
@@ -220,8 +229,8 @@ avoiding":
 
 ### Review (refresh)
 
-Edit in place. The current vision appears with flags from the checks below and one suggested
-revision that keeps the faculty member's language.
+You'll see your current vision with flags from the checks below and one suggested revision that
+keeps your language.
 
 Demo response (MGMT 615): two flags. "Seven sentences; the planning document asks for 3 or 4."
 And "The first two sentences describe the program ('sits at the center of the Flex Online
@@ -258,10 +267,23 @@ Pattern: spot the problem, then pick and combine (full build) or edit in place (
 ### Learn
 
 CLOs say what students will be able to do by the end of the course, in a way you can observe and
-grade. Everything later traces back to them. Write 3 to 6. Start each with one action verb at
-Bloom's apply level or higher, mostly analyze, evaluate or create, since your students are
-experienced professionals (Anderson & Krathwohl, 2001). Describe something within the student's
-control.
+grade. Everything later traces back to them. Write 3 to 6.
+
+To pitch them at the right level, use Bloom's taxonomy, a widely used framework that sorts
+learning by how much thinking it asks of students (Anderson & Krathwohl, 2001). It has six
+levels, from least to most demanding:
+
+1. **Remember:** recall facts and terms.
+2. **Understand:** explain ideas in your own words.
+3. **Apply:** use a method or idea in a new situation.
+4. **Analyze:** break a situation into parts and see how they relate.
+5. **Evaluate:** judge options against criteria and defend a choice.
+6. **Create:** put ideas together into something new, such as a plan, design or proposal.
+
+Start each CLO with one action verb at the apply level or higher, mostly analyze, evaluate or
+create. Your students are experienced professionals; they need to use and judge ideas, not just
+recall them. Avoid verbs like "understand" or "know." You can't see them happen, so you can't
+grade them. Describe something within the student's control.
 
 | Level | Example verbs |
 |---|---|
@@ -271,24 +293,26 @@ control.
 | Create | design, develop, construct, draft |
 
 Each CLO should also suggest a decision someone in your students' role would face. In Module 2
-those decisions become your character's story.
+you'll create a character, someone in your students' role, whose story runs through the course.
+These decisions become that character's story.
 
-**Spot the problem.** Before drafting, the app shows one weak objective and asks, "What would
-you change, and why?" in a sentence.
+**Spot the problem.** Before drafting, you'll see one weak objective. In a sentence, say what
+you would change, and why. The AI then confirms what you caught and adds anything you missed.
 
 > Example: "Students will understand how to give feedback that changes an employee's behavior."
 
-Expected points: "understand" can't be observed; "changes an employee's behavior" depends on the
-employee, which the student can't control. A stronger version: "Design a feedback conversation that targets a
-specific behavior and states the change expected." The AI confirms what the faculty member
-caught and adds what they missed, in two sentences.
+> App note: expected points: "understand" can't be observed; "changes an employee's behavior"
+> depends on the employee, which the student can't control. A stronger version: "Design a
+> feedback conversation that targets a specific behavior and states the change expected." The
+> AI confirms what the faculty member caught and adds what they missed, in two sentences.
 
 ### See it
 
 MGMT 615's first CLO began as "Apply core theories of motivation and performance to diagnose why
 an employee or team is underperforming." Two verbs. The refresh kept the one students are graded
 on: "Diagnose why an employee or team is underperforming using core theories of motivation and
-performance." It gives Dana Ortiz her first decision in Module 2: is the shift lead the problem?
+performance." It gives MGMT 615's character, Dana Ortiz, a newly promoted manager you'll meet in
+Module 2, her first decision: is the shift lead the problem?
 
 ### Draft (full build)
 
@@ -308,7 +332,7 @@ Demo response (MGMT 615, if run as a full build): the six revised CLOs listed un
 
 ### Review (refresh)
 
-Edit in place. Each current CLO shows Keep or a suggested revision, with flags.
+Each of your current CLOs shows Keep or a suggested revision, with flags.
 
 AI instructions:
 
@@ -334,8 +358,9 @@ Demo response (MGMT 615):
 
 ### Decide
 
-Full build: pick, edit, reorder, remove or add. Refresh: for each CLO, keep, accept, edit or
-rewrite; accept, edit or reject each new CLO.
+New course: pick from the AI's drafts, then edit, reorder, remove or add. Updating a course: for
+each current CLO, keep it, accept the AI's suggested revision, edit it or rewrite it; accept,
+edit or reject each new CLO the AI suggests.
 
 Checklist:
 
@@ -370,11 +395,12 @@ Pattern: pick and combine (full build) or edit in place (refresh)
 ### Learn
 
 Lay out the weekly modules; the planning document has room for eight. Each gets a title a
-student would understand on day one, one primary CLO and at most one supporting CLO, and three
-to five topics. Start from the CLOs: list what students need to know or practice to meet each
+student would understand on day one, one CLO the module mainly works toward and at most one more
+it also supports, and three to five topics. Start from the CLOs: list what students need to know or practice to meet each
 one, then cut anything whose removal wouldn't stop anyone from meeting a CLO.
 
-Order matters. In Module 3 each module becomes one scenario in your character's story, so order
+Order matters. In Module 3 each module becomes a scenario, a realistic situation your character
+faces that week, so order
 the modules the way the decisions would come up at work: diagnosis before treatment, one person
 before the whole team.
 
@@ -410,8 +436,8 @@ the MGMT 615 course map, including the Module 4 change below.
 
 ### Review (refresh)
 
-Edit in place. Each module shows Keep or a suggested revision, with flags. CLO numbers are
-updated to match step 1.3.
+Each module shows Keep or a suggested revision, with flags. CLO numbers are updated to match
+step 1.3.
 
 Demo response (MGMT 615):
 
@@ -424,8 +450,9 @@ Demo response (MGMT 615):
 
 ### Decide
 
-A table with one column per module: edit titles, CLOs met and topics, and drag to reorder.
-Refresh: keep, accept, edit or rewrite each module.
+You'll see a table with one column per module. Edit titles, CLOs met and topics, and drag to
+reorder. Updating a course: for each module, keep it, accept the AI's suggested revision, edit it
+or rewrite it.
 
 Checklist:
 
@@ -456,7 +483,7 @@ Project file: `modules[].title`, `modules[].closMet`, `modules[].topics`; in ref
 
 ## Check-in prep
 
-Shown after step 1.4.
+> App note: shown after step 1.4.
 
 AI instructions:
 

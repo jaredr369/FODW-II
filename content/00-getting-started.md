@@ -106,14 +106,14 @@ prefers Claude Sonnet, then other Claude models, then GPT models.
 
 ### Decide
 
-The faculty member:
+1. Paste your key and select Test connection, or select Continue without AI.
+2. Select Choose save folder and pick a folder your ID can see.
+3. Enter your ID's name and your weekly check-in day, time and format. Any of these can wait.
 
-1. Pastes the key and selects Test connection, or selects Continue without AI (a smaller link),
-   which asks for confirmation: "Without the AI you'll write every section of your plan yourself.
-   You won't get first drafts, checks on your work, or a review of your existing course. You can
-   connect the AI later from Settings." Buttons: Connect the AI (default), Continue without AI.
-2. Selects Choose save folder.
-3. Enters their ID's name and the weekly check-in day, time and format. Any of these can wait.
+> App note: Continue without AI is a smaller link and asks for confirmation: "Without the AI
+> you'll write every section of your plan yourself. You won't get first drafts, checks on your
+> work, or a review of your existing course. You can connect the AI later from Settings."
+> Buttons: Connect the AI (default), Continue without AI.
 
 If the test fails, the app shows the cause and offers Try again:
 
@@ -187,7 +187,7 @@ learn what each of these is when you reach it.
 
 ### Draft (full build)
 
-The faculty member fills in a form. No AI call.
+Fill in a few details about your course. There's no AI draft in this step.
 
 | Field | Required | Example (MGMT 615) |
 |---|---|---|
@@ -200,9 +200,9 @@ The faculty member fills in a form. No AI call.
 
 ### Review (refresh)
 
-The same form, then the faculty member uploads a .docx or pastes text. The AI sorts it into the
-planning document's sections. Without AI, the upload is skipped and the faculty member pastes
-each current section when they reach it.
+Fill in the same details, then upload your Course Map as a Word file or paste its text. The AI
+sorts it into the sections of your Course Planning Document. Without the AI, you skip the upload
+and paste each current section when you reach it.
 
 AI instructions:
 
@@ -242,8 +242,8 @@ Demo response (MGMT 615, from `src:example-mgmt615-course-map`):
 
 ### Decide
 
-The tool shows each found section next to its label. The faculty member confirms each, moves
-misplaced text, or marks a section as not in the document.
+You'll see each section the AI found next to its label. Confirm each one, move any text that
+landed in the wrong place, or mark a section as not in your document.
 
 Checklist:
 
