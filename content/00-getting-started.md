@@ -19,26 +19,39 @@ Pattern: setup (no AI draft)
 
 ### Learn
 
-**How this workshop works.** You'll build your Course Planning Document, the plan your
-instructional designer (ID) builds your course from. Getting Started and eight modules each add
-sections to it. The expected pace is one module a week, with a live check-in with your ID each
-week, by Zoom or in person. You can work ahead; if you do, ask your ID to meet more often, so
-each module is reviewed before the next one builds on it.
+**How this workshop works.** You'll build your Course Planning Document, the plan that will guide
+the future development of the entire course. Each module in this workshop will have you building
+different sections of your course plan. The expected pace is one module a week, with a live check-in
+with your ID each week, by Zoom or in person. You can work ahead; if you do, ask your ID to meet
+more often, so each module is reviewed before the next one builds on it.
 
-After the workshop come a kick-off meeting with your ID, 13 weeks of content development, 2 weeks
-of quality review, and a final week to review the course and train on grading and communicating
-in Canvas. Then the course is yours to teach. You are the expert on what the course teaches; your
-ID is the expert on how to teach it online.
+**How each step works.** Throughout the workshop, AI drafts ideas for you to decide on, modify and
+save. Each step opens with **Learn**, a short read on what the section is for, and **See it**, an
+example from MGMT 615. Then:
 
-**The AI.** This tool uses TAMU AI Chat to draft and check each section. You connect it with your
-own key, which stays in this browser and never goes into your project file. Every draft is a
-starting point: you can edit it, ask for another, or write the section yourself, and nothing goes
-into your plan until you select Save.
+- **Draft.** Select Draft with AI, and the AI writes a first version of one section of your plan
+  from your course details. In the refresh track, Review with AI checks your current section
+  instead and flags what may need to change.
+- **Decide.** You're the expert on your course. Keep the draft, edit it, ask for another version,
+  or write your own. A short checklist shows what a finished section includes.
+- **Save.** Select Save to plan, and the section goes into your Course Planning Document. Quick
+  checks run as it saves and flag anything to fix, or to keep with a note for your ID.
 
-We strongly recommend connecting the AI. The workshop is built around it. You can continue
-without it, but then you write every section yourself, without first drafts, checks on your
-work, or, in the refresh track, a review of your existing course. You can connect it later from
-Settings.
+Some steps add **Go deeper**: optional readings and tools if you want more.
+
+After the workshop comes a kick-off meeting with your ID, 13 weeks of development, 2 weeks of
+quality review, and a final week to review the course and train on grading and communicating in
+Canvas. Then the course is yours to teach. You are the expert on what the course teaches; your ID is
+the expert on how to teach it online.
+
+**The AI.** This tool uses TAMU AI Chat to draft and check each section of the course plan. You
+connect it with your own key, which stays in this browser and never goes into your project file.
+Every draft is a starting point: you can edit it, ask for another, or write the section yourself,
+and nothing goes into your plan until you select Save.
+
+We strongly recommend connecting TAMU AI. The workshop is built around it. You can continue without
+it, but you will write every section yourself, without first drafts, checks on your work, or, in the
+refresh track, a review of your existing course. You can connect it later from Settings.
 
 How to get your key (about a minute):
 
@@ -51,21 +64,22 @@ How to get your key (about a minute):
 
 Treat the key like a password. If you don't see API keys in your settings, contact your ID.
 
-**Saving and sharing.** There is nothing to submit. Your work saves in this browser as you go.
-When you select Save, the tool writes two files to a folder you choose: the planning document
-(Word), which your ID reads, and a project file, which holds everything and lets you keep working
-on another computer. Choose a folder your ID can see, such as a OneDrive or Teams folder you share
-with them, and saving is sharing. This works best in Microsoft Edge or Google Chrome; in other
-browsers the files go to Downloads and you move them yourself.
+**Saving and sharing.** This tool is not like Canvas. Your work saves in this browser as you go.
+When you select Save, the tool writes two files to a folder you choose: 1. the planning document
+(Word), which your ID reads, and 2. a project file, which holds other important course planning
+information. Choose a folder your ID can see, such as a OneDrive or Teams folder you share with
+them. This works best in Microsoft Edge or Google Chrome; in other browsers, the files go to
+Downloads, and you move them yourself.
 
 > Review note: key steps adapted from `src:tool-course-creator`; the key process is confirmed.
 > Still open for TAMU IT: what we can say about how TAMU AI Chat handles course content.
 
 ### See it
 
-The MGMT 615 instructor connected a key, chose a OneDrive folder shared with their ID, and set a
-Tuesday check-in. They finished Modules 1 and 2 in the first week and asked their ID for a second
-meeting that week.
+Throughout the workshop, you will see examples from a fictitious course titled, "MGMT 615". In it,
+the instructor connected a key, chose a OneDrive folder shared with their ID, and set a Tuesday
+check-in. They finished Modules 1 and 2 in the first week and asked their ID for a second meeting
+that week.
 
 ### Draft (full build) and Review (refresh)
 
