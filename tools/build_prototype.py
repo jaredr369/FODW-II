@@ -27,7 +27,7 @@ def main():
     for name in MODULE_FILES:
         raw = read(os.path.join(CONTENT, name))
         mod_id = next(line.split('`')[1] for line in raw.splitlines() if line.startswith('Module id:'))
-        modules.append({'id': mod_id, 'raw': raw})
+        modules.append({'id': mod_id, 'file': name, 'raw': raw})
 
     demo = {os.path.basename(p): json.loads(read(p)) for p in glob.glob(os.path.join(CONTENT, 'demo', '*.json'))}
 

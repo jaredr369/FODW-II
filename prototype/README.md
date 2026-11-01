@@ -20,6 +20,22 @@ works opened straight from disk.
   Word-readable file.
 - Progress is kept in this browser; **Reset the demo** on the Welcome screen clears it.
 
+## Editing the content
+
+**Edit** in the header outlines every piece of text that can be changed in place. Click and
+type; changes show right away and are kept in this browser. **Save edits** downloads
+`fodw-edits-<date>.json` (each file holds every change so far, so the newest one is all you need).
+Then apply it to the content files and rebuild:
+
+```bash
+python tools/apply_edits.py
+```
+
+With no file named, it uses the newest `fodw-edits-*.json` in Downloads. Edits already in the
+files are skipped, and anything it can't place is listed for a person to handle. Text without an
+outline (the Welcome screen, the planning document, repeated phrases) has to be changed in the
+content files.
+
 ## What it doesn't do yet
 
 No live AI, file upload, folder saving, or real .docx export. Those come with the app build.

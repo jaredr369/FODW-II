@@ -69,6 +69,16 @@ summary { cursor: pointer; color: var(--muted); font-size: 14px; }
 .doc .empty { color: var(--muted); font-style: italic; }
 .doc td ul { margin: 0; padding-left: 16px; }
 .done-note { color: var(--ok); font-weight: 600; }
+.meta p { margin: 0 0 4px; }
+header .hbtn[aria-pressed="true"] { background: #fff8e8; box-shadow: 0 0 0 2px #fff; }
+body.editing [data-s] { outline: 1px dashed #b9a29b; outline-offset: 2px; border-radius: 2px; cursor: text; }
+body.editing [data-s]:hover { background: #fffbe6; }
+body.editing [data-s]:focus { outline: 2px solid var(--focus); background: #fffbe6; }
+body.editing .demo-out[hidden], body.editing #checks[hidden] { display: block; }
+body.editing main { padding-bottom: 140px; }
+.editbar { position: fixed; left: 0; right: 0; bottom: 0; background: #fff8e8; border-top: 2px solid var(--warn); padding: 10px 20px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; z-index: 7; font-size: 15px; }
+.editbar[hidden] { display: none; }
+.editbar .msg { flex: 1; min-width: 240px; }
 @media (max-width: 760px) {
   .layout { grid-template-columns: 1fr; }
   nav { position: static; max-height: 38vh; border-right: 0; border-bottom: 1px solid var(--line); }
@@ -88,6 +98,7 @@ summary { cursor: pointer; color: var(--muted); font-size: 14px; }
     <button type="button" data-track="full">Full build</button>
     <button type="button" data-track="refresh">Refresh</button>
   </div>
+  <button type="button" class="hbtn" id="editBtn" aria-pressed="false">Edit</button>
   <button type="button" class="hbtn" id="docBtn" aria-expanded="false" aria-controls="doc">Planning document</button>
 </header>
 <div class="layout">
@@ -95,6 +106,12 @@ summary { cursor: pointer; color: var(--muted); font-size: 14px; }
   <main id="main" tabindex="-1"></main>
 </div>
 <aside class="doc" id="doc" hidden aria-label="Course Planning Document preview"></aside>
+<div class="editbar" id="editbar" hidden role="region" aria-label="Edit mode">
+  <span class="msg"><strong>Edit mode.</strong> Click any outlined text and type. Text without an outline can't be changed here; tell Claude instead. <span id="ecount" aria-live="polite"></span></span>
+  <button type="button" class="btn" id="saveEdits">Save edits</button>
+  <button type="button" class="btn sec" id="undoEdits">Undo all</button>
+  <button type="button" class="btn sec" id="doneEdit">Done editing</button>
+</div>
 
 <script>
 const DATA = /*DATA*/null;
@@ -143,16 +160,115 @@ function parseModule(m) {
   }
   return mod;
 }
-const MODULES = DATA.modules.map(parseModule);
+let MODULES = DATA.modules.map(parseModule);
+
+/* ---------- edit mode ----------
+   Each editable block carries data-s, an index into SRC that records the exact source text it came
+   from (a markdown snippet, a table row, or a JSON string). An edit replaces that snippet, so it
+   can be applied to the content files by tools/apply_edits.py. A block is editable only when its
+   source text occurs exactly once in its file. */
+const EKEY = 'course-plan-builder-prototype:edits';
+let editing = false, edits = [], SRC = [], CUR = null, noTag = 0;
+const count = (hay, needle) => needle ? hay.split(needle).length - 1 : 0;
+const norm = s => s.replace(/\s+/g, ' ');
+// True when the new text is already in place (for example, applied to the files and rebuilt).
+const landed = (hay, o, n) => norm(hay).includes(norm(n)) && (!hay.includes(o) || norm(n).includes(norm(o)));
+function tag(kind, old, extra) {
+  if (!CUR || noTag || old == null || !String(old).trim()) return '';
+  const hay = CUR.demo ? JSON.stringify(DATA.demo[CUR.demo]) : CUR.mod.raw;
+  if (count(hay, kind === 'json' ? JSON.stringify(old) : old) !== 1) return '';
+  SRC.push(Object.assign({ file: CUR.file, kind, old }, extra));
+  return ' data-s="' + (SRC.length - 1) + '"';
+}
+function patch(file, kind, old, nu) {
+  if (file.startsWith('demo/')) {
+    const name = file.slice(5);
+    const hay = DATA.demo[name] ? JSON.stringify(DATA.demo[name]) : '';
+    if (!hay.includes(JSON.stringify(old)) || landed(hay, JSON.stringify(old), JSON.stringify(nu))) return false;
+    const fix = v => Array.isArray(v) ? v.map(fix) : v && typeof v === 'object' ? Object.fromEntries(Object.entries(v).map(([k, x]) => [k, fix(x)])) : v === old ? nu : v;
+    DATA.demo[name] = fix(DATA.demo[name]); return true;
+  }
+  const m = DATA.modules.find(x => x.file === file);
+  const o = kind === 'json' ? JSON.stringify(old) : old, n = kind === 'json' ? JSON.stringify(nu) : nu;
+  if (!m || !m.raw.includes(o) || landed(m.raw, o, n)) return false;
+  m.raw = m.raw.replace(o, () => n);
+  MODULES = DATA.modules.map(parseModule); return true;
+}
+function loadEdits() {
+  try { edits = JSON.parse(localStorage.getItem(EKEY) || '[]'); } catch (e) { edits = []; }
+  // Edits already applied to the content files no longer match and are dropped.
+  edits = edits.filter(e => patch(e.file, e.kind, e.old, e.new));
+  saveEdits();
+}
+function saveEdits() { try { localStorage.setItem(EKEY, JSON.stringify(edits)); } catch (e) {} }
+function toMd(el, kind) {
+  if (kind === 'pre') return el.innerText.replace(/ /g, ' ').replace(/\n+$/, '');
+  if (kind === 'json') return el.innerText.replace(/ /g, ' ').replace(/\s+/g, ' ').trim();
+  const walk = n => [...n.childNodes].map(c => {
+    if (c.nodeType === 3) return c.nodeValue;
+    if (c.nodeType !== 1) return '';
+    const t = c.tagName, inner = walk(c);
+    if (t === 'BR') return ' ';
+    if (c.dataset.cite) return '`src:' + c.dataset.cite + '`';
+    if (!inner.trim()) return inner;
+    if (t === 'STRONG' || t === 'B') return '**' + inner.trim() + '**';
+    if (t === 'EM' || t === 'I') return '*' + inner.trim() + '*';
+    if (t === 'CODE') return '`' + inner + '`';
+    if (t === 'A') return '[' + inner + '](' + c.getAttribute('href') + ')';
+    if (t === 'DIV' || t === 'P') return ' ' + inner + ' ';
+    return inner;
+  }).join('');
+  return walk(el).replace(/ /g, ' ').replace(/\s+/g, ' ').trim();
+}
+function recordEdit(el) {
+  const s = el._s; if (!s) return;
+  const now = toMd(el, s.kind);
+  if (now === el.dataset.base) return;
+  el.dataset.base = now;
+  let nu = now;
+  if (s.kind === 'row') {
+    const cells = s.old.replace(/^\||\|$/g, '').split('|');
+    cells[s.cell] = ' ' + now.replace(/\|/g, '/') + ' ';
+    nu = '|' + cells.join('|') + '|';
+  }
+  if (!patch(s.file, s.kind, s.old, nu)) return;
+  const prev = edits.find(e => e.file === s.file && e.kind === s.kind && e.new === s.old);
+  if (prev) { prev.new = nu; if (prev.new === prev.old) edits.splice(edits.indexOf(prev), 1); }
+  else edits.push({ file: s.file, kind: s.kind, old: s.old, new: nu, marker: s.marker, step: state.at });
+  SRC.forEach(x => { if (x.file === s.file && x.old === s.old) x.old = nu; });
+  saveEdits(); updateBar();
+  if (s.kind === 'title') renderNav();
+}
+function decorate() {
+  document.body.classList.toggle('editing', editing);
+  $('#editBtn').setAttribute('aria-pressed', String(editing));
+  $('#editbar').hidden = !editing;
+  if (!editing) return;
+  $('#main').querySelectorAll('[data-s]').forEach(el => {
+    el._s = SRC[el.dataset.s]; el.contentEditable = 'true'; el.spellcheck = true;
+    el.dataset.base = toMd(el, el._s.kind);
+  });
+  updateBar();
+}
+function updateBar() {
+  $('#ecount').textContent = edits.length ? edits.length + (edits.length === 1 ? ' change' : ' changes') + ' so far.' : 'No changes yet.';
+}
+function downloadEdits() {
+  const d = new Date(), pad = n => String(n).padStart(2, '0');
+  const day = d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
+  const blob = new Blob([JSON.stringify({ saved: d.toISOString(), edits }, null, 2)], { type: 'application/json' });
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+  a.download = 'fodw-edits-' + day + '.json'; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+}
 
 /* ---------- markdown ---------- */
 function inline(s) {
   s = esc(s);
   s = s.replace(/`src:([a-z0-9-]+)`/g, (_, id) => {
     const src = DATA.sources[id];
-    if (!src) return '<span class="cite">' + esc(id) + '</span>';
+    if (!src) return '<span class="cite" data-cite="' + esc(id) + '">' + esc(id) + '</span>';
     const label = esc(src.citation || src.title);
-    return src.url ? '<a class="cite" href="' + esc(src.url) + '" target="_blank" rel="noopener">' + label + '</a>' : '<span class="cite">' + label + '</span>';
+    return src.url ? '<a class="cite" data-cite="' + esc(id) + '" href="' + esc(src.url) + '" target="_blank" rel="noopener">' + label + '</a>' : '<span class="cite" data-cite="' + esc(id) + '">' + label + '</span>';
   });
   s = s.replace(/`([^`]+)`/g, '<code>$1</code>');
   s = s.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
@@ -174,28 +290,30 @@ function md(text, opts = {}) {
       const rows = []; while (i < lines.length && /^\|/.test(lines[i])) rows.push(lines[i++]);
       const cells = r => r.replace(/^\||\|$/g, '').split('|').map(c => c.trim());
       const head = cells(rows[0]); const body = rows.slice(2).map(cells);
-      html += '<div class="scroll"><table><thead><tr>' + head.map(h => '<th>' + inline(h) + '</th>').join('') + '</tr></thead><tbody>' +
-        body.map(r => '<tr>' + r.map(c => '<td>' + inline(c) + '</td>').join('') + '</tr>').join('') + '</tbody></table></div>';
+      const cell = (el, r, k, c) => '<' + el + tag('row', rows[r], { cell: k }) + '>' + inline(c) + '</' + el + '>';
+      html += '<div class="scroll"><table><thead><tr>' + head.map((h, k) => cell('th', 0, k, h)).join('') + '</tr></thead><tbody>' +
+        body.map((r, j) => '<tr>' + r.map((c, k) => cell('td', j + 2, k, c)).join('') + '</tr>').join('') + '</tbody></table></div>';
       continue;
     }
     if (/^>/.test(line)) {
       const buf = []; while (i < lines.length && /^>/.test(lines[i])) buf.push(lines[i++].replace(/^>\s?/, ''));
-      html += '<blockquote>' + md(buf.join('\n')) + '</blockquote>'; continue;
+      noTag++; html += '<blockquote>' + md(buf.join('\n')) + '</blockquote>'; noTag--; continue;
     }
     if (/^\s*(-|\d+\.)\s/.test(line)) {
       const ordered = /^\s*\d+\./.test(line); const items = [];
       while (i < lines.length && (/^\s*(-|\d+\.)\s/.test(lines[i]) || (/^\s{2,}\S/.test(lines[i]) && items.length))) {
-        if (/^\s*(-|\d+\.)\s/.test(lines[i])) items.push(lines[i].replace(/^\s*(-|\d+\.)\s/, ''));
-        else items[items.length - 1] += ' ' + lines[i].trim();
+        const mk = lines[i].match(/^\s*(-|\d+\.)\s/);
+        if (mk) items.push({ text: lines[i].slice(mk[0].length), src: lines[i].slice(mk[0].length), marker: mk[0] });
+        else { const it = items[items.length - 1]; it.text += ' ' + lines[i].trim(); it.src += '\n' + lines[i]; }
         i++;
       }
-      const tag = ordered ? 'ol' : 'ul';
-      html += '<' + tag + '>' + items.map(t => '<li>' + inline(t) + '</li>').join('') + '</' + tag + '>'; continue;
+      const el = ordered ? 'ol' : 'ul';
+      html += '<' + el + '>' + items.map(t => '<li' + tag('li', t.src, { marker: t.marker }) + '>' + inline(t.text) + '</li>').join('') + '</' + el + '>'; continue;
     }
-    if (/^#{3,6}\s/.test(line)) { html += '<h4>' + inline(line.replace(/^#+\s/, '')) + '</h4>'; i++; continue; }
+    if (/^#{3,6}\s/.test(line)) { html += '<h4' + tag('h', line.replace(/^#+\s/, '')) + '>' + inline(line.replace(/^#+\s/, '')) + '</h4>'; i++; continue; }
     if (/^---\s*$/.test(line) || !line.trim()) { i++; continue; }
     const buf = []; while (i < lines.length && lines[i].trim() && !/^(```|\||>|\s*(-|\d+\.)\s|#{3,6}\s)/.test(lines[i])) buf.push(lines[i++]);
-    html += '<p>' + inline(buf.join(' ')) + '</p>';
+    html += '<p' + tag('p', buf.join('\n')) + '>' + inline(buf.join(' ')) + '</p>';
   }
   return html;
 }
@@ -204,21 +322,21 @@ function codeBlock(lang, code, opts) {
     let v; try { v = JSON.parse(code); } catch (e) { return '<pre>' + esc(code) + '</pre>'; }
     return '<div class="demo-out" ' + (opts.hideDemo ? 'hidden' : '') + '>' + renderValue(v) + '</div>';
   }
-  if (lang === 'text') return '<details><summary>What the AI is asked to do</summary><pre>' + esc(code) + '</pre></details>';
-  return '<pre>' + esc(code) + '</pre>';
+  if (lang === 'text') return '<details><summary>What the AI is asked to do</summary><pre' + tag('pre', code) + '>' + esc(code) + '</pre></details>';
+  return '<pre' + tag('pre', code) + '>' + esc(code) + '</pre>';
 }
 function renderValue(v) {
   if (v === null || v === undefined) return '<span class="empty">none</span>';
   if (Array.isArray(v)) {
     if (!v.length) return '<span class="empty">none</span>';
-    if (v.every(x => typeof x !== 'object' || x === null)) return '<ul>' + v.map(x => '<li>' + esc(x) + '</li>').join('') + '</ul>';
+    if (v.every(x => typeof x !== 'object' || x === null)) return '<ul>' + v.map(x => '<li' + (typeof x === 'string' ? tag('json', x) : '') + '>' + esc(x) + '</li>').join('') + '</ul>';
     return v.map(x => '<div class="card">' + renderValue(x) + '</div>').join('');
   }
   if (typeof v === 'object') {
     return Object.entries(v).map(([k, val]) => '<div class="kv"><div class="k">' + esc(k.replace(/([A-Z])/g, ' $1')) + '</div>' + renderValue(val) + '</div>').join('');
   }
   if (typeof v === 'boolean') return v ? 'yes' : 'no';
-  return '<div>' + esc(v) + '</div>';
+  return '<div' + (typeof v === 'string' ? tag('json', v) : '') + '>' + esc(v) + '</div>';
 }
 
 /* ---------- views ---------- */
@@ -284,11 +402,15 @@ function demoFiles(body) {
   return files.map(f => {
     const d = DATA.demo[f.replace('demo/', '')]; if (!d) return '';
     const v = d.modules ? d.modules.map(x => { const c = Object.assign({}, x); return c; }) : d;
-    return '<div class="demo-out" hidden><p class="crumb">Recorded responses, MGMT 615</p>' + renderValue(v) + '</div>';
+    const was = CUR; CUR = { file: f, demo: f.replace('demo/', '') };
+    const out = '<div class="demo-out" hidden><p class="crumb">Recorded responses, MGMT 615</p>' + renderValue(v) + '</div>';
+    CUR = was; return out;
   }).join('');
 }
 function renderStep(goKey) {
   const { m, key, step } = findStep(goKey);
+  const src = DATA.modules.find(x => x.id === m.id);
+  CUR = { file: src.file, mod: src };
   const crumb = '<p class="crumb">' + esc(m.title) + '</p>';
   if (key === 'reflection' || key === 'prep') {
     const body = key === 'reflection' ? m.reflection : m.prep;
@@ -299,7 +421,7 @@ function renderStep(goKey) {
       '<div class="row"><button type="button" class="btn" data-save="' + esc(goKey) + '">' + (key === 'prep' ? 'Ready for check-in' : 'Save answers') + '</button>' + (done ? '<span class="done-note">Saved</span>' : '') + '</div>';
   }
   const p = step.parts;
-  let h = crumb + '<h2 class="step">' + esc(step.title) + '</h2><div class="meta">' + md(step.lead).replace(/<\/?p>/g, ' ') + '</div>';
+  let h = crumb + '<h2 class="step"' + tag('title', step.title) + '>' + esc(step.title) + '</h2><div class="meta">' + md(step.lead) + '</div>';
   if (p['Learn']) h += '<section class="part"><h3>Learn</h3>' + md(p['Learn']) + '</section>';
   if (p['See it']) h += '<section class="part"><h3>See it <span class="tag">MGMT 615</span></h3>' + md(p['See it']) + '</section>';
   const both = p['Draft (full build) and Review (refresh)'];
@@ -311,7 +433,7 @@ function renderStep(goKey) {
     const parts = dec.split('\n'); let txt = [], checks = [];
     for (const l of parts) (l.startsWith('[[CHK]]') ? checks : txt).push(l.replace('[[CHK]]', ''));
     h += '<section class="part"><h3>Decide</h3>' + md(txt.join('\n').replace(/Checklist[^:\n]*:/, '')) +
-      (checks.length ? '<div class="checklist" role="group" aria-label="Checklist">' + checks.map((c, i) => '<label><input type="checkbox" id="c' + i + '"> <span>' + inline(c) + '</span></label>').join('') + '</div>' : '') + '</section>';
+      (checks.length ? '<div class="checklist" role="group" aria-label="Checklist">' + checks.map((c, i) => '<label><input type="checkbox" id="c' + i + '"> <span' + tag('li', c, { marker: '- ' }) + '>' + inline(c) + '</span></label>').join('') + '</div>' : '') + '</section>';
   }
   if (p['Checks']) h += '<section class="part" id="checks" hidden><h3>Checks <span class="tag">ran on save</span></h3>' + md(p['Checks']) +
     '<div class="flag ok">Every flag is fixed or has a note. This section is ready for your ID.</div></section>';
@@ -370,9 +492,24 @@ function downloadDoc() {
 function render() {
   document.querySelectorAll('header [data-track]').forEach(b => b.setAttribute('aria-pressed', String(state.track === b.dataset.track)));
   renderNav();
+  SRC = []; CUR = null;
   $('#main').innerHTML = state.at === 'welcome' ? renderWelcome() : renderStep(state.at);
+  CUR = null;
   if (!$('#doc').hidden) $('#doc').innerHTML = renderDoc();
+  decorate();
 }
+const editable = t => editing && t instanceof Element && t.closest('[data-s]');
+document.addEventListener('focusout', e => { const el = editable(e.target); if (el) recordEdit(el); });
+document.addEventListener('keydown', e => {
+  const el = editable(e.target);
+  if (el && el._s && e.key === 'Enter' && el._s.kind !== 'pre') { e.preventDefault(); el.blur(); }
+});
+document.addEventListener('paste', e => {
+  if (!editable(e.target)) return;
+  e.preventDefault(); document.execCommand('insertText', false, e.clipboardData.getData('text/plain'));
+});
+// In edit mode, clicking text places the cursor instead of following a link or ticking a checkbox.
+document.addEventListener('click', e => { if (editable(e.target) && e.target.closest('a, label')) e.preventDefault(); }, true);
 document.addEventListener('click', e => {
   const t = e.target.closest('button, input'); if (!t) return;
   if (t.dataset.track) { state.track = t.dataset.track; save(); render(); return; }
@@ -399,10 +536,16 @@ document.addEventListener('click', e => {
   if (t.id === 'closeDoc') { $('#doc').hidden = true; $('#docBtn').setAttribute('aria-expanded', 'false'); $('#docBtn').focus(); return; }
   if (t.id === 'showAll') { state.showAll = t.checked; save(); $('#doc').innerHTML = renderDoc(); return; }
   if (t.id === 'download') { downloadDoc(); return; }
+  if (t.id === 'editBtn' || t.id === 'doneEdit') { editing = t.id === 'editBtn' ? !editing : false; render(); return; }
+  if (t.id === 'saveEdits') { if (edits.length) downloadEdits(); else alert('No changes to save yet.'); return; }
+  if (t.id === 'undoEdits') {
+    if (edits.length && confirm('Undo all ' + edits.length + ' changes? This can\'t be reversed.')) { edits = []; saveEdits(); location.reload(); }
+    return;
+  }
 });
 document.addEventListener('keydown', e => { if (e.key === 'Escape' && !$('#doc').hidden) $('#closeDoc').click(); });
 $('#doc').tabIndex = -1;
-load(); render();
+load(); loadEdits(); render();
 </script>
 </body>
 </html>
