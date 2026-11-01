@@ -5,7 +5,7 @@ Steps: 2
 ID check-in: none (first check-in follows Module 1)
 
 Faculty complete: AI connection, save folder, ID and check-in details, course details and
-track. Refresh track also uploads the current course map or syllabus.
+track. Refresh track also uploads the current Course Map or syllabus.
 
 Sources: `src:reading-gs-flex-online-process`, `src:guide-course-development-process`,
 `src:tool-course-creator`, `src:example-mgmt615-course-map`
@@ -19,10 +19,13 @@ Pattern: setup (no AI draft)
 
 ### Learn
 
-**How this workshop works.** You'll build your Course Planning Document, the plan that will guide
-the future development of the entire course. Each module in this workshop will have you building
-different sections of your course plan. The expected pace is one module a week, with a live check-in
-with your ID each week, by Zoom or in person. You can work ahead; if you do, ask your ID to meet
+**How this workshop works.** A Flex Online course is an online business course built on a shared
+template and common design standards. In this workshop, you'll build your Course Planning
+Document, a working plan that grows module by module and will guide the future development of
+the entire course. Each module in this workshop will have you building different sections of your
+course plan. The expected pace is one module a week, with a live check-in each week, by Zoom or in
+person, with your instructional designer (ID). Your ID is assigned to you before the workshop
+begins and works with you through the development of your course. You can work ahead; if you do, ask your ID to meet
 more often, so each module is reviewed before the next one builds on it.
 
 **How each step works.** Throughout the workshop, AI drafts ideas for you to decide on, modify and
@@ -30,8 +33,8 @@ save. Each step opens with **Learn**, a short read on what the section is for, a
 example from MGMT 615. Then:
 
 - **Draft.** Select Draft with AI, and the AI writes a first version of one section of your plan
-  from your course details. In the refresh track, Review with AI checks your current section
-  instead and flags what may need to change.
+  from your course details. If you're updating a course you already teach, Review with AI checks
+  your current section instead and flags what may need to change.
 - **Decide.** You're the expert on your course. Keep the draft, edit it, ask for another version,
   or write your own. A short checklist shows what a finished section includes.
 - **Save.** Select Save to plan, and the section goes into your Course Planning Document. Quick
@@ -39,19 +42,22 @@ example from MGMT 615. Then:
 
 Some steps add **Go deeper**: optional readings and tools if you want more.
 
-After the workshop comes a kick-off meeting with your ID, 13 weeks of development, 2 weeks of
+After the workshop comes a kick-off meeting with your ID to plan the development schedule, then 13
+weeks of development, when you and the team build the course in Canvas from your plan, 2 weeks of
 quality review, and a final week to review the course and train on grading and communicating in
 Canvas. Then the course is yours to teach. You are the expert on what the course teaches; your ID is
 the expert on how to teach it online.
 
 **The AI.** This tool uses TAMU AI Chat to draft and check each section of the course plan. You
-connect it with your own key, which stays in this browser and never goes into your project file.
+connect it with your own key, a code that works like a password and lets this tool use TAMU AI
+Chat for you. The key stays in this browser and never goes into your project file.
 Every draft is a starting point: you can edit it, ask for another, or write the section yourself,
 and nothing goes into your plan until you select Save.
 
 We strongly recommend connecting TAMU AI. The workshop is built around it. You can continue without
-it, but you will write every section yourself, without first drafts, checks on your work, or, in the
-refresh track, a review of your existing course. You can connect it later from Settings.
+it, but you will write every section yourself, without first drafts, checks on your work, or, if
+you're updating a course you already teach, a review of it. You can connect it later with the
+Settings button at the top of every page.
 
 How to get your key (about a minute):
 
@@ -66,8 +72,8 @@ Treat the key like a password. If you don't see API keys in your settings, conta
 
 **Saving and sharing.** This tool is not like Canvas. Your work saves in this browser as you go.
 When you select Save, the tool writes two files to a folder you choose: 1. the planning document
-(Word), which your ID reads, and 2. a project file, which holds other important course planning
-information. Choose a folder your ID can see, such as a OneDrive or Teams folder you share with
+(Word), which your ID reads, and 2. a project file, which lets you reopen your work later, on any
+computer, and pick up where you left off. Choose a folder your ID can see, such as a OneDrive or Teams folder you share with
 them. This works best in Microsoft Edge or Google Chrome; in other browsers, the files go to
 Downloads, and you move them yourself.
 
@@ -155,21 +161,29 @@ Choose a track:
 
 - **Full build** if the course is new or you're rebuilding it from the beginning. Each module
   drafts its sections from your course details.
-- **Refresh** if the course already runs online and you have a course planning document or
-  syllabus. Upload it now. In each module you'll see your current section with flags beside it,
-  and you keep it, accept or edit a suggested revision, or rewrite it. Each change gets a short
-  note so your ID can see what changed and why.
+- **Refresh** if the course already runs online. Upload its Course Map as a Word file, or paste
+  the text. A syllabus works too, with more sections missing. In each module you'll see your
+  current section with flags beside it: notes on what may need attention. You keep the section,
+  accept or edit a suggested revision, or rewrite it. Each change gets a short note so your ID can
+  see what changed and why.
 
-Both tracks go through every module. Most existing courses have no character or scenarios; in
-the refresh track, a section your document doesn't have runs as a full build. A course map in
-the Flex Online format gives the best results; a syllabus works, with more sections missing.
+A Course Map is not the same as your Course Planning Document. The Course Map is the finished,
+detailed record of everything in a course, complete enough to rebuild the course in another
+learning management system if it were ever lost from Canvas. The Course Planning Document is the
+working plan you build in this workshop, a section at a time.
+
+Both tracks go through every module. The workshop adds a storyline to your course: a recurring
+character and a realistic scenario in each module, which you'll plan in Modules 2 and 3. Most
+existing courses don't have these yet. In the refresh track, when your Course Map doesn't have a
+section, the tool drafts it from scratch.
 
 ### See it
 
-The MGMT 615 instructor chose Refresh and uploaded the course map. The tool found the catalog
-description, the vision, five CLOs and all eight modules with their activities, materials and
-media. It found no program outcomes, character, storyline, scenarios or communication plan. Those
-ran as full builds later.
+The MGMT 615 instructor chose Refresh and uploaded the Course Map. The tool found the catalog
+description, the course vision, five course-level objectives (CLOs) and all eight modules with
+their activities, materials and media. It found no program outcomes, character, storyline,
+scenarios or communication plan, so the tool drafted those from scratch in later modules. You'll
+learn what each of these is when you reach it.
 
 ### Draft (full build)
 
@@ -180,7 +194,7 @@ The faculty member fills in a form. No AI call.
 | Course number | Yes | MGMT 615 |
 | Course title | Yes | Managing People and Performance |
 | Credit hours | Yes | 3 |
-| Program | Yes | [Program name] |
+| Program (the degree or certificate the course belongs to) | Yes | MS in Management |
 | First term taught online | No | [Term] |
 | Track | Yes | Refresh |
 
@@ -193,7 +207,7 @@ each current section when they reach it.
 AI instructions:
 
 ```text
-You are given the text of a faculty member's existing course planning document or syllabus.
+You are given the text of a faculty member's existing Course Map or syllabus.
 Find the content for each section below. Copy text exactly as written. Do not rewrite, fix or
 summarize. If a section is not in the document, return null for it. If you are unsure where
 something belongs, put it in "unsorted".
@@ -235,7 +249,7 @@ Checklist:
 
 - Course number, title and program are correct.
 - Each found section is under the right label.
-- You know which sections will run as a full build.
+- You know which sections the tool will draft from scratch.
 
 ### Checks
 
