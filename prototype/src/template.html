@@ -215,6 +215,8 @@ summary { cursor: pointer; color: var(--muted); font-size: 14px; }
 .wl-chart .col { position: relative; height: 170px; background: #faf8f6; border-radius: 6px 6px 0 0; }
 .wl-chart .bar { position: absolute; left: 18%; right: 18%; bottom: 0; background: var(--maroon); border-radius: 4px 4px 0 0; }
 .wl-chart li.flag .bar { background: var(--warn); }
+.wl-chart li.none .col { border: 1px dashed var(--line); background: none; }
+.wl-chart li.none .v { color: var(--muted); }
 .wl-chart .tgt { position: absolute; left: 0; right: 0; border-top: 2px dashed var(--ink); }
 .wl-chart .m { font-weight: 700; color: var(--maroon); margin-top: 4px; }
 .wl-chart .v em { display: block; font-style: normal; color: var(--warn); font-weight: 600; }
@@ -684,6 +686,8 @@ const actLine = a => a.type + ': ' + a.title + ' (' + a.clos.join(', ') + ', ' +
 const MODULE_STEPS = {
   '3.2': { parts: SCEN_PARTS, done: 'title', rows: k => k === 'title' ? 1 : 3, draft: scenarioDraft },
   '4.1': { parts: ACT_PARTS, done: 'activities', rows: k => k === 'activities' ? 5 : 3, draft: activityDraft },
+  '5.1': { parts: [['materials', 'Your materials for this module, one per line: type: title, author (year) (pages or minutes, the activity it prepares students for)']], done: 'materials', rows: () => 6, draft: materialsDraft },
+  '5.2': { parts: [['rights', 'Rights status and attribution, one line per material'], ['ainotes', 'AI-use disclosure notes, one per AI-assisted item (leave empty if none)']], done: 'rights', rows: k => k === 'rights' ? 6 : 3, draft: rightsDraft },
 };
 const stepKey = () => state.at.split(':')[1];
 const pickOf = key => (state.pick || {})[key] || 1;
@@ -725,9 +729,39 @@ function activityDraft(n) {
   const review = state.track === 'refresh' && m.review && m.review.length ? '<p><strong>Review of your current activities:</strong></p><ul>' + m.review.map(r => '<li>' + esc(r) + '</li>').join('') + '</ul>' : '';
   return review + '<div class="scen-opt" data-opt="1"><p><strong>Activities</strong></p><ul class="act-list">' + acts.map(a => '<li>' + esc(actLine(a)) + '</li>').join('') + '</ul></div>' +
     '<div class="act-checks"><p><strong>What the checks will find</strong></p><ul>' +
-    '<li><strong>Workload:</strong> ' + weekCheck(n).replace(/<\/?(p|ul)[^>]*>/g, ' ').replace(/<li>/g, ' ').replace(/<\/li>/g, '') + '</li>' +
+    '<li><strong>Workload:</strong> ' + weekCheck(n, true).replace(/<\/?(p|ul)[^>]*>/g, ' ').replace(/<li>/g, ' ').replace(/<\/li>/g, '') + '</li>' +
     '<li><strong>RSI:</strong> ' + cats.length + ' categories (' + cats.map(c => RSI[c]).join(', ') + '), counting the weekly announcements' + (n > 1 ? ' and the cohort session' : '') + '.</li>' +
     risks + '</ul></div>';
+}
+// 5.1: on the full build the AI says what each item must cover (never a named source) with a search prompt;
+// on refresh it reviews the module's current materials. Both show the reading load.
+const matLine = i => i.type + ': ' + i.title + ' (' + i.pages + (i.pages === 1 ? ' page' : ' pages') + ', for ' + i.supports + ')';
+const topicOf = i => i.title.replace(/^[^,]+\(\d{4}\),\s*(Ch\.\s*\d+:\s*)?/, '');
+const CURATED = { 'Book chapter': 'Curated reading', Article: 'Curated reading' };
+const sugLine = i => CURATED[i.type] ? 'Curated reading: [a source on ' + topicOf(i).toLowerCase() + '] (about ' + i.pages + ' pages, for ' + i.supports + ')' : matLine(i);
+function materialsDraft(n) {
+  const m = DATA.demo['mgmt615-materials.json'].modules[n - 1], pages = m.materials.reduce((s, i) => s + i.pages, 0);
+  const load = '<div class="act-checks"><p><strong>Reading load:</strong> about ' + pages + ' pages, about ' + hrs(pages / 8) + ' hours at 8 pages an hour' +
+    (n === 1 ? (pages > 8 ? '. Heavy for Module 1, which aims for about 8 pages or fewer.' : '.') : pages < 5 || pages > 25 ? '. Outside the 5-to-25-page range.' : ', within the 5-to-25-page range.') + '</p></div>';
+  if (state.track === 'refresh') return (m.review.length ? '<p><strong>Review of your current materials:</strong></p><ul>' + m.review.map(r => '<li>' + esc(r) + '</li>').join('') + '</ul>' : '<p>Every current material passed: each prepares students for a named activity.</p>') +
+    '<div class="scen-opt" data-opt="1"><p><strong>Materials after the review</strong></p><ul>' + m.materials.map(i => '<li>' + esc(matLine(i)) + '</li>').join('') + '</ul></div>' + load;
+  return '<div class="scen-opt" data-opt="1"><p><strong>What this module needs</strong></p><ul>' + m.materials.map(i => '<li>' + esc(sugLine(i)) +
+    (CURATED[i.type] ? '<br><span class="scen-note">Search prompt: "' + esc(topicOf(i)) + '," research or practitioner article for working managers, published in the last 5 years</span>' : '') + '</li>').join('') + '</ul></div>' + load;
+}
+// 5.2: rights status, an attribution line ([check] where details are missing), and AI notes.
+const RIGHTS = { library: 'library', open: 'open license', public: 'public, linked', created: 'created', 'ai-assisted': 'AI-assisted', unclear: 'unclear' };
+function rightsFor(i, n) {
+  const fix = { "Maria's First Ninety Days": 'Confirm where it came from. The instructor wrote it in 2022, so it can be marked created.',
+    'The SBI Feedback Model, One Page': 'Redraw it as your own one-page job aid, with "Based on the Situation-Behavior-Impact model (Center for Creative Leadership)."' }[i.title];
+  const attr = i.rights === 'library' ? i.title + '. [check: publisher or journal]. Linked from the TAMU Libraries record [check: link].'
+    : i.rights === 'unclear' ? '[check: creator, source, and license]'
+    : 'Created by the instructor for MGMT 615' + (i.rights === 'ai-assisted' ? ', with AI assistance.' : '.');
+  return { line: i.title + ' (' + RIGHTS[i.rights] + '): ' + attr, fix, note: i.rights === 'ai-assisted' ? i.title + ': Drafted with AI assistance and reviewed by the instructor.' : '' };
+}
+function rightsDraft(n) {
+  const m = DATA.demo['mgmt615-materials.json'].modules[n - 1], rs = m.materials.map(i => rightsFor(i, n));
+  return '<div class="scen-opt" data-opt="1"><p><strong>Rights and attribution</strong></p><ul>' + rs.map(r => '<li>' + esc(r.line) + (r.fix ? '<br><span class="scen-note">Fix: ' + esc(r.fix) + '</span>' : '') + '</li>').join('') + '</ul>' +
+    (rs.some(r => r.note) ? '<p><strong>AI-use notes</strong></p><ul>' + rs.filter(r => r.note).map(r => '<li>' + esc(r.note) + '</li>').join('') + '</ul>' : '<p>No items were made with AI help.</p>') + '</div>';
 }
 // Workload: a module's week = activities (typed in 4.1, or the AI draft) + readings and media (estimated until
 // Modules 5 and 6 are saved) + the 90-minute cohort session (Modules 2 to 8). Module 1's target is about 4 hours.
@@ -735,11 +769,15 @@ const weeklyTarget = () => { const v = +state.weeklyTarget; return v > 0 ? v : 1
 function parseActs(text) {
   return text.split('\n').filter(l => l.trim()).map(l => ({ title: l.replace(/\s*\([^)]*\)\s*$/, '').trim(),
     type: (l.match(/^\s*([^:]+):/) || [])[1] || '', weight: ((l.match(/\b(high|medium|low)\b/i) || [])[1] || '').toLowerCase(),
-    hours: +((l.match(/(\d+(?:\.\d+)?)\s*(?:hours?|hrs?)\b/i) || [])[1] || 0),
+    hours: lineHours(l),
     due: ((l.match(/\bdue\s+(mon|tue|wed|thu|fri|sat|sun)/i) || [])[1] || '') }));
 }
-const moduleActs = n => {
+// Hours on a line: "4 hours", "1.5 hrs", or minutes such as "30 minutes" or "90 min".
+const lineHours = l => { const h = l.match(/(\d+(?:\.\d+)?)\s*(?:hours?|hrs?)\b/i), m = l.match(/(\d+(?:\.\d+)?)\s*(?:minutes?|mins?)\b/i);
+  return h ? +h[1] : m ? +m[1] / 60 : 0; };
+const moduleActs = (n, demo) => {
   const typed = (modText('4.1', n).activities || '').trim();
+  if (!typed && !demo) return null;
   return typed ? parseActs(typed) : DATA.demo['mgmt615-activities.json'].modules[n - 1].activities.map(a => ({ title: a.type + ': ' + a.title, type: a.type, weight: a.weight, hours: a.hours, due: '' }));
 };
 // Flex Online due dates: everything Sunday at 11:59 p.m. Central; discussions have a first post due Wednesday and
@@ -766,12 +804,16 @@ function dueDates(n) {
   return '<p><strong>Module ' + n + ' dates:</strong> ' + fmtDate(start) + ' to ' + fmtDate(end) + '</p><ul>' + items + '</ul>' +
     '<p class="scen-note">Dates follow the Flex Online pattern: work due Sunday at 11:59 p.m. Central, and discussions with a first post due Wednesday. Check them against the academic calendar for breaks and holidays.</p>';
 }
-function weekLoad(n) {
-  const acts = moduleActs(n);
+function weekLoad(n, demo) {
+  const acts = moduleActs(n, demo);
+  if (!acts) return null;
   const act = acts.reduce((s, a) => s + a.hours, 0);
   const mat = DATA.demo['mgmt615-materials.json'].modules[n - 1], med = DATA.demo['mgmt615-media.json'].modules[n - 1];
-  const rdgEst = !state.done['5.1'], medEst = !state.done['6.1'];
-  const rdg = rdgEst ? (n === 1 ? 0.75 : 1.5) : mat.pages / 8;
+  // Readings: the faculty member's 5.1 list (pages at about 8 an hour, minutes plus a quarter), else an estimate.
+  const typedMat = (modText('5.1', n).materials || '').trim();
+  const matHours = typedMat ? typedMat.split('\n').reduce((s, l) => { const pg = l.match(/(\d+)\s*(?:pages?|pp\.?)\b/i); return s + (pg ? +pg[1] / 8 : lineHours(l) * 1.25); }, 0) : null;
+  const rdgEst = matHours === null && !state.done['5.1'], medEst = !state.done['6.1'];
+  const rdg = matHours !== null ? matHours : rdgEst ? (n === 1 ? 0.75 : 1.5) : mat.materials.reduce((s, i) => s + (i.pages || 0), 0) / 8;
   const media = medEst ? (n === 1 ? 0.25 : 0.5) : med.minutes * 1.25 / 60;
   const coh = n > 1 ? 1.5 : 0, total = act + rdg + media + coh, target = n === 1 ? 4 : weeklyTarget();
   // Crunch: two high-weight activities due the same day, or one activity over about 4 hours.
@@ -782,27 +824,29 @@ function weekLoad(n) {
   if (total > target + 1) flags.push('heavy');
   if (total < target - 1.5) flags.push('light');
   if (sameDay || big) flags.push('crunch');
-  return { act, rm: rdg + media, est: rdgEst || medEst, coh, total, target, sameDay: !!sameDay, big, flags };
+  return { act, rm: rdg + media, est: rdgEst && medEst ? ' estimated' : medEst ? ' (media estimated)' : rdgEst ? ' (readings estimated)' : '', coh, total, target, sameDay: !!sameDay, big, flags };
 }
 const hrs = x => (Math.round(x * 2) / 2).toString().replace(/\.0$/, '');
-function weekCheck(n) {
-  const w = weekLoad(n);
+function weekCheck(n, demo) {
+  const w = weekLoad(n, demo);
+  if (!w) return '<p><strong>Module ' + n + ':</strong> not planned yet. Add this module\u2019s activities above to see its week.</p>';
   const msg = { heavy: 'Heavier than the target. Shorten or drop an activity, or move work to a lighter module.',
     light: 'Lighter than the target. Consider adding a short activity or more practice.',
     crunch: (w.sameDay ? 'Two major assignments are due the same day. ' : 'One activity runs about ' + hrs(w.big ? w.big.hours : 0) + ' hours. ') +
       'Add an earlier checkpoint, such as a Wednesday draft, or move part of the work to another module.' };
-  return '<p><strong>Module ' + n + ' week:</strong> about ' + hrs(w.total) + ' hours (activities ' + hrs(w.act) + ', readings and media ' + hrs(w.rm) + (w.est ? ' estimated' : '') +
+  return '<p><strong>Module ' + n + ' week:</strong> about ' + hrs(w.total) + ' hours (activities ' + hrs(w.act) + ', readings and media ' + hrs(w.rm) + w.est +
     (w.coh ? ', cohort session 1.5' : '') + '). Target: ' + (n === 1 ? 'about 4 hours in Module 1' : 'close to ' + hrs(w.target) + ' hours') + '.</p>' +
     (w.flags.length ? '<ul class="wl-flags">' + w.flags.map(f => '<li>' + msg[f] + '</li>').join('') + '</ul>' : '<p class="wl-ok">✓ Close to the target.</p>') +
     '';
 }
 function workloadChart() {
-  const mods = DATA.demo['mgmt615-foundation.json'].modules, ws = mods.map((m, k) => weekLoad(k + 1)), top = Math.max(12, ...ws.map(w => w.total + 1));
-  return '<figure class="fig fig-wl"><figcaption>Your course at a glance: hours each week</figcaption><ol class="wl-chart">' + ws.map((w, k) =>
+  const mods = DATA.demo['mgmt615-foundation.json'].modules, ws = mods.map((m, k) => weekLoad(k + 1)), top = Math.max(12, ...ws.filter(Boolean).map(w => w.total + 1));
+  return '<figure class="fig fig-wl"><figcaption>Your course at a glance: hours each week</figcaption><ol class="wl-chart">' + ws.map((w, k) => !w
+    ? '<li class="none"><span class="col" aria-hidden="true"></span><span class="m">Module ' + (k + 1) + '</span><span class="v">Not planned yet</span></li>' :
     '<li class="' + (w.flags.length ? 'flag' : 'ok') + '"><span class="col" aria-hidden="true"><span class="tgt" style="bottom:' + (100 * w.target / top) + '%"></span>' +
     '<span class="bar" style="height:' + (100 * w.total / top) + '%"></span></span><span class="m">Module ' + (k + 1) + '</span><span class="v">' + hrs(w.total) + ' h' +
     (w.flags.length ? ' <em>' + w.flags.map(f => ({ heavy: 'heavy', light: 'light', crunch: 'deadline crunch' })[f]).join(', ') + '</em>' : '') + '</span></li>').join('') + '</ol>' +
-    '<p class="fig-note"><span class="tgt-key" aria-hidden="true"></span> Target: about 4 hours in Module 1, close to ' + hrs(weeklyTarget()) + ' in the rest. Readings and media are estimated until you save Modules 5 and 6.</p>' +
+    '<p class="fig-note"><span class="tgt-key" aria-hidden="true"></span> Target: about 4 hours in Module 1, close to ' + hrs(weeklyTarget()) + ' in the rest. Readings and media are estimated until you plan them in Modules 5 and 6.</p>' +
     '<p class="fig-credit">' + credit('Your course at a glance: hours each week', '') + '</p></figure>';
 }
 // Infographics. Each takes the rows from a ::: figure block and returns plain HTML, so the text
@@ -1132,6 +1176,14 @@ function useButtons(sec) {
   if (key === '4.1') {
     const m = DATA.demo['mgmt615-activities.json'].modules[pickOf('4.1') - 1], o = out.querySelector('.scen-opt');
     if (o) o.insertAdjacentHTML('beforeend', btn('Use these activities', [m.activities.map(actLine).join('\n')]));
+  }
+  if (key === '5.1') {
+    const m = DATA.demo['mgmt615-materials.json'].modules[pickOf('5.1') - 1], o = out.querySelector('.scen-opt');
+    if (o) o.insertAdjacentHTML('beforeend', btn('Use these materials', [m.materials.map(state.track === 'refresh' ? matLine : sugLine).join('\n')]));
+  }
+  if (key === '5.2') {
+    const n = pickOf('5.2'), rs = DATA.demo['mgmt615-materials.json'].modules[n - 1].materials.map(i => rightsFor(i, n)), o = out.querySelector('.scen-opt');
+    if (o) o.insertAdjacentHTML('beforeend', btn('Use these notes', [rs.map(r => r.line).join('\n'), rs.filter(r => r.note).map(r => r.note).join('\n')]));
   }
 }
 

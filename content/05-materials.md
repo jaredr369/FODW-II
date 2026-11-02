@@ -59,14 +59,13 @@ work with to get ready for the module's decision.
 preparing students for a specific activity.
 :::
 
-Learning materials are everything in a module that isn't an activity.
-
-Choose from least to most effort to produce:
+Learning materials are everything in a module that isn't an activity. Choose from least to most
+effort to produce:
 
 | Type | Effort | Use when |
 |---|---|---|
 | Curated reading (article, chapter, report, case) | Lowest | A good source exists. This is the default. |
-| Curated video | Low | An existing video covers it well. |
+| Curated video | Low | An existing video covers it well, in 6 to 10 minutes or less. |
 | Instructor-authored reading (4 to 10 pages) | Several hours each | Nothing curated fits, or your own experience is the point. |
 | Interactive reading (built by your ID) | High | Complex content that benefits from short sections and checks. |
 | Instructor-recorded video | Highest | Planned in Module 6, up to 30 minutes of scripted video and audio a module. |
@@ -87,60 +86,86 @@ close to 10 hours. Module 1 targets about 4 hours in all, so keep its reading to
 
 ### See it
 
-MGMT 615 Module 4, after the refresh: an 11-page article on what predicts team performance, the
-Team That Couldn't Ship case as a contrast, and a 4-page interactive reading, "Diagnose the Team,
-Not the Person." A supplemental article on designing team assignments was removed because it was
-about course design. About 21 pages.
+::: full
+Here's the materials plan the MGMT 615 instructor settled on for Module 4. Every item prepares
+students for the team diagnosis memo, and the reading comes to about 21 pages.
+:::
 
-### Draft (full build)
+::: refresh
+Here's MGMT 615's Module 4 after the review. A supplemental article on designing team assignments
+was removed because it was about course design, not content for students. The reading comes to
+about 21 pages.
+:::
 
-The AI can't verify that a specific source exists, so it never names one. It suggests what each
-module needs and how to find it; the faculty member enters the actual sources.
+::: plan Learning Materials Plan, Module 4
+- Article: Park & Marsh (2024), What actually predicts team performance (11 pp.)
+- Case: The Team That Couldn't Ship, a contrast case (6 pp.)
+- Interactive reading: Diagnose the Team, Not the Person (4 pp.)
+:::
 
+### Draft (full build) and Review (refresh)
+
+Work through your modules one at a time. Choose a module, then select the button below. The AI
+suggests what the module's materials should cover, from its CLOs, topics, scenario, and
+activities. It can't check that a specific source exists, so it never names one: for each curated
+reading it gives a search prompt you can paste into Perplexity or the TAMU Libraries search. Select
+**Use these materials** to copy the list into the boxes under Decide, then replace each suggestion
+with the source you choose.
+
+::: refresh
+The AI starts from your Course Map's current materials for the module. It checks each one, says
+what it would keep, replace, or remove and why, and adds any scenario exhibits that are missing.
+:::
+
+::: module-picker
+:::
+
+::: full
 AI instructions:
 
 ```text
-For the given module, using its CLOs, topics, scenario, and activities, propose two versions of a
-materials list. Each item gives: type (curated reading, curated video, instructor-authored
-reading, interactive reading, scenario exhibit), what it must cover, the activity it prepares
-students for, and an estimated page count or minutes. Prefer curated types. Always include the
-scenario narrative and any exhibits the character works from. Never name a specific article,
-book, author, or video. For each curated item, write one search prompt the faculty member can
-paste into Perplexity or the TAMU Libraries search.
+For the given module, using its CLOs, topics, scenario, and activities, propose a materials list.
+Each item gives: type (curated reading, curated video, instructor-authored reading, interactive
+reading, scenario exhibit), what it must cover, the activity it prepares students for, and an
+estimated page count or minutes. Prefer curated types. Always include the scenario narrative and any
+exhibits the character works from. Never name a specific article, book, author, or video. For each
+curated item, write one search prompt the faculty member can paste into Perplexity or the TAMU
+Libraries search.
 
-Return: {"versions": [{"items": [{"type": string, "covers": string, "supports": string, "pages": number | null, "minutes": number | null, "searchPrompt": string | null}]}]}
+Return: {"items": [{"type": string, "covers": string, "supports": string, "pages": number | null, "minutes": number | null, "searchPrompt": string | null}]}
 ```
+:::
 
-Demo response (MGMT 615, Module 8, if run as a full build): a curated research article on
-structured interviews against unstructured ones (about 10 pages; search prompt "peer-reviewed
-meta-analysis structured versus unstructured interviews predictive validity, written for
-practicing managers"), two candidate files as scenario exhibits, and an interactive reading on
-weighing proven experience against potential.
-
-### Review (refresh)
-
-Edit in place. The app lists each module's current materials from the upload. The faculty member
-adds anything missing.
-
+::: refresh
 AI instructions:
 
 ```text
 For each current material in the given module, check: it prepares students for a named activity;
 it is content for students; its date (flag anything older than 5 years unless it is a classic in
-the field, and say so); the scenario narrative and exhibits are listed. Suggest keep, replace
-(say what a replacement should cover, never a specific source), or remove, with a reason. Add
-missing scenario exhibits.
+the field, and say so); the scenario narrative and exhibits are listed. Suggest keep, replace (say
+what a replacement should cover, never a specific source), or remove, with a reason. Add missing
+scenario exhibits.
 
 Return: {"items": [{"original": string, "action": "keep" | "replace" | "remove", "issues": [string], "replacementCovers": string | null}], "add": [string]}
 ```
+:::
 
-Demo response (MGMT 615): `review` notes in `demo/mgmt615-materials.json`. Main findings: the
-Module 4 course-design article removed; scenario exhibits added in four modules; the 2019 book
-chapters flagged as dated and kept after the instructor confirmed no newer edition.
+Demo response (MGMT 615):
+
+::: module-options
+:::
 
 ### Decide
 
-For each item the faculty member enters or confirms the source (title, author, year, link).
+Your final materials for each module go in this box. Type in it to change anything, or select
+**Redraft with AI** under it to have the AI rewrite it. To work on another module, choose it above;
+what you've typed is kept.
+
+For each item, give the type, the title, the author and year if it has them, the pages or minutes,
+and the activity it prepares students for. The reading pages feed the week check in Module 4.
+
+::: module-fields
+:::
 
 Checklist:
 
@@ -150,10 +175,15 @@ Checklist:
 
 ### Checks
 
-On save of each module: every item tied to an activity; required pages and minutes total (flag
-under 5 or over about 25 pages, or over about 8 in Module 1, adjusted for type); items older than 5 years flagged; scenario listed. After
-saving, the week-in-your-student's-shoes walk-through for the module refreshes with the real
-reading load.
+When you save each module, the tool checks that:
+
+- every item is tied to an activity;
+- required reading comes to 5 to 25 pages (about 8 or fewer in Module 1), adjusted for how dense it
+  is;
+- items older than 5 years are flagged unless they're classics;
+- the scenario and its exhibits are listed.
+
+The week check in Module 4 then uses your real reading load instead of an estimate.
 
 ### Save
 
@@ -185,15 +215,20 @@ risk. Clear attributions and AI notes also show students the integrity you ask o
 :::
 
 Everything you use is protected by copyright unless it says otherwise, and the lack of a notice
-doesn't make it free. For each material, you need one of four things: a library link, an open
-license, a public page or video you link to (never download and re-upload), or permission. When
-you're unsure, link instead of uploading.
+doesn't make it free. For each material, you need one of four things:
+
+- **A library link** to the TAMU Libraries record.
+- **An open license**, such as Creative Commons, that you name.
+- **A public page or video you link to.** Never download it and re-upload it.
+- **Permission** from the owner.
+
+When you're unsure, link instead of uploading.
 
 **Fair use** can cover limited educational use, but it's a judgment on four factors: purpose,
 the nature of the work, how much you use, and the effect on the market. It's never blanket
 permission, and paywalled content can't be uploaded for students.
 
-**Attribution** credits the creator: name, title, source, and license. Use it even when the
+**Attribution** credits the creator: title, author, source, and license. Use it even when the
 license doesn't require it.
 
 **AI-assisted content.** If you used AI to draft a scenario, an exhibit, an image, or part of a
@@ -201,27 +236,42 @@ reading, tell students. Check it for accuracy and for anything that closely repr
 else's work, and ask your ID before treating it as your own original work. The U.S.
 Copyright Office has said that purely AI-generated material isn't protected by copyright.
 
-**Spot the problem.** The app shows one item and asks what's wrong with it:
+**Spot the problem.** Before you check your own materials, practice on one. Read the item below,
+say in a sentence or two what's wrong with it and how you'd fix it, then select **Check my
+answer**.
 
-> "Image: diagram of the SBI feedback model, found through a web image search. Used on slide 3
-> and in the job aid."
+> Item: "Image: diagram of the SBI feedback model, found through a web image search. Used on
+> slide 3 and in the job aid."
 
-Expected points: no creator or license, so the rights are unclear; it's reused in two places.
-Fix: find a licensed version, or redraw it as your own content and attribute the model.
+::: check
+- What's wrong with this item, and how would you fix it?
+Feedback: You're right if you spotted that the rights are unclear: there's no creator or license, so
+you can't tell whether you may use it. It's also reused in two places, so the problem doubles. Fix
+it by finding a licensed version, or by redrawing it as your own content with an attribution line
+for the model: "Based on the Situation-Behavior-Impact model (Center for Creative Leadership)."
+:::
 
 ### See it
 
 MGMT 615's SBI job aid was a photocopied diagram with no attribution, and the instructor's
-reflection said students found it confusing. The instructor redrew it as a one-page created job
-aid, with the line "Based on the Situation-Behavior-Impact model (Center for Creative
-Leadership)." Two AI-drafted items, the Module 2 bonus sheet and the Module 6 AI job aid, got a
-disclosure note: "Drafted with AI assistance and reviewed by the instructor."
+reflection said students found it confusing. The instructor redrew it as a one-page job aid of their
+own. Two items were drafted with AI, so each got a disclosure note.
+
+::: plan Learning Materials Plan, Module 3 (rights)
+- Book chapter: Marsh (2021), Ch. 4: Feedback That Lands (library)
+- Job aid: The SBI Feedback Model, One Page (created). Based on the Situation-Behavior-Impact model (Center for Creative Leadership).
+- Interactive reading: Script Your Feedback Conversation (created)
+:::
 
 ### Draft (full build) and Review (refresh)
 
-Same for both tracks. The app shows every material in one table with its rights status. The
-faculty member answers, for each item, where it came from and whether AI helped make it. The AI
-proposes the rights status, an attribution line, and any AI-disclosure note.
+Work through your modules one at a time. Choose a module, then select the button below. The AI
+proposes each material's rights status, an attribution line, and, for anything made with AI help,
+a disclosure note. It never invents missing details: anything you need to confirm is marked
+[check]. Select **Use these notes** to copy them into the boxes under Decide.
+
+::: module-picker
+:::
 
 AI instructions:
 
@@ -236,11 +286,19 @@ instead of upload, find a licensed alternative, or recreate it.
 Return: {"items": [{"title": string, "rights": string, "attribution": string, "aiNote": string | null, "fix": string | null}]}
 ```
 
-Demo response (MGMT 615): the `rights` values in `demo/mgmt615-materials.json`, with fixes for the
-two unclear items (Maria's case marked created after the instructor confirmed writing it; the SBI
-job aid redrawn) and disclosure notes on the two AI-assisted items.
+Demo response (MGMT 615):
+
+::: module-options
+:::
 
 ### Decide
+
+Your final rights notes for each module go in these boxes. Type in any box to change it, or select
+**Redraft with AI** under a box to have the AI rewrite just that part. Confirm or replace anything
+marked [check].
+
+::: module-fields
+:::
 
 Checklist:
 
@@ -250,9 +308,12 @@ Checklist:
 
 ### Checks
 
-On save: no item left unclear without a fix; every item has an attribution or is the faculty
-member's own created work; every ai-assisted item has a note; any "upload" of a library or
-paywalled item is flagged.
+When you save each module, the tool checks that:
+
+- no item is left unclear without a fix;
+- every item has an attribution or is your own created work;
+- every AI-assisted item has a disclosure note;
+- no library or paywalled item is marked for upload.
 
 ### Save
 
