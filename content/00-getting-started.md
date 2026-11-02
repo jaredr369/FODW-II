@@ -32,16 +32,16 @@ module is reviewed before the next one builds on it.
 save. Each step opens with **Learn**, a short read on what the section is for, and **See it**, an
 example from MGMT 615 (a fictitious course used throughout the workshop). See it shows what the
 MGMT 615 instructor did in that step and what came out of it, so you can see what you're aiming for
-before you start. Then you will consider what to create for your own course. For these build sections, you will:
+before you start. Then you work on your own course:
 
 - **Draft.** Select Draft with AI, and the AI writes a first version of one section of your plan
   from your course details. If you're updating a course you already teach, Review with AI checks
   your current section instead and flags what may need to change.
 - **Decide.** You're the expert on your course. You are free to keep the draft, edit it, ask for
   another version, or write your own. A short checklist shows what a finished section includes.
-- **Save.** When you are happy with the content being worked on, you select Save to plan, and the
-  section goes into your Course Planning Document. A feature called Quick checks runs and will flag
-  anything to fix, or to keep with a note for your ID.
+- **Save.** When you're happy with the section, select Save to plan, and it goes into your Course
+  Planning Document. **Checks** then run and flag anything to fix, or to keep with a note for your
+  ID.
 
 Some steps include a **Go deeper** option that leads to additional readings and tools if you want
 more.
@@ -57,7 +57,7 @@ Chat for you. The key stays in this browser and never goes into your project fil
 Every draft is a starting point: you can edit it, ask for another, or write the section yourself,
 and nothing goes into your plan until you select Save.
 
-We strongly recommend connecting TAMU AI. The workshop is built around it. You can continue without
+We strongly recommend connecting TAMU AI Chat. The workshop is built around it. You can continue without
 it, but you will write every section yourself, without first drafts, checks on your work, or, if
 you're updating a course you already teach, a review of it. You can connect it later with the
 Settings button at the top of every page.
@@ -74,8 +74,9 @@ How to get your TAMU AI key (about a minute):
 Treat the key like a password. If you don't see API keys in your settings, contact your ID.
 
 **Saving and sharing.** This tool is not like Canvas. Your work saves in this browser as you go.
-When you select Save, the tool writes two files to a folder you choose: 1. the planning document
-(Word), which your ID reads, and 2. a project file. If possible, choose a folder your ID can see,
+When you select Save, the tool writes two files to a folder you choose: the planning document
+(Word), which your ID reads, and a project file, which lets you reopen your work on any computer
+and pick up where you left off. If possible, choose a folder your ID can see,
 such as a OneDrive or Teams folder you share with them. This works best in Microsoft Edge or Google
 Chrome; in other browsers, the files go to Downloads, and you move them yourself.
 
@@ -84,8 +85,8 @@ Chrome; in other browsers, the files go to Downloads, and you move them yourself
 
 ### See it
 
-Throughout the workshop, you will see examples from a fictitious course titled, "MGMT 615". In it,
-the instructor connected a key, chose a OneDrive folder shared with their ID, and set a Tuesday
+Throughout the workshop, you'll see examples from MGMT 615, a fictitious course. Here's how its
+instructor did this step. They connected a key, chose a OneDrive folder shared with their ID, and set a Tuesday
 check-in. They finished Modules 1 and 2 in the first week and asked their ID for a second meeting
 that week.
 
@@ -117,16 +118,18 @@ prefers Claude Sonnet, then other Claude models, then GPT models.
 > work, or a review of your existing course. You can connect the AI later from Settings."
 > Buttons: Connect the AI (default), Continue without AI.
 
-If the test fails, the app shows the cause and offers Try again:
+If the test fails, you'll see what went wrong and a Try again button.
 
-| Problem | Message shown |
-|---|---|
-| Key not accepted (401 or 403) | TAMU AI Chat didn't accept the key. Check that you copied all of it and that it hasn't been deleted. |
-| Can't reach the service | Couldn't reach TAMU AI Chat. Check your internet connection. Off campus, you may need the university VPN. |
-| Too many requests (429) | TAMU AI Chat is busy right now. Wait a moment and try again. |
-
-Until a key is connected, each module shows a banner, "Your AI guide is off. Connect it to get
-drafts and checks for this step.", with a Connect button.
+> App note: failure messages and the AI-off banner.
+>
+> | Problem | Message shown |
+> |---|---|
+> | Key not accepted (401 or 403) | TAMU AI Chat didn't accept the key. Check that you copied all of it and that it hasn't been deleted. |
+> | Can't reach the service | Couldn't reach TAMU AI Chat. Check your internet connection. Off campus, you may need the university VPN. |
+> | Too many requests (429) | TAMU AI Chat is busy right now. Wait a moment and try again. |
+>
+> Until a key is connected, each module shows a banner, "Your AI guide is off. Connect it to get
+> drafts and checks for this step.", with a Connect button.
 
 Checklist:
 
@@ -164,9 +167,8 @@ Choose a track:
 - **Full build** if the course is new or you're rebuilding it from the beginning. Each module
   drafts its sections from your course details.
 - **Refresh** if your course has already been developed and taught in the Flex Online program.
-  Upload its Course Map as a Word file, or paste the text. Your Instructional Designer can help you
-  acquire the latest version. In each module you'll see your current Course Plan with flags beside
-  it, indicating what may need attention. You keep the section, accept or edit a suggested revision,
+  Upload its Course Map as a Word file, or paste the text. Your ID can help you get the latest version. In each module you'll see the matching section of your Course Map with flags beside it that note what may need
+  attention. You keep the section, accept or edit a suggested revision,
   or rewrite it. Each change gets a short note so your ID can see what changed and why.
 
 A Course Map is not the same as your Course Planning Document. The Course Map is the finished,
@@ -174,10 +176,9 @@ detailed record of everything in a course, complete enough to rebuild the course
 learning management system if it were ever lost from Canvas. The Course Planning Document is the
 working plan you build in this workshop, a section at a time.
 
-Both tracks in this workshop (full build or refresh) go through every module and will add a
-storyline to your course: a recurring character and a realistic scenario in each module, which
-you'll plan in Modules 2 and 3. Existing courses don't have these yet. So, both new, full builds and
-refreshes alike will develop storylines.
+Both tracks go through every module, and both add a storyline to your course: a recurring
+character and a realistic scenario in each module, which you'll plan in Modules 2 and 3. Most
+existing courses don't have a storyline yet, so refresh courses build one too.
 
 ### See it
 
@@ -231,7 +232,7 @@ Sections:
 Return: {"sections": {...}, "unsorted": [string], "found": [section names], "missing": [section names]}
 ```
 
-Demo response (MGMT 615, from `src:example-mgmt615-course-map`):
+Demo response (MGMT 615):
 
 | Section | Result |
 |---|---|

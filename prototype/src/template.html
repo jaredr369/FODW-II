@@ -58,7 +58,7 @@ summary { cursor: pointer; color: var(--muted); font-size: 14px; }
 .form { display: grid; gap: 14px; margin: 12px 0; max-width: 560px; }
 .field label { display: block; font-weight: 600; margin-bottom: 4px; }
 .field .req { font-weight: 400; color: var(--muted); font-size: 14px; }
-.field input, .field select { width: 100%; font: inherit; padding: 7px 10px; border: 1px solid #b9b4ad; border-radius: 6px; background: #fff; }
+.field input, .field select, .field textarea { width: 100%; font: inherit; padding: 7px 10px; border: 1px solid #b9b4ad; border-radius: 6px; background: #fff; }
 .field .hint { margin: 4px 0 0; font-size: 14px; color: var(--ex); }
 .row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-top: 12px; }
 .thinking { color: var(--muted); font-style: italic; }
@@ -92,7 +92,7 @@ body.editing main { padding-bottom: 140px; }
 .editbar[hidden] { display: none; }
 .editbar .msg { flex: 1; min-width: 240px; }
 @media (max-width: 760px) {
-  .layout { grid-template-columns: 1fr; }
+  .layout { grid-template-columns: minmax(0, 1fr); }
   nav { position: static; max-height: 38vh; border-right: 0; border-bottom: 1px solid var(--line); }
   header { position: static; }
   .doc { inset: 0; }
@@ -414,10 +414,10 @@ function next() { const o = order(); const i = o.indexOf(state.at); if (i < o.le
 
 function renderWelcome() {
   return '<div class="welcome"><p class="crumb">Flex Online Design Workshop II</p><h2 class="step">Plan your Flex Online course</h2>' +
-    '<p>This prototype walks through the workshop with MGMT 615: Managing People and Performance, a fictional course, and plays back recorded AI responses so the demo never depends on a live connection. Every step builds or reviews one section of the Course Planning Document; open it any time with <strong>Planning document</strong>.</p>' +
+    '<p>This prototype walks through the workshop with MGMT 615: Managing People and Performance, a fictitious course, and plays back recorded AI responses so the demo never depends on a live connection. Every step builds or reviews one section of the Course Planning Document; open it any time with <strong>Planning document</strong>.</p>' +
     '<h3>Choose a track</h3><div class="choice">' +
     '<button type="button" data-track="full" aria-pressed="' + (state.track === 'full') + '"><strong>Full build</strong>A new course, or a course rebuilt from the beginning. Each step drafts its section from your course details.</button>' +
-    '<button type="button" data-track="refresh" aria-pressed="' + (state.track === 'refresh') + '"><strong>Refresh</strong>A course that already runs online. You upload your course map, and each step reviews your current section with flags and suggested revisions.</button></div>' +
+    '<button type="button" data-track="refresh" aria-pressed="' + (state.track === 'refresh') + '"><strong>Refresh</strong>A course already developed and taught in the Flex Online program. You upload its Course Map, and each step reviews your current section with flags and suggested revisions.</button></div>' +
     '<div class="row"><button type="button" class="btn" data-next ' + (state.track ? '' : 'disabled') + '>Start</button>' +
     '<button type="button" class="btn sec" id="reset">Reset the demo</button></div></div>';
 }
@@ -436,14 +436,14 @@ function aiPart(title, body) {
   // Everything from the first "Demo response" on is the recorded AI output, revealed by the button.
   const at = body.search(/(^|\n)Demo (response|answers)/);
   const before = at < 0 ? body : body.slice(0, at);
-  const after = at < 0 ? '' : body.slice(at).replace(/^\n/, '').replace(/^Demo (response|answers)[^:\n]*:[ \t]*\n?/, '');
+  const after = at < 0 ? '' : body.slice(at).replace(/^\n/, '').replace(/^Demo (response|answers)(\s*\([^)]*\))?[^:\n]*:[ \t]*\n?/, '');
   const recorded = after ? '<div class="demo-out" hidden><p class="crumb">Recorded response, MGMT 615</p>' + md(after) + '</div>' : '';
   // GS.2 refresh: the AI sorts an uploaded Course Map rather than reviewing a section.
   const sorting = /upload your Course Map/.test(body);
   if (sorting) title = 'Upload your Course Map';
   return '<section class="part ai"><h3>' + esc(title) + ' <span class="tag">AI</span></h3>' + md(before, { hideDemo: true }) + recorded +
     demoFiles(body) +
-    '<div class="row"><button type="button" class="btn" data-draft>' + (sorting ? 'Sort with AI' : state.track === 'refresh' ? 'Review with AI' : 'Draft with AI') + '</button><span class="thinking" hidden>Working…</span></div></section>';
+    '<div class="row"><button type="button" class="btn" data-draft>' + (sorting ? 'Sort with AI' : title === 'Summary for your ID' ? 'Create summary' : state.track === 'refresh' ? 'Review with AI' : 'Draft with AI') + '</button><span class="thinking" hidden>Working…</span></div></section>';
 }
 function demoFiles(body) {
   const files = [...new Set((body.match(/demo\/mgmt615-[a-z]+\.json/g) || []))];
@@ -455,6 +455,15 @@ function demoFiles(body) {
     CUR = was; return out;
   }).join('');
 }
+// Refresh reflection: the questions, a box for the faculty member's answers, and the MGMT 615 answers as an example.
+function reflectionPart(body) {
+  const at = body.search(/(^|\n)Demo answers/);
+  const before = at < 0 ? body : body.slice(0, at);
+  const after = at < 0 ? '' : body.slice(at).replace(/^\n/, '').replace(/^Demo answers[^\n]*\n?/, '');
+  return '<section class="part">' + md(before, { hideDemo: true }) +
+    '<div class="field"><label for="refl">Your answers</label><textarea id="refl" rows="6"></textarea></div></section>' +
+    (after ? '<section class="part example"><h3>See it <span class="tag">Example: MGMT 615 (fictitious course)</span></h3><p>Here\'s how the MGMT 615 instructor answered.</p>' + md(after) + '</section>' : '');
+}
 function renderStep(goKey) {
   const { m, key, step } = findStep(goKey);
   const src = DATA.modules.find(x => x.id === m.id);
@@ -465,7 +474,7 @@ function renderStep(goKey) {
     const t = key === 'reflection' ? 'Refresh reflection' : 'Check-in prep';
     const done = state.done[goKey];
     return crumb + '<h2 class="step">' + t + '</h2>' +
-      (key === 'prep' ? '<section class="part"><p>Before your weekly check-in, the tool summarizes what you built in this module, lists any flags you kept, and suggests two questions for your ID. It takes about a minute. Review it, then select Ready for check-in.</p></section>' + aiPart('Summary for your ID', body) : '<section class="part">' + md(body) + '</section>') +
+      (key === 'prep' ? '<section class="part"><p>Before your weekly check-in, the tool summarizes what you built in this module, lists any flags you kept, and suggests two questions for your ID. It takes about a minute. Review it, then select Ready for check-in.</p></section>' + aiPart('Summary for your ID', body) : reflectionPart(body)) +
       '<div class="row"><button type="button" class="btn" data-save="' + esc(goKey) + '">' + (key === 'prep' ? 'Ready for check-in' : 'Save answers') + '</button>' + (done ? '<span class="done-note">Saved</span>' : '') + '</div>';
   }
   const p = step.parts;
@@ -486,7 +495,7 @@ function renderStep(goKey) {
     h += '<section class="part"><h3>Decide</h3>' + md(txt.join('\n').replace(/Checklist[^:\n]*:/, '')) +
       (checks.length ? '<div class="checklist" role="group" aria-label="Checklist">' + checks.map((c, i) => '<label><input type="checkbox" id="c' + i + '"> <span' + tag('li', c, { marker: '- ' }) + '>' + inline(c) + '</span></label>').join('') + '</div>' : '') + '</section>';
   }
-  if (p['Checks']) h += '<section class="part" id="checks" hidden><h3>Checks <span class="tag">ran on save</span></h3>' + md(p['Checks']) +
+  if (p['Checks'] && !/^None\.?\s*$/.test(p['Checks'].trim())) h += '<section class="part" id="checks" hidden><h3>Checks <span class="tag">ran on save</span></h3>' + md(p['Checks']) +
     '<div class="flag ok">Every flag is fixed or has a note. This section is ready for your ID.</div></section>';
   if (p['Save']) h += '<section class="part"><h3>Save</h3>' + md(p['Save'].replace(/^Planning document:/gm, 'Goes into your Course Planning Document:').replace(/\s*\((?:[^()]*?;\s*)?see\s+`export\.md`\)/g, '')) + '</section>';
   if (p['Go deeper (optional)']) h += '<details class="part"><summary>Go deeper (optional)</summary>' + md(p['Go deeper (optional)']) + '</details>';

@@ -68,8 +68,8 @@ order of this workshop. Module 1 sets the end point.
 
 Start with who the students are. They're working professionals who connect new ideas to their
 own experience, want to know why something matters before they invest time, and want to use it
-soon (Knowles, Holton, & Swanson, 2015). Every AI draft from here on uses the learner profile, a
-short description of who takes your course, that you write in this step.
+soon (Knowles, Holton, & Swanson, 2015). Every AI draft from here on uses the learner profile you
+write in this step: a short description of who takes your course.
 
 Your catalog description is the course's public promise, so your course vision and course-level
 objectives (CLOs), which you'll write in steps 1.2 and 1.3, stay within it. Paste the official
@@ -81,9 +81,9 @@ later: when you write your CLOs in step 1.3, the tool checks them against this l
 promise your course doesn't cover yet.
 
 Program outcomes describe what students can do after the whole degree; mark the two to four this
-course supports. Your ID can find them if you don't have them. Before you start Module 2, confirm
-your vision and CLOs with your program director, since the storyline you'll build in Modules 2
-and 3 builds on them.
+course supports. Your ID can find them if you don't have them. Before Module 2, you'll confirm your
+vision and CLOs with your program director, because the storyline in Modules 2 and 3 grows out
+of them. It's worth scheduling that meeting now.
 
 ### See it
 
@@ -172,12 +172,12 @@ Checklist:
 
 ### Checks
 
-None on save. The commitments and program outcomes feed the checks in steps 1.2 to 1.4.
+None.
 
 ### Save
 
-Planning document: Catalog Course Description; Program-Level Outcomes (supported only);
-Learners (new paragraph, after Course Vision).
+Planning document: your catalog description, the program outcomes this course supports, and
+your learner profile.
 Project file: `learners.profile`, `catalog.text`, `catalog.commitments`, `programOutcomes`,
 `programDirectorReview.status`.
 
@@ -283,8 +283,11 @@ Checklist:
 
 ### Checks
 
-On save: sentence count (3 or 4); every claim fits a catalog commitment; it describes student
-actions instead of course coverage.
+When you save, the tool checks that your vision:
+
+- has 3 or 4 sentences;
+- stays within your catalog commitments;
+- describes what students do, not what the course covers.
 
 ### Save
 
@@ -293,7 +296,7 @@ Project file: `vision.text`; in refresh, `vision.original`, `vision.changeNote`.
 
 ---
 
-## 1.3 Course-Level Objectives (CLOs)
+## 1.3 Course-level objectives (CLOs)
 
 Time: about 25 minutes
 Pattern: spot the problem, then pick and combine (full build) or edit in place (refresh)
@@ -363,6 +366,9 @@ the problem? The instructor also added a sixth CLO for hiring, which the catalog
 
 ### Draft (full build)
 
+After you answer the spot-the-problem question, the AI drafts 3 to 6 CLOs from your vision and
+catalog commitments, with the Bloom's level of each.
+
 AI instructions:
 
 ```text
@@ -417,7 +423,7 @@ Demo response (MGMT 615):
 
 ### Decide
 
-New course: pick from the AI's drafts, then edit, reorder, remove or add. Updating a course: for
+Full build: start from the AI's draft, then edit, reorder, remove or add. Refresh: for
 each current CLO, keep it, accept the AI's suggested revision, edit it or rewrite it; accept,
 edit or reject each new CLO the AI suggests.
 
@@ -429,9 +435,15 @@ Checklist:
 
 ### Checks
 
-On save: one verb per CLO; level apply or above; count 3 to 6; every catalog commitment covered
-by a CLO; every CLO supports at least one supported program outcome. Demo: all pass after the
-revisions; before them, the commitment check flags "Hire well: no CLO covers it."
+When you save, the tool checks that:
+
+- you have 3 to 6 CLOs;
+- each CLO has one verb, at the apply level or above;
+- every catalog commitment is covered by a CLO;
+- every CLO supports at least one of the program outcomes you marked.
+
+In MGMT 615, before the revisions, the commitment check flagged "Hire well: no CLO covers it."
+The new CLO 6 fixed it.
 
 ### Save
 
@@ -453,10 +465,10 @@ Pattern: pick and combine (full build) or edit in place (refresh)
 
 ### Learn
 
-Lay out the weekly modules; the planning document has room for eight. Each gets a title a
+Lay out the weekly modules; the Course Planning Document has room for eight. Each gets a title a
 student would understand on day one, one CLO the module mainly works toward and at most one more
 it also supports, and three to five topics. Start from the CLOs: list what students need to know or practice to meet each
-one, then cut anything whose removal wouldn't stop anyone from meeting a CLO.
+one, then cut any topic they don't need to meet a CLO.
 
 Order matters. In Module 3 each module becomes a scenario, a realistic situation your character
 faces that week, so order
@@ -468,20 +480,23 @@ before the whole team.
 Here's how the MGMT 615 instructor did this step. They kept the eight modules and their order,
 replaced one Module 4 topic, and updated the CLO numbers to match the six revised CLOs.
 
-::: plan Module titles and CLOs met
-| Module | Title | CLOs met |
-|---|---|---|
-| 1 | What Managers Actually Do | CLO 1, CLO 5 |
-| 2 | Motivating People | CLO 1, CLO 5 |
-| 3 | Performance Management and Feedback | CLO 2, CLO 5 |
-| 4 | Building and Leading Teams | CLO 3, CLO 1 |
-| 5 | Managing Conflict and Difficult Conversations | CLO 3, CLO 2 |
-| 6 | Delegation and Decision-Making | CLO 4, CLO 5 |
-| 7 | Leading Through Change | CLO 5, CLO 3 |
-| 8 | Hiring and Building Your Team | CLO 6, CLO 1 |
+::: plan Module titles, CLOs met and topics
+| Module | Title | CLOs met | Topics |
+|---|---|---|---|
+| 1 | What Managers Actually Do | CLO 1, CLO 5 | What management is and isn't; from doing the work to getting work done through others; common first-90-days mistakes |
+| 2 | Motivating People | CLO 1, CLO 5 | Expectancy and self-determination theory; why incentives backfire; diagnosing a motivation problem before choosing a fix |
+| 3 | Performance Management and Feedback | CLO 2, CLO 5 | Setting expectations; the SBI feedback model; coaching vs. disciplinary conversations |
+| 4 | Building and Leading Teams | CLO 3, CLO 1 | What predicts team performance; structural vs. motivational fixes; role clarity and ownership of handoffs |
+| 5 | Managing Conflict and Difficult Conversations | CLO 3, CLO 2 | Task, process and relationship conflict; structuring a difficult conversation; repairing a working relationship after conflict |
+| 6 | Delegation and Decision-Making | CLO 4, CLO 5 | Sorting tasks by delegation readiness; decision rights; where AI helps a management decision, and where it misleads |
+| 7 | Leading Through Change | CLO 5, CLO 3 | Why change efforts stall; sources of resistance; communicating change |
+| 8 | Hiring and Building Your Team | CLO 6, CLO 1 | Why gut-feel hiring fails; structured interviews and scorecards; proven experience vs. potential |
 :::
 
 ### Draft (full build)
+
+The AI drafts a title, CLOs met and topics for each module from your CLOs, and explains the
+order it chose.
 
 AI instructions:
 
@@ -525,8 +540,8 @@ Demo response (MGMT 615):
 
 ### Decide
 
-You'll see a table with one column per module. Edit titles, CLOs met and topics, and drag to
-reorder. Updating a course: for each module, keep it, accept the AI's suggested revision, edit it
+You'll see a table with one row per module. Edit titles, CLOs met and topics, and drag to
+reorder. Refresh: for each module, keep it, accept the AI's suggested revision, edit it
 or rewrite it.
 
 Checklist:
@@ -537,16 +552,19 @@ Checklist:
 
 ### Checks
 
-On save: every CLO appears in at least one module; each topic serves a CLO its module lists;
-topics are content for students; CLOs appearing in only one module, or in more than five, are
-noted. In MGMT 615, the check noted "CLO 4 and CLO 6 each appear in one module." The instructor
+When you save, the tool checks that:
+
+- every CLO appears in at least one module;
+- each topic serves a CLO its module lists;
+- topics are content for students, not notes about designing the course.
+
+It also notes any CLO that appears in only one module, or in more than five. In MGMT 615, the check noted "CLO 4 and CLO 6 each appear in one module." The instructor
 kept it with the note "Delegation and hiring are each a focused skill, practiced and assessed in
 one module."
 
 ### Save
 
-Planning document: Module Titles, CLOs met and Module Topics rows in Tables 1 and 2 (see
-`export.md`).
+Planning document: each module's title, CLOs met and topics.
 Project file: `modules[].title`, `modules[].closMet`, `modules[].topics`; in refresh,
 `.original` and `.changeNote`. Other columns from an uploaded course map stay in
 `source.sections` for later modules.

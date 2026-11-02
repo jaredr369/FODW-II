@@ -18,7 +18,7 @@
     {"title": "Motivating People", "closMet": ["CLO 1", "CLO 5"], "topics": ["Expectancy and self-determination theory", "Why incentives backfire", "Diagnosing a motivation problem before choosing a fix"]},
     {"title": "Performance Management and Feedback", "closMet": ["CLO 2", "CLO 5"], "topics": ["Setting expectations", "The SBI feedback model", "Coaching vs. disciplinary conversations"]},
     {"title": "Building and Leading Teams", "closMet": ["CLO 3", "CLO 1"], "topics": ["What predicts team performance", "Structural vs. motivational fixes", "Role clarity and ownership of handoffs"]},
-    {"title": "Managing Conflict and Difficult Conversations", "closMet": ["CLO 3", "CLO 2"], "topics": ["Task, process and relationship conflict", "Structuring a difficult conversation"]},
+    {"title": "Managing Conflict and Difficult Conversations", "closMet": ["CLO 3", "CLO 2"], "topics": ["Task, process and relationship conflict", "Structuring a difficult conversation", "Repairing a working relationship after conflict"]},
     {"title": "Delegation and Decision-Making", "closMet": ["CLO 4", "CLO 5"], "topics": ["Sorting tasks by delegation readiness", "Decision rights", "Where AI helps a management decision, and where it misleads"]},
     {"title": "Leading Through Change", "closMet": ["CLO 5", "CLO 3"], "topics": ["Why change efforts stall", "Sources of resistance", "Communicating change"]},
     {"title": "Hiring and Building Your Team", "closMet": ["CLO 6", "CLO 1"], "topics": ["Why gut-feel hiring fails", "Structured interviews and scorecards", "Proven experience vs. potential"]}
