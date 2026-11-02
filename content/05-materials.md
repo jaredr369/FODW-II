@@ -81,7 +81,7 @@ current, stable, and tied to an objective. Start with TAMU Libraries, and link t
 record instead of uploading a PDF.
 
 **Load.** Aim for roughly 20 pages of required reading a module, adjusted for density. With 4 to
-5 hours of activities and a 90-minute cohort session, that keeps the week near 10 hours. Module 1
+5 hours of activities and a 90-minute cohort session, that keeps the week close to 10 hours. Module 1
 targets about 4 hours in all, so keep its reading to a few pages.
 
 ### See it

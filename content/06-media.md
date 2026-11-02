@@ -182,7 +182,7 @@ next step, then a branded close.
 
 Write for the ear. Use contractions and full sentences, and read it aloud as you write; if a
 sentence is awkward spoken, rewrite it. Say anything a student needs to know, so nothing depends
-only on what's on screen. A 2-minute overview is about 250 to 300 spoken words.
+only on what's on screen. Most scripts run 250 to 350 words, about 2 to 2.5 minutes spoken.
 
 Your ID and the Learning Media team will help with the rest of your scripts during development.
 

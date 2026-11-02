@@ -4,8 +4,8 @@ Module id: `m7`
 Steps: 2
 ID check-in: live review of this module's sections, at the end of the week or sooner
 
-Faculty complete: a cohort session for each module, planned as a decision point, and the first
-session ready to broadcast from the XR stage.
+Faculty complete: a cohort session for each of Modules 2 to 8, planned as a decision point, and the
+first session ready to broadcast from the XR stage.
 
 Refresh checks for this module: each cohort session passes the recording test.
 
@@ -43,7 +43,7 @@ Project file: `reflection.m7`.
 
 ---
 
-## 7.1 Cohort sessions for every module
+## 7.1 Cohort sessions for Modules 2 to 8
 
 Time: about 40 minutes, about 5 minutes a module
 Pattern: pick and combine, one module at a time (full build); edit in place (refresh)
@@ -51,15 +51,15 @@ Pattern: pick and combine, one module at a time (full build); edit in place (ref
 ### Learn
 
 ::: purpose
-**What you'll do:** Plan a cohort session, a 90-minute live class on Zoom, for each module, with at
-least one part students can only get by being there.
+**What you'll do:** Plan a cohort session, a 90-minute live class on Zoom, for each of Modules 2 to
+8, with at least one part students can only get by being there.
 
 **Why it matters:** Students don't skip sessions because they're recorded; they skip sessions that
 offer nothing the recording doesn't (Morris et al., 2019).
 :::
 
-Every Flex Online course has one each week. Attendance is optional and every session is recorded, so
-students decide each week whether to come or watch later.
+Flex Online courses hold one each week from Module 2 to Module 8; Module 1 has none. Attendance is
+optional and every session is recorded, so students decide each week whether to come or watch later.
 
 **The recording test.** Ask: if a student watched only the recording, what would they have
 missed? If the answer is nothing, they'll watch it later. A session passes when at least one
@@ -134,7 +134,7 @@ Return: {"sessions": [{"module": int, "original": string, "missed": string, "act
 
 Demo response (MGMT 615): `review` notes in `demo/mgmt615-cohort.json`. The Module 2 and 4
 roundtables failed the recording test, matching the reflection that they were thin; both got a
-live moment. Module 1 had no session, and one was added.
+live moment.
 
 ### Decide
 
@@ -193,17 +193,17 @@ Keep slides accessible: readable contrast, real text instead of text in images, 
 important only on a slide.
 ### See it
 
-MGMT 615's Module 1 run of show, first rows:
+MGMT 615's Module 2 run of show, first rows:
 
 | Time | Segment | What happens | Setup |
 |---|---|---|---|
-| 0:00 | Welcome | Instructor greets the class, two-minute recap of Dana's Monday | Slide 1 |
-| 0:05 | Introductions | Breakouts of four: name, role, one thing you fix yourself that you shouldn't | Breakouts, 10 min |
-| 0:15 | The decision | Poll: what should Dana do this week? | Poll, three options |
+| 0:00 | Welcome | Instructor greets the class and recaps Dana's situation: the bonus, the error rates, and Luis | Slide 1 |
+| 0:10 | Split evidence | Breakouts of three. Each group gets one piece of evidence: the bonus data, Luis's record, or the crew's view | Three breakout handouts; 30 minutes, with a timer |
+| 0:40 | Recommend | Groups combine their evidence and recommend: keep, adjust, or replace the bonus | Regroup breakouts; 35 minutes |
 
 ### Draft (full build) and Review (refresh)
 
-The AI asks which session to prepare (usually Module 1 or the first one taught) and two
+The AI asks which session to prepare (usually Module 2, the first session students attend) and two
 questions: "Is there a point where you'll need help from your Instructional Technologist that
 isn't obvious?" and "How do you want to end?"
 
@@ -221,7 +221,7 @@ Return: {"module": int, "rows": [{"time": string, "segment": string, "happens": 
 Refresh track: an existing run of show or lesson plan can be uploaded and checked against the
 same instructions.
 
-Demo response (MGMT 615): the Module 1 run of show, opening as under See it.
+Demo response (MGMT 615): the Module 2 run of show, opening as under See it.
 
 ### Decide
 
@@ -253,7 +253,7 @@ Demo response (MGMT 615):
 
 ```json
 {
-  "changed": ["Cohort sessions for all eight modules", "Module 1 session added", "Module 2 and 4 roundtables given a live moment", "Module 1 run of show drafted"],
+  "changed": ["Cohort sessions for Modules 2 to 8", "Module 2 and 4 roundtables given a live moment", "Module 2 run of show drafted"],
   "keptFlags": [],
   "questions": ["When can I practice on the XR stage before the first session?", "Can the Instructional Technologist show the week's Poll Everywhere results at the start of Module 5?"]
 }

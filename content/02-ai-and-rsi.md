@@ -40,7 +40,9 @@ financial aid. Your ID's team checks for it in every course review.
 
 **Substantive** refers to teaching, learning, or assessment. An announcement explaining a concept
 half the class missed counts as substantive; a due-date reminder doesn't. **Regular** means
-predictable, proactive, and responsive to how students are doing.
+predictable, proactive, and responsive to how students are doing. Flex Online instructors typically
+answer student questions within 24 to 48 hours and return feedback on major assignments within 5 to
+7 days.
 
 For the substantive test, your course needs instructor activity in at least two of these five
 categories:

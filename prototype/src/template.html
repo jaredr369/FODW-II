@@ -1044,7 +1044,7 @@ function renderDoc() {
     ['M4', 'Learning Activities Plan Part 2 (Third-Party Tool Activities)', 'tools', i => { const t = act[i].activities.filter(isTool); return t.length ? ul(t.map(a => a.type + ': ' + a.title)) : '<span class="empty">None</span>'; }],
     ['M5', 'Learning Materials Plan', 'materials', i => ul(mat[i].materials.map(x => x.type + ': ' + x.title + ' (' + x.pages + ' pp., ' + x.rights + ')'))],
     ['M6', 'Learning Media Plan', 'media', i => ul(med[i].media.map(x => x.kind + ': ' + x.title + (x.minutes ? ', ' + x.minutes + ' min' : '') + (x.where === 'xr-stage' ? ' (XR stage)' : '')))],
-    ['M7', 'Learning Activities Plan Part 3 (Cohort Session Activities)', 'cohort', i => esc(coh[i].title + ': ' + coh[i].live.toLowerCase())]
+    ['M7', 'Learning Activities Plan Part 3 (Cohort Session Activities)', 'cohort', i => { const c = coh.find(x => x.module === i + 1); return c ? esc(c.title + ': ' + c.live.toLowerCase()) : '<span class="empty">No cohort session in Module 1</span>'; }]
   ];
   const table = (from, n) => '<div class="scroll"><table><thead><tr><th>FODW</th><th>Course Item</th>' + [0, 1, 2, 3].map(k => '<th>Module ' + (from + k + 1) + '</th>').join('') + '</tr></thead><tbody>' +
     rows.map(([w, label, name, fn]) => '<tr><td>' + w + '</td><th scope="row">' + label + '</th>' + [0, 1, 2, 3].map(k => '<td>' + (shown(name) ? fn(from + k) : '<span class="empty">[Enter]</span>') + '</td>').join('') + '</tr>').join('') + '</tbody></table></div>';

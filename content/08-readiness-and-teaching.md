@@ -61,15 +61,15 @@ The checks run across the whole document at once and show the results by module.
 
 For each module you should be able to point to the story thread: the scenario and its decision,
 the activity where students work through it, the materials that prepare them, the media it needs,
-and how the cohort session builds on it. If a piece is missing or doesn't connect, fix it now.
+and, in Modules 2 to 8, how the cohort session builds on it. If a piece is missing or doesn't connect, fix it now.
 
 Then look at the whole week. With activities, materials, media, and the cohort session all
 planned, the week-in-your-student's-shoes walk-through can now show the full week: about 4 hours in
-Module 1 and about 10 in the rest.
+Module 1 and close to 10 in the rest.
 
 ### See it
 
-MGMT 615's final check found three things. Module 1 came to about 8 hours against a 4-hour
+MGMT 615's final check found three things. Module 1 came to about 6.5 hours against a 4-hour
 target; the instructor made the sort optional and moved the book chapter to Module 2. The Module 6 thread had no media tied to the scenario;
 the instructor noted that the AI teaching video carries the story through the scheduling tool.
 And Module 8 still ran heavy at about 11 hours; the instructor cut one reading to supplemental.
@@ -97,7 +97,7 @@ Demo response (MGMT 615):
 ```json
 {
   "modules": [
-    {"module": 1, "thread": {"scenario": true, "activity": true, "materials": true, "media": true, "cohort": true}, "hours": 8, "flags": ["About 8 hours against a 4-hour target for the first week."]},
+    {"module": 1, "thread": {"scenario": true, "activity": true, "materials": true, "media": true, "cohort": null}, "hours": 6.5, "flags": ["About 6.5 hours against a 4-hour target for the first week."]},
     {"module": 6, "thread": {"scenario": true, "activity": true, "materials": true, "media": false, "cohort": true}, "hours": 9.5, "flags": ["No media tied to the scenario 'Twelve Things on Dana's List'."]},
     {"module": 8, "thread": {"scenario": true, "activity": true, "materials": true, "media": true, "cohort": true}, "hours": 11, "flags": ["About 11 hours, the heaviest week."]}
   ],
@@ -116,7 +116,7 @@ For each flag, Fix (opens the section) or Keep with a note.
 Checklist:
 
 - Every module's story thread is complete, or the gap has a note.
-- Module 1 is about 4 hours, and every other week about 10.
+- Module 1 is about 4 hours, and every other week close to 10.
 - No section is empty.
 
 ### Checks
@@ -169,8 +169,8 @@ with the grade. SpeedGrader's comment library, markup, clickable rubrics, and sh
 comments all save time without thinning feedback. If AI drafts comments, read and edit each one
 before release. Keep the turnaround your interaction statement promises.
 
-**Questions.** Answer common questions once, in an announcement or the General Q&A discussion, so
-everyone sees the answer.
+**Questions.** Reply to student questions within 24 to 48 hours. Answer common questions once, in an
+announcement or the General Q&A discussion, so everyone sees the answer.
 
 ### See it
 

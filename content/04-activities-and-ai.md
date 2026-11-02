@@ -9,7 +9,7 @@ automatically for RSI, workload, and AI risk, and a week-in-your-student's-shoes
 module.
 
 Refresh checks for this module: at least two RSI categories of instructor activity per module;
-about 10 hours of student work a week; major assessments that AI could complete without student
+close to 10 hours of student work a week; major assessments that AI could complete without student
 thinking.
 
 Sources: `src:reading-m4-crafting-part-1`, `src:reading-m4-crafting-part-2`,
@@ -82,11 +82,11 @@ A planned activity:
 - **Adds variety.** If every module has the same format, the course feels repetitive and the same
   students are always at a disadvantage.
 
-::: figure budget | A typical Flex Online week: about 10 hours
+::: figure budget | A typical Flex Online week: close to 10 hours
 - Activities | about 4 to 5 hours | 45
 - Readings and media | about 3 to 4 hours | 40
 - Cohort session | 90 minutes, live or recorded | 15
-- Note | Module 1 is lighter, about 4 hours in all, while students get oriented.
+- Note | Cohort sessions run in Modules 2 to 8. Module 1 is lighter, about 4 hours in all, while students get oriented.
 :::
 
 **Your storyline supplies the activities.** Each scenario ends in a decision, and that is where
@@ -100,8 +100,9 @@ analysis or a plan. Discussions are for dialogue across professional perspective
 for low-stakes checks before harder work. Cohort sessions come in Module 7.
 
 **Weight.** Mark each activity high, medium, or low. Activities that show mastery of a CLO carry
-more weight than the practice that builds toward it. Points and rubrics are finished with your
-ID during development.
+more weight than the practice that builds toward it. As a guide, finished work such as analyses,
+plans, and projects makes up 70 to 90 percent of the grade, and practice and participation 10 to 30
+percent. Points and rubrics are finished with your ID during development.
 
 **Watch the last module.** Courses often stack a final project on the module's normal work, and
 the last week ends up twice as heavy. Start a course-wide synthesis a module early, or let it
