@@ -177,95 +177,105 @@ Pattern: interview, then draft
 
 ### Learn
 
-Your vision says what students will be able to do, and who they'll become, because they took
-your course. Try this: a student runs into you a year after the course. What do you hope they
-tell you they now do differently at work? That answer is the core of your vision.
+Your vision describes what your course helps students do in the workplace. Try this: a student
+runs into you a year after the course. What do you hope they tell you they now do differently at
+work? That answer is the core of your vision.
 
-Write 3 or 4 sentences about what students do in their professional setting, within the scope
-of your catalog description, and say what sets the course apart. A vision drives every later choice: each topic,
-activity and reading has to help students get there.
+Write 3 or 4 sentences about what students do at work because they took your course, within the
+scope of your catalog description. Describe their actions on the job, not what the course covers
+or how it's taught. A vision drives every later choice: each topic, activity and reading has to
+help students do what it describes.
 
 ### See it
 
-Here's how the MGMT 615 instructor did this step. Their existing vision ran seven sentences, so
-they cut it to four that say what students do in the course and what they leave with. A cohort
-session is a scheduled live class meeting on Zoom; you'll plan these in Module 7.
+::: full
+Here's the vision the MGMT 615 instructor settled on. In four sentences, it says what graduates
+do at work.
+:::
+
+::: refresh
+Here's how the MGMT 615 instructor did this step. Their existing vision ran seven sentences and
+mostly described the course itself, so they cut it to four that say what graduates do at work.
+:::
 
 ::: plan Course vision
-MGMT 615 turns people who are good at their jobs into people who are good at running a team.
-Every module asks students to work out what is actually wrong before they choose a fix, and to
-defend that call to peers in a live cohort session. Students leave with work they can use on the
-job: a feedback script, a delegation memo, a change announcement and a structured interview
-scorecard. They finish ready to manage a larger team and to explain the reasoning behind each
-call.
+MGMT 615 helps new managers run a team instead of doing the team's work themselves. When someone
+struggles, graduates find out what is actually wrong before they act. They give feedback that
+changes behavior, delegate real decisions and have the hard conversations they used to avoid.
+They lead their teams through change and hire people who fit the work.
 :::
 
 ### Draft (full build)
 
-Answer one question. The AI then drafts two versions of your vision with different emphasis.
-Pick one, combine them or write your own.
+Answer one question. The AI uses your answer, along with your learner description and catalog
+commitments from 1.1, to draft two versions of your vision, each worded differently. Pick one,
+combine them or write your own.
 
 ::: fields
-- What do you hope a student tells you a year after the course? | That they stopped fixing
-  everything themselves, figured out what was really wrong with their team before reacting, and
-  had the conversation they were avoiding.
+- A year after the course, what do you hope a student tells you they now do differently at work? | That they stopped fixing everything themselves, figured out what was really wrong with their team before reacting, and had the conversation they were avoiding.
 :::
 
 AI instructions:
 
 ```text
 Draft two course visions of 3 or 4 sentences each from the faculty member's answer, the learner
-profile and the catalog commitments. Describe what students will do in their professional
-setting, stay inside the catalog commitments, and say what sets the course apart. Make the two
-differ in emphasis: one on skills, one on the professional the student becomes.
+description and the catalog commitments. Describe what students do in the workplace because they
+took the course: actions on the job, not course content, activities or teaching methods. Stay
+inside the catalog commitments. Make the two differ: one opens with the situations students will
+face at work, the other with the actions they take.
 
 Return: {"versions": [string, string]}
 ```
 
 Demo response (MGMT 615):
 
-Two versions, drafted from the instructor's answer: "That they stopped fixing everything
-themselves, figured out what was really wrong with their team before reacting, and had the
-conversation they were avoiding."
-
 ```json
 {
   "versions": [
-    "MGMT 615 prepares new managers to figure out why a person or team is struggling before they act. Students practice the work that follows a good diagnosis, from feedback and delegation to change announcements and hiring, and defend each call to peers in live cohort sessions. Every major assignment produces something they can use with their own team. Students finish ready to stop fixing problems themselves and start building a team that can.",
-    "Students arrive at MGMT 615 good at their own jobs and leave able to run a team. Module after module, the course asks them to look past the obvious explanation for a performance problem and find the real cause. They rehearse the hard conversations in scripts and cohort sessions, so they're ready to have them at work. A year later they should be the manager their team trusts to diagnose before deciding."
+    "MGMT 615 prepares new managers for the moments that test them: an employee who is struggling, a team in conflict, a change no one wants. Graduates work out what is really wrong before they react, then choose a fix that fits. They give feedback that changes behavior, delegate real decisions and hire people who fit the work. Their teams bring them problems to solve together instead of waiting for the manager to fix everything.",
+    "MGMT 615 helps new managers stop fixing everything themselves and start running a team. Graduates diagnose why a person or team is underperforming before they act. They have the conversations they used to avoid, delegate with clear decision rights and repair working relationships after conflict. They lead change and hire with a clear picture of what the job needs."
   ]
 }
 ```
 
 ### Review (refresh)
 
-You'll see your current vision with flags from the checks below and one suggested revision that
-keeps your language.
+The AI reads your current vision and flags anything that doesn't fit, such as too many sentences
+or sentences that describe the course instead of what students do at work. It also suggests one
+revision that keeps your language.
 
 Demo response (MGMT 615):
 
 Flags:
 
 - Seven sentences; the Course Planning Document asks for 3 or 4.
-- The first two sentences describe the program ("sits at the center of the Flex Online
-  people-management sequence"). A vision should describe what students will do.
+- Most sentences describe the course ("sits at the center of the Flex Online people-management
+  sequence," "every module asks students to…"). A vision should describe what students do at
+  work.
 
-Suggested revision: "MGMT 615 turns people who are good at their jobs into people who are good at
-running a team. Every module asks students to work out what is actually wrong before they choose
-a fix, and to defend that call to peers in a live cohort session. Students leave with work they
-can use on the job: a feedback script, a delegation memo, a change announcement and a structured
-interview scorecard. They finish ready to manage a larger team and to explain the reasoning
-behind each call."
+Suggested revision: "MGMT 615 helps new managers run a team instead of doing the team's work themselves. When someone struggles, graduates find out what is actually wrong before they act. They give feedback that changes behavior, delegate real decisions and have the hard conversations they used to avoid. They lead their teams through change and hire people who fit the work."
 
-Change note: "Cut to four sentences. Removed the program description; kept the diagnosis-first
-approach and the deliverables."
+Change note: "Cut to four sentences. Replaced the course and program description with what
+graduates do at work; kept the diagnosis-first idea."
 
 ### Decide
+
+::: full
+Start from the version you like best, or combine them, then edit it into your own words.
+:::
+
+::: refresh
+Start from your current vision or the AI's suggested revision, then edit it into your own words.
+:::
+
+::: fields
+- Your course vision (3 or 4 sentences)
+:::
 
 Checklist:
 
 - 3 or 4 sentences.
-- Describes what students do at work.
+- Describes what students do at work, not what the course covers.
 - Fits the catalog description.
 - You'd be glad to hear a former student describe the course this way.
 
@@ -275,7 +285,7 @@ When you save, the tool checks that your vision:
 
 - has 3 or 4 sentences;
 - stays within your catalog commitments;
-- describes what students do, not what the course covers.
+- describes what students do at work, not what the course covers or how it's taught.
 
 ### Save
 
@@ -415,9 +425,18 @@ Demo response (MGMT 615):
 
 ### Decide
 
-Full build: start from the AI's draft, then edit, reorder, remove or add. Refresh: for
-each current CLO, keep it, accept the AI's suggested revision, edit it or rewrite it; accept,
+::: full
+Start from the AI's draft, then edit, reorder, remove or add CLOs.
+:::
+
+::: refresh
+For each current CLO, keep it, accept the AI's suggested revision, edit it or rewrite it. Accept,
 edit or reject each new CLO the AI suggests.
+:::
+
+::: fields
+- Your CLOs, one per line
+:::
 
 Checklist:
 
@@ -532,9 +551,17 @@ Demo response (MGMT 615):
 
 ### Decide
 
-You'll see a table with one row per module. Edit titles, CLOs met and topics, and drag to
-reorder. Refresh: for each module, keep it, accept the AI's suggested revision, edit it
-or rewrite it.
+::: full
+Start from the AI's draft, then edit titles, CLOs met and topics, and reorder modules as needed.
+:::
+
+::: refresh
+For each module, keep it, accept the AI's suggested revision, edit it or rewrite it.
+:::
+
+::: fields
+- Your modules, one per line: title, CLOs met and topics | Module 2: Motivating People. CLO 1, CLO 5. Expectancy and self-determination theory; why incentives backfire; diagnosing a motivation problem before choosing a fix.
+:::
 
 Checklist:
 

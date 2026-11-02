@@ -518,8 +518,12 @@ function renderStep(goKey) {
   else if (p['Draft (full build)']) h += aiPart('Draft', p['Draft (full build)']);
   if (p['Decide']) {
     const dec = p['Decide'].replace(/(^|\n)- (.+)/g, '$1[[CHK]]$2');
-    const parts = dec.split('\n'); let txt = [], checks = [];
-    for (const l of parts) (l.startsWith('[[CHK]]') ? checks : txt).push(l.replace('[[CHK]]', ''));
+    const parts = dec.split('\n'); let txt = [], checks = [], block = false;
+    // List items inside a ::: block (such as answer boxes) stay in the text; the rest become the checklist.
+    for (const l of parts) {
+      if (/^:::/.test(l)) block = !block && !/^:::\s*$/.test(l);
+      (l.startsWith('[[CHK]]') && !block ? checks : txt).push(block ? l.replace('[[CHK]]', '- ') : l.replace('[[CHK]]', ''));
+    }
     h += '<section class="part"><h3>Decide</h3>' + md(txt.join('\n').replace(/Checklist[^:\n]*:/, '')) +
       (checks.length ? '<div class="checklist" role="group" aria-label="Checklist">' + checks.map((c, i) => '<label><input type="checkbox" id="c' + i + '"> <span' + tag('li', c, { marker: '- ' }) + '>' + inline(c) + '</span></label>').join('') + '</div>' : '') + '</section>';
   }
