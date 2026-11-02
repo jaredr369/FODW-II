@@ -369,12 +369,12 @@ as you plan materials in Module 5 and media in Module 6, and Module 8 shows the 
 Here's MGMT 615's Module 3 week as a student would live it, and what the instructor changed.
 
 ::: figure week | MGMT 615, Module 3: a student's week
-- Mon | Announcement: Greg wants a formal warning for Jordan. Start the Perusall reading (about 1.5 hours over two days).
-- Tue | Finish the Perusall annotations.
-- Wed | Coaching-or-discipline sort (30 minutes).
-- Thu | The instructor replies in Perusall. Cohort session: rehearse the opening of the conversation with a partner.
+- Mon | **Announcement:** Greg wants a formal warning for Jordan. **Perusall reading:** start annotating the feedback chapter (about 1.5 hours over two days).
+- Tue | **Perusall reading:** finish the annotations.
+- Wed | **Interactive:** coaching-or-discipline sort (30 minutes).
+- Thu | **Instructor reply:** a question in the student's Perusall thread. **Cohort session:** rehearse the opening of the conversation with a partner (90 minutes).
 - Fri |
-- Sat | Draft the whole feedback script and annotate each line (about 4 hours).
+- Sat | **Assignment:** draft the whole feedback script and annotate each line (about 4 hours).
 - Sun |
 - Note | The heaviest point is Saturday: the whole script in one sitting. The instructor's fix: open the script on Wednesday and make it due Sunday, so students can start it after the cohort session.
 :::
