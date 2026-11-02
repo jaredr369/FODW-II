@@ -312,6 +312,31 @@ function md(text, opts = {}) {
       html += '<div class="plan-page"><p class="plan-label">MGMT 615 Course Planning Document' + (label ? ': ' + esc(label) : '') + '</p>' + md(buf.join('\n'), opts) + '</div>';
       continue;
     }
+    // ::: refresh / ::: full block: text shown on that track only.
+    if (/^:::\s*(refresh|full)\s*$/.test(line)) {
+      const which = line.replace(/^:::\s*/, '').trim(); const buf = []; i++;
+      while (i < lines.length && !/^:::\s*$/.test(lines[i])) buf.push(lines[i++]);
+      i++;
+      if (state.track === which) html += md(buf.join('\n'), opts);
+      continue;
+    }
+    // ::: fields block: each "- Question | Example answer" line becomes a labeled answer box, with the
+    // MGMT 615 answer as a hint below. Questions that ask for pasted text get a taller box.
+    if (/^:::\s*fields/.test(line)) {
+      i++; const items = [];
+      while (i < lines.length && !/^:::\s*$/.test(lines[i])) {
+        if (/^- /.test(lines[i])) items.push(lines[i].slice(2)); else if (items.length && lines[i].trim()) items[items.length - 1] += ' ' + lines[i].trim();
+        i++;
+      }
+      i++;
+      html += '<div class="form">' + items.map(it => {
+        const [q, hint] = it.split(' | '), id = 'f' + (++formId);
+        return '<div class="field"><label for="' + id + '"' + tag('p', q) + '>' + inline(q) + '</label>' +
+          '<textarea id="' + id + '" rows="' + (/paste|one per line|sentences/i.test(q) ? 5 : 2) + '"></textarea>' +
+          (hint ? '<p class="hint">Example (MGMT 615): <span' + tag('p', hint) + '>' + inline(hint) + '</span></p>' : '') + '</div>';
+      }).join('') + '</div>';
+      continue;
+    }
     if (/^\|/.test(line)) {
       const rows = []; while (i < lines.length && /^\|/.test(lines[i])) rows.push(lines[i++]);
       const cells = r => r.replace(/^\||\|$/g, '').split('|').map(c => c.trim());
@@ -441,9 +466,11 @@ function aiPart(title, body) {
   // GS.2 refresh: the AI sorts an uploaded Course Map rather than reviewing a section.
   const sorting = /upload your Course Map/.test(body);
   if (sorting) title = 'Upload your Course Map';
-  return '<section class="part ai"><h3>' + esc(title) + ' <span class="tag">AI</span></h3>' + md(before, { hideDemo: true }) + recorded +
+  let intro = md(before, { hideDemo: true }), prompt = '';
+  intro = intro.replace(/<details><summary>What the AI is asked to do<\/summary>[\s\S]*?<\/details>/, m => { prompt += m; return ''; });
+  return '<section class="part ai"><h3>' + esc(title) + ' <span class="tag">AI</span></h3>' + intro + recorded +
     demoFiles(body) +
-    '<div class="row"><button type="button" class="btn" data-draft>' + (sorting ? 'Sort with AI' : title === 'Summary for your ID' ? 'Create summary' : state.track === 'refresh' ? 'Review with AI' : 'Draft with AI') + '</button><span class="thinking" hidden>Working…</span></div></section>';
+    '<div class="row"><button type="button" class="btn" data-draft>' + (sorting ? 'Sort with AI' : title === 'Summary for your ID' ? 'Create summary' : state.track === 'refresh' ? 'Review with AI' : 'Draft with AI') + '</button><span class="thinking" hidden>Working…</span></div>' + prompt + '</section>';
 }
 function demoFiles(body) {
   const files = [...new Set((body.match(/demo\/mgmt615-[a-z]+\.json/g) || []))];
@@ -481,6 +508,7 @@ function renderStep(goKey) {
   let h = crumb + '<h2 class="step"' + tag('title', step.title) + '>' + esc(step.title) + '</h2><div class="meta">' + md(step.lead) + '</div>';
   if (p['Learn']) h += '<section class="part"><h3>Learn</h3>' + md(p['Learn']) + '</section>';
   if (p['See it']) h += '<section class="part example"><h3>See it <span class="tag">Example: MGMT 615 (fictitious course)</span></h3>' + md(p['See it']) + '</section>';
+  if (p['Write (no AI)']) h += '<section class="part"><h3>Your information <span class="tag">No AI</span></h3>' + md(p['Write (no AI)']) + '</section>';
   const both = p['Draft (full build) and Review (refresh)'];
   if (both) h += aiPart(state.track === 'refresh' ? 'Review' : 'Draft', both);
   else if (state.track === 'refresh' && p['Review (refresh)']) {

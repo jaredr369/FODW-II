@@ -58,7 +58,7 @@ Project file: `reflection.m1`.
 ## 1.1 Learners, catalog and program outcomes
 
 Time: about 20 minutes
-Pattern: interview, then draft
+Pattern: faculty input (no AI)
 
 ### Learn
 
@@ -68,19 +68,18 @@ order of this workshop. Module 1 sets the end point.
 
 Start with who the students are. They're working professionals who connect new ideas to their
 own experience, want to know why something matters before they invest time, and want to use it
-soon (Knowles, Holton, & Swanson, 2015). Every AI draft from here on uses the learner profile you
-write in this step: a short description of who takes your course.
+soon (Knowles, Holton, & Swanson, 2015). Every AI draft from here on uses the learner description you
+write in this step: 3 or 4 sentences about who takes your course.
 
 Your catalog description is the course's public promise, so your course vision and course-level
 objectives (CLOs), which you'll write in steps 1.2 and 1.3, stay within it. Paste the official
-text from the TAMU course catalog (catalog.tamu.edu); the AI won't write or change it.
+text from the TAMU course catalog (catalog.tamu.edu), word for word.
 
-The AI then breaks the description into a list of commitments: each separate thing the catalog
-promises students will learn to do. Check that the list is complete and accurate. It matters
-later: when you write your CLOs in step 1.3, the tool checks them against this list and flags any
+Then list its commitments: each separate thing the catalog promises students will learn to do.
+The list matters later: when you write your CLOs in step 1.3, the tool checks them against this list and flags any
 promise your course doesn't cover yet.
 
-Program outcomes describe what students can do after the whole degree; mark the two to four this
+Program outcomes describe what students can do after the whole degree; list the two to four this
 course supports. Your ID can find them if you don't have them. Before Module 2, you'll confirm your
 vision and CLOs with your program director, because the storyline in Modules 2 and 3 grows out
 of them. It's worth scheduling that meeting now.
@@ -103,71 +102,54 @@ behavior; build and repair team dynamics; delegate and make decision-rights call
 lead a team through change; hire well.
 :::
 
-### Draft (full build)
+### Write (no AI)
 
-The AI asks you four questions, then drafts a learner profile:
+There's no AI in this step. Everything here comes from you, the catalog and your program.
 
-1. What jobs do most students hold while they take the course?
-2. What do they already know about the subject when they start?
-3. What will they do differently at work after the course?
-4. Anything about their schedules or situations the course should plan around?
+::: refresh
+Your Course Map may not have all of this. Anything it did include is already filled in below,
+copied word for word. Check it, then fill in what's missing:
 
-Then you paste the catalog description and program outcomes.
+- **Learner description:** most Course Maps don't have one, so you'll likely write it here.
+- **Catalog description:** copy it from catalog.tamu.edu. If your Course Map has it, compare it
+  with the current catalog, since the catalog may have changed since the course was built.
+- **Commitments:** most Course Maps don't list them, so you'll likely list them here.
+- **Program outcomes:** if they're missing, your ID or program director can send them to you.
+:::
 
-AI instructions:
+**Your learners.** Write 3 or 4 sentences about who takes your course. These questions can help:
 
-```text
-1. Write a learner profile of 3 or 4 sentences from the faculty member's answers, using only
-   what they said, and name one design implication from adult learning (self-directed,
-   experience-rich, goal-oriented, practically motivated).
-2. List each distinct thing the catalog description commits the course to, in the catalog's own
-   words where possible. Do not rewrite the catalog description.
-3. For each program outcome, say whether this course likely supports it, with a reason under 20
-   words based on the catalog description.
+- What jobs do most students hold while they take the course?
+- What do they already know about the subject when they start?
+- What will they do differently at work after the course?
+- Anything about their schedules or situations the course should plan around?
 
-Return: {"profile": string, "implication": string, "commitments": [string], "programOutcomes": [{"outcome": string, "supports": boolean, "reason": string}]}
-```
+::: fields
+- Your learner description (3 or 4 sentences)
+:::
 
-Demo response (MGMT 615):
+**Your catalog description and its commitments.**
 
-```json
-{
-  "profile": "Students are working professionals in a first management role or about to step into one, most promoted after strong work as individual contributors. They arrive with years of workplace experience and plenty of stories about good and bad managers, but little formal training in managing people. They take the course to handle the conversations and decisions their new role puts in front of them. Most work full time and study in the evenings and on weekends.",
-  "implication": "Ask students to bring a current problem from their own team into each module's main assignment, so the work pays off at their job the same week.",
-  "commitments": ["Diagnose why employees and teams underperform", "Deliver feedback that changes behavior", "Build and repair team dynamics", "Delegate and make decision-rights calls under pressure", "Lead a team through change", "Hire well"],
-  "programOutcomes": [
-    {"outcome": "PLO 1: Lead individuals and teams to meet organizational goals.", "supports": true, "reason": "The whole course is about managing people toward performance targets."},
-    {"outcome": "PLO 2: Analyze business problems using evidence and established frameworks.", "supports": true, "reason": "Diagnosing underperformance with motivation and team frameworks is central."},
-    {"outcome": "PLO 3: Communicate decisions clearly to varied audiences.", "supports": true, "reason": "Feedback, change messages and delegation calls are communication tasks."},
-    {"outcome": "PLO 4: Apply quantitative methods to financial decisions.", "supports": false, "reason": "The catalog description does not mention financial analysis."}
-  ]
-}
-```
+::: fields
+- Paste your catalog description, word for word, from catalog.tamu.edu.
+- List each thing the catalog description promises students will learn to do, one per line, in the catalog's words. | Diagnose why employees and teams underperform; deliver feedback that changes behavior; build and repair team dynamics; delegate and make decision-rights calls under pressure; lead a team through change; hire well.
+:::
 
+**Your program outcomes.** If you don't have them, your ID or program director can send them.
 
-### Review (refresh)
-
-You'll see the learner description, catalog description and program outcomes found in your
-Course Map. The AI drafts any missing part from scratch. It also lists the catalog's commitments
-and checks that your learner description names students' roles, what they bring and what they
-need.
-
-Demo response (MGMT 615):
-
-- Found: the catalog description, with six commitments, from diagnosing underperformance to hiring
-  well.
-- Missing: the learner description and program outcomes. Drafted from scratch, the same way as a
-  full build.
-- Please confirm the catalog text is the current official version.
+::: fields
+- Paste your program's outcomes.
+- Which two to four of these does your course support? | PLO 1, PLO 2 and PLO 3.
+:::
 
 ### Decide
 
 Checklist:
 
-- The profile describes the students who actually take your course.
+- Your learner description fits the students who actually take your course.
 - The catalog text is the current official version.
 - The commitment list includes every promise in the catalog description, and nothing extra.
-- You've marked the program outcomes this course supports.
+- You've listed the two to four program outcomes this course supports.
 - You've planned a meeting with your program director before Module 2.
 
 ### Checks
@@ -177,7 +159,7 @@ None.
 ### Save
 
 Planning document: your catalog description, the program outcomes this course supports, and
-your learner profile.
+your learner description.
 Project file: `learners.profile`, `catalog.text`, `catalog.commitments`, `programOutcomes`,
 `programDirectorReview.status`.
 
@@ -220,8 +202,14 @@ call.
 
 ### Draft (full build)
 
-The AI asks you one question, "What do you hope a student tells you a year after the course?",
-then drafts two versions with different emphasis. Pick one, combine them or write your own.
+Answer one question. The AI then drafts two versions of your vision with different emphasis.
+Pick one, combine them or write your own.
+
+::: fields
+- What do you hope a student tells you a year after the course? | That they stopped fixing
+  everything themselves, figured out what was really wrong with their team before reacting, and
+  had the conversation they were avoiding.
+:::
 
 AI instructions:
 
@@ -337,6 +325,10 @@ These decisions become that character's story.
 you would change, and why. The AI then confirms what you caught and adds anything you missed.
 
 > Example: "Students will understand how to give feedback that changes an employee's behavior."
+
+::: fields
+- What would you change in this objective, and why?
+:::
 
 > App note: expected points: "understand" can't be observed; "changes an employee's behavior"
 > depends on the employee, which the student can't control. A stronger version: "Design a

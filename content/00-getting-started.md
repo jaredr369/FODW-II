@@ -186,8 +186,9 @@ Here's how the MGMT 615 instructor did this step. The course had already been de
 in the Flex Online program, so they chose Refresh and uploaded their Course Map. The tool sorted it
 into the sections of the Course Planning Document and found most of them: the catalog description,
 the course vision, five course-level objectives (CLOs) and all eight modules. A few sections weren't
-in the Course Map, such as the storyline. For those, the tool drafts a first version when the
-instructor reaches that module, just as it would in a full build.
+in the Course Map. The instructor wrote the learner description and added the program outcomes
+themselves in Module 1. For the storyline, the tool drafts a first version in Modules 2 and 3,
+just as it would in a full build.
 
 ### Draft (full build)
 
@@ -254,7 +255,8 @@ Checklist:
 
 - Course number, title and program are correct.
 - If you uploaded a Course Map: each found section is under the right label.
-- If you uploaded a Course Map: you know which sections the tool will draft from scratch.
+- If you uploaded a Course Map: you know which sections are missing from it. You'll fill them in
+  when you reach them.
 
 ### Checks
 
