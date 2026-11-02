@@ -82,11 +82,11 @@ A planned activity:
 - **Adds variety.** If every module has the same format, the course feels repetitive and the same
   students are always at a disadvantage.
 
-::: figure budget | A typical Flex Online week: close to 10 hours
+::: figure budget | A typical week in Modules 2 to 8: close to 10 hours
 - Activities | about 4 to 5 hours | 45
 - Readings and media | about 3 to 4 hours | 40
 - Cohort session | 90 minutes, live or recorded | 15
-- Note | Cohort sessions run in Modules 2 to 8. Module 1 is lighter, about 4 hours in all, while students get oriented.
+- Note | Module 1 is different: about 4 hours in all, with no cohort session, while students get oriented.
 :::
 
 **Your storyline supplies the activities.** Each scenario ends in a decision, and that is where
