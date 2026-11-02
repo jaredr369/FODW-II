@@ -82,8 +82,8 @@ record instead of uploading a PDF.
 
 **Load.** Plan 5 to 25 pages of required reading a module, adjusted for density. At 6 to 10 pages an
 hour, that's about 1 to 3 hours. With up to 30 minutes of scripted video and audio, a few short
-curated videos, 5 to 6 hours of activities, and the 90-minute cohort session, the week stays close
-to 10 hours. Module 1 targets about 4 hours in all, so keep its reading to a few pages.
+curated videos, roughly 6 hours of activities, and the 90-minute cohort session, the week stays
+close to 10 hours. Module 1 targets about 4 hours in all, so keep its reading to a few pages.
 
 ### See it
 

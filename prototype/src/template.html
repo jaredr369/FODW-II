@@ -693,7 +693,7 @@ function activityDraft(n) {
   const review = state.track === 'refresh' && m.review && m.review.length ? '<p><strong>Review of your current activities:</strong></p><ul>' + m.review.map(r => '<li>' + esc(r) + '</li>').join('') + '</ul>' : '';
   return review + '<div class="scen-opt" data-opt="1"><p><strong>Activities</strong></p><ul class="act-list">' + acts.map(a => '<li>' + esc(actLine(a)) + '</li>').join('') + '</ul></div>' +
     '<div class="act-checks"><p><strong>What the checks will find</strong></p><ul>' +
-    '<li><strong>Workload:</strong> about ' + hours + ' hours of activities' + (n === 1 ? ' (Module 1 aims for about 1.5 to 2).' : ' (aim for about 5 to 6).') + '</li>' +
+    '<li><strong>Workload:</strong> about ' + hours + ' hours of activities' + (n === 1 ? ' (Module 1 aims for about 1.5 to 2).' : ' (aim for roughly 6).') + '</li>' +
     '<li><strong>RSI:</strong> ' + cats.length + ' categories (' + cats.map(c => RSI[c]).join(', ') + '), counting the weekly announcements' + (n > 1 ? ' and the cohort session' : '') + '.</li>' +
     risks + '</ul></div>';
 }
