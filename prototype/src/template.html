@@ -193,7 +193,7 @@ summary { cursor: pointer; color: var(--muted); font-size: 14px; }
 .people .c21 { grid-area: 2 / 1; } .people .c22 { grid-area: 2 / 2; } .people .c23 { grid-area: 2 / 3; }
 .people .c31 { grid-area: 3 / 1; } .people .c32 { grid-area: 3 / 2; } .people .c33 { grid-area: 3 / 3; }
 .scen-picker { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; margin: 12px 0 16px; }
-.scen-picker button { text-align: left; background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; font: inherit; font-size: 14px; cursor: pointer; color: var(--ink); }
+.scen-picker button { display: flex; flex-direction: column; justify-content: flex-start; align-items: stretch; text-align: left; background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; font: inherit; font-size: 14px; cursor: pointer; color: var(--ink); }
 .scen-picker button:hover { border-color: var(--maroon); }
 .scen-picker button[aria-pressed="true"] { border: 2px solid var(--maroon); background: var(--tint); }
 .scen-picker .m { display: block; font-weight: 700; color: var(--maroon); font-size: 13px; }
