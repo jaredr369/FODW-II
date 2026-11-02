@@ -89,6 +89,22 @@ A planned activity:
 - Note | Module 1 is different: about 4 hours in all, with no cohort session, while students get oriented.
 :::
 
+::: fold How the time estimates work
+The AI estimates each activity's time, and you can change any estimate: it's the number of hours in
+parentheses on each line of your activities box. Add a due day too, such as "due Wed," so the
+checker can spot days when too much is due at once. Everything else uses these rates:
+
+- **Reading:** about 8 pages an hour (6 for dense material such as research articles, 10 for
+  lighter reading such as trade articles and cases).
+- **Video and audio:** playback time plus about a quarter, for pausing and notes.
+- **Cohort session:** 90 minutes, in Modules 2 to 8.
+
+Until you plan materials in Module 5 and media in Module 6, the checker assumes about 2 hours for
+readings and media (about 1 in Module 1). If your program director sets a different weekly target,
+enter it in your course details (step GS.2). For a fuller method, see Rice University's Course
+Workload Estimator: `src:ext-rice-workload`.
+:::
+
 **Your storyline supplies the activities.** Each scenario ends in a decision, and that is where
 the module's main activity belongs. One decision can become an assignment where students write a
 recommendation, a discussion where they argue what the character should do, or a short quiz that
@@ -170,7 +186,7 @@ because the instructor replies in its threads each Thursday.
 
 | Activity | CLO | Weight | Hours |
 |---|---|---|---|
-| Assignment: Feedback Conversation Script, Dana and Jordan | CLO 2 | High | 3 |
+| Assignment: Feedback Conversation Script, Dana and Jordan | CLO 2 | High | 4 |
 | Perusall: Feedback That Lands (Chapter 4) | CLO 2 | Low | 1.5 |
 | Interactive: Coaching or Discipline? Scenario Sort | CLO 2 | Low | 0.5 |
 
@@ -231,9 +247,17 @@ Your final activities for each module go in these boxes. Type in any box to chan
 **Redraft with AI** under a box to have the AI rewrite just that part. To work on another module,
 choose it above; what you've typed is kept.
 
-For each high-weight activity, decide what AI use is allowed and say so in the second box.
+For each high-weight activity, decide what AI use is allowed and say so in the second box. The week
+check below adds up the whole week as you type: your activities, readings and media, and the cohort
+session.
 
 ::: module-fields
+:::
+
+::: week-check
+:::
+
+::: workload-chart
 :::
 
 Checklist (for each module):
@@ -249,8 +273,9 @@ When you save each module, the tool checks:
 - **Alignment:** each activity traces to a CLO the module lists and uses its verb.
 - **RSI:** at least two categories of instructor activity, counting the cohort session and
   responsive weekly announcements if your interaction statement promises them.
-- **Workload:** activities total roughly 6 hours (about 1.5 to 2 in Module 1). The last module is
-  flagged if it runs much heavier than the others.
+- **Workload:** the whole week comes close to your weekly target, counting activities, readings and
+  media, and the cohort session (about 4 hours in Module 1). A week more than about 1 hour over or
+  1.5 hours under is flagged, and so is any day with more than about 4 hours of activity work due.
 - **AI risk:** each high-weight activity is rated high, medium, or low, with a suggested change for
   high and medium.
 - **Tools:** each third-party tool answers six questions: alignment, feedback quality, academic
@@ -271,9 +296,10 @@ module has a cohort session (assume yes for modules 2 to 8 unless told otherwise
    student-only activities are null unless the faculty member described instructor involvement.
 2. Count the categories the module covers, including the cohort session (4) and responsive weekly
    announcements (3) if the syllabus statement promises them.
-3. Total the activity hours.
-Flag modules with fewer than two categories, and modules whose activities exceed about 7 hours (2 hours
-in Module 1). For each flag, suggest one specific change.
+3. Total the activity hours, and total them by due day.
+Flag modules with fewer than two categories, and any due day with more than 4 hours of activity work.
+For each flag, suggest one specific change. The tool adds readings, media, and the cohort session to
+the activity hours and checks the week against the weekly target.
 
 Return: {"modules": [{"module": int, "activities": [{"title": string, "rsi": int | null, "reason": string}], "categories": [int], "hours": number, "flags": [string]}]}
 ```
@@ -303,6 +329,7 @@ Project file: `modules[].activities` (with `rsi`, `hours`, `aiRisk`, `aiPolicy`,
 - `src:reading-m4-crafting-part-1`, `src:reading-m4-crafting-part-2`
 - `src:guide-learning-activities`, `src:guide-rubrics`, `src:guide-third-party-tools`
 - `src:ext-tamu-ai-guidelines`, `src:ext-terry-2023`
+- `src:ext-rice-workload`: estimate student time by reading difficulty and writing type.
 - `src:assignment-m4-course-tutor` and `src:ext-bowen-watson-2025-ch15`: build an AI tutor for
   your students, or a grading assistant for yourself, in Google Gemini, outside this tool.
 
@@ -340,7 +367,7 @@ Here's MGMT 615's Module 3 week as a student would live it, and what the instruc
 - Wed | Coaching-or-discipline sort (30 minutes).
 - Thu | The instructor replies in Perusall. Cohort session: rehearse the opening of the conversation with a partner.
 - Fri |
-- Sat | Draft the whole feedback script and annotate each line (about 3 hours).
+- Sat | Draft the whole feedback script and annotate each line (about 4 hours).
 - Sun |
 - Note | The heaviest point is Saturday: the whole script in one sitting. The instructor's fix: open the script on Wednesday and make it due Sunday, so students can start it after the cohort session.
 :::
@@ -373,9 +400,9 @@ Tuesday I spend about an hour and a half annotating the feedback chapter in Peru
 night I do the 30-minute coaching-or-discipline sort. Thursday the instructor replies to my
 Perusall thread with a question about Jordan, and in the cohort session I rehearse the opening of
 the conversation with a partner. Saturday I draft the whole feedback script and annotate why each
-line is there, about three hours. I hear from the instructor three times this week."
+line is there, about four hours. I hear from the instructor three times this week."
 
-- **Total:** about 5 hours of activities, plus the 90-minute cohort session.
+- **Total:** about 6 hours of activities, plus the 90-minute cohort session.
 - **Heaviest point:** Saturday, the whole script in one sitting.
 - **Days without contact:** none.
 - **Unclear purpose:** none.

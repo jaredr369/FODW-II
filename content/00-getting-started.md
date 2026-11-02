@@ -203,6 +203,7 @@ Fill in a few details about your course. There's no AI draft in this step.
 | Credit hours | Yes | 3 |
 | Degree or certificate program | Yes | MS in Management |
 | First term taught online | No | Fall 2027 |
+| Weekly hours target | No | 10, unless your program director sets another |
 | Track | Yes | Refresh |
 
 ### Review (refresh)

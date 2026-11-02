@@ -67,6 +67,9 @@ Then look at the whole week. With activities, materials, media, and the cohort s
 planned, the week-in-your-student's-shoes walk-through can now show the full week: about 4 hours in
 Module 1 and close to 10 in the rest.
 
+::: workload-chart
+:::
+
 ### See it
 
 MGMT 615's final check found three things. Module 1 came to about 6.5 hours against a 4-hour
@@ -85,7 +88,8 @@ Check the whole planning document. For each module, confirm the story thread: sc
 decision; an activity at the decision; materials that prepare students for it; media tied to the
 scenario or a note; a cohort session that builds on it. Total the week's hours (activities,
 reading at about 6 pages an hour for dense reading, video minutes, 90-minute cohort session) and
-flag Module 1 if it is far from about 4 hours, and any other week under 8 or over 11 hours. List every section that is empty or still a placeholder,
+flag Module 1 if it is far from about 4 hours, and any other week more than 1.5 hours under or 1 hour over
+the weekly target (10 unless the program sets another). List every section that is empty or still a placeholder,
 and every earlier flag kept without a note. Then list the three most important fixes across the
 course, most important first.
 

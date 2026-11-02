@@ -462,6 +462,15 @@
       "notes": "The course map gives pp. 131-151, which is Chapter 7's range. The PDF's printed page numbers show Chapter 15 on pp. 124-133. The PDF sits in the Module 6 folder."
     },
     {
+      "id": "ext-rice-workload",
+      "kind": "ext",
+      "title": "Course workload estimator",
+      "citation": "Rice University Center for Teaching Excellence. (n.d.). Course workload estimator.",
+      "module": "m4",
+      "use": "supplemental",
+      "url": "https://cte.rice.edu/resources/workload-estimator"
+    },
+    {
       "id": "ext-terry-2023",
       "kind": "ext",
       "title": "I'm a student. You have no idea how much we're using ChatGPT.",

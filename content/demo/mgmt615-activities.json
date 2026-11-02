@@ -13,7 +13,8 @@
           "weight": "low",
           "hours": 1,
           "rsi": 4,
-          "aiRisk": "low"
+          "aiRisk": "low",
+          "due": "Wed"
         },
         {
           "type": "Assignment",
@@ -24,7 +25,8 @@
           "weight": "medium",
           "hours": 3,
           "rsi": 2,
-          "aiRisk": "medium"
+          "aiRisk": "medium",
+          "due": "Sun"
         },
         {
           "type": "Quiz",
@@ -35,7 +37,8 @@
           "weight": "low",
           "hours": 0.5,
           "rsi": null,
-          "aiRisk": "low"
+          "aiRisk": "low",
+          "due": "Thu"
         }
       ],
       "review": [
@@ -54,9 +57,10 @@
             "CLO 1"
           ],
           "weight": "high",
-          "hours": 3,
+          "hours": 4,
           "rsi": 2,
-          "aiRisk": "medium"
+          "aiRisk": "medium",
+          "due": "Sun"
         },
         {
           "type": "Quiz",
@@ -67,7 +71,8 @@
           "weight": "low",
           "hours": 0.5,
           "rsi": null,
-          "aiRisk": "low"
+          "aiRisk": "low",
+          "due": "Thu"
         },
         {
           "type": "Interactive",
@@ -78,7 +83,8 @@
           "weight": "low",
           "hours": 0.5,
           "rsi": null,
-          "aiRisk": "low"
+          "aiRisk": "low",
+          "due": "Wed"
         }
       ],
       "review": [
@@ -95,9 +101,10 @@
             "CLO 2"
           ],
           "weight": "high",
-          "hours": 3,
+          "hours": 4,
           "rsi": 2,
-          "aiRisk": "high"
+          "aiRisk": "high",
+          "due": "Sun"
         },
         {
           "type": "Perusall",
@@ -108,7 +115,8 @@
           "weight": "low",
           "hours": 1.5,
           "rsi": 4,
-          "aiRisk": "low"
+          "aiRisk": "low",
+          "due": "Thu"
         },
         {
           "type": "Interactive",
@@ -119,7 +127,8 @@
           "weight": "low",
           "hours": 0.5,
           "rsi": null,
-          "aiRisk": "low"
+          "aiRisk": "low",
+          "due": "Wed"
         }
       ],
       "review": [
@@ -136,9 +145,10 @@
             "CLO 3"
           ],
           "weight": "high",
-          "hours": 3,
+          "hours": 4,
           "rsi": 2,
-          "aiRisk": "medium"
+          "aiRisk": "medium",
+          "due": "Sun"
         },
         {
           "type": "Discussion",
@@ -149,7 +159,8 @@
           "weight": "low",
           "hours": 1,
           "rsi": 4,
-          "aiRisk": "low"
+          "aiRisk": "low",
+          "due": "Wed"
         }
       ],
       "review": [
@@ -167,9 +178,10 @@
             "CLO 2"
           ],
           "weight": "high",
-          "hours": 3,
+          "hours": 4,
           "rsi": 2,
-          "aiRisk": "medium"
+          "aiRisk": "medium",
+          "due": "Sun"
         },
         {
           "type": "Interactive",
@@ -180,7 +192,8 @@
           "weight": "low",
           "hours": 0.5,
           "rsi": null,
-          "aiRisk": "low"
+          "aiRisk": "low",
+          "due": "Wed"
         },
         {
           "type": "Perusall",
@@ -191,7 +204,8 @@
           "weight": "low",
           "hours": 1.5,
           "rsi": null,
-          "aiRisk": "low"
+          "aiRisk": "low",
+          "due": "Thu"
         }
       ],
       "review": [
@@ -208,9 +222,10 @@
             "CLO 4"
           ],
           "weight": "high",
-          "hours": 3,
+          "hours": 4,
           "rsi": 2,
-          "aiRisk": "medium"
+          "aiRisk": "medium",
+          "due": "Sun"
         },
         {
           "type": "Quiz",
@@ -221,7 +236,8 @@
           "weight": "low",
           "hours": 0.5,
           "rsi": null,
-          "aiRisk": "low"
+          "aiRisk": "low",
+          "due": "Thu"
         }
       ],
       "review": []
@@ -236,9 +252,10 @@
             "CLO 5"
           ],
           "weight": "high",
-          "hours": 3,
+          "hours": 4,
           "rsi": 2,
-          "aiRisk": "high"
+          "aiRisk": "high",
+          "due": "Sun"
         },
         {
           "type": "Discussion",
@@ -249,7 +266,8 @@
           "weight": "low",
           "hours": 1,
           "rsi": 4,
-          "aiRisk": "low"
+          "aiRisk": "low",
+          "due": "Wed"
         }
       ],
       "review": []
@@ -264,9 +282,10 @@
             "CLO 6"
           ],
           "weight": "high",
-          "hours": 3,
+          "hours": 4,
           "rsi": 2,
-          "aiRisk": "medium"
+          "aiRisk": "medium",
+          "due": "Sun"
         },
         {
           "type": "Assignment",
@@ -282,11 +301,12 @@
           "weight": "high",
           "hours": 3,
           "rsi": 2,
-          "aiRisk": "high"
+          "aiRisk": "high",
+          "due": "Sun"
         }
       ],
       "review": [
-        "Two high-stakes assignments in the last week, about 6 hours before readings and the cohort session. Consider moving the Management Approach Summary's first draft into Module 7 or shortening it."
+        "Two high-stakes assignments in the last week, about 7 hours, both due Sunday. Consider moving the Management Approach Summary's first draft into Module 7 or shortening it."
       ]
     }
   ],
