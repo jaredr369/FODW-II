@@ -80,8 +80,9 @@ Flex Online courses are planned backward (Wiggins & McTighe, 2005), and so is th
 ::: figure backward | Planned backward: the order of this workshop
 - Outcomes | What students should be able to do at the end | Module 1
 - Evidence | How you'll see it: activities and assessments | Module 4
-- Learning | What students read, watch, and do live | Modules 5 to 7
-- Note | Modules 2 and 3 add the story that ties them together, and Module 8 checks the whole plan.
+- Learning | What students read, watch, and listen to | Modules 5 and 6
+- Note | Modules 2 and 3 add the story that ties them together, Module 7 plans the live sessions, and Module 8 checks the whole plan.
+- Credit | Adapted from Wiggins and McTighe (2005).
 :::
 
 Start with who the students are. They're working professionals who connect new ideas to their own
@@ -350,6 +351,7 @@ levels, from least to most demanding:
 - Analyze | Break a situation into parts and see how they relate. | analyze, diagnose, compare, differentiate
 - Evaluate | Judge options against criteria and defend a choice. | evaluate, assess, justify, defend
 - Create | Put ideas together into something new, such as a plan, design, or proposal. | design, develop, construct, draft
+- Credit | Adapted from Anderson and Krathwohl (2001).
 :::
 
 For more example verbs, see Texas A&M's
@@ -544,12 +546,12 @@ The Course Planning Document has room for eight modules. Give each a title a stu
 understand on day one. Start from the CLOs: list what students need to know or practice to meet each
 one, then cut any topic they don't need to meet a CLO.
 
-Every module should trace back to your CLOs, and through them to the catalog and your program.
-Here's one thread through MGMT 615:
+Every module should trace back to your CLOs, and through them to the catalog and your program's
+outcomes. Here's one thread through MGMT 615:
 
-::: figure trace | One thread in MGMT 615, from program outcome to modules
-- Program outcome | PLO 1: Lead individuals and teams to meet organizational goals.
+::: figure trace | One thread in MGMT 615, from catalog promise to modules
 - Catalog commitment | Diagnose why employees and teams underperform.
+- Program outcomes it supports | PLO 2: Analyze business problems using evidence and established frameworks. PLO 1: Lead individuals and teams to meet organizational goals.
 - Vision | "When someone on their team struggles, students find out what is actually wrong before they act."
 - CLO 1 | Diagnose why an employee or team is underperforming using core theories of motivation and performance.
 - Modules | Module 1, What Managers Actually Do; Module 2, Motivating People; Module 4, Building and Leading Teams; Module 8, Hiring and Building Your Team.

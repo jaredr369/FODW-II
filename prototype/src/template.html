@@ -44,7 +44,10 @@ nav .bar span { display: block; height: 100%; background: var(--ok); }
 .steps-btn { display: none; }
 /* One centered column: text, tables and boxes share the same edges, and the body text is a little
    larger so the longer lines stay easy to read. */
-main { padding: 24px clamp(16px, 4vw, 48px) 80px; min-width: 0; width: 100%; max-width: 1100px; margin: 0 auto; font-size: 17px; }
+main { padding: 24px clamp(16px, 4vw, 48px) 24px; min-width: 0; width: 100%; max-width: 1100px; margin: 0 auto; font-size: 17px; }
+.main-wrap { min-width: 0; }
+.credits { max-width: 1100px; margin: 0 auto; padding: 8px clamp(16px, 4vw, 48px) 48px; font-size: 12.5px; color: var(--muted); }
+.fig-credit { margin: 12px 0 0; font-size: 12.5px; color: var(--muted); }
 .crumb { color: var(--muted); font-size: 14px; margin: 0 0 4px; }
 /* Banners: an original maroon design (no logos). The large one opens the welcome page; a thin one
    names the module at the top of every step. The art is decorative; the text carries the meaning. */
@@ -116,9 +119,9 @@ summary { cursor: pointer; color: var(--muted); font-size: 14px; }
 .tl .you { display: inline-block; margin: 2px 0; padding: 1px 7px; border-radius: 9px; background: var(--maroon); color: #fff; font-size: 12px; font-weight: 600; }
 .tl .note { display: block; color: var(--muted); }
 /* backward design */
-.bw { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.bw { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
 .bw li { position: relative; background: var(--tint); border-radius: 8px; padding: 12px 14px 12px 50px; font-size: 15px; }
-.bw li + li::before { content: "→"; position: absolute; left: -12px; top: 50%; transform: translateY(-50%); color: var(--maroon); font-weight: 700; }
+.bw li + li::before { content: "→"; position: absolute; left: -36px; top: 50%; transform: translateY(-50%); width: 32px; text-align: center; font-size: 30px; line-height: 1; color: var(--maroon); font-weight: 700; }
 .bw .n { position: absolute; left: 12px; top: 12px; width: 28px; height: 28px; border-radius: 50%; background: var(--maroon); color: #fff; font-weight: 700; display: grid; place-items: center; }
 .bw strong { display: block; }
 .bw span { display: block; }
@@ -239,8 +242,8 @@ body.editing main { padding-bottom: 140px; }
   .tl { grid-template-columns: 1fr; }
   .tl::before { left: 8px; right: auto; top: 8px; bottom: 8px; width: 3px; height: auto; }
   .tl li { padding: 0 0 14px 30px; }
-  .bw { grid-template-columns: 1fr; }
-  .bw li + li::before { content: "↓"; left: 50%; top: -14px; transform: none; }
+  .bw { grid-template-columns: 1fr; gap: 34px; }
+  .bw li + li::before { content: "↓"; left: 50%; top: -33px; transform: translateX(-50%); }
   .people .spokes { display: none; }
   .people ul { grid-template-columns: 1fr; }
   .people li { grid-area: auto !important; }
@@ -267,7 +270,7 @@ body.editing main { padding-bottom: 140px; }
 <div class="layout">
   <button type="button" class="steps-btn" id="stepsBtn" aria-expanded="false" aria-controls="nav">Steps</button>
   <nav id="nav" aria-label="Workshop modules"></nav>
-  <main id="main" tabindex="-1"></main>
+  <div class="main-wrap"><main id="main" tabindex="-1"></main><footer class="credits" id="credits"></footer></div>
 </div>
 <aside class="doc" id="doc" hidden aria-label="Course Planning Document preview"></aside>
 <div class="editbar" id="editbar" hidden role="region" aria-label="Edit mode">
@@ -593,9 +596,18 @@ function md(text, opts = {}) {
 }
 // Infographics. Each takes the rows from a ::: figure block and returns plain HTML, so the text
 // reflows on a phone and reads aloud in order. Lines and dots are aria-hidden decoration.
+// Image credits follow TASL (Title, Author, Source, License). A "- Credit | Adapted from ..." row adds
+// what a figure is based on.
+const CREDIT = { author: 'Mays Teaching & Learning Innovation, created with AI assistance (Claude)', source: 'Flex Online Design Workshop II',
+  license: 'CC BY-NC 4.0', url: 'https://creativecommons.org/licenses/by-nc/4.0/' };
+function credit(title, adapted) {
+  return '“' + esc(title) + '” by ' + esc(CREDIT.author) + ', from ' + esc(CREDIT.source) + ', is licensed under <a href="' + CREDIT.url + '" target="_blank" rel="noopener">' + CREDIT.license + '</a>.' + (adapted ? ' ' + inline(adapted) : '');
+}
 function figure(type, title, rows) {
+  const adapted = rows.filter(r => r[0] === 'Credit').map(r => r.slice(1).join(' | ')).join(' ');
+  rows = rows.filter(r => r[0] !== 'Credit');
   const cap = '<figcaption>' + inline(title || '') + '</figcaption>';
-  const wrap = body => '<figure class="fig fig-' + esc(type) + '">' + cap + body + '</figure>';
+  const wrap = body => '<figure class="fig fig-' + esc(type) + '">' + cap + body + '<p class="fig-credit">' + credit(title || '', adapted) + '</p></figure>';
   if (type === 'timeline') return wrap('<ol class="tl" style="--n:' + rows.length + '">' + rows.map(([name, note, here]) =>
     '<li' + (here === 'here' ? ' class="here"' : '') + '><span class="dot" aria-hidden="true"></span><strong>' + inline(name) + '</strong>' +
     (here === 'here' ? '<span class="you">You are here</span>' : '') + '<span class="note">' + inline(note || '') + '</span></li>').join('') + '</ol>');
@@ -938,6 +950,7 @@ function render() {
   renderNav();
   SRC = []; CUR = null;
   $('#main').innerHTML = state.at === 'welcome' ? renderWelcome() : renderStep(state.at);
+  $('#credits').innerHTML = 'Banner image: ' + credit('Storyline path', '');
   CUR = null;
   if (!$('#doc').hidden) $('#doc').innerHTML = renderDoc();
   decorate();
