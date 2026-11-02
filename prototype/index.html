@@ -28,8 +28,24 @@ nav h2 { font-size: 13px; text-transform: uppercase; letter-spacing: .04em; colo
 nav button { display: flex; gap: 8px; width: 100%; text-align: left; background: none; border: 0; padding: 6px 16px; font: inherit; font-size: 14px; color: var(--ink); cursor: pointer; align-items: baseline; }
 nav button:hover { background: var(--tint); }
 nav button[aria-current="page"] { background: var(--tint); font-weight: 600; box-shadow: inset 3px 0 0 var(--maroon); }
-nav .mark { width: 16px; flex: none; color: var(--ok); }
-main { padding: 24px clamp(16px, 4vw, 48px) 80px; max-width: 900px; }
+nav .mark { width: 16px; flex: none; color: var(--muted); }
+nav .mark.done { color: var(--ok); font-weight: 700; }
+nav h2 { margin: 6px 0 0; }
+nav .modhead { font-size: 13px; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); font-weight: 600; padding: 8px 16px; gap: 6px; }
+nav .modhead .mt { flex: 1; }
+nav .modhead .chev { width: 12px; flex: none; }
+nav .count { text-transform: none; letter-spacing: 0; font-weight: 500; white-space: nowrap; }
+nav .count.all { color: var(--ok); }
+nav .progress { padding: 0 16px 10px; border-bottom: 1px solid var(--line); margin-bottom: 6px; }
+nav .progress p { margin: 0 0 6px; font-size: 14px; font-weight: 600; }
+nav .bar { height: 8px; background: var(--tint); border-radius: 4px; overflow: hidden; }
+nav .bar span { display: block; height: 100%; background: var(--ok); }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.steps-btn { display: none; }
+main { padding: 24px clamp(16px, 4vw, 48px) 80px; min-width: 0; }
+/* Boxes, tables and forms use the full width; running text keeps a readable line length. */
+main p, main li, main .meta, main details > summary { max-width: 85ch; }
+main .plan-page p, main .plan-page li, main td p { max-width: none; }
 .crumb { color: var(--muted); font-size: 14px; margin: 0 0 4px; }
 main h2.step { font-size: 28px; margin: 0 0 6px; color: var(--maroon); }
 .meta { color: var(--muted); font-size: 14px; margin-bottom: 18px; }
@@ -96,7 +112,10 @@ body.editing main { padding-bottom: 140px; }
 .editbar .msg { flex: 1; min-width: 240px; }
 @media (max-width: 760px) {
   .layout { grid-template-columns: minmax(0, 1fr); }
-  nav { position: static; max-height: 38vh; border-right: 0; border-bottom: 1px solid var(--line); }
+  nav { position: static; max-height: none; border-right: 0; border-bottom: 1px solid var(--line); display: none; }
+  body.nav-open nav { display: block; }
+  .steps-btn { display: block; width: 100%; text-align: left; background: #fff; border: 0; border-bottom: 1px solid var(--line); padding: 12px 16px; font: inherit; font-weight: 600; color: var(--maroon); cursor: pointer; }
+  .steps-btn::before { content: "☰  "; }
   header { position: static; }
   .doc { inset: 0; }
   .choice { grid-template-columns: 1fr; }
@@ -117,6 +136,7 @@ body.editing main { padding-bottom: 140px; }
   <button type="button" class="hbtn" id="docBtn" aria-expanded="false" aria-controls="doc">Planning document</button>
 </header>
 <div class="layout">
+  <button type="button" class="steps-btn" id="stepsBtn" aria-expanded="false" aria-controls="nav">Steps</button>
   <nav id="nav" aria-label="Workshop modules"></nav>
   <main id="main" tabindex="-1"></main>
 </div>
@@ -430,18 +450,28 @@ function shown(section) {
   return Object.entries(STEP_DOC).some(([k, v]) => v.includes(section) && state.done[k]);
 }
 
+// Navigation: a progress line, then one collapsible group per module with a "2 of 4" count.
+// The current module opens on its own; selecting a module heading opens or closes it.
+let navOpen = {};
+const isDone = go => !!state.done[/:(reflection|prep)$/.test(go) ? go : go.split(':')[1]];
 function renderNav() {
-  let h = '<button type="button" data-go="welcome"' + (state.at === 'welcome' ? ' aria-current="page"' : '') + '><span class="mark"></span>Welcome</button>';
+  const all = order().slice(1), n = all.filter(isDone).length, cur = state.at.split(':')[0];
+  const progress = n + ' of ' + all.length + ' steps done';
+  $('#stepsBtn').textContent = 'Steps: ' + progress;
+  $('#stepsBtn').setAttribute('aria-expanded', String(document.body.classList.contains('nav-open')));
+  let h = '<div class="progress"><p>' + (state.track ? progress : 'Choose a track to start') + '</p><div class="bar" role="progressbar" aria-label="Workshop progress" aria-valuemin="0" aria-valuemax="' + all.length + '" aria-valuenow="' + n + '"><span style="width:' + (all.length ? 100 * n / all.length : 0) + '%"></span></div></div>';
+  h += '<button type="button" data-go="welcome"' + (state.at === 'welcome' ? ' aria-current="page"' : '') + '><span class="mark" aria-hidden="true"></span>Welcome</button>';
   for (const m of MODULES) {
-    h += '<h2>' + esc(m.title.replace(/^Module (\d+)\. /, 'M$1 · ')) + '</h2>';
-    if (m.reflection && state.track === 'refresh') h += navBtn(m.id + ':reflection', 'Reflection', state.done[m.id + ':reflection']);
-    for (const s of m.steps) h += navBtn(m.id + ':' + s.key, s.title.replace(/\s*\(optional\)/, ''), state.done[s.key]);
-    if (m.prep) h += navBtn(m.id + ':prep', 'Check-in prep', state.done[m.id + ':prep']);
+    const keys = all.filter(k => k.split(':')[0] === m.id), d = keys.filter(isDone).length;
+    const open = m.id in navOpen ? navOpen[m.id] : m.id === cur;
+    h += '<h2><button type="button" class="modhead" data-mod="' + m.id + '" aria-expanded="' + open + '"><span class="chev" aria-hidden="true">' + (open ? '▾' : '▸') + '</span>' +
+      '<span class="mt">' + esc(m.title.replace(/^Module (\d+)\. /, 'M$1 · ')) + '</span><span class="count' + (d === keys.length ? ' all' : '') + '">' + d + ' of ' + keys.length + '</span></button></h2>';
+    if (open) h += keys.map(k => navBtn(k, k.endsWith(':reflection') ? 'Reflection' : k.endsWith(':prep') ? 'Check-in prep' : m.steps.find(s => m.id + ':' + s.key === k).title.replace(/\s*\(optional\)/, ''), isDone(k))).join('');
   }
   $('#nav').innerHTML = h;
 }
 function navBtn(go, label, done) {
-  return '<button type="button" data-go="' + esc(go) + '"' + (state.at === go ? ' aria-current="page"' : '') + '><span class="mark" aria-hidden="true">' + (done ? '✓' : '') + '</span><span>' + esc(label) + (done ? '<span class="sr-only" style="position:absolute;left:-9999px"> (done)</span>' : '') + '</span></button>';
+  return '<button type="button" data-go="' + esc(go) + '"' + (state.at === go ? ' aria-current="page"' : '') + '><span class="mark' + (done ? ' done' : '') + '" aria-hidden="true">' + (done ? '✓' : '○') + '</span><span>' + esc(label) + '<span class="sr-only">' + (done ? ' (done)' : ' (not done)') + '</span></span></button>';
 }
 function order() {
   const list = ['welcome'];
@@ -452,7 +482,7 @@ function order() {
   }
   return list;
 }
-function go(where) { state.at = where; save(); render(); $('#main').focus(); window.scrollTo(0, 0); }
+function go(where) { state.at = where; delete navOpen[where.split(':')[0]]; document.body.classList.remove('nav-open'); save(); render(); $('#main').focus(); window.scrollTo(0, 0); }
 function next() { const o = order(); const i = o.indexOf(state.at); if (i < o.length - 1) go(o[i + 1]); }
 
 function renderWelcome() {
@@ -646,6 +676,8 @@ document.addEventListener('click', e => { if (editable(e.target) && e.target.clo
 document.addEventListener('click', e => {
   const t = e.target.closest('button, input'); if (!t) return;
   if (t.dataset.track) { state.track = t.dataset.track; save(); render(); return; }
+  if (t.dataset.mod) { navOpen[t.dataset.mod] = t.getAttribute('aria-expanded') !== 'true'; renderNav(); $('[data-mod="' + t.dataset.mod + '"]').focus(); return; }
+  if (t.id === 'stepsBtn') { const open = document.body.classList.toggle('nav-open'); t.setAttribute('aria-expanded', String(open)); return; }
   if (t.dataset.go) { go(t.dataset.go); return; }
   if (t.hasAttribute('data-next')) { next(); return; }
   if (t.id === 'reset') { state = { track: null, done: {}, at: 'welcome', showAll: false }; save(); render(); return; }
