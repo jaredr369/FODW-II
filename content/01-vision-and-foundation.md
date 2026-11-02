@@ -315,6 +315,9 @@ levels, from least to most demanding:
 5. **Evaluate:** judge options against criteria and defend a choice.
 6. **Create:** put ideas together into something new, such as a plan, design or proposal.
 
+For a diagram of the six levels with more example verbs, see Texas A&M's
+[Academic Success Center overview of Bloom's taxonomy](https://asc.tamu.edu/tutoring/bloom.html).
+
 Start each CLO with one action verb at the apply level or higher, mostly analyze, evaluate or
 create. Your students are experienced professionals; they need to use and judge ideas, not just
 recall them. Avoid verbs like "understand" or "know." You can't see them happen, so you can't
@@ -466,6 +469,8 @@ Project file: `clos` (text, verb, level, commitments, programOutcomes, decision)
 
 - `src:guide-learning-objectives`: verb tables and the case for higher-order objectives.
 - `src:ext-anderson-krathwohl-2001`
+- `src:ext-tamu-asc-bloom`: Texas A&M's overview of the levels, written for students. Useful if
+  you want to show your students what each level asks of them.
 
 ---
 

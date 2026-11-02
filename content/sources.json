@@ -158,6 +158,15 @@
       "use": "supplemental"
     },
     {
+      "id": "ext-tamu-asc-bloom",
+      "kind": "ext",
+      "title": "Bloom's taxonomy",
+      "citation": "Academic Success Center, Texas A&M University. (n.d.). Bloom's taxonomy.",
+      "module": "m1",
+      "use": "supplemental",
+      "url": "https://asc.tamu.edu/tutoring/bloom.html"
+    },
+    {
       "id": "ext-cast-2018",
       "kind": "ext",
       "title": "Universal Design for Learning guidelines",
