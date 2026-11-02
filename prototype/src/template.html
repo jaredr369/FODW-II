@@ -148,9 +148,9 @@ summary { cursor: pointer; color: var(--muted); font-size: 14px; }
   .stairs li { min-height: 0 !important; border-radius: 0 8px 8px 0; padding: 8px 12px; }
   .stairs .s1 { width: 50%; } .stairs .s2 { width: 60%; } .stairs .s3 { width: 70%; }
   .stairs .s4 { width: 80%; } .stairs .s5 { width: 90%; } .stairs .s6 { width: 100%; }
-  .week { grid-template-columns: 1fr; }
-  .week li { min-height: 0; }
-  .week li.off { display: none; }
+  .fig .week { grid-template-columns: 1fr; }
+  .fig .week li { min-height: 0; }
+  .fig .week li.off { display: none; }
 }
 @container (max-width: 520px) {
   .stairs li { width: 100% !important; }
@@ -175,9 +175,9 @@ summary { cursor: pointer; color: var(--muted); font-size: 14px; }
 /* week strip */
 .week { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; }
 .week li { border-radius: 8px; padding: 8px; min-height: 92px; font-size: 13.5px; background: #f6f3f1; }
-.week li strong { display: block; font-size: 13px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); }
+.week li strong.day { display: block; margin-bottom: 4px; font-size: 14px; color: var(--muted); text-decoration: underline; text-underline-offset: 3px; }
 .week li.on { background: var(--tint); border-top: 4px solid var(--maroon); }
-.week li.on strong { color: var(--maroon); }
+.week li.on strong.day { color: var(--maroon); }
 /* relationship map */
 .people { position: relative; }
 .people .spokes { position: absolute; inset: 0; width: 100%; height: 100%; }
@@ -814,6 +814,7 @@ const CREDIT = { author: 'Mays Teaching & Learning Innovation, created with AI a
 function credit(title, adapted) {
   return '“' + esc(title) + '” by ' + esc(CREDIT.author) + ', from ' + esc(CREDIT.source) + ', is licensed under <a href="' + CREDIT.url + '" target="_blank" rel="noopener">' + CREDIT.license + '</a>.' + (adapted ? ' ' + inline(adapted) : '');
 }
+const DAYNAME = { Mon: 'Monday', Tue: 'Tuesday', Wed: 'Wednesday', Thu: 'Thursday', Fri: 'Friday', Sat: 'Saturday', Sun: 'Sunday' };
 function figure(type, title, rows) {
   const adapted = rows.filter(r => r[0] === 'Credit').map(r => r.slice(1).join(' | ')).join(' ');
   rows = rows.filter(r => r[0] !== 'Credit');
@@ -860,7 +861,7 @@ function figure(type, title, rows) {
   }
   if (type === 'week') {
     const notes = rows.filter(r => r[0] === 'Note'), days = rows.filter(r => r[0] !== 'Note');
-    return wrap('<ol class="week">' + days.map(([day, what]) => '<li class="' + (what ? 'on' : 'off') + '"><strong>' + inline(day) + '</strong>' + (what ? '<span>' + inline(what) + '</span>' : '<span class="sr-only">nothing scheduled</span>') + '</li>').join('') + '</ol>' +
+    return wrap('<ol class="week">' + days.map(([day, what]) => '<li class="' + (what ? 'on' : 'off') + '"><strong class="day">' + esc(DAYNAME[day] || day) + '</strong>' + (what ? '<span>' + inline(what) + '</span>' : '<span class="sr-only">nothing scheduled</span>') + '</li>').join('') + '</ol>' +
       notes.map(r => '<p class="fig-note">' + inline(r[1] || '') + '</p>').join(''));
   }
   if (type === 'people') {
