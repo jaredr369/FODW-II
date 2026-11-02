@@ -67,22 +67,22 @@ effort to produce:
 | Curated reading (article, chapter, report, case) | Lowest | A good source exists. This is the default. |
 | Curated video | Low | An existing video covers it well, in 6 to 10 minutes or less. |
 | Instructor-authored reading (4 to 10 pages) | Several hours each | Nothing curated fits, or your own experience is the point. |
-| Interactive reading (built by your ID) | High | Complex content that benefits from short sections and checks. |
+| Interactive reading (built by your ID) | High | Complex content that benefits from short sections and knowledge checks. |
 | Instructor-recorded video | Highest | Planned in Module 6, up to 30 minutes of scripted video and audio a module. |
 
 **Your scenario is a material too.** The narrative, and any exhibits the character works from (an
 email from a boss, a dashboard, a complaint), are created content. List them.
 
-**Finding sources with AI.** Perplexity is licensed through the university and cites its sources,
-which makes its suggestions easy to check. Describe the CLO, topic, your students, and the kind
-of source you want. Check every suggestion before you list it: authored by someone credible,
-current, stable, and tied to an objective. Start with TAMU Libraries, and link to the library
-record instead of uploading a PDF.
+**Finding sources with AI.** TAMU AI Chat allows you to sign in with your university credentials and
+offers several AI models to choose from. Describe the CLO, topic, your students, and the kind of
+source you want. Check every suggestion before you list it. Each source should have a credible
+author, be current and stable, and tie to an objective. You can also search TAMU Libraries. Link to
+the library record instead of uploading a PDF, so there's no file to manage in Canvas.
 
-**Load.** Plan 5 to 25 pages of required reading a module, adjusted for density. At 6 to 10 pages an
-hour, that's about 1 to 3 hours. With up to 30 minutes of scripted video and audio, a few short
-curated videos, roughly 6 hours of activities, and the 90-minute cohort session, the week stays
-close to 10 hours. Module 1 targets about 4 hours in all, so keep its reading to a few pages.
+**Load.** Plan 5 to 25 pages of required reading per module, adjusted for density. At 6 to 10 pages
+an hour, that's about 1 to 3 hours. With up to 30 minutes of scripted video and audio, a few short
+curated videos, roughly 6 hours of activities, and the 90-minute cohort session, the week comes to
+close to 10 hours. Module 1 targets about 4 hours in all, so keep any reading in it light.
 
 ### See it
 
@@ -106,11 +106,11 @@ about 21 pages.
 ### Draft (full build) and Review (refresh)
 
 Work through your modules one at a time. Choose a module, then select the button below. The AI
-suggests what the module's materials should cover, from its CLOs, topics, scenario, and
-activities. It can't check that a specific source exists, so it never names one: for each curated
-reading it gives a search prompt you can paste into Perplexity or the TAMU Libraries search. Select
-**Use these materials** to copy the list into the boxes under Decide, then replace each suggestion
-with the source you choose.
+suggests what the module's materials should cover, from its CLOs, topics, scenario, and activities.
+It can't check that a specific source exists, so it never names one: for each curated reading it
+gives a search prompt you can paste into TAMU AI Chat or the TAMU Libraries search. Select **Use
+these materials** to copy the list into the boxes under Decide, then replace each suggestion with
+the source you choose.
 
 ::: refresh
 The AI starts from your Course Map's current materials for the module. It checks each one, says
@@ -129,7 +129,7 @@ Each item gives: type (curated reading, curated video, instructor-authored readi
 reading, scenario exhibit), what it must cover, the activity it prepares students for, and an
 estimated page count or minutes. Prefer curated types. Always include the scenario narrative and any
 exhibits the character works from. Never name a specific article, book, author, or video. For each
-curated item, write one search prompt the faculty member can paste into Perplexity or the TAMU
+curated item, write one search prompt the faculty member can paste into TAMU AI Chat or the TAMU
 Libraries search.
 
 Return: {"items": [{"type": string, "covers": string, "supports": string, "pages": number | null, "minutes": number | null, "searchPrompt": string | null}]}
