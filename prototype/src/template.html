@@ -471,12 +471,14 @@ function codeBlock(lang, code, opts) {
   return '<pre' + tag('pre', code) + '>' + esc(code) + '</pre>';
 }
 // AI instructions are hard-wrapped in the content files. Join each paragraph and list item onto one
-// line so it wraps to the box; the "Return:" format and anything after it stays as written.
+// line so it wraps to the box. The "Return:" format is for the software only, so faculty never see
+// it: it and anything after it are left out of the box (apply_edits keeps it in the content file).
 function reflow(code) {
-  return code.split(/\n[ \t]*\n/).map(b => {
-    const out = []; let verbatim = false, inItem = false;
+  const at = code.search(/(^|\n)Return:/);
+  if (at >= 0) code = code.slice(0, at);
+  return code.trim().split(/\n[ \t]*\n/).map(b => {
+    const out = []; let inItem = false;
     for (const l of b.split('\n')) {
-      if (verbatim || /^Return:/.test(l)) { verbatim = true; out.push(l); continue; }
       // A list item continues only on indented lines; an unindented line after it starts a new line.
       const item = /^\s*(-|\d+\.)\s/.test(l);
       if (!out.length || item || (inItem && !/^\s/.test(l))) { out.push(l.replace(/\s+$/, '')); inItem = item; }

@@ -34,6 +34,8 @@ Each step has the same parts, in this order:
 - **See it**: the MGMT 615 example (Dana Ortiz course).
 - **Draft** (full build track) and **Review** (refresh track): what the AI does. Each has an
   `AI instructions` block for the app and a `Demo response` block that demo mode plays back.
+  Faculty can open the instructions under "What the AI is asked to do." Its last line,
+  `Return: {...}`, is the format the software needs back; it is never shown to faculty.
 - **Decide**: what the faculty member edits, chooses or rejects, and the checklist shown beside it.
 - **Checks**: the automatic checks that run when the section is saved.
 - **Save**: where the result goes in the planning document and in the project file.

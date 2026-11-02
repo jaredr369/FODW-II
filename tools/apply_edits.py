@@ -45,7 +45,13 @@ def wrap(edit):
                 lines.append(textwrap.fill(line if m else line.strip(), WIDTH, subsequent_indent=' ' * len(m.group(0)) if m else '',
                                            break_long_words=False, break_on_hyphens=False))
             blocks.append('\n'.join(lines))
-        return '\n\n'.join(blocks)
+        text = '\n\n'.join(blocks)
+        # The page hides the "Return:" format from faculty, so an edit made there doesn't include it;
+        # carry it over from the original so the software still gets it.
+        ret = re.search(r'(^|\n)Return:', edit['old'])
+        if ret and not re.search(r'(^|\n)Return:', text):
+            text = text.rstrip() + '\n\n' + edit['old'][ret.start():].lstrip('\n')
+        return text
     return new
 
 
