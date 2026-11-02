@@ -23,14 +23,14 @@
     {"title": "Leading Through Change", "closMet": ["CLO 5", "CLO 3"], "topics": ["Why change efforts stall", "Sources of resistance", "Communicating change"]},
     {"title": "Hiring and Building Your Team", "closMet": ["CLO 6", "CLO 1"], "topics": ["Why gut-feel hiring fails", "Structured interviews and scorecards", "Proven experience vs. potential"]}
   ],
-  "interactionStatement": "Every Monday I'll post an announcement that picks up Dana's story, names the week's decision and responds to what I saw in your last assignment. You'll get written feedback on each module's main assignment within five days of the due date. I check activity every Wednesday, and if you've missed a module's work, I'll contact you that week.",
+  "interactionStatement": "Every Monday I'll post an announcement that introduces the week's management decision and responds to what I saw in your last assignment. You'll get written feedback on each module's main assignment within five days of the due date. I check activity every Wednesday, and if you've missed a module's work, I'll contact you that week.",
   "character": {
     "premise": "A story about Dana Ortiz, a newly promoted operations manager at a regional distribution center, who struggles to find the real causes of her site's slipping performance and coach, delegate, communicate and hire her way to a fix when leadership has already decided who to blame.",
-    "position": "Operations manager at a regional distribution center for a mid-size home-goods retailer; leads 3 shift leads and about 45 associates; promoted 8 months ago from day-shift lead.",
-    "conflict": "The quick fix against the right fix. Six weeks before peak season, on-time shipping has dropped from 97% to 89%, and her director has already blamed one shift lead. Dana sees a speed bonus and a handoff no one owns.",
-    "peers": "Ray Kowalski, night-shift lead; Jordan Pike, day-shift lead; Alicia Grant, manager at a sister site; Luis Ferreira, associate.",
-    "valuesFears": "Values reliability, fairness and loyalty to the floor. Fears being wrong about her boss, losing the crew's trust, and missing peak season in her first year.",
-    "backstory": "Started as a seasonal picker; known as the lead who \"just fixes it\"; her first review called her a bottleneck."
+    "position": "Operations manager at a regional distribution center for a mid-size home-goods retailer. Leads 3 shift leads and about 45 hourly associates and reports to a regional director. Promoted 8 months ago from day-shift lead; her first time managing managers.",
+    "conflict": "On-time shipping has dropped from 97% to 89% six weeks before peak season, and her director has already blamed her day-shift lead. Dana sees a speed bonus and a shift handoff no one owns.",
+    "peers": "Ray Kowalski, night-shift lead, agrees with the director. Jordan Pike, day-shift lead, senses he's being blamed. Alicia Grant, a manager at a sister site, has the data but says to replace Jordan. Luis Ferreira, an associate, keeps missing the bonus because he won't cut corners.",
+    "valuesFears": "Values reliability, fairness and loyalty to the floor. Fears being wrong about her boss, losing the crew's trust and missing peak season in her first year.",
+    "backstory": "Started as a seasonal picker. Known as the lead who \"just fixes it.\" Her first review as manager called her a bottleneck, which led her to the graduate program."
   },
   "communicationPlan": [
     "Monday: opening announcement that carries Dana's story and names the week's decision.",

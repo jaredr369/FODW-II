@@ -221,7 +221,7 @@ On save of each module:
 RSI and workload instructions:
 
 ```text
-For each module, using its saved activities, the step 2.2 RSI check, the syllabus statement and
+For each module, using its saved activities, the syllabus statement (step 2.1) and
 whether the module has a cohort session (assume yes for modules 2 to 8 unless told otherwise):
 1. Assign each activity an RSI category or null, with a short reason. Auto-graded work and
    student-only activities are null unless the faculty member described instructor involvement.

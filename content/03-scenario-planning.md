@@ -69,7 +69,7 @@ peak season has started.
 AI instructions:
 
 ```text
-Draft a storyline for the course from the character profile, the conflict (step 2.4), the CLOs
+Draft a storyline for the course from the character profile, the conflict (step 2.2), the CLOs
 and the module titles and topics. Return:
 1. A storyline premise in the form "[Course] is a story about [character, role] who struggles
    to [long-term goal] when [conflict]."

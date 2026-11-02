@@ -42,10 +42,9 @@ nav .bar { height: 8px; background: var(--tint); border-radius: 4px; overflow: h
 nav .bar span { display: block; height: 100%; background: var(--ok); }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .steps-btn { display: none; }
-main { padding: 24px clamp(16px, 4vw, 48px) 80px; min-width: 0; }
-/* Boxes, tables and forms use the full width; running text keeps a readable line length. */
-main p, main li, main .meta, main details > summary { max-width: 85ch; }
-main .plan-page p, main .plan-page li, main td p { max-width: none; }
+/* One centered column: text, tables and boxes share the same edges, and the body text is a little
+   larger so the longer lines stay easy to read. */
+main { padding: 24px clamp(16px, 4vw, 48px) 80px; min-width: 0; width: 100%; max-width: 1100px; margin: 0 auto; font-size: 17px; }
 .crumb { color: var(--muted); font-size: 14px; margin: 0 0 4px; }
 main h2.step { font-size: 28px; margin: 0 0 6px; color: var(--maroon); }
 .meta { color: var(--muted); font-size: 14px; margin-bottom: 18px; }
@@ -64,7 +63,7 @@ th, td { border: 1px solid var(--line); padding: 6px 8px; text-align: left; vert
 th { background: var(--tint); }
 .scroll { overflow-x: auto; }
 pre { background: #f4f2ef; padding: 10px 12px; border-radius: 6px; white-space: pre-wrap; font-size: 13px; }
-pre.prompt { font-family: inherit; font-size: 14px; line-height: 1.55; max-width: 85ch; }
+pre.prompt { font-family: inherit; font-size: 15px; line-height: 1.55; }
 code { font-size: .92em; background: #f1eeea; padding: 0 3px; border-radius: 3px; }
 blockquote { margin: 10px 0; padding: 8px 14px; border-left: 4px solid var(--maroon-2); background: var(--tint); }
 details { margin: 10px 0; }
@@ -459,7 +458,7 @@ function renderValue(v) {
 
 /* ---------- views ---------- */
 const STEP_DOC = { 'GS.2': ['title'], '1.1': ['catalog', 'plos', 'learners'], '1.2': ['vision'], '1.3': ['clos'], '1.4': ['modules'],
-  '2.1': ['interaction'], '2.2': ['character'], '3.1': ['premise'], '3.2': ['scenario'], '4.1': ['activities', 'tools'],
+  '2.1': ['interaction'], '2.3': ['character'], '3.1': ['premise'], '3.2': ['scenario'], '4.1': ['activities', 'tools'],
   '5.1': ['materials'], '6.1': ['media'], '7.1': ['cohort'], '8.2': ['communication'] };
 function shown(section) {
   if (state.showAll) return true;
@@ -531,7 +530,7 @@ function aiPart(title, body) {
   const sorting = /upload your Course Map/.test(body);
   if (sorting) title = 'Upload your Course Map';
   let intro = md(before, { hideDemo: true }), prompt = '';
-  intro = intro.replace(/<details><summary>What the AI is asked to do<\/summary>[\s\S]*?<\/details>/, m => { prompt += m; return ''; });
+  intro = intro.replace(/<details><summary>What the AI is asked to do<\/summary>[\s\S]*?<\/details>/g, m => { prompt += m; return ''; });
   return '<section class="part ai"><h3>' + esc(title) + ' <span class="tag">AI</span></h3>' + intro + recorded +
     demoFiles(body) +
     '<div class="row"><button type="button" class="btn" data-draft>' + (sorting ? 'Sort with AI' : title === 'Summary for your ID' ? 'Create summary' : state.track === 'refresh' ? 'Review with AI' : 'Draft with AI') + '</button><span class="thinking" hidden>Working…</span></div>' + prompt + '</section>';
@@ -561,7 +560,12 @@ function renderStep(goKey) {
   CUR = { file: src.file, mod: src };
   const crumb = '<p class="crumb">' + esc(m.title) + '</p>';
   if (key === 'reflection' || key === 'prep') {
-    const body = key === 'reflection' ? m.reflection : m.prep;
+    let body = key === 'reflection' ? m.reflection : m.prep;
+    // "Same instructions as Module 1." borrows Module 1's AI instructions for the summary.
+    if (key === 'prep' && /^\s*Same instructions as Module 1\.\s*\n/.test(body)) {
+      const m1 = MODULES.find(x => x.id === 'm1').prep;
+      body = body.replace(/^\s*Same instructions as Module 1\.\s*\n/, m1.slice(m1.indexOf('```text'), m1.search(/\nDemo response/)) + '\n');
+    }
     const t = key === 'reflection' ? 'Refresh reflection' : 'Check-in prep';
     const done = state.done[goKey];
     return crumb + '<h2 class="step">' + t + '</h2>' +
@@ -581,7 +585,8 @@ function renderStep(goKey) {
   }
   else if (p['Draft (full build)']) h += aiPart('Draft', p['Draft (full build)']);
   if (p['Decide']) {
-    const dec = p['Decide'].replace(/(^|\n)- (.+)/g, '$1[[CHK]]$2');
+    // Join a list item's indented continuation lines first, so a long checklist item stays one item.
+    const dec = p['Decide'].replace(/\n {2,}(?=\S)/g, ' ').replace(/(^|\n)- (.+)/g, '$1[[CHK]]$2');
     const parts = dec.split('\n'); let txt = [], checks = [], block = false;
     // List items inside a ::: block (such as answer boxes) stay in the text; the rest become the checklist.
     for (const l of parts) {
@@ -620,6 +625,21 @@ function useButtons(sec) {
     }).join('\n')));
   if (key === '1.4') out.insertAdjacentHTML('beforeend', btn(refresh ? 'Use the suggested modules' : 'Use these modules',
     DATA.demo['mgmt615-foundation.json'].modules.map(m => m.title + '. ' + m.closMet.join(', ') + '. ' + m.topics.join('; ') + '.').join('\n')));
+  // Module 2 drafts are labeled ("Statement:", "Performance:"); each label fills its own box under Decide, in order.
+  const label = (root, name) => { const el = [...root.querySelectorAll('p, li')].find(x => x.textContent.startsWith(name + ':')); return el ? el.textContent.slice(name.length + 1).trim() : ''; };
+  const listAfter = name => {
+    const p = [...out.querySelectorAll('p')].find(x => x.textContent.trim() === name + ':'), ul = p && p.nextElementSibling;
+    return ul && ul.tagName === 'UL' ? [...ul.children].map(li => li.textContent.trim()).join('\n') : '';
+  };
+  if (key === '2.1') {
+    const p = [...out.querySelectorAll('p')].find(x => /^Statement:/.test(x.textContent));
+    if (p) p.insertAdjacentHTML('afterend', btn('Use this statement', label(out, 'Statement').replace(/^"|"$/g, '')));
+  }
+  if (key === '2.2') out.querySelectorAll('ul').forEach(ul => {
+    if (/^Performance:/.test(ul.textContent.trim())) ul.insertAdjacentHTML('afterend', btn('Use this pair', [label(ul, 'Performance'), label(ul, 'Conflict')]));
+  });
+  if (key === '2.3') out.insertAdjacentHTML('beforeend', btn('Use this profile', [label(out, 'Premise statement'), label(out, 'Position'),
+    label(out, 'Conflict'), listAfter('Peers'), label(out, 'Values and fears'), listAfter('Backstory')]));
 }
 
 /* ---------- planning document ---------- */
@@ -656,7 +676,7 @@ function renderDoc() {
   h += sec('clos', 'Course-Level Objectives (CLOs)', ul(f.clos));
   h += '<h3>Table 1: Course Planning Modules 1-4</h3>' + table(0) + '<h3>Table 2: Course Planning Modules 5-8</h3>' + table(4);
   h += sec('premise', 'Storyline', '<p>' + esc(DATA.demo['mgmt615-scenarios.json'].storylinePremise) + '</p>') +
-    (shown('character') ? '<h4>Character Profile</h4><p><strong>Premise:</strong> ' + esc(c.premise) + '</p><p><strong>Position:</strong> ' + esc(c.position) + '</p><p><strong>Conflict:</strong> ' + esc(c.conflict) + '</p><p><strong>Peers:</strong> ' + esc(c.peers) + '</p><p><strong>Values and fears:</strong> ' + esc(c.valuesFears) + '</p><p><strong>Backstory:</strong> ' + esc(c.backstory) + '</p>' : '');
+    (shown('character') ? '<h4>Character Profile</h4><p><strong>Premise statement:</strong> ' + esc(c.premise) + '</p><p><strong>Position:</strong> ' + esc(c.position) + '</p><p><strong>Conflict:</strong> ' + esc(c.conflict) + '</p><p><strong>Peers:</strong> ' + esc(c.peers) + '</p><p><strong>Values and fears:</strong> ' + esc(c.valuesFears) + '</p><p><strong>Backstory:</strong> ' + esc(c.backstory) + '</p>' : '');
   h += sec('interaction', 'Instructor Interaction', '<p>' + esc(f.interactionStatement) + '</p>' + (shown('communication') ? '<h4>Communication and feedback plan</h4>' + ul(f.communicationPlan) : ''));
   return h;
 }
@@ -712,10 +732,11 @@ document.addEventListener('click', e => {
     return;
   }
   if (t.dataset.use) {
-    const box = document.querySelector('#decide textarea'), text = USE_TEXT[+t.dataset.use];
+    // One text fills the first box; a list of texts fills the boxes in order.
+    const boxes = [...document.querySelectorAll('#decide textarea')], vals = [].concat(USE_TEXT[+t.dataset.use]), box = boxes[0];
     if (!box) return;
-    if (box.value.trim() && box.value !== text && !confirm('Replace what is already in your box under Decide?')) return;
-    box.value = text; box.rows = Math.max(box.rows, text.split('\n').length + 1, Math.ceil(text.length / 90) + 1);
+    if (boxes.some((b, i) => i < vals.length && b.value.trim() && b.value !== vals[i]) && !confirm('Replace what is already in your boxes under Decide?')) return;
+    vals.forEach((v, i) => { const b = boxes[i]; if (b) { b.value = v; b.rows = Math.max(b.rows, v.split('\n').length + 1, Math.ceil(v.length / 90) + 1); } });
     let note = document.querySelector('#decide .use-note');
     if (!note) { box.insertAdjacentHTML('afterend', '<p class="use-note" role="status"></p>'); note = document.querySelector('#decide .use-note'); }
     note.textContent = 'Copied. Edit it here until it says what you mean.';

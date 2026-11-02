@@ -18,7 +18,7 @@ supports what's in them.
 | 8 | Table 1, Modules 1 to 4 | Modules 1 to 7 | `modules[0..3]` | Yes, with a new Scenario row |
 | 9 | Table 2, Modules 5 to 8 | Modules 1 to 7 | `modules[4..7]` | Yes, with a new Scenario row |
 | 10 | Storyline: storyline premise and character profile | 2.5, Module 3 | `story` | No, added |
-| 11 | Instructor Interaction: syllabus statement, then the communication and feedback plan | 2.3, Module 8 | `rsi.statement`, `communication` | No, added |
+| 11 | Instructor Interaction: syllabus statement, then the communication and feedback plan | 2.1, Module 8 | `rsi.statement`, `communication` | No, added |
 | 12 | Change log (refresh track only) | Every Review step | `*.original`, `*.changeNote` | No, added |
 | 13 | Check-in summary (working copies only) | Every module | `checkins`, practice and reflection answers, open checklist items | No, added |
 
@@ -56,7 +56,7 @@ After the tables:
 
 1. Storyline premise: one sentence for the whole course (Module 3).
 2. Character profile: premise statement, position, conflict, peers, values and fears,
-   backstory (step 2.5).
+   backstory (step 2.3).
 
 ## Change log (refresh track)
 
