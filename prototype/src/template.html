@@ -80,6 +80,12 @@ table { border-collapse: collapse; width: 100%; margin: 10px 0; font-size: 14px;
 th, td { border: 1px solid var(--line); padding: 6px 8px; text-align: left; vertical-align: top; }
 th { background: var(--tint); }
 .scroll { overflow-x: auto; }
+/* Tables in an example (See it, recorded AI responses) use the example's blue tones; tables on a
+   planning-document page keep the document style. */
+.part.example th, .part.example td, .demo-out th, .demo-out td { border-color: #c2d5de; }
+.part.example th, .demo-out th { background: #dce9ef; color: var(--ex); }
+.part.example .plan-page th, .part.example .plan-page td { border-color: var(--line); }
+.part.example .plan-page th { background: var(--tint); color: inherit; }
 pre { background: #f4f2ef; padding: 10px 12px; border-radius: 6px; white-space: pre-wrap; font-size: 13px; }
 pre.prompt { font-family: inherit; font-size: 15px; line-height: 1.55; }
 code { font-size: .92em; background: #f1eeea; padding: 0 3px; border-radius: 3px; }
