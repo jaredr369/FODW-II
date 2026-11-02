@@ -19,34 +19,37 @@ Pattern: setup (no AI draft)
 
 ### Learn
 
-**How this workshop works.** A Flex Online course is an online business course built on a shared
-template and common design standards. In this workshop, you'll build your Course Planning
-Document, a working plan that grows module by module and will guide the future development of
-the entire course. Each module in this workshop will have you building different sections of your
-course plan. The expected pace is one module a week, with a live check-in each week, by Zoom or in
-person, with your instructional designer (ID). Your ID is assigned to you before the workshop
-begins and works with you through the development of your course. You can work ahead; if you do, ask your ID to meet
-more often, so each module is reviewed before the next one builds on it.
+**How this workshop works.** A Flex Online course is a Mays online business course built on a shared
+template and common design standards. In this workshop, you'll build your Course Planning Document,
+a working plan that will guide the future development of the entire course. Each module in this
+workshop will have you building different sections of your course plan. The expected pace is one
+module per week, with a live check-in each week by Zoom or in person with your instructional
+designer (ID). Your ID is assigned to you before the workshop begins and works with you through the
+development of your course. You can work ahead; if you do, ask your ID to meet more often, so each
+module is reviewed before the next one builds on it.
 
 **How each step works.** Throughout the workshop, AI drafts ideas for you to decide on, modify and
 save. Each step opens with **Learn**, a short read on what the section is for, and **See it**, an
-example from MGMT 615. Then:
+example from MGMT 615 (a fictitious course used throughout the workshop). See it shows what the
+MGMT 615 instructor did in that step and what came out of it, so you can see what you're aiming for
+before you start. Then you will consider what to create for your own course. For these build sections, you will:
 
 - **Draft.** Select Draft with AI, and the AI writes a first version of one section of your plan
   from your course details. If you're updating a course you already teach, Review with AI checks
   your current section instead and flags what may need to change.
-- **Decide.** You're the expert on your course. Keep the draft, edit it, ask for another version,
-  or write your own. A short checklist shows what a finished section includes.
-- **Save.** Select Save to plan, and the section goes into your Course Planning Document. Quick
-  checks run as it saves and flag anything to fix, or to keep with a note for your ID.
+- **Decide.** You're the expert on your course. You are free to keep the draft, edit it, ask for
+  another version, or write your own. A short checklist shows what a finished section includes.
+- **Save.** When you are happy with the content being worked on, you select Save to plan, and the
+  section goes into your Course Planning Document. A feature called Quick checks runs and will flag
+  anything to fix, or to keep with a note for your ID.
 
-Some steps add **Go deeper**: optional readings and tools if you want more.
+Some steps include a **Go deeper** option that leads to additional readings and tools if you want
+more.
 
 After the workshop comes a kick-off meeting with your ID to plan the development schedule, then 13
-weeks of development, when you and the team build the course in Canvas from your plan, 2 weeks of
-quality review, and a final week to review the course and train on grading and communicating in
-Canvas. Then the course is yours to teach. You are the expert on what the course teaches; your ID is
-the expert on how to teach it online.
+weeks of development, 2 weeks of quality review, and a final week to review the course and train on
+grading and communicating in Canvas. Then the course is yours to teach. You are the expert on what
+the course teaches; your ID is the expert on how to teach it online.
 
 **The AI.** This tool uses TAMU AI Chat to draft and check each section of the course plan. You
 connect it with your own key, a code that works like a password and lets this tool use TAMU AI
@@ -59,11 +62,11 @@ it, but you will write every section yourself, without first drafts, checks on y
 you're updating a course you already teach, a review of it. You can connect it later with the
 Settings button at the top of every page.
 
-How to get your key (about a minute):
+How to get your TAMU AI key (about a minute):
 
 1. Open TAMU AI Chat at chat.tamu.ai in a new tab and sign in with your NetID.
 2. Select your name or profile picture in the lower-left corner, then Settings.
-3. Select Account. Next to API keys, select Show.
+3. Select Account from the options on the left. Then to the right of API keys, select Show.
 4. Select Create new secret key. If a key is already listed, you can use that one.
 5. Copy the key. It starts with `sk-`.
 6. Paste it below and select Test connection.
@@ -72,10 +75,9 @@ Treat the key like a password. If you don't see API keys in your settings, conta
 
 **Saving and sharing.** This tool is not like Canvas. Your work saves in this browser as you go.
 When you select Save, the tool writes two files to a folder you choose: 1. the planning document
-(Word), which your ID reads, and 2. a project file, which lets you reopen your work later, on any
-computer, and pick up where you left off. Choose a folder your ID can see, such as a OneDrive or Teams folder you share with
-them. This works best in Microsoft Edge or Google Chrome; in other browsers, the files go to
-Downloads, and you move them yourself.
+(Word), which your ID reads, and 2. a project file. If possible, choose a folder your ID can see,
+such as a OneDrive or Teams folder you share with them. This works best in Microsoft Edge or Google
+Chrome; in other browsers, the files go to Downloads, and you move them yourself.
 
 > Review note: key steps adapted from `src:tool-course-creator`; the key process is confirmed.
 > Still open for TAMU IT: what we can say about how TAMU AI Chat handles course content.
@@ -161,29 +163,30 @@ Choose a track:
 
 - **Full build** if the course is new or you're rebuilding it from the beginning. Each module
   drafts its sections from your course details.
-- **Refresh** if the course already runs online. Upload its Course Map as a Word file, or paste
-  the text. A syllabus works too, with more sections missing. In each module you'll see your
-  current section with flags beside it: notes on what may need attention. You keep the section,
-  accept or edit a suggested revision, or rewrite it. Each change gets a short note so your ID can
-  see what changed and why.
+- **Refresh** if your course has already been developed and taught in the Flex Online program.
+  Upload its Course Map as a Word file, or paste the text. Your Instructional Designer can help you
+  acquire the latest version. In each module you'll see your current Course Plan with flags beside
+  it, indicating what may need attention. You keep the section, accept or edit a suggested revision,
+  or rewrite it. Each change gets a short note so your ID can see what changed and why.
 
 A Course Map is not the same as your Course Planning Document. The Course Map is the finished,
 detailed record of everything in a course, complete enough to rebuild the course in another
 learning management system if it were ever lost from Canvas. The Course Planning Document is the
 working plan you build in this workshop, a section at a time.
 
-Both tracks go through every module. The workshop adds a storyline to your course: a recurring
-character and a realistic scenario in each module, which you'll plan in Modules 2 and 3. Most
-existing courses don't have these yet. In the refresh track, when your Course Map doesn't have a
-section, the tool drafts it from scratch.
+Both tracks in this workshop (full build or refresh) go through every module and will add a
+storyline to your course: a recurring character and a realistic scenario in each module, which
+you'll plan in Modules 2 and 3. Existing courses don't have these yet. So, both new, full builds and
+refreshes alike will develop storylines.
 
 ### See it
 
-The MGMT 615 instructor chose Refresh and uploaded the Course Map. The tool found the catalog
-description, the course vision, five course-level objectives (CLOs) and all eight modules with
-their activities, materials and media. It found no program outcomes, character, storyline,
-scenarios or communication plan, so the tool drafted those from scratch in later modules. You'll
-learn what each of these is when you reach it.
+Here's how the MGMT 615 instructor did this step. The course had already been developed and taught
+in the Flex Online program, so they chose Refresh and uploaded their Course Map. The tool sorted it
+into the sections of the Course Planning Document and found most of them: the catalog description,
+the course vision, five course-level objectives (CLOs) and all eight modules. A few sections weren't
+in the Course Map, such as the storyline. For those, the tool drafts a first version when the
+instructor reaches that module, just as it would in a full build.
 
 ### Draft (full build)
 
