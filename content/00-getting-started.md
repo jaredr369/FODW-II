@@ -17,7 +17,10 @@ Sources: `src:reading-gs-flex-online-process`, `src:guide-course-development-pro
 Time: about 15 minutes
 Pattern: setup (no AI draft)
 
-### Learn
+> App note: GS.1 is a setup page, not a planning step. It has "Setup:" sections in place of
+> Learn, See it, Draft, Decide, Checks, and Save, and ends with Finish setup.
+
+### Setup: How the workshop works
 
 ::: purpose
 **What you'll do:** Connect the AI, choose where your work is saved, and enter your ID's name and
@@ -27,107 +30,69 @@ check-in details.
 section, and the files you save are how your ID sees your work.
 :::
 
-**How this workshop works.** A Flex Online course is a Mays online business course built on a shared
-template and common design standards. In this workshop, you'll build your Course Planning Document,
-a working plan that will guide the future development of the entire course. Each module in this
-workshop will have you building different sections of your course plan. The expected pace is one
-module per week, with a live check-in each week by Zoom or in person with your instructional
-designer (ID). Your ID is assigned to you before the workshop begins and works with you through the
-development of your course. You can work ahead; if you do, ask your ID to meet more often, so each
-module is reviewed before the next one builds on it.
-
-**How each step works.** Throughout the workshop, AI drafts ideas for you to decide on, modify, and
-save. Each step opens with **Learn**, a short read on what the section is for. It starts with a box
-that says what you'll do in the step and why it matters. **See it** follows: an example from MGMT
-615 (a fictitious course used throughout the workshop). See it shows what the MGMT 615 instructor
-did in that step and what came out of it, so you can see what you're aiming for before you start.
-Then you work on your own course. Doing so has a few quick steps:
-
-- **Draft.** Select Draft with AI, and the AI writes a first version of one section of your plan
-  from your course details. If you're updating a course you already teach, Review with AI checks
-  your current section instead and flags what may need to change.
-- **Decide.** You're the expert on your course. You are free to keep the draft, edit it, ask for
-  another version, or write your own. A short checklist shows what a finished section includes.
-- **Save.** When you're happy with the section, select Save to plan, and it goes into your Course
-  Planning Document. **Checks** then run and flag anything to fix, or to keep with a note for your
-  ID.
-
-Some steps end with **Go deeper (supplemental)**: readings and tools that build on the step. Use
-them to strengthen that part of your plan.
+A Flex Online course is a Mays online business course built on a shared template and common
+design standards. In this workshop, you'll build your Course Planning Document, a working plan
+that will guide the future development of the entire course. Each module has you build different
+sections of your plan. The expected pace is one module per week, with a live check-in each week by
+Zoom or in person with your instructional designer (ID). Your ID is assigned to you before the
+workshop begins and works with you through the development of your course. You can work ahead; if
+you do, ask your ID to meet more often, so each module is reviewed before the next one builds on
+it.
 
 After the workshop comes a kick-off meeting with your ID to plan the development schedule, then 13
 weeks of development, 2 weeks of quality review, and a final week to review the course and train on
 grading and communicating in Canvas. Then the course is yours to teach. You are the expert on what
-the course teaches; your ID is the expert on how to teach it online.
+the course teaches; your ID is the expert on how to teach it online. For roles, phases, and the
+full process, see `src:guide-course-development-process`.
 
-**The AI.** This tool uses TAMU AI Chat to draft and check each section of the course plan. You
-connect it with your own key, a code that works like a password and lets this tool use TAMU AI
-Chat for you. The key stays in this browser and never goes into your project file.
-Every draft is a starting point: you can edit it, ask for another, or write the section yourself,
-and nothing goes into your plan until you select Save.
+**How each step works.** Throughout the workshop, AI drafts ideas for you to decide on, modify, and
+save. Most steps after this page have five parts:
 
-We strongly recommend connecting TAMU AI Chat. The workshop is built around it. You can continue without
-it, but you will write every section yourself, without first drafts, checks on your work, or, if
-you're updating a course you already teach, a review of it. You can connect it later with the
-Settings button at the top of every page.
+::: flow
+- Learn | A short read on what the section is for. It starts with a box that says what you'll do and why it matters.
+- See it | An example from MGMT 615, a fictitious course used throughout the workshop, so you can see what you're aiming for before you start.
+- Draft or Review | The AI writes a first version of one section of your plan from your course details. If you're updating a course you already teach, it reviews your current section instead and flags what may need to change.
+- Decide | You're the expert on your course. Keep the draft, edit it, ask for another version, or write your own. A short checklist shows what a finished section includes.
+- Save | The section goes into your Course Planning Document. Checks then run and flag anything to fix, or to keep with a note for your ID.
+:::
 
-How to get your TAMU AI key (about a minute):
+Some steps end with **Go deeper (supplemental)**: readings and tools that build on the step. Use
+them to strengthen that part of your plan.
 
+This page is the one exception. There's nothing to draft yet, just three things to set up.
+
+### Setup: Connect TAMU AI Chat
+
+This tool uses TAMU AI Chat to draft and check each section of the course plan. You connect it
+with your own key, a code that works like a password and lets this tool use TAMU AI Chat for you.
+The key stays in this browser and never goes into your project file. Every draft is a starting
+point: you can edit it, ask for another, or write the section yourself, and nothing goes into your
+plan until you select Save.
+
+We strongly recommend connecting TAMU AI Chat. The workshop is built around it. You can continue
+without it, but you will write every section yourself, without first drafts, checks on your work,
+or, if you're updating a course you already teach, a review of it. You can connect it later with
+the Settings button at the top of every page.
+
+::: fold How to get your TAMU AI key (about a minute)
 1. Open TAMU AI Chat at chat.tamu.ai in a new tab and sign in with your NetID.
 2. Select your name or profile picture in the lower-left corner, then Settings.
 3. Select Account from the options on the left. Then to the right of API keys, select Show.
 4. Select Create new secret key. If a key is already listed, you can use that one.
 5. Copy the key. It starts with `sk-`.
-6. Paste it below and select Test connection.
+6. Paste it in the box below and select Test connection.
 
 Treat the key like a password. If you don't see API keys in your settings, contact your ID.
+:::
 
-**Saving and sharing.** This tool is not like Canvas. Your work saves in this browser as you go.
-When you select Save, the tool writes two files to a folder you choose: the planning document
-(Word), which your ID reads, and a project file, which lets you reopen your work on any computer
-and pick up where you left off. If possible, choose a folder your ID can see,
-such as a OneDrive or Teams folder you share with them. This works best in Microsoft Edge or Google
-Chrome; in other browsers, the files go to Downloads, and you move them yourself.
+::: key
+:::
 
-> Review note: key steps adapted from `src:tool-course-creator`; the key process is confirmed.
-> Still open for TAMU IT: what we can say about how TAMU AI Chat handles course content.
-
-### See it
-
-Throughout the workshop, you'll see examples from MGMT 615, a fictitious course. Here's how its
-instructor did this step. They connected a key, chose a OneDrive folder shared with their ID, and set a Tuesday
-check-in. They finished Modules 1 and 2 in the first week and asked their ID for a second meeting
-that week.
-
-### Draft (full build) and Review (refresh)
-
-No AI draft. Test connection sends one short request.
-
-AI instructions:
-
-```text
-Reply with {"ok": true}.
-```
-
-Demo response: `{"ok": true}`. Demo mode skips the key and plays recorded responses.
-
-App notes (from `src:tool-course-creator`, reference only): TAMU AI Chat is OpenAI-compatible.
-Course Creator calls `https://chat.tamu.ai/api`, falls back to `https://chat-api.tamu.ai/openai`,
-sends the key as a Bearer token, lists models from `/models`, posts to `/chat/completions`, and
-prefers Claude Sonnet, then other Claude models, then GPT models.
-
-### Decide
-
-1. Paste your key and select Test connection, or select Continue without AI.
-2. Select Choose save folder and pick a folder your ID can see.
-3. Enter your ID's name and your weekly check-in day, time, and format. Any of these can wait.
-
-> App note: Continue without AI is a smaller link and asks for confirmation: "Without the AI
-> you'll write every section of your plan yourself. You won't get first drafts, checks on your
-> work, or a review of your existing course. You can connect the AI later from Settings."
-> Buttons: Connect the AI (default), Continue without AI.
-
-If the test fails, you'll see what went wrong and a Try again button.
+> App note: Test connection sends one short request; AI instructions: Reply with {"ok": true}.
+> Demo mode skips the key and plays recorded responses. Continue without AI is a smaller link and
+> asks for confirmation: "Without the AI you'll write every section of your plan yourself. You
+> won't get first drafts, checks on your work, or a review of your existing course. You can
+> connect the AI later from Settings." Buttons: Connect the AI (default), Continue without AI.
 
 > App note: failure messages and the AI-off banner.
 >
@@ -140,27 +105,43 @@ If the test fails, you'll see what went wrong and a Try again button.
 > Until a key is connected, each module shows a banner, "Your AI guide is off. Connect it to get
 > drafts and checks for this step.", with a Connect button.
 
-Checklist:
+> App note (from `src:tool-course-creator`, reference only): TAMU AI Chat is OpenAI-compatible.
+> Course Creator calls `https://chat.tamu.ai/api`, falls back to `https://chat-api.tamu.ai/openai`,
+> sends the key as a Bearer token, lists models from `/models`, posts to `/chat/completions`, and
+> prefers Claude Sonnet, then other Claude models, then GPT models.
 
-- The AI is connected, or you chose to continue without it.
-- Your files save to a folder your ID can see.
-- You have a weekly check-in time, or know who to ask.
+> Review note: key steps adapted from `src:tool-course-creator`; the key process is confirmed.
+> Still open for TAMU IT: what we can say about how TAMU AI Chat handles course content.
 
-### Checks
+### Setup: Choose where to save
 
-None.
+This tool is not like Canvas. Your work saves in this browser as you go. When you select Save, the
+tool writes two files to a folder you choose: the planning document (Word), which your ID reads,
+and a project file, which lets you reopen your work on any computer and pick up where you left
+off. If possible, choose a folder your ID can see, such as a OneDrive or Teams folder you share
+with them. This works best in Microsoft Edge or Google Chrome; in other browsers, the files go to
+Downloads, and you move them yourself.
 
-### Save
+::: folder
+:::
 
-Planning document: ID name on the cover section.
-Browser only: `course-plan-builder:apiKey`, `course-plan-builder:aiSkipped`,
-`course-plan-builder:saveFolder` (folder handle).
-Project file: `course.idName`, `checkins.day`, `checkins.time`, `checkins.format`,
-`checkins.log[]`.
+> App note: browser only: `course-plan-builder:apiKey`, `course-plan-builder:aiSkipped`,
+> `course-plan-builder:saveFolder` (folder handle).
 
-### Go deeper (supplemental)
+### Setup: Your ID and check-ins
 
-- `src:guide-course-development-process`: roles, phases, and the full development process.
+Enter your ID's name and your weekly check-in. Any of these can wait; if you don't know them yet,
+your ID will share them before your first check-in.
+
+| Field | Required | Example (MGMT 615) |
+|---|---|---|
+| Your ID's name | No | Taylor Brooks |
+| Check-in day | No | Tuesday |
+| Check-in time | No | 2:00 p.m. |
+| Check-in format | No | Zoom |
+
+> App note: planning document: ID name on the cover section. Project file: `course.idName`,
+> `checkins.day`, `checkins.time`, `checkins.format`, `checkins.log[]`.
 
 ---
 

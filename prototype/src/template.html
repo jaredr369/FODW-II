@@ -82,6 +82,15 @@ summary { cursor: pointer; color: var(--muted); font-size: 14px; }
 .use-note { color: var(--ok); font-weight: 600; margin: 4px 0 0; }
 .purpose { background: var(--tint); border-left: 4px solid var(--maroon); border-radius: 6px; padding: 10px 16px; margin: 0 0 14px; }
 .purpose p { margin: 6px 0; }
+.flow { list-style: none; counter-reset: flow; padding: 0; margin: 10px 0 14px; display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 8px; }
+.flow li { counter-increment: flow; border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; background: #fff; font-size: 15px; }
+.flow li strong { display: block; color: var(--maroon); margin-bottom: 2px; }
+.flow li strong::before { content: counter(flow) ". "; }
+.fold { border: 1px solid var(--line); border-radius: 8px; padding: 8px 12px; margin: 10px 0; }
+.fold summary { cursor: pointer; font-weight: 600; }
+.linkbtn { background: none; border: 0; color: var(--maroon); text-decoration: underline; font: inherit; font-size: 15px; cursor: pointer; padding: 8px 4px; }
+.setup-msg { margin: 6px 0 0; font-weight: 600; color: var(--ok); }
+.setup-msg.warn { color: var(--warn); }
 .check-msg { color: var(--muted); }
 .kv { margin: 6px 0; }
 .kv > .k { font-weight: 600; color: var(--maroon-2); font-size: 13px; text-transform: capitalize; }
@@ -345,6 +354,32 @@ function md(text, opts = {}) {
       if (state.track === which) html += md(buf.join('\n'), opts);
       continue;
     }
+    // ::: flow block: "- Name | what it is" lines become a numbered strip of the parts of a step.
+    if (/^:::\s*flow/.test(line)) {
+      const items = []; i++;
+      while (i < lines.length && !/^:::\s*$/.test(lines[i])) {
+        if (/^- /.test(lines[i])) items.push(lines[i].slice(2)); else if (items.length && lines[i].trim()) items[items.length - 1] += ' ' + lines[i].trim();
+        i++;
+      }
+      i++; html += '<ol class="flow">' + items.map(it => { const [n, d] = it.split(' | '); return '<li><strong>' + inline(n) + '</strong><span>' + inline(d || '') + '</span></li>'; }).join('') + '</ol>'; continue;
+    }
+    // ::: fold <title> block: a fold-out for detail most people only need once.
+    if (/^:::\s*fold\b/.test(line)) {
+      const title = line.replace(/^:::\s*fold\s*/, ''), buf = []; i++;
+      while (i < lines.length && !/^:::\s*$/.test(lines[i])) buf.push(lines[i++]);
+      i++; html += '<details class="fold"><summary>' + inline(title) + '</summary>' + md(buf.join('\n'), opts) + '</details>'; continue;
+    }
+    // ::: key and ::: folder blocks: the setup controls on GS.1. The prototype acts them out.
+    if (/^:::\s*(key|folder)\s*$/.test(line)) {
+      const which = line.match(/key|folder/)[0]; i++;
+      while (i < lines.length && !/^:::\s*$/.test(lines[i])) i++;
+      i++;
+      html += which === 'key'
+        ? '<div class="form"><div class="field"><label for="apikey">Your TAMU AI key</label><input id="apikey" type="password" autocomplete="off" placeholder="sk-…"></div>' +
+          '<div class="row"><button type="button" class="btn" data-testkey>Test connection</button><button type="button" class="linkbtn" data-noai>Continue without AI</button><span class="thinking" hidden>Testing…</span></div><p class="setup-msg" role="status"></p></div>'
+        : '<div class="row"><button type="button" class="btn sec" data-folder>Choose save folder</button></div><p class="setup-msg" role="status"></p>';
+      continue;
+    }
     // ::: purpose block: the "What you'll do / Why it matters" opener at the top of a step.
     if (/^:::\s*purpose/.test(line)) {
       const buf = []; i++;
@@ -585,6 +620,9 @@ function renderStep(goKey) {
   if (p['Learn']) h += '<section class="part"><h3>Learn</h3>' + md(p['Learn']) + '</section>';
   if (p['See it']) h += '<section class="part example"><h3>See it <span class="tag">Example: MGMT 615 (fictitious course)</span></h3>' + md(p['See it']) + '</section>';
   if (p['Write (no AI)']) h += '<section class="part"><h3>Your information <span class="tag">No AI</span></h3>' + md(p['Write (no AI)']) + '</section>';
+  // A setup page (GS.1) has "Setup: ..." sections in place of Draft, Decide, and Save.
+  const setup = Object.keys(p).filter(k => k.startsWith('Setup: '));
+  for (const k of setup) h += '<section class="part"><h3>' + esc(k.slice(7)) + '</h3>' + md(p[k]) + '</section>';
   const both = p['Draft (full build) and Review (refresh)'];
   if (both) h += aiPart(state.track === 'refresh' ? 'Review' : 'Draft', both);
   else if (state.track === 'refresh' && p['Review (refresh)']) {
@@ -608,7 +646,8 @@ function renderStep(goKey) {
     '<div class="flag ok">Every flag is fixed or has a note. This section is ready for your ID.</div></section>';
   if (p['Save']) h += '<section class="part"><h3>Save</h3>' + md(p['Save'].replace(/^Planning document:/gm, 'Goes into your Course Planning Document:').replace(/\s*\((?:[^()]*?;\s*)?see\s+`export\.md`\)/g, '')) + '</section>';
   if (p['Go deeper (supplemental)']) h += '<details class="part"><summary>Go deeper (supplemental)</summary>' + md(p['Go deeper (supplemental)']) + '</details>';
-  h += '<div class="row"><button type="button" class="btn" data-save="' + esc(key) + '">Save to plan</button>' + (state.done[key] ? '<span class="done-note">Saved to your planning document</span>' : '') + '</div>';
+  h += '<div class="row"><button type="button" class="btn" data-save="' + esc(key) + '">' + (setup.length ? 'Finish setup' : 'Save to plan') + '</button>' +
+    (state.done[key] ? '<span class="done-note">' + (setup.length ? 'Setup finished' : 'Saved to your planning document') + '</span>' : '') + '</div>';
   return h;
 }
 
@@ -730,6 +769,24 @@ document.addEventListener('click', e => {
     t.disabled = true; wait.hidden = false;
     setTimeout(() => { wait.hidden = true; t.textContent = 'Ask for another version'; t.disabled = false;
       sec.querySelectorAll('.demo-out').forEach(d => d.hidden = false); useButtons(sec); }, 900);
+    return;
+  }
+  // GS.1 setup controls. The prototype acts them out; nothing is sent or saved.
+  if (t.hasAttribute('data-testkey') || t.hasAttribute('data-noai')) {
+    const form = t.closest('.form'), msg = form.querySelector('.setup-msg'), key = form.querySelector('#apikey');
+    msg.classList.remove('warn');
+    if (t.hasAttribute('data-noai')) {
+      if (!confirm("Without the AI you'll write every section of your plan yourself. You won't get first drafts, checks on your work, or a review of your existing course. You can connect the AI later from Settings.")) return;
+      msg.classList.add('warn'); msg.textContent = 'Continuing without AI. You can connect it later from Settings.'; return;
+    }
+    if (!key.value.trim()) { msg.classList.add('warn'); msg.textContent = 'Paste your key first. It starts with sk-.'; key.focus(); return; }
+    const wait = form.querySelector('.thinking'); t.disabled = true; wait.hidden = false;
+    setTimeout(() => { wait.hidden = true; t.disabled = false; msg.textContent = "Connected to TAMU AI Chat. (Demo: the key isn't sent anywhere.)"; }, 900);
+    return;
+  }
+  if (t.hasAttribute('data-folder')) {
+    const msg = t.closest('.row').nextElementSibling;
+    msg.textContent = "In the finished tool, this opens your computer's folder picker. (Demo: no folder is chosen.)";
     return;
   }
   if (t.hasAttribute('data-check')) {
