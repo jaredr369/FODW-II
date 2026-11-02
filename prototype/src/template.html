@@ -56,10 +56,12 @@ main { padding: 24px clamp(16px, 4vw, 48px) 80px; min-width: 0; width: 100%; max
 .banner.hero .kicker { margin: 0; font-size: 13px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: #f1dede; }
 .banner.hero h2 { margin: 6px 0 4px; font-size: 34px; line-height: 1.15; color: #fff; }
 .banner.hero .sub { margin: 0; font-size: 16px; color: #f6eaea; }
-.banner.thin { height: 54px; display: flex; align-items: center; margin: 0 0 16px; }
-.banner.thin .txt { padding: 0 18px; font-size: 15px; font-weight: 600; letter-spacing: .01em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
-.banner.thin .txt span { font-weight: 400; color: #f1dede; margin-right: 8px; }
-main h2.step { font-size: 28px; margin: 0 0 6px; color: var(--maroon); }
+.banner.thin { min-height: 122px; display: flex; align-items: center; margin: 0 0 18px; }
+.banner.thin .txt { padding: 16px 26px; max-width: 75%; }
+.banner.thin .kicker { margin: 0 0 2px; font-size: 13px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: #f1dede; }
+.banner.thin .name { margin: 0; font-size: 28px; font-weight: 700; line-height: 1.2; color: #fff; }
+/* The module banner carries the larger heading; the step title sits one level below it. */
+main h2.step { font-size: 26px; margin: 0 0 6px; color: var(--maroon); }
 .meta { color: var(--muted); font-size: 14px; margin-bottom: 18px; }
 .part { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 18px 22px; margin: 14px 0; }
 .part > h3 { margin: 0 0 8px; font-size: 18px; display: flex; gap: 10px; align-items: center; }
@@ -151,6 +153,10 @@ body.editing main { padding-bottom: 140px; }
   .banner.hero { min-height: 170px; }
   .banner.hero .txt { padding: 20px; }
   .banner.hero h2 { font-size: 26px; }
+  .banner.thin { min-height: 104px; }
+  .banner.thin .txt { padding: 14px 18px; max-width: 100%; }
+  .banner.thin .name { font-size: 21px; }
+  main h2.step { font-size: 21px; }
   .doc { padding: 18px 16px; }
 }
 </style>
@@ -638,7 +644,7 @@ function renderStep(goKey) {
   const src = DATA.modules.find(x => x.id === m.id);
   CUR = { file: src.file, mod: src };
   const mm = m.title.match(/^Module (\d+)\. (.+)$/);
-  const crumb = '<div class="banner thin">' + bannerArt() + '<p class="txt">' + (mm ? '<span>Module ' + mm[1] + '</span>' + esc(mm[2]) : esc(m.title)) + '</p></div>';
+  const crumb = '<div class="banner thin">' + bannerArt() + '<div class="txt">' + (mm ? '<p class="kicker">Module ' + mm[1] + '</p><p class="name">' + esc(mm[2]) + '</p>' : '<p class="name">' + esc(m.title) + '</p>') + '</div></div>';
   if (key === 'reflection' || key === 'prep') {
     let body = key === 'reflection' ? m.reflection : m.prep;
     // "Same instructions as Module 1." borrows Module 1's AI instructions for the summary.
