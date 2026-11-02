@@ -80,6 +80,17 @@ assignment within five days of the due date. I check activity every Wednesday, a
 missed a module's work, I'll contact you that week.
 :::
 
+::: figure week | MGMT 615's week of instructor contact
+- Mon | Announcement: the week's management decision, and what the instructor saw in the last assignment
+- Tue |
+- Wed | Activity check, and outreach to anyone who missed a module's work
+- Thu |
+- Fri |
+- Sat |
+- Sun |
+- Note | Feedback on each module's main assignment comes within five days of the due date.
+:::
+
 ### Draft (full build) and Review (refresh)
 
 Answer three questions, then select the button below. The AI turns your answers into a statement
@@ -405,6 +416,15 @@ about her boss, losing the crew's trust, and missing peak season in her first ye
 
 **Backstory:** Started as a seasonal picker. Known as the lead who "just fixes it." Her first
 review as manager called her a bottleneck, which led her to the graduate program.
+:::
+
+::: figure people | Dana's working relationships
+- Greg Halvorsen | Regional director, Dana's boss | "Jordan's shift is the problem. Fix him or replace him." | above
+- Ray Kowalski | Night-shift lead | Agrees it's Jordan's fault.
+- Jordan Pike | Day-shift lead | Senses he's being blamed.
+- Dana Ortiz | Operations manager | Sees a speed bonus and a handoff no one owns. | center
+- Alicia Grant | Manager at a sister site | Has the data, but says to replace Jordan.
+- Luis Ferreira | Associate | Keeps missing the bonus because he won't cut corners.
 :::
 
 ### Draft (full build) and Review (refresh)

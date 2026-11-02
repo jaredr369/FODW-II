@@ -39,11 +39,17 @@ workshop begins and works with you through the development of your course. You c
 you do, ask your ID to meet more often, so each module is reviewed before the next one builds on
 it.
 
-After the workshop comes a kick-off meeting with your ID to plan the development schedule, then 13
-weeks of development, 2 weeks of quality review, and a final week to review the course and train on
-grading and communicating in Canvas. Then the course is yours to teach. You are the expert on what
-the course teaches; your ID is the expert on how to teach it online. For roles, phases, and the
-full process, see `src:guide-course-development-process`.
+::: figure timeline | From this workshop to teaching your course
+- Workshop | 8 modules, about one a week, with a weekly check-in | here
+- Kick-off | Plan the development schedule with your ID
+- Development | 13 weeks
+- Quality review | 2 weeks
+- Final review | 1 week to review the course and train on grading and communicating in Canvas
+- Teach | The course is yours
+:::
+
+You are the expert on what the course teaches; your ID is the expert on how to teach it online. For
+roles, phases, and the full process, see `src:guide-course-development-process`.
 
 **How each step works.** Throughout the workshop, AI drafts ideas for you to decide on, modify, and
 save. Most steps after this page have five parts:

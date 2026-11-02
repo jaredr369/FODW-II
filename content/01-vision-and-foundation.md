@@ -75,9 +75,14 @@ commitments, and the program outcomes your course supports.
 description, and later steps check your vision and CLOs against the catalog and program outcomes.
 :::
 
-Flex Online courses are planned backward: decide what students should be able to do at the end, then
-how you'll see it, then what they'll read and watch (Wiggins & McTighe, 2005). That's the order of
-this workshop.
+Flex Online courses are planned backward (Wiggins & McTighe, 2005), and so is this workshop:
+
+::: figure backward | Planned backward: the order of this workshop
+- Outcomes | What students should be able to do at the end | Module 1
+- Evidence | How you'll see it: activities and assessments | Module 4
+- Learning | What students read, watch, and do live | Modules 5 to 7
+- Note | Modules 2 and 3 add the story that ties them together, and Module 8 checks the whole plan.
+:::
 
 Start with who the students are. They're working professionals who connect new ideas to their own
 experience, want to know why something matters before they invest time, and want to use it soon
@@ -338,27 +343,22 @@ To pitch them at the right level, use Bloom's taxonomy, a widely used framework 
 learning by how much thinking it asks of students (Anderson & Krathwohl, 2001). It has six
 levels, from least to most demanding:
 
-1. **Remember:** recall facts and terms.
-2. **Understand:** explain ideas in your own words.
-3. **Apply:** use a method or idea in a new situation.
-4. **Analyze:** break a situation into parts and see how they relate.
-5. **Evaluate:** judge options against criteria and defend a choice.
-6. **Create:** put ideas together into something new, such as a plan, design, or proposal.
+::: figure bloom | Bloom's taxonomy, from least to most demanding
+- Remember | Recall facts and terms. |
+- Understand | Explain ideas in your own words. |
+- Apply | Use a method or idea in a new situation. | apply, implement, solve, calculate | aim: Aim your CLOs at the four highlighted levels, mostly Analyze, Evaluate, and Create.
+- Analyze | Break a situation into parts and see how they relate. | analyze, diagnose, compare, differentiate
+- Evaluate | Judge options against criteria and defend a choice. | evaluate, assess, justify, defend
+- Create | Put ideas together into something new, such as a plan, design, or proposal. | design, develop, construct, draft
+:::
 
-For a diagram of the six levels with more example verbs, see Texas A&M's
+For more example verbs, see Texas A&M's
 [Academic Success Center overview of Bloom's taxonomy](https://asc.tamu.edu/tutoring/bloom.html).
 
 Start each CLO with one action verb at the apply level or higher, mostly analyze, evaluate, or
 create. The students are experienced professionals; they need to use and judge ideas, not just
 recall them. Avoid verbs like "understand" or "know." You can't see them happen, so you can't grade
 them. Describe something within the student's control.
-
-| Level | Example verbs |
-|---|---|
-| Apply | apply, implement, solve, calculate |
-| Analyze | analyze, diagnose, compare, differentiate |
-| Evaluate | evaluate, assess, justify, defend |
-| Create | design, develop, construct, draft |
 
 Each CLO should also suggest a decision someone in your students' role would face. In Module 2
 you'll create a character, someone in your students' role, whose story runs through the course.
@@ -544,6 +544,18 @@ The Course Planning Document has room for eight modules. Give each a title a stu
 understand on day one. Start from the CLOs: list what students need to know or practice to meet each
 one, then cut any topic they don't need to meet a CLO.
 
+Every module should trace back to your CLOs, and through them to the catalog and your program.
+Here's one thread through MGMT 615:
+
+::: figure trace | One thread in MGMT 615, from program outcome to modules
+- Program outcome | PLO 1: Lead individuals and teams to meet organizational goals.
+- Catalog commitment | Diagnose why employees and teams underperform.
+- Vision | "When someone on their team struggles, students find out what is actually wrong before they act."
+- CLO 1 | Diagnose why an employee or team is underperforming using core theories of motivation and performance.
+- Modules | Module 1, What Managers Actually Do; Module 2, Motivating People; Module 4, Building and Leading Teams; Module 8, Hiring and Building Your Team.
+- Later in this workshop | Each of those modules gets a scenario (Module 3) and activities (Module 4) that practice CLO 1.
+:::
+
 Order matters. In Module 3, each module becomes a scenario, a realistic situation your character
 faces that week, so order the modules the way the decisions would come up at work: diagnosis before
 treatment, one person before the whole team.
@@ -572,6 +584,10 @@ replaced one Module 4 topic, and updated the CLO numbers to match the six revise
 | 6 | Delegation and Decision-Making | CLO 4, CLO 5 | Sorting tasks by delegation readiness; decision rights; where AI helps a management decision, and where it misleads |
 | 7 | Leading Through Change | CLO 5, CLO 3 | Why change efforts stall; sources of resistance; communicating change |
 | 8 | Hiring and Building Your Team | CLO 6, CLO 1 | Why gut-feel hiring fails; structured interviews and scorecards; proven experience vs. potential |
+:::
+
+::: figure coverage | MGMT 615 at a glance: which CLOs each module covers
+- Every CLO appears at least once, and each module focuses on one or two.
 :::
 
 ### Draft (full build)
