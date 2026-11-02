@@ -87,10 +87,21 @@ and 3 builds on them.
 
 ### See it
 
-MGMT 615's students are new or soon-to-be managers, promoted for being good at their own jobs.
-Its catalog description makes six commitments, from diagnosing underperformance to hiring well.
-Later checks hold the CLOs to that list, which is how the review of the existing course found
-that no CLO covered hiring.
+Here's how the MGMT 615 instructor did this step. Their students are new or soon-to-be managers,
+promoted for being good at their own jobs. The catalog description makes six commitments, from
+diagnosing underperformance to hiring well. Later checks hold the CLOs to that list, which is how
+the review of the existing course found that no CLO covered hiring.
+
+::: plan Learners
+Students are working professionals in a first management role or about to step into one, most
+promoted after strong work as individual contributors. They arrive with years of workplace
+experience and plenty of stories about good and bad managers, but little formal training in
+managing people. Most work full time and study in the evenings and on weekends.
+
+Catalog commitments: diagnose why employees and teams underperform; deliver feedback that changes
+behavior; build and repair team dynamics; delegate and make decision-rights calls under pressure;
+lead a team through change; hire well.
+:::
 
 ### Draft (full build)
 
@@ -141,9 +152,13 @@ Course Map. The AI drafts any missing part from scratch. It also lists the catal
 and checks that your learner description names students' roles, what they bring and what they
 need.
 
-Demo response (MGMT 615): learners and program outcomes are missing, so those run as the full
-build; the catalog is found and its commitments match the list above. The app asks the faculty
-member to confirm the catalog text is the current official version.
+Demo response (MGMT 615):
+
+- Found: the catalog description, with six commitments, from diagnosing underperformance to hiring
+  well.
+- Missing: the learner description and program outcomes. Drafted from scratch, the same way as a
+  full build.
+- Please confirm the catalog text is the current official version.
 
 ### Decide
 
@@ -190,13 +205,18 @@ activity and reading has to help students get there.
 
 ### See it
 
-MGMT 615: "MGMT 615 turns people who are good at their jobs into people who are good at running
-a team. Every module asks students to work out what is actually wrong before they choose a fix,
-and to defend that call to peers in a live cohort session (a scheduled live class meeting on Zoom;
-you'll plan these in Module 7). Students leave with work they can use
-on the job: a feedback script, a delegation memo, a change announcement and a structured
-interview scorecard. They finish ready to manage a larger team and to explain the reasoning
-behind each call."
+Here's how the MGMT 615 instructor did this step. Their existing vision ran seven sentences, so
+they cut it to four that say what students do in the course and what they leave with. A cohort
+session is a scheduled live class meeting on Zoom; you'll plan these in Module 7.
+
+::: plan Course vision
+MGMT 615 turns people who are good at their jobs into people who are good at running a team.
+Every module asks students to work out what is actually wrong before they choose a fix, and to
+defend that call to peers in a live cohort session. Students leave with work they can use on the
+job: a feedback script, a delegation memo, a change announcement and a structured interview
+scorecard. They finish ready to manage a larger team and to explain the reasoning behind each
+call.
+:::
 
 ### Draft (full build)
 
@@ -214,9 +234,11 @@ differ in emphasis: one on skills, one on the professional the student becomes.
 Return: {"versions": [string, string]}
 ```
 
-Demo response (MGMT 615), from the answer "That they stopped fixing everything themselves, figured
-out what was really wrong with their team before reacting, and had the conversation they were
-avoiding":
+Demo response (MGMT 615):
+
+Two versions, drafted from the instructor's answer: "That they stopped fixing everything
+themselves, figured out what was really wrong with their team before reacting, and had the
+conversation they were avoiding."
 
 ```json
 {
@@ -232,11 +254,23 @@ avoiding":
 You'll see your current vision with flags from the checks below and one suggested revision that
 keeps your language.
 
-Demo response (MGMT 615): two flags. "Seven sentences; the planning document asks for 3 or 4."
-And "The first two sentences describe the program ('sits at the center of the Flex Online
-people-management sequence'). A vision should describe what students will do." Suggested
-revision: the four-sentence vision under See it. Demo change note: "Cut to four sentences.
-Removed the program description; kept the diagnosis-first approach and the deliverables."
+Demo response (MGMT 615):
+
+Flags:
+
+- Seven sentences; the Course Planning Document asks for 3 or 4.
+- The first two sentences describe the program ("sits at the center of the Flex Online
+  people-management sequence"). A vision should describe what students will do.
+
+Suggested revision: "MGMT 615 turns people who are good at their jobs into people who are good at
+running a team. Every module asks students to work out what is actually wrong before they choose
+a fix, and to defend that call to peers in a live cohort session. Students leave with work they
+can use on the job: a feedback script, a delegation memo, a change announcement and a structured
+interview scorecard. They finish ready to manage a larger team and to explain the reasoning
+behind each call."
+
+Change note: "Cut to four sentences. Removed the program description; kept the diagnosis-first
+approach and the deliverables."
 
 ### Decide
 
@@ -308,11 +342,24 @@ you would change, and why. The AI then confirms what you caught and adds anythin
 
 ### See it
 
-MGMT 615's first CLO began as "Apply core theories of motivation and performance to diagnose why
-an employee or team is underperforming." Two verbs. The refresh kept the one students are graded
-on: "Diagnose why an employee or team is underperforming using core theories of motivation and
-performance." It gives MGMT 615's character, Dana Ortiz, a newly promoted manager you'll meet in
-Module 2, her first decision: is the shift lead the problem?
+Here's how the MGMT 615 instructor did this step. Their first CLO began as "Apply core theories
+of motivation and performance to diagnose why an employee or team is underperforming." It had two
+verbs, so the refresh kept the one students are graded on. That CLO gives MGMT 615's character,
+Dana Ortiz, a newly promoted manager you'll meet in Module 2, her first decision: is the shift lead
+the problem? The instructor also added a sixth CLO for hiring, which the catalog promises.
+
+::: plan Course-Level Objectives
+1. Diagnose why an employee or team is underperforming using core theories of motivation and
+   performance.
+2. Design a feedback or coaching conversation that targets a specific behavior and states the
+   change expected.
+3. Evaluate team dynamics and organizational context to select a management intervention
+   appropriate to the actual problem.
+4. Justify a delegation or decision-rights call, including the trade-offs involved.
+5. Draft a management decision message that states the decision and the next steps a direct
+   report must take.
+6. Evaluate candidates for a role using a structured interview scorecard.
+:::
 
 ### Draft (full build)
 
@@ -328,7 +375,19 @@ covers, and one decision a professional in the students' role would face.
 Return: {"clos": [{"text": string, "verb": string, "level": string, "commitments": [string], "programOutcomes": [string], "decision": string}]}
 ```
 
-Demo response (MGMT 615, if run as a full build): the six revised CLOs listed under Review.
+Demo response (MGMT 615):
+
+- CLO 1: Diagnose why an employee or team is underperforming using core theories of motivation and
+  performance. (Analyze)
+- CLO 2: Design a feedback or coaching conversation that targets a specific behavior and states
+  the change expected. (Create)
+- CLO 3: Evaluate team dynamics and organizational context to select a management intervention
+  appropriate to the actual problem. (Evaluate)
+- CLO 4: Justify a delegation or decision-rights call, including the trade-offs involved.
+  (Evaluate)
+- CLO 5: Draft a management decision message that states the decision and the next steps a
+  direct report must take. (Create)
+- CLO 6: Evaluate candidates for a role using a structured interview scorecard. (Evaluate)
 
 ### Review (refresh)
 
@@ -406,6 +465,10 @@ before the whole team.
 
 ### See it
 
+Here's how the MGMT 615 instructor did this step. They kept the eight modules and their order,
+replaced one Module 4 topic, and updated the CLO numbers to match the six revised CLOs.
+
+::: plan Module titles and CLOs met
 | Module | Title | CLOs met |
 |---|---|---|
 | 1 | What Managers Actually Do | CLO 1, CLO 5 |
@@ -416,6 +479,7 @@ before the whole team.
 | 6 | Delegation and Decision-Making | CLO 4, CLO 5 |
 | 7 | Leading Through Change | CLO 5, CLO 3 |
 | 8 | Hiring and Building Your Team | CLO 6, CLO 1 |
+:::
 
 ### Draft (full build)
 
@@ -431,8 +495,19 @@ one-sentence reason.
 Return: {"modules": [{"number": int, "title": string, "closMet": [string], "topics": [string]}], "orderReason": string}
 ```
 
-Demo response (MGMT 615, if run as a full build): the eight modules above with the topics from
-the MGMT 615 course map, including the Module 4 change below.
+Demo response (MGMT 615):
+
+- Module 1: What Managers Actually Do (CLO 1, CLO 5)
+- Module 2: Motivating People (CLO 1, CLO 5)
+- Module 3: Performance Management and Feedback (CLO 2, CLO 5)
+- Module 4: Building and Leading Teams (CLO 3, CLO 1)
+- Module 5: Managing Conflict and Difficult Conversations (CLO 3, CLO 2)
+- Module 6: Delegation and Decision-Making (CLO 4, CLO 5)
+- Module 7: Leading Through Change (CLO 5, CLO 3)
+- Module 8: Hiring and Building Your Team (CLO 6, CLO 1)
+
+Order: the modules follow the decisions a new manager meets, from understanding the role to
+building the team.
 
 ### Review (refresh)
 
@@ -464,8 +539,9 @@ Checklist:
 
 On save: every CLO appears in at least one module; each topic serves a CLO its module lists;
 topics are content for students; CLOs appearing in only one module, or in more than five, are
-noted. Demo flag (MGMT 615): "CLO 4 and CLO 6 each appear in one module." Demo kept note:
-"Delegation and hiring are each a focused skill, practiced and assessed in one module."
+noted. In MGMT 615, the check noted "CLO 4 and CLO 6 each appear in one module." The instructor
+kept it with the note "Delegation and hiring are each a focused skill, practiced and assessed in
+one module."
 
 ### Save
 

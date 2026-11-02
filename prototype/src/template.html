@@ -8,6 +8,7 @@
 :root {
   --maroon: #500000; --maroon-2: #732f2f; --ink: #1d1d1f; --muted: #5b5b60; --line: #dedbd6;
   --bg: #f7f5f2; --card: #ffffff; --tint: #f3ece9; --ok: #2e6b3a; --warn: #8a5a00; --focus: #1f5fbf;
+  --ex: #2f5d73; --ex-tint: #eef4f7;
 }
 * { box-sizing: border-box; }
 body { margin: 0; font: 16px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; color: var(--ink); background: var(--bg); }
@@ -36,6 +37,12 @@ main h2.step { font-size: 28px; margin: 0 0 6px; color: var(--maroon); }
 .part > h3 { margin: 0 0 8px; font-size: 18px; display: flex; gap: 10px; align-items: center; }
 .part > h3 .tag { font-size: 12px; font-weight: 600; background: var(--tint); color: var(--maroon); padding: 2px 8px; border-radius: 10px; }
 .part.ai { border-color: #c9b8b3; background: #fffdfc; }
+.part.example, .demo-out { background: var(--ex-tint); border: 1px solid #c7d8e0; border-left: 6px solid var(--ex); }
+.plan-page { background: #fff; border: 1px solid #c7d8e0; border-radius: 4px; box-shadow: 0 2px 6px rgba(0,0,0,.08); padding: 12px 18px 4px; margin: 12px 0; }
+.plan-page .plan-label { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .04em; color: var(--ex); border-bottom: 1px solid var(--line); padding-bottom: 6px; margin: 0 0 10px; }
+.part.example > h3 .tag { background: var(--ex); color: #fff; }
+.demo-out { border-radius: 8px; padding: 10px 14px; margin: 10px 0; }
+.demo-out .crumb { color: var(--ex); font-weight: 600; font-size: 13px; margin: 0 0 6px; }
 table { border-collapse: collapse; width: 100%; margin: 10px 0; font-size: 14px; }
 th, td { border: 1px solid var(--line); padding: 6px 8px; text-align: left; vertical-align: top; }
 th { background: var(--tint); }
@@ -293,6 +300,13 @@ function md(text, opts = {}) {
       i++;
       html += codeBlock(lang, buf.join('\n'), opts); continue;
     }
+    if (/^:::\s*plan/.test(line)) {
+      const label = line.replace(/^:::\s*plan\s*/, ''); const buf = []; i++;
+      while (i < lines.length && !/^:::\s*$/.test(lines[i])) buf.push(lines[i++]);
+      i++;
+      html += '<div class="plan-page"><p class="plan-label">MGMT 615 Course Planning Document' + (label ? ': ' + esc(label) : '') + '</p>' + md(buf.join('\n'), opts) + '</div>';
+      continue;
+    }
     if (/^\|/.test(line)) {
       const rows = []; while (i < lines.length && /^\|/.test(lines[i])) rows.push(lines[i++]);
       const cells = r => r.replace(/^\||\|$/g, '').split('|').map(c => c.trim());
@@ -319,7 +333,7 @@ function md(text, opts = {}) {
     }
     if (/^#{3,6}\s/.test(line)) { html += '<h4' + tag('h', line.replace(/^#+\s/, '')) + '>' + inline(line.replace(/^#+\s/, '')) + '</h4>'; i++; continue; }
     if (/^---\s*$/.test(line) || !line.trim()) { i++; continue; }
-    const buf = []; while (i < lines.length && lines[i].trim() && !/^(```|\||>|\s*(-|\d+\.)\s|#{3,6}\s)/.test(lines[i])) buf.push(lines[i++]);
+    const buf = []; while (i < lines.length && lines[i].trim() && !/^(```|:::|\||>|\s*(-|\d+\.)\s|#{3,6}\s)/.test(lines[i])) buf.push(lines[i++]);
     html += '<p' + tag('p', buf.join('\n')) + '>' + inline(buf.join(' ')) + '</p>';
   }
   return html;
@@ -398,7 +412,7 @@ function aiPart(title, body) {
   // Everything from the first "Demo response" on is the recorded AI output, revealed by the button.
   const at = body.search(/(^|\n)Demo (response|answers)/);
   const before = at < 0 ? body : body.slice(0, at);
-  const after = at < 0 ? '' : body.slice(at).replace(/^\n/, '');
+  const after = at < 0 ? '' : body.slice(at).replace(/^\n/, '').replace(/^Demo (response|answers)[^:\n]*:[ \t]*\n?/, '');
   const recorded = after ? '<div class="demo-out" hidden><p class="crumb">Recorded response, MGMT 615</p>' + md(after) + '</div>' : '';
   return '<section class="part ai"><h3>' + esc(title) + ' <span class="tag">AI</span></h3>' + md(before, { hideDemo: true }) + recorded +
     demoFiles(body) +
@@ -430,7 +444,7 @@ function renderStep(goKey) {
   const p = step.parts;
   let h = crumb + '<h2 class="step"' + tag('title', step.title) + '>' + esc(step.title) + '</h2><div class="meta">' + md(step.lead) + '</div>';
   if (p['Learn']) h += '<section class="part"><h3>Learn</h3>' + md(p['Learn']) + '</section>';
-  if (p['See it']) h += '<section class="part"><h3>See it <span class="tag">MGMT 615</span></h3>' + md(p['See it']) + '</section>';
+  if (p['See it']) h += '<section class="part example"><h3>See it <span class="tag">Example: MGMT 615 (fictitious course)</span></h3>' + md(p['See it']) + '</section>';
   const both = p['Draft (full build) and Review (refresh)'];
   if (both) h += aiPart(state.track === 'refresh' ? 'Review' : 'Draft', both);
   else if (state.track === 'refresh' && p['Review (refresh)']) h += aiPart('Review', p['Review (refresh)']);
