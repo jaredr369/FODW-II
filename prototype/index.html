@@ -64,6 +64,7 @@ th, td { border: 1px solid var(--line); padding: 6px 8px; text-align: left; vert
 th { background: var(--tint); }
 .scroll { overflow-x: auto; }
 pre { background: #f4f2ef; padding: 10px 12px; border-radius: 6px; white-space: pre-wrap; font-size: 13px; }
+pre.prompt { font-family: inherit; font-size: 14px; line-height: 1.55; max-width: 85ch; }
 code { font-size: .92em; background: #f1eeea; padding: 0 3px; border-radius: 3px; }
 blockquote { margin: 10px 0; padding: 8px 14px; border-left: 4px solid var(--maroon-2); background: var(--tint); }
 details { margin: 10px 0; }
@@ -424,8 +425,23 @@ function codeBlock(lang, code, opts) {
     let v; try { v = JSON.parse(code); } catch (e) { return '<pre>' + esc(code) + '</pre>'; }
     return '<div class="demo-out" ' + (opts.hideDemo ? 'hidden' : '') + '>' + renderValue(v) + '</div>';
   }
-  if (lang === 'text') return '<details><summary>What the AI is asked to do</summary><pre' + tag('pre', code) + '>' + esc(code) + '</pre></details>';
+  if (lang === 'text') return '<details><summary>What the AI is asked to do</summary><pre class="prompt"' + tag('pre', code) + '>' + esc(reflow(code)) + '</pre></details>';
   return '<pre' + tag('pre', code) + '>' + esc(code) + '</pre>';
+}
+// AI instructions are hard-wrapped in the content files. Join each paragraph and list item onto one
+// line so it wraps to the box; the "Return:" format and anything after it stays as written.
+function reflow(code) {
+  return code.split(/\n[ \t]*\n/).map(b => {
+    const out = []; let verbatim = false, inItem = false;
+    for (const l of b.split('\n')) {
+      if (verbatim || /^Return:/.test(l)) { verbatim = true; out.push(l); continue; }
+      // A list item continues only on indented lines; an unindented line after it starts a new line.
+      const item = /^\s*(-|\d+\.)\s/.test(l);
+      if (!out.length || item || (inItem && !/^\s/.test(l))) { out.push(l.replace(/\s+$/, '')); inItem = item; }
+      else out[out.length - 1] += ' ' + l.trim();
+    }
+    return out.join('\n');
+  }).join('\n\n');
 }
 function renderValue(v) {
   if (v === null || v === undefined) return '<span class="empty">none</span>';

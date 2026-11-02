@@ -8,6 +8,7 @@ skipped; one whose source text can't be found once is reported and left for a pe
 import glob
 import json
 import os
+import re
 import subprocess
 import sys
 import textwrap
@@ -29,6 +30,22 @@ def wrap(edit):
         text = textwrap.fill(new, WIDTH, initial_indent=marker, subsequent_indent=cont,
                              break_long_words=False, break_on_hyphens=False)
         return text[len(marker):]
+    if edit['kind'] == 'pre':
+        # AI instructions show one line per paragraph or list item; rewrap each, but keep the
+        # "Return:" format and anything after it as written.
+        blocks = []
+        for block in re.split(r'\n[ \t]*\n', new):
+            lines, verbatim = [], False
+            for line in block.split('\n'):
+                if verbatim or line.startswith('Return:'):
+                    verbatim = True
+                    lines.append(line)
+                    continue
+                m = re.match(r'\s*(-|\d+\.)\s', line)
+                lines.append(textwrap.fill(line if m else line.strip(), WIDTH, subsequent_indent=' ' * len(m.group(0)) if m else '',
+                                           break_long_words=False, break_on_hyphens=False))
+            blocks.append('\n'.join(lines))
+        return '\n\n'.join(blocks)
     return new
 
 
