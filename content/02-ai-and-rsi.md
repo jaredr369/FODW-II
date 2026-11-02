@@ -39,8 +39,8 @@ can't show it is treated as a correspondence course, and its students lose eligi
 financial aid. Your ID's team checks for it in every course review.
 
 **Substantive** refers to teaching, learning, or assessment. An announcement explaining a concept
-half the class missed counts; a due-date reminder doesn't. **Regular** means predictable, proactive,
-and responsive to how students are doing.
+half the class missed counts as substantive; a due-date reminder doesn't. **Regular** means
+predictable, proactive, and responsive to how students are doing.
 
 For the substantive test, your course needs instructor activity in at least two of these five
 categories:
@@ -144,7 +144,8 @@ work, since your answer didn't say how you'd notice a student falling behind.
 
 ### Decide
 
-Your final statement goes in this box. It's what's saved to your Course Planning Document.
+Your final statement goes in this box. It's what's saved to your Course Planning Document. Type in
+the box to change anything, or select **Redraft with AI** under it to have the AI rewrite it.
 
 Under the AI's draft, select **Use this statement** to copy it here, then edit it into your own
 words. Confirm or remove anything marked [check].
@@ -307,7 +308,8 @@ situation. The existing cases can stay as contrasts in their modules.
 ### Decide
 
 Your final performance and conflict go in these boxes. The next step uses them to help draft your
-character.
+character. Type in any box to change it, or select **Redraft with AI** under a box to have the AI
+rewrite just that part.
 
 Under the pair you like best, select **Use this pair** to copy it here, then edit it into your
 own words.
@@ -429,7 +431,7 @@ description. Include: premise statement in the form "A story about [name, role] 
 [performance] when [conflict].", position (title, organization type, team size, experience),
 conflict (specific to this person), 2 to 4 peers with contrasting views of the problem, 2 or 3
 values, 2 or 3 fears, and 3 or 4 backstory points. The role must be one the students could hold
-within a few years. The conflict must force the character to use the skills in the CLOs. Avoid
+in the near future. The conflict must force the character to use the skills in the CLOs. Avoid
 real company names. Keep the whole profile under 400 words.
 
 Return: {"premise": string, "position": string, "conflict": string, "peers": [string], "valuesFears": string, "backstory": [string]}
@@ -495,10 +497,11 @@ bonus they like, and missing peak season in her first year.
 
 ### Decide
 
-Your final profile goes in these boxes. It's what's saved to your Course Planning Document.
+Your final profile goes in these boxes. It's what's saved to your Course Planning Document. Type in
+any box to change it, or select **Redraft with AI** under a box to have the AI rewrite just that
+part.
 
-Under the AI's draft, select **Use this profile** to copy each part into its box. Then edit any
-part on its own; the AI can redraft one part without changing the rest.
+Under the AI's draft, select **Use this profile** to copy each part into its box.
 
 ::: fields
 - Premise statement
@@ -511,7 +514,7 @@ part on its own; the AI can redraft one part without changing the rest.
 
 Checklist:
 
-- Your students could hold this role within a few years.
+- Your students could hold this role in the near future.
 - There's more than one reasonable choice, so students ask "What would I do?"
 - All characters, companies, and places are fictional.
 

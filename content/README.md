@@ -37,6 +37,9 @@ Each step has the same parts, in this order:
   Faculty can open the instructions under "What the AI is asked to do." Its last line,
   `Return: {...}`, is the format the software needs back; it is never shown to faculty.
 - **Decide**: what the faculty member edits, chooses or rejects, and the checklist shown beside it.
+  In a step with an AI draft or review, each Decide box has **Redraft with AI**. It sends the box's
+  current text, the faculty member's optional note on what should change, and the step's AI
+  instructions, and returns a new version of that box only.
 - **Checks**: the automatic checks that run when the section is saved.
 - **Save**: where the result goes in the planning document and in the project file.
 - **Go deeper (supplemental)**: readings and tools that build on the step.

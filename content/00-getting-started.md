@@ -52,7 +52,7 @@ save. Most steps after this page have five parts:
 - Learn | A short read on what the section is for. It starts with a box that says what you'll do and why it matters.
 - See it | An example from MGMT 615, a fictitious course used throughout the workshop, so you can see what you're aiming for before you start.
 - Draft or Review | The AI writes a first version of one section of your plan from your course details. If you're updating a course you already teach, it reviews your current section instead and flags what may need to change.
-- Decide | You're the expert on your course. Keep the draft, edit it, ask for another version, or write your own. A short checklist shows what a finished section includes.
+- Decide | You're the expert on your course. Keep the draft, edit it, have the AI redraft it, or write your own. A short checklist shows what a finished section includes.
 - Save | The section goes into your Course Planning Document. Checks then run and flag anything to fix, or to keep with a note for your ID.
 :::
 

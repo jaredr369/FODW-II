@@ -91,6 +91,11 @@ summary { cursor: pointer; color: var(--muted); font-size: 14px; }
 .linkbtn { background: none; border: 0; color: var(--maroon); text-decoration: underline; font: inherit; font-size: 15px; cursor: pointer; padding: 8px 4px; }
 .setup-msg { margin: 6px 0 0; font-weight: 600; color: var(--ok); }
 .setup-msg.warn { color: var(--warn); }
+.redraft-row { margin: 2px 0 0; }
+.redraft-row .linkbtn { padding: 2px 0; font-size: 14px; }
+.redraft-panel { border-left: 3px solid var(--line); padding: 4px 0 4px 12px; margin: 6px 0 4px; }
+.redraft-panel label { font-weight: 600; font-size: 15px; display: block; }
+.redraft-panel input { width: 100%; max-width: 520px; font: inherit; padding: 6px 8px; border: 1px solid #b9b4ad; border-radius: 6px; }
 .check-msg { color: var(--muted); }
 .kv { margin: 6px 0; }
 .kv > .k { font-weight: 600; color: var(--maroon-2); font-size: 13px; text-transform: capitalize; }
@@ -414,6 +419,7 @@ function md(text, opts = {}) {
         const [q, hint] = it.split(' | '), id = 'f' + (++formId);
         return '<div class="field"><label for="' + id + '"' + tag('p', q) + '>' + inline(q) + '</label>' +
           '<textarea id="' + id + '" rows="' + (/paste|one per line|sentences/i.test(q) ? 5 : 2) + '"></textarea>' +
+          (opts.redraft ? '<div class="redraft-row"><button type="button" class="linkbtn" data-redraft aria-expanded="false">Redraft with AI</button></div>' : '') +
           (hint ? '<p class="hint">Example (MGMT 615): <span' + tag('p', hint) + '>' + inline(hint) + '</span></p>' : '') + '</div>';
       }).join('') + '</div>';
       continue;
@@ -641,7 +647,9 @@ function renderStep(goKey) {
       if (/^:::/.test(l)) block = !block && !/^:::\s*$/.test(l);
       (l.startsWith('[[CHK]]') && !block ? checks : txt).push(block ? l.replace('[[CHK]]', '- ') : l.replace('[[CHK]]', ''));
     }
-    h += '<section class="part" id="decide"><h3>Decide</h3>' + md(txt.join('\n').replace(/Checklist[^:\n]*:/, '')) +
+    // Steps with an AI draft or review let faculty redraft any one Decide box.
+    const hasAI = !!(both || p['Review (refresh)'] || (p['Draft (full build)'] && !/no AI draft/i.test(p['Draft (full build)'])));
+    h += '<section class="part" id="decide"><h3>Decide</h3>' + md(txt.join('\n').replace(/Checklist[^:\n]*:/, ''), { redraft: hasAI }) +
       (checks.length ? '<div class="checklist" role="group" aria-label="Checklist">' + checks.map((c, i) => '<label><input type="checkbox" id="c' + i + '"> <span' + tag('li', c, { marker: '- ' }) + '>' + inline(c) + '</span></label>').join('') + '</div>' : '') + '</section>';
   }
   if (p['Checks'] && !/^None\.?\s*$/.test(p['Checks'].trim())) h += '<section class="part" id="checks" hidden><h3>Checks <span class="tag">ran on save</span></h3>' + md(p['Checks']) +
@@ -796,6 +804,30 @@ document.addEventListener('click', e => {
     if (!box.value.trim()) { msg.textContent = 'Write your answer first.'; box.focus(); return; }
     msg.textContent = ''; t.disabled = true; wait.hidden = false;
     setTimeout(() => { wait.hidden = true; t.disabled = false; form.querySelector('.demo-out').hidden = false; }, 900);
+    return;
+  }
+  // Redraft with AI: a short note on what should change, then a new version of that box only.
+  if (t.hasAttribute('data-redraft')) {
+    const row = t.closest('.redraft-row'), open = row.nextElementSibling && row.nextElementSibling.classList.contains('redraft-panel');
+    if (open) { row.nextElementSibling.remove(); t.setAttribute('aria-expanded', 'false'); return; }
+    const id = 'rd' + (++formId);
+    row.insertAdjacentHTML('afterend', '<div class="redraft-panel"><label for="' + id + '">What should change? (optional)</label><input id="' + id + '" type="text">' +
+      '<p class="hint">For example: shorter, plainer, or more about the decision.</p>' +
+      '<div class="row"><button type="button" class="btn sec" data-redraft-go>Redraft</button><button type="button" class="linkbtn" data-redraft-cancel>Cancel</button><span class="thinking" hidden>Working…</span></div>' +
+      '<p class="setup-msg" role="status"></p></div>');
+    t.setAttribute('aria-expanded', 'true'); document.getElementById(id).focus();
+    return;
+  }
+  if (t.hasAttribute('data-redraft-cancel')) {
+    const panel = t.closest('.redraft-panel'); panel.previousElementSibling.querySelector('[data-redraft]').setAttribute('aria-expanded', 'false'); panel.remove(); return;
+  }
+  if (t.hasAttribute('data-redraft-go')) {
+    const panel = t.closest('.redraft-panel'), box = panel.closest('.field').querySelector('textarea'), msg = panel.querySelector('.setup-msg'), wait = panel.querySelector('.thinking');
+    msg.classList.remove('warn');
+    if (!box.value.trim()) { msg.classList.add('warn'); msg.textContent = 'Nothing to redraft yet. Copy the AI draft into this box, or type your own, first.'; return; }
+    t.disabled = true; wait.hidden = false;
+    setTimeout(() => { wait.hidden = true; t.disabled = false;
+      msg.textContent = "Redrafted. (Demo: recorded responses don't change, so the text stays the same. In the finished tool, the AI rewrites only this box, using your note.)"; }, 900);
     return;
   }
   if (t.dataset.use) {

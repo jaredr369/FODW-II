@@ -280,7 +280,8 @@ the course helps students do at work; kept the diagnosis-first idea."
 
 ### Decide
 
-Your final vision goes in this box. It's what's saved to your Course Planning Document.
+Your final vision goes in this box. It's what's saved to your Course Planning Document. Type in the
+box to change anything, or select **Redraft with AI** under it to have the AI rewrite it.
 
 ::: full
 Edit the version you copied into your own words. You can also bring in a phrase from the other
@@ -473,7 +474,8 @@ Demo response (MGMT 615):
 
 ### Decide
 
-Your final CLOs go in this box. They're what's saved to your Course Planning Document.
+Your final CLOs go in this box. They're what's saved to your Course Planning Document. Type in the
+box to change anything, or select **Redraft with AI** under it to have the AI rewrite it.
 
 ::: full
 Under the AI's draft, select **Use these CLOs** to copy them here. Then edit, reorder, remove, or
@@ -619,7 +621,8 @@ Demo response (MGMT 615):
 
 ### Decide
 
-Your final modules go in this box. They're what's saved to your Course Planning Document.
+Your final modules go in this box. They're what's saved to your Course Planning Document. Type in
+the box to change anything, or select **Redraft with AI** under it to have the AI rewrite it.
 
 ::: full
 Under the AI's draft, select **Use these modules** to copy them here. Then edit titles, CLOs met,
