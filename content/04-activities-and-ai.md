@@ -78,11 +78,16 @@ A planned activity:
   require evaluation. If you can't name the CLO, the activity may not belong.
 - **Asks students to do what professionals do**: analyze data, recommend a course of action,
   design a process, run a conversation.
-- **Fits the week.** Flex Online courses plan for about 10 hours of student work a week,
-  including readings, videos, activities, and the 90-minute cohort session. Module 1 is lighter,
-  about 4 hours, while students get oriented.
+- **Fits the week.** Activities are one part of a student's week, so they need room for the rest.
 - **Adds variety.** If every module has the same format, the course feels repetitive and the same
   students are always at a disadvantage.
+
+::: figure budget | A typical Flex Online week: about 10 hours
+- Activities | about 4 to 5 hours | 45
+- Readings and media | about 3 to 4 hours | 40
+- Cohort session | 90 minutes, live or recorded | 15
+- Note | Module 1 is lighter, about 4 hours in all, while students get oriented.
+:::
 
 **Your storyline supplies the activities.** Each scenario ends in a decision, and that is where
 the module's main activity belongs. One decision can become an assignment where students write a
@@ -97,10 +102,6 @@ for low-stakes checks before harder work. Cohort sessions come in Module 7.
 **Weight.** Mark each activity high, medium, or low. Activities that show mastery of a CLO carry
 more weight than the practice that builds toward it. Points and rubrics are finished with your
 ID during development.
-
-**Aggie Core Values.** Look for one or two places where an activity asks students to act with
-integrity, lead, or consider who their decision affects. Your character's decisions are often
-the natural spot. You don't need all six values.
 
 **Watch the last module.** Courses often stack a final project on the module's normal work, and
 the last week ends up twice as heavy. Start a course-wide synthesis a module early, or let it
@@ -119,12 +120,16 @@ that make a student's own thinking visible:
 - **Course-specific material.** The work depends on your storyline, data, or earlier submissions.
 
 You can also allow AI on purpose: let students draft with it, then grade their critique and
-revision of the draft. Say clearly in the prompt what use is allowed.
+revision of the draft. Say clearly in the prompt what use is allowed. Low-weight practice doesn't
+need this check. The point of practice is the practice.
 
-Low-weight practice doesn't need this check. The point of practice is the practice.
+**Aggie Core Values.** Look for one or two places where an activity asks students to act with
+integrity, lead, or consider who their decision affects. Your character's decisions are often
+the natural spot. You don't need all six values.
 
-**Third-party tools.** A tool earns a place when it serves an objective better than a Canvas
-activity would. The AI may suggest one where it fits.
+::: fold Third-party tools: Perusall, Peerceptiv, and Poll Everywhere
+A tool earns a place when it serves an objective better than a Canvas activity would. The AI may
+suggest one where it fits.
 
 | Tool | What it does | Fits a story-based course when |
 |---|---|---|
@@ -133,20 +138,34 @@ activity would. The AI may suggest one where it fits.
 | Poll Everywhere | Polls and open questions, live or on students' own time | Students vote on the character's choice, then argue it in the cohort session |
 
 The checks ask six questions about any tool you choose, from privacy to your time. Automatic
-scores from these tools don't count as RSI on their own; plan what you'll add.
+scores from these tools don't count as RSI on their own; plan what you'll add, such as replies in
+the tool's threads.
+:::
 
-**A grading assistant (optional).** You can also set up an AI assistant for yourself that drafts
-feedback on student work. In Google Gemini, a Gem holds standing instructions and "knowledge
-files": you give it the assignment prompt and your rubric, then paste in one submission at a time
-and it drafts rubric-based comments. It can save real time in a large course. Three cautions:
-use only a tool the university has approved for student data (TAMU licenses Gemini with
-enterprise privacy protection, but confirm with your ID before uploading student work); read and
-edit every comment before it goes to a student, which is also what makes it count as RSI; and
+::: fold A grading assistant for you (optional)
+You can set up an AI assistant for yourself that drafts feedback on student work. In Google Gemini,
+a Gem holds standing instructions and "knowledge files": you give it the assignment prompt and your
+rubric, then paste in one submission at a time and it drafts rubric-based comments. It can save
+real time in a large course.
+
+Three cautions: use only a tool the university has approved for student data (TAMU licenses Gemini
+with enterprise privacy protection, but confirm with your ID before uploading student work); read
+and edit every comment before it goes to a student, which is also what makes it count as RSI; and
 the grade is always yours. The build steps are under Go deeper.
+:::
 
 ### See it
 
-MGMT 615 Module 3 after the refresh:
+::: full
+Here are the activities the MGMT 615 instructor planned for Module 3. The script sits at the
+module's decision point: students write the conversation Dana has with Jordan.
+:::
+
+::: refresh
+Here are MGMT 615's Module 3 activities after the review. The script sits at the module's decision
+point: students write the conversation Dana has with Jordan. The Perusall reading now counts for RSI
+because the instructor replies in its threads each Thursday.
+:::
 
 | Activity | CLO | Weight | Hours |
 |---|---|---|---|
@@ -154,59 +173,67 @@ MGMT 615 Module 3 after the refresh:
 | Perusall: Feedback That Lands (Chapter 4) | CLO 2 | Low | 1.5 |
 | Interactive: Coaching or Discipline? Scenario Sort | CLO 2 | Low | 0.5 |
 
-The script sits at the module's decision point: students write the conversation Dana has with
-Jordan.
+### Draft (full build) and Review (refresh)
 
-### Draft (full build)
+Work through your modules one at a time. Choose a module, then select the button below. The AI
+drafts the module's activities from its CLOs, topics, and scenario, and shows what the checks will
+find: the hours, the RSI categories, and the AI risk of each high-weight activity. Select **Use
+these activities** to copy them into the boxes under Decide.
 
-The AI offers two versions of each module's activity set. The faculty member picks one, combines
-them, or writes their own.
+::: refresh
+The AI starts from your Course Map's current activities for the module. It keeps what works, says
+what it would change and why, and adds hours and weight to each activity.
+:::
 
+::: module-picker
+:::
+
+::: full
 AI instructions:
 
 ```text
-For the given module, propose two versions of its activity set, each with 2 to 4
-activities, from the module's CLOs met, topics, and saved scenario. Make the main activity sit at the scenario's decision point. For each activity
-give: type (Assignment, Discussion, Quiz), a short title, the CLOs it assesses with the verb it
-uses, weight (high, medium, low), estimated student hours, and one sentence on what students do.
-Every module needs exactly one high-weight activity unless the faculty member's notes say
-otherwise. Vary types across modules. Do not include cohort session activities.
+For the given module, propose an activity set of 2 to 4 activities from the module's CLOs met,
+topics, and saved scenario. Make the main activity sit at the scenario's decision point. For each
+activity give: type (Assignment, Discussion, Quiz), a short title, the CLOs it assesses with the
+verb it uses, weight (high, medium, low), estimated student hours, and one sentence on what
+students do. Every module needs exactly one high-weight activity unless the faculty member's notes
+say otherwise. Vary types across modules. Do not include cohort session activities. Where a
+third-party tool (Perusall, Peerceptiv, Poll Everywhere) would serve an objective better than a
+Canvas activity, include it with type set to the tool name. At most one tool per module.
 
-Where a third-party tool (Perusall, Peerceptiv, Poll Everywhere) would serve an objective better
-than a Canvas activity, include it with type set to the tool name. At most one tool per module.
-
-Return: {"versions": [{"activities": [{"type": string, "title": string, "clos": [string], "verb": string, "weight": string, "hours": number, "what": string}]}]}
+Return: {"activities": [{"type": string, "title": string, "clos": [string], "verb": string, "weight": string, "hours": number, "what": string}]}
 ```
+:::
 
-Demo response (MGMT 615, if run as a full build): each module's activities from
-`demo/mgmt615-activities.json`.
-
-### Review (refresh)
-
-The app shows each module's current activities from the uploaded course map.
-
+::: refresh
 AI instructions:
 
 ```text
-Each module's current activities are given, with the module's CLOs met, topics, and saved
-scenario. For each activity check: it traces to a CLO and matches the CLO's verb; students do
-something professionals do; the main activity sits at or near the scenario's decision. Keep
-what passes. For the rest, quote the problem and suggest one revision. Add estimated hours and
-weight to every activity. Note modules where activity types repeat the previous module.
+The module's current activities are given, with its CLOs met, topics, and saved scenario. For each
+activity check: it traces to a CLO and matches the CLO's verb; students do something
+professionals do; the main activity sits at or near the scenario's decision. Keep what passes.
+For the rest, quote the problem and suggest one revision. Add estimated hours and weight to every
+activity. Note when activity types repeat the previous module.
 
-Return: {"modules": [{"module": int, "activities": [{"original": string, "action": "keep" | "revise", "issues": [string], "revision": {...same shape as full build...}}]}]}
+Return: {"module": int, "activities": [{"original": string, "action": "keep" | "revise", "issues": [string], "revision": {...same shape as full build...}}]}
 ```
+:::
 
-Demo response (MGMT 615): each module and its `review` notes from
-`demo/mgmt615-activities.json`. The main finding: three of the four main assignments used
-separate cases or a topic of the student's choice. The review moves each to the module's
-scenario decision and keeps the original cases as readings or comparisons.
+Demo response (MGMT 615):
+
+::: module-options
+:::
 
 ### Decide
 
-For each module the faculty member edits, adds, or removes activities and marks, for each
-high-weight activity, the AI use allowed: not allowed, allowed with disclosure, or required as
-part of the task.
+Your final activities for each module go in these boxes. Type in any box to change it, or select
+**Redraft with AI** under a box to have the AI rewrite just that part. To work on another module,
+choose it above; what you've typed is kept.
+
+For each high-weight activity, decide what AI use is allowed and say so in the second box.
+
+::: module-fields
+:::
 
 Checklist (for each module):
 
@@ -216,36 +243,41 @@ Checklist (for each module):
 
 ### Checks
 
-On save of each module:
+When you save each module, the tool checks:
 
 - **Alignment:** each activity traces to a CLO the module lists and uses its verb.
-- **RSI:** at least two categories of instructor activity, counting the cohort session (4) and
-  responsive weekly announcements (3) if the interaction statement promises them.
-- **Workload:** activities total about 4 to 5 hours (about 1.5 in Module 1), leaving room for
-  readings, media, and the 90-minute cohort session. The last module is flagged if it runs much heavier than the others.
-- **AI risk:** each high-weight activity rated high, medium, or low, with a suggested change for
+- **RSI:** at least two categories of instructor activity, counting the cohort session and
+  responsive weekly announcements if your interaction statement promises them.
+- **Workload:** activities total about 4 to 5 hours (about 1.5 to 2 in Module 1). The last module is
+  flagged if it runs much heavier than the others.
+- **AI risk:** each high-weight activity is rated high, medium, or low, with a suggested change for
   high and medium.
-- **Tools:** each third-party tool answers the six questions (alignment, feedback quality,
-  academic integrity, access, privacy, your time); privacy shows "check with your ID" unless the
-  tool is approved.
+- **Tools:** each third-party tool answers six questions: alignment, feedback quality, academic
+  integrity, access, privacy, and your time. Privacy shows "check with your ID" unless the tool is
+  approved.
 
-RSI and workload instructions:
+In MGMT 615, the checks flagged Module 1's workload (the sort became optional practice), the
+Module 5 Perusall reading for RSI (the instructor added Thursday replies), and Module 8's workload
+(the summary's first draft moved to Module 7). They rated three assessments high for AI risk and
+suggested the changes shown with each module's draft.
+
+AI instructions (RSI and workload):
 
 ```text
-For each module, using its saved activities, the syllabus statement (step 2.1) and
-whether the module has a cohort session (assume yes for modules 2 to 8 unless told otherwise):
+For each module, using its saved activities, the syllabus statement (step 2.1), and whether the
+module has a cohort session (assume yes for modules 2 to 8 unless told otherwise):
 1. Assign each activity an RSI category or null, with a short reason. Auto-graded work and
    student-only activities are null unless the faculty member described instructor involvement.
-2. Count the categories the module covers, including the cohort session (4) and responsive
-   weekly announcements (3) if the syllabus statement promises them.
+2. Count the categories the module covers, including the cohort session (4) and responsive weekly
+   announcements (3) if the syllabus statement promises them.
 3. Total the activity hours.
-Flag modules with fewer than two categories, and modules whose activities exceed 5 hours (2 hours in Module 1).
-For each flag, suggest one specific change.
+Flag modules with fewer than two categories, and modules whose activities exceed 5 hours (2 hours
+in Module 1). For each flag, suggest one specific change.
 
 Return: {"modules": [{"module": int, "activities": [{"title": string, "rsi": int | null, "reason": string}], "categories": [int], "hours": number, "flags": [string]}]}
 ```
 
-AI-risk instructions:
+AI instructions (AI risk):
 
 ```text
 For each high-weight activity, judge how easily a student could complete it with a general AI
@@ -256,12 +288,6 @@ material. Keep the activity's CLO and verb. Do not suggest AI detection tools.
 
 Return: {"assessments": [{"module": int, "activity": string, "risk": "high" | "medium" | "low", "why": string, "change": string | null}]}
 ```
-
-Demo flags (MGMT 615), from `demo/mgmt615-activities.json`: Module 1, "about 4.5 hours of
-activities in a 4-hour week; make the sort optional and shorten the case analysis"; Module 5, "Perusall counts for RSI
-only with instructor replies; apply the Module 3 fix"; Module 8, "about 6 hours of activities;
-move part of the Management Approach Summary earlier"; AI risk high for the Module 3 script, the
-Module 7 change message and the Module 8 summary, with the changes in `aiCheck`.
 
 ### Save
 
@@ -300,27 +326,36 @@ The walk-through follows one of your students through the week: what they open o
 read, do, and submit, when they hear from you, and how long it takes. If something needs fixing, go
 back to step 4.1.
 
-Readings and media aren't planned yet, so the walk-through uses placeholders for them. You'll
-see the full week again in Modules 5 and 6.
+Readings and media aren't planned yet, so the walk-through uses placeholders for them. It updates
+as you plan materials in Module 5 and media in Module 6, and Module 8 shows the full week.
 
 ### See it
 
-MGMT 615, Module 3, as a student: "Monday, an announcement picks up Dana's story: Greg wants a
-formal warning for Jordan. I spend about an hour and a half annotating the feedback chapter in
-Perusall; on Thursday the instructor replies to my thread with a question about Jordan. Wednesday
-night I do the 30-minute coaching-or-discipline sort. Saturday I draft the feedback script and
-annotate why each line is there, about three hours. In Tuesday's cohort session I rehearse it
-with a partner. I hear from the instructor three times this week." The instructor's reaction:
-"Saturday is the whole assignment. Move the script due date to Sunday and open it Wednesday."
+Here's MGMT 615's Module 3 week as a student would live it, and what the instructor changed.
+
+::: figure week | MGMT 615, Module 3: a student's week
+- Mon | Announcement: Greg wants a formal warning for Jordan. Start the Perusall reading (about 1.5 hours over two days).
+- Tue | Finish the Perusall annotations.
+- Wed | Coaching-or-discipline sort (30 minutes).
+- Thu | The instructor replies in Perusall. Cohort session: rehearse the opening of the conversation with a partner.
+- Fri |
+- Sat | Draft the whole feedback script and annotate each line (about 3 hours).
+- Sun |
+- Note | The heaviest point is Saturday: the whole script in one sitting. The instructor's fix: open the script on Wednesday and make it due Sunday, so students can start it after the cohort session.
+:::
 
 ### Draft (full build) and Review (refresh)
+
+Select the button below. The AI walks through each module's week as one of your students, then
+names the heaviest point, any stretch of three or more days without hearing from you, and anything
+a student might not understand the purpose of.
 
 AI instructions:
 
 ```text
 Walk through the given module's week as one of the course's students, in first person and in
-time order, using the learner profile, the saved activities, the interaction statement, the
-scenario and a 90-minute cohort session. Use [reading] and [video] placeholders where materials
+time order, using the learner description, the saved activities, the interaction statement, the
+scenario, and a 90-minute cohort session. Use [reading] and [video] placeholders where materials
 aren't planned yet. Give rough hours for each part and a total. Then list, in one line each:
 the heaviest point in the week, any stretch of three or more days with no contact from the
 instructor, and anything a student might not understand the purpose of. Under 200 words.
@@ -328,13 +363,30 @@ instructor, and anything a student might not understand the purpose of. Under 20
 Return: {"walkthrough": string, "hours": number, "heaviest": string, "silent": string | null, "unclear": string | null}
 ```
 
-Demo response (MGMT 615, Module 3): the walk-through under See it, with hours 5.5, heaviest
-"Saturday: the whole script in one sitting", silent null, unclear null.
+Demo response (MGMT 615):
+
+**Module 3: Performance Management and Feedback**
+
+"Monday, an announcement picks up Dana's story: Greg wants a formal warning for Jordan. Monday and
+Tuesday I spend about an hour and a half annotating the feedback chapter in Perusall. Wednesday
+night I do the 30-minute coaching-or-discipline sort. Thursday the instructor replies to my
+Perusall thread with a question about Jordan, and in the cohort session I rehearse the opening of
+the conversation with a partner. Saturday I draft the whole feedback script and annotate why each
+line is there, about three hours. I hear from the instructor three times this week."
+
+- **Total:** about 5 hours of activities, plus the 90-minute cohort session.
+- **Heaviest point:** Saturday, the whole script in one sitting.
+- **Days without contact:** none.
+- **Unclear purpose:** none.
 
 ### Decide
 
-For each module the faculty member selects Looks right, or writes a short note and optionally
-returns to step 4.1 to change the module's activities.
+Note anything you want to change, module by module. These are your own notes, so there's no AI
+redraft here. To make a change, go back to step 4.1 and edit that module's activities.
+
+::: fields notes
+- Your notes on any week that feels heavy, thin, or silent, one module per line | Module 3: Saturday is the whole assignment. Open the script Wednesday and make it due Sunday.
+:::
 
 Checklist:
 
@@ -343,11 +395,12 @@ Checklist:
 
 ### Checks
 
-None beyond step 4.1's, which run again on any activity changes.
+None beyond step 4.1's, which run again when you change any activities.
 
 ### Save
 
-Planning document: nothing new.
+Saved with your project. Your notes stay with each module's plan for your ID to see at your
+check-in.
 Project file: `modules[].weekWalk` (walk-through, hours, reaction).
 
 ---

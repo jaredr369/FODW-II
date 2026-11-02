@@ -203,6 +203,15 @@ summary { cursor: pointer; color: var(--muted); font-size: 14px; }
 .scen-opt { border-top: 1px solid #c7d8e0; padding-top: 8px; margin-top: 8px; }
 .scen-opt ul { margin: 6px 0; }
 .scen-note { font-size: 14px; color: var(--muted); }
+.act-checks { border-top: 1px solid #c7d8e0; margin-top: 10px; padding-top: 8px; font-size: 15px; }
+.budget { display: flex; height: 34px; border-radius: 8px; overflow: hidden; margin: 4px 0 10px; }
+.budget span, .budget-key .sw { display: block; }
+.budget .b0, .budget-key .b0 { background: var(--maroon); }
+.budget .b1, .budget-key .b1 { background: #b9847c; }
+.budget .b2, .budget-key .b2 { background: #2f5d73; }
+.budget-key { display: flex; flex-wrap: wrap; gap: 6px 22px; font-size: 14px; }
+.budget-key li { display: flex; align-items: center; gap: 6px; }
+.budget-key .sw { width: 14px; height: 14px; border-radius: 3px; }
 .arc { display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 6px; align-items: end; height: 260px; }
 .arc li { height: 100%; display: flex; flex-direction: column; justify-content: flex-end; font-size: 13px; }
 .arc .bar { display: block; height: calc(var(--h) * .6); background: #e6dcd8; border-radius: 6px 6px 0 0; margin-bottom: 6px; }
@@ -313,7 +322,7 @@ body.editing main { padding-bottom: 140px; }
 <script>
 const DATA = /*DATA*/null;
 const KEY = 'course-plan-builder-prototype:state';
-let state = { track: null, done: {}, at: 'welcome', showAll: false, scen: {}, scenMod: 1 };
+let state = { track: null, done: {}, at: 'welcome', showAll: false, pick: {}, mods: {} };
 
 function load() { try { const s = JSON.parse(localStorage.getItem(KEY) || 'null'); if (s) state = Object.assign(state, s); } catch (e) {} }
 function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
@@ -505,12 +514,12 @@ function md(text, opts = {}) {
       if (state.track === which) html += md(buf.join('\n'), opts);
       continue;
     }
-    // Step 3.2 works one module at a time: ::: scenario-picker chooses the module, ::: scenario-options
-    // shows the AI's two options for it, and ::: scenario-fields holds the faculty member's version.
-    if (/^:::\s*scenario-(picker|options|fields)\s*$/.test(line)) {
+    // Steps that work one module at a time (3.2, 4.1, ...): ::: module-picker chooses the module,
+    // ::: module-options shows the AI's draft for it, and ::: module-fields holds the faculty member's version.
+    if (/^:::\s*module-(picker|options|fields)\s*$/.test(line)) {
       const which = line.match(/picker|options|fields/)[0], rows = []; i++;
       while (i < lines.length && !/^:::\s*$/.test(lines[i])) { if (/^- /.test(lines[i])) rows.push(lines[i].slice(2).split(/\s*\|\s*/)); i++; }
-      i++; html += scenarioBlock(which, rows, opts); continue;
+      i++; html += moduleBlock(which, rows, opts); continue;
     }
     // ::: figure <type> | <title> block: an infographic. Its words come from "- a | b | c" lines in the
     // content file, so they stay editable and readable by screen readers; any drawing is decorative.
@@ -572,6 +581,8 @@ function md(text, opts = {}) {
       continue;
     }
     if (/^:::\s*fields/.test(line)) {
+      // "::: fields notes" holds the faculty member's own notes, so it has no Redraft link.
+      const fred = opts.redraft && !/^:::\s*fields\s+notes/.test(line);
       i++; const items = [];
       while (i < lines.length && !/^:::\s*$/.test(lines[i])) {
         if (/^- /.test(lines[i])) items.push(lines[i].slice(2)); else if (items.length && lines[i].trim()) items[items.length - 1] += ' ' + lines[i].trim();
@@ -582,7 +593,7 @@ function md(text, opts = {}) {
         const [q, hint] = it.split(' | '), id = 'f' + (++formId);
         return '<div class="field"><label for="' + id + '"' + tag('p', q) + '>' + inline(q) + '</label>' +
           '<textarea id="' + id + '" rows="' + (/paste|one per line|sentences/i.test(q) ? 5 : 2) + '"></textarea>' +
-          (opts.redraft ? '<div class="redraft-row"><button type="button" class="linkbtn" data-redraft aria-expanded="false">Redraft with AI</button></div>' : '') +
+          (fred ? '<div class="redraft-row"><button type="button" class="linkbtn" data-redraft aria-expanded="false">Redraft with AI</button></div>' : '') +
           (hint ? '<p class="hint">Example (MGMT 615): <span' + tag('p', hint) + '>' + inline(hint) + '</span></p>' : '') + '</div>';
       }).join('') + '</div>';
       continue;
@@ -634,27 +645,57 @@ function md(text, opts = {}) {
 const SCEN_PARTS = [['title', 'Episode title'], ['premise', 'Premise: "[Character] struggles to [decision] when [complication]."'],
   ['situation', 'Situation'], ['trigger', 'Trigger'], ['stakeholders', 'Stakeholders'], ['decision', 'Decision, with two or three options'],
   ['outcome', 'Outcome and learning']];
-function scenarioBlock(which, rows, opts) {
-  const mods = DATA.demo['mgmt615-foundation.json'].modules, sc = DATA.demo['mgmt615-scenarios.json'].modules;
-  const n = state.scenMod || 1, mod = mods[n - 1], saved = (state.scen || {})[n] || {};
+const ACT_PARTS = [['activities', 'Your activities for this module, one per line: type: title (CLOs, weight, hours)'],
+  ['aiuse', 'For each high-weight activity, the AI use allowed: not allowed, allowed with disclosure, or required as part of the task']];
+const actLine = a => a.type + ': ' + a.title + ' (' + a.clos.join(', ') + ', ' + a.weight + ', ' + a.hours + (a.hours === 1 ? ' hour' : ' hours') + ')';
+// Each module-at-a-time step: its boxes, which box marks a module as started, and the AI draft for module n.
+const MODULE_STEPS = {
+  '3.2': { parts: SCEN_PARTS, done: 'title', rows: k => k === 'title' ? 1 : 3, draft: scenarioDraft },
+  '4.1': { parts: ACT_PARTS, done: 'activities', rows: k => k === 'activities' ? 5 : 3, draft: activityDraft },
+};
+const stepKey = () => state.at.split(':')[1];
+const pickOf = key => (state.pick || {})[key] || 1;
+const modText = (key, n) => ((state.mods || {})[key] || {})[n] || {};
+function moduleBlock(which, rows, opts) {
+  const key = stepKey(), cfg = MODULE_STEPS[key]; if (!cfg) return '';
+  const mods = DATA.demo['mgmt615-foundation.json'].modules, n = pickOf(key), mod = mods[n - 1], saved = modText(key, n);
   if (which === 'picker') return '<div class="scen-picker" role="group" aria-label="Choose a module">' + mods.map((m, k) =>
-    '<button type="button" data-scenmod="' + (k + 1) + '" aria-pressed="' + (k + 1 === n) + '">' +
-    '<span class="m">Module ' + (k + 1) + (((state.scen || {})[k + 1] || {}).title ? ' <span class="ok" aria-label="has a scenario">✓</span>' : '') + '</span><span class="t">' + esc(m.title) + '</span></button>').join('') + '</div>';
+    '<button type="button" data-pickmod="' + (k + 1) + '" aria-pressed="' + (k + 1 === n) + '">' +
+    '<span class="m">Module ' + (k + 1) + (modText(key, k + 1)[cfg.done] ? ' <span class="ok" aria-label="started">✓</span>' : '') + '</span><span class="t">' + esc(m.title) + '</span></button>').join('') + '</div>';
   if (which === 'options') {
-    const s = sc[n - 1], c = s.chosen, a = s.alternative;
     const note = rows.filter(r => +r[0] === n && (!r[1] || r[1] === state.track)).map(r => '<p class="scen-note">' + inline(r[2] || '') + '</p>').join('');
-    const part = (label, v) => '<li><strong>' + label + ':</strong> ' + esc(v) + '</li>';
-    return '<p class="scen-for">Module ' + n + ': ' + esc(mod.title) + '</p>' + note +
-      '<div class="scen-opt" data-opt="1"><p><strong>Option 1: ' + esc(c.title) + '</strong> (' + esc(c.clos.join(', ')) + ')</p><p>' + esc(c.premise) + '</p><ul>' +
-      part('Situation', c.situation) + part('Trigger', c.trigger) + part('Stakeholders', c.stakeholders) + part('Decision', c.decision) + part('Outcome and learning', c.outcome) + '</ul></div>' +
-      '<div class="scen-opt" data-opt="2"><p><strong>Option 2: ' + esc(a.title) + '</strong></p><p>' + esc(a.premise) + '</p>' +
-      '<p class="scen-note">This option takes a different angle from your arc. If you use it, select Redraft with AI under each empty box to fill in the five parts.</p></div>';
+    return '<p class="scen-for">Module ' + n + ': ' + esc(mod.title) + '</p>' + note + cfg.draft(n);
   }
-  return '<p class="scen-for">Module ' + n + ': ' + esc(mod.title) + '</p><div class="form">' + SCEN_PARTS.map(([key, label]) => {
-    const id = 'sc-' + key, v = saved[key] || '';
-    return '<div class="field"><label for="' + id + '">' + esc(label) + '</label><textarea id="' + id + '" data-scen="' + key + '" rows="' + (key === 'title' ? 1 : 3) + '">' + esc(v) + '</textarea>' +
+  return '<p class="scen-for">Module ' + n + ': ' + esc(mod.title) + '</p><div class="form">' + cfg.parts.map(([k, label]) => {
+    const id = 'mf-' + k;
+    return '<div class="field"><label for="' + id + '">' + esc(label) + '</label><textarea id="' + id + '" data-mfield="' + k + '" rows="' + cfg.rows(k) + '">' + esc(saved[k] || '') + '</textarea>' +
       (opts.redraft ? '<div class="redraft-row"><button type="button" class="linkbtn" data-redraft aria-expanded="false">Redraft with AI</button></div>' : '') + '</div>';
   }).join('') + '</div>';
+}
+function scenarioDraft(n) {
+  const s = DATA.demo['mgmt615-scenarios.json'].modules[n - 1], c = s.chosen, a = s.alternative;
+  const part = (label, v) => '<li><strong>' + label + ':</strong> ' + esc(v) + '</li>';
+  return '<div class="scen-opt" data-opt="1"><p><strong>Option 1: ' + esc(c.title) + '</strong> (' + esc(c.clos.join(', ')) + ')</p><p>' + esc(c.premise) + '</p><ul>' +
+    part('Situation', c.situation) + part('Trigger', c.trigger) + part('Stakeholders', c.stakeholders) + part('Decision', c.decision) + part('Outcome and learning', c.outcome) + '</ul></div>' +
+    '<div class="scen-opt" data-opt="2"><p><strong>Option 2: ' + esc(a.title) + '</strong></p><p>' + esc(a.premise) + '</p>' +
+    '<p class="scen-note">This option takes a different angle from your arc. If you use it, select Redraft with AI under each empty box to fill in the five parts.</p></div>';
+}
+// 4.1: the module's activities, then what the checks will find: hours, RSI categories, and AI risk.
+function activityDraft(n) {
+  const d = DATA.demo['mgmt615-activities.json'], m = d.modules[n - 1], acts = m.activities;
+  const hours = acts.reduce((s, a) => s + (a.hours || 0), 0);
+  const cats = [...new Set(acts.map(a => a.rsi).filter(Boolean).concat(n > 1 ? [3, 4] : [3]))].sort();
+  const RSI = { 1: 'direct instruction', 2: 'feedback', 3: 'information and answers', 4: 'discussion', 5: 'other' };
+  const risks = acts.filter(a => a.weight === 'high').map(a => {
+    const c = (d.aiCheck || []).find(x => x.module === n && a.title.startsWith(x.activity));
+    return '<li><strong>' + esc(a.title) + ':</strong> AI risk ' + esc(c ? c.risk : (a.aiRisk || 'low')) + (c && c.change ? '. Suggested change: ' + esc(c.change) : '.') + '</li>';
+  }).join('');
+  const review = state.track === 'refresh' && m.review && m.review.length ? '<p><strong>Review of your current activities:</strong></p><ul>' + m.review.map(r => '<li>' + esc(r) + '</li>').join('') + '</ul>' : '';
+  return review + '<div class="scen-opt" data-opt="1"><p><strong>Activities</strong></p><ul class="act-list">' + acts.map(a => '<li>' + esc(actLine(a)) + '</li>').join('') + '</ul></div>' +
+    '<div class="act-checks"><p><strong>What the checks will find</strong></p><ul>' +
+    '<li><strong>Workload:</strong> about ' + hours + ' hours of activities' + (n === 1 ? ' (Module 1 aims for about 1.5 to 2).' : ' (aim for about 4 to 5).') + '</li>' +
+    '<li><strong>RSI:</strong> ' + cats.length + ' categories (' + cats.map(c => RSI[c]).join(', ') + '), counting the weekly announcements' + (n > 1 ? ' and the cohort session' : '') + '.</li>' +
+    risks + '</ul></div>';
 }
 // Infographics. Each takes the rows from a ::: figure block and returns plain HTML, so the text
 // reflows on a phone and reads aloud in order. Lines and dots are aria-hidden decoration.
@@ -690,6 +731,12 @@ function figure(type, title, rows) {
     const notes = rows.filter(r => r[0] === 'Note'), mods = rows.filter(r => r[0] !== 'Note'), top = Math.max(...mods.map(r => +r[2] || 1));
     return wrap('<ol class="arc">' + mods.map(([n, name, level, peak]) => '<li' + (peak === 'peak' ? ' class="peak"' : '') + ' style="--h:' + Math.round(28 + 72 * (+level || 1) / top) + '%"><span class="bar" aria-hidden="true"></span>' +
       '<span class="m">Module ' + esc(n) + (peak === 'peak' ? ' <em>Peak</em>' : '') + '</span><span class="t">' + inline(name) + '</span></li>').join('') + '</ol>' +
+      notes.map(r => '<p class="fig-note">' + inline(r[1] || '') + '</p>').join(''));
+  }
+  if (type === 'budget') {
+    const notes = rows.filter(r => r[0] === 'Note'), parts = rows.filter(r => r[0] !== 'Note');
+    return wrap('<div class="budget" aria-hidden="true">' + parts.map(([name, , pct], k) => '<span class="b' + k + '" style="width:' + (+pct || 0) + '%"></span>').join('') + '</div>' +
+      '<ul class="budget-key">' + parts.map(([name, hrs], k) => '<li><span class="sw b' + k + '" aria-hidden="true"></span><strong>' + inline(name) + ':</strong> ' + inline(hrs || '') + '</li>').join('') + '</ul>' +
       notes.map(r => '<p class="fig-note">' + inline(r[1] || '') + '</p>').join(''));
   }
   if (type === 'trace') return wrap('<ol class="trace">' + rows.map(([name, what]) => '<li><strong>' + inline(name) + '</strong><span>' + inline(what || '') + '</span></li>').join('') + '</ol>');
@@ -968,10 +1015,14 @@ function useButtons(sec) {
   if (key === '3.1') { const p = [...out.querySelectorAll('p')].find(x => /^Where pressure peaks:/.test(x.textContent)) || out.lastElementChild;
     p.insertAdjacentHTML('afterend', btn('Use this storyline', [label(out, 'Premise'), listAfter('Arc')])); }
   if (key === '3.2') {
-    const c = DATA.demo['mgmt615-scenarios.json'].modules[(state.scenMod || 1) - 1];
+    const c = DATA.demo['mgmt615-scenarios.json'].modules[pickOf('3.2') - 1];
     out.querySelectorAll('.scen-opt').forEach(o => o.insertAdjacentHTML('beforeend', o.dataset.opt === '1'
       ? btn('Use this scenario', SCEN_PARTS.map(([k]) => c.chosen[k] || ''))
       : btn('Use this scenario', [c.alternative.title, c.alternative.premise, '', '', '', '', ''])));
+  }
+  if (key === '4.1') {
+    const m = DATA.demo['mgmt615-activities.json'].modules[pickOf('4.1') - 1], o = out.querySelector('.scen-opt');
+    if (o) o.insertAdjacentHTML('beforeend', btn('Use these activities', [m.activities.map(actLine).join('\n')]));
   }
 }
 
@@ -1034,9 +1085,9 @@ function render() {
 const editable = t => editing && t instanceof Element && t.closest('[data-s]');
 document.addEventListener('focusout', e => { const el = editable(e.target); if (el) recordEdit(el); });
 document.addEventListener('input', e => {
-  const k = e.target.dataset && e.target.dataset.scen; if (!k) return;
-  const n = state.scenMod || 1; state.scen = state.scen || {}; state.scen[n] = state.scen[n] || {};
-  state.scen[n][k] = e.target.value; save();
+  const k = e.target.dataset && e.target.dataset.mfield; if (!k) return;
+  const key = stepKey(), n = pickOf(key); state.mods = state.mods || {}; state.mods[key] = state.mods[key] || {};
+  state.mods[key][n] = state.mods[key][n] || {}; state.mods[key][n][k] = e.target.value; save();
 });
 document.addEventListener('keydown', e => {
   const el = editable(e.target);
@@ -1051,16 +1102,16 @@ document.addEventListener('click', e => { if (editable(e.target) && e.target.clo
 document.addEventListener('click', e => {
   const t = e.target.closest('button, input'); if (!t) return;
   if (t.dataset.track) { state.track = t.dataset.track; save(); render(); return; }
-  if (t.dataset.scenmod) {
-    state.scenMod = +t.dataset.scenmod; save(); render();
-    const pick = document.querySelector('.scen-picker'); if (pick) { pick.scrollIntoView({ block: 'start' }); window.scrollBy(0, -70); document.querySelector('[data-scenmod="' + state.scenMod + '"]').focus({ preventScroll: true }); }
+  if (t.dataset.pickmod) {
+    const key = stepKey(); state.pick = state.pick || {}; state.pick[key] = +t.dataset.pickmod; save(); render();
+    const pick = document.querySelector('.scen-picker'); if (pick) { pick.scrollIntoView({ block: 'start' }); window.scrollBy(0, -70); document.querySelector('[data-pickmod="' + state.pick[key] + '"]').focus({ preventScroll: true }); }
     return;
   }
   if (t.dataset.mod) { navOpen[t.dataset.mod] = t.getAttribute('aria-expanded') !== 'true'; renderNav(); $('[data-mod="' + t.dataset.mod + '"]').focus(); return; }
   if (t.id === 'stepsBtn') { const open = document.body.classList.toggle('nav-open'); t.setAttribute('aria-expanded', String(open)); return; }
   if (t.dataset.go) { go(t.dataset.go); return; }
   if (t.hasAttribute('data-next')) { next(); return; }
-  if (t.id === 'reset') { state = { track: null, done: {}, at: 'welcome', showAll: false, scen: {}, scenMod: 1 }; save(); render(); return; }
+  if (t.id === 'reset') { state = { track: null, done: {}, at: 'welcome', showAll: false, pick: {}, mods: {} }; save(); render(); return; }
   if (t.hasAttribute('data-draft')) {
     const sec = t.closest('section'); const wait = sec.querySelector('.thinking');
     t.disabled = true; wait.hidden = false;

@@ -276,7 +276,7 @@ The AI also looks at your Course Map's existing cases and examples for each modu
 fits, it builds an option from it and names the case.
 :::
 
-::: scenario-picker
+::: module-picker
 :::
 
 ::: full
@@ -315,7 +315,7 @@ Return: {"module": int, "existing": {"passes": boolean, "issues": [string]} | nu
 
 Demo response (MGMT 615):
 
-::: scenario-options
+::: module-options
 - 1 | refresh | Your Course Map's existing case, Maria's First Ninety Days, covers the same moment at another company. Keep it as a contrast: students compare Maria's first quarter with Dana's first bad week.
 :::
 
@@ -325,7 +325,7 @@ Your final scenario for each module goes in these boxes. Type in any box to chan
 **Redraft with AI** under a box to have the AI rewrite just that part. To work on another module,
 choose it above; what you've typed is kept.
 
-::: scenario-fields
+::: module-fields
 :::
 
 Checklist (for each scenario):
