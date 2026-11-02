@@ -62,6 +62,9 @@ summary { cursor: pointer; color: var(--muted); font-size: 14px; }
 .field .hint { margin: 4px 0 0; font-size: 14px; color: var(--ex); }
 .row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-top: 12px; }
 .thinking { color: var(--muted); font-style: italic; }
+.row.use { margin: 6px 0 10px; }
+.use-note { color: var(--ok); font-weight: 600; margin: 4px 0 0; }
+.check-msg { color: var(--muted); }
 .kv { margin: 6px 0; }
 .kv > .k { font-weight: 600; color: var(--maroon-2); font-size: 13px; text-transform: capitalize; }
 .card { border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; margin: 8px 0; background: #fff; }
@@ -322,6 +325,21 @@ function md(text, opts = {}) {
     }
     // ::: fields block: each "- Question | Example answer" line becomes a labeled answer box, with the
     // MGMT 615 answer as a hint below. Questions that ask for pasted text get a taller box.
+    // ::: check block (spot the problem): "- Question" gets an answer box and a Check my answer
+    // button; the "Feedback:" text is the AI's recorded reply, shown when the button is selected.
+    if (/^:::\s*check/.test(line)) {
+      i++; let q = '', fb = '';
+      while (i < lines.length && !/^:::\s*$/.test(lines[i])) {
+        if (/^- /.test(lines[i])) q = lines[i].slice(2); else if (/^Feedback:/.test(lines[i])) fb = lines[i].replace(/^Feedback:\s*/, ''); else if (lines[i].trim()) fb ? fb += ' ' + lines[i].trim() : q += ' ' + lines[i].trim();
+        i++;
+      }
+      i++;
+      const id = 'f' + (++formId);
+      html += '<div class="form"><div class="field"><label for="' + id + '">' + inline(q) + '</label><textarea id="' + id + '" rows="3"></textarea></div>' +
+        '<div class="row"><button type="button" class="btn sec" data-check>Check my answer</button><span class="thinking" hidden>Working…</span><span class="check-msg" role="status"></span></div>' +
+        '<div class="demo-out" hidden><p class="crumb">AI feedback (recorded response)</p><p>' + inline(fb) + '</p></div></div>';
+      continue;
+    }
     if (/^:::\s*fields/.test(line)) {
       i++; const items = [];
       while (i < lines.length && !/^:::\s*$/.test(lines[i])) {
@@ -524,15 +542,38 @@ function renderStep(goKey) {
       if (/^:::/.test(l)) block = !block && !/^:::\s*$/.test(l);
       (l.startsWith('[[CHK]]') && !block ? checks : txt).push(block ? l.replace('[[CHK]]', '- ') : l.replace('[[CHK]]', ''));
     }
-    h += '<section class="part"><h3>Decide</h3>' + md(txt.join('\n').replace(/Checklist[^:\n]*:/, '')) +
+    h += '<section class="part" id="decide"><h3>Decide</h3>' + md(txt.join('\n').replace(/Checklist[^:\n]*:/, '')) +
       (checks.length ? '<div class="checklist" role="group" aria-label="Checklist">' + checks.map((c, i) => '<label><input type="checkbox" id="c' + i + '"> <span' + tag('li', c, { marker: '- ' }) + '>' + inline(c) + '</span></label>').join('') + '</div>' : '') + '</section>';
   }
   if (p['Checks'] && !/^None\.?\s*$/.test(p['Checks'].trim())) h += '<section class="part" id="checks" hidden><h3>Checks <span class="tag">ran on save</span></h3>' + md(p['Checks']) +
     '<div class="flag ok">Every flag is fixed or has a note. This section is ready for your ID.</div></section>';
   if (p['Save']) h += '<section class="part"><h3>Save</h3>' + md(p['Save'].replace(/^Planning document:/gm, 'Goes into your Course Planning Document:').replace(/\s*\((?:[^()]*?;\s*)?see\s+`export\.md`\)/g, '')) + '</section>';
-  if (p['Go deeper (optional)']) h += '<details class="part"><summary>Go deeper (optional)</summary>' + md(p['Go deeper (optional)']) + '</details>';
+  if (p['Go deeper (supplemental)']) h += '<details class="part"><summary>Go deeper (supplemental)</summary>' + md(p['Go deeper (supplemental)']) + '</details>';
   h += '<div class="row"><button type="button" class="btn" data-save="' + esc(key) + '">Save to plan</button>' + (state.done[key] ? '<span class="done-note">Saved to your planning document</span>' : '') + '</div>';
   return h;
+}
+
+// "Use" buttons under an AI draft copy it into the step's final box in Decide, where the faculty member edits it.
+let USE_TEXT = [];
+function useButtons(sec) {
+  const out = sec.querySelector('.demo-out'), key = state.at.split(':')[1], refresh = state.track === 'refresh';
+  if (!out || out.dataset.used) return;
+  out.dataset.used = '1';
+  const btn = (label, text) => '<div class="row use"><button type="button" class="btn sec" data-use="' + (USE_TEXT.push(text) - 1) + '">' + label + '</button></div>';
+  if (key === '1.2' && !refresh) out.querySelectorAll('li').forEach(li => li.insertAdjacentHTML('beforeend', btn('Use this version', li.textContent.trim())));
+  if (key === '1.2' && refresh) {
+    const p = [...out.querySelectorAll('p')].find(x => /^Suggested revision:/.test(x.textContent));
+    if (p) p.insertAdjacentHTML('afterend', btn('Use this revision', p.textContent.replace(/^Suggested revision:\s*"?|"\s*$/g, '')));
+  }
+  if (key === '1.3' && !refresh) out.insertAdjacentHTML('beforeend', btn('Use these CLOs',
+    [...out.querySelectorAll('li')].map(li => li.textContent.trim().replace(/^CLO \d+:\s*/, '').replace(/\s*\((Apply|Analyze|Evaluate|Create)\)$/, '')).join('\n')));
+  if (key === '1.3' && refresh) out.insertAdjacentHTML('beforeend', btn('Use the suggested CLOs',
+    [...out.querySelectorAll('tbody tr')].map(tr => {
+      const c = [...tr.cells].map(td => td.textContent.trim());
+      return c[2] || c[0].replace(/^CLO \d+:\s*/, '');
+    }).join('\n')));
+  if (key === '1.4') out.insertAdjacentHTML('beforeend', btn(refresh ? 'Use the suggested modules' : 'Use these modules',
+    DATA.demo['mgmt615-foundation.json'].modules.map(m => m.title + '. ' + m.closMet.join(', ') + '. ' + m.topics.join('; ') + '.').join('\n')));
 }
 
 /* ---------- planning document ---------- */
@@ -612,7 +653,25 @@ document.addEventListener('click', e => {
     const sec = t.closest('section'); const wait = sec.querySelector('.thinking');
     t.disabled = true; wait.hidden = false;
     setTimeout(() => { wait.hidden = true; t.textContent = 'Ask for another version'; t.disabled = false;
-      sec.querySelectorAll('.demo-out').forEach(d => d.hidden = false); }, 900);
+      sec.querySelectorAll('.demo-out').forEach(d => d.hidden = false); useButtons(sec); }, 900);
+    return;
+  }
+  if (t.hasAttribute('data-check')) {
+    const form = t.closest('.form'), box = form.querySelector('textarea'), msg = form.querySelector('.check-msg'), wait = form.querySelector('.thinking');
+    if (!box.value.trim()) { msg.textContent = 'Write your answer first.'; box.focus(); return; }
+    msg.textContent = ''; t.disabled = true; wait.hidden = false;
+    setTimeout(() => { wait.hidden = true; t.disabled = false; form.querySelector('.demo-out').hidden = false; }, 900);
+    return;
+  }
+  if (t.dataset.use) {
+    const box = document.querySelector('#decide textarea'), text = USE_TEXT[+t.dataset.use];
+    if (!box) return;
+    if (box.value.trim() && box.value !== text && !confirm('Replace what is already in your box under Decide?')) return;
+    box.value = text; box.rows = Math.max(box.rows, text.split('\n').length + 1, Math.ceil(text.length / 90) + 1);
+    let note = document.querySelector('#decide .use-note');
+    if (!note) { box.insertAdjacentHTML('afterend', '<p class="use-note" role="status"></p>'); note = document.querySelector('#decide .use-note'); }
+    note.textContent = 'Copied. Edit it here until it says what you mean.';
+    box.scrollIntoView({ behavior: 'smooth', block: 'center' }); box.focus({ preventScroll: true });
     return;
   }
   if (t.dataset.save) {

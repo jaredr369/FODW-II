@@ -146,7 +146,7 @@ Planning document: Learning Materials Plan row in Tables 1 and 2, one line per i
 "Article: Park & Marsh (2024), What actually predicts team performance (11 pp.)".
 Project file: `modules[].materials`; in refresh, `.original`, `.changeNote`.
 
-### Go deeper (optional)
+### Go deeper (supplemental)
 
 - `src:guide-curating-creating`
 - `src:guide-instructor-authored-reading`
@@ -238,7 +238,7 @@ and, for AI-assisted items, "(AI-assisted, disclosed)". Full attribution lines g
 file and the check-in summary.
 Project file: `modules[].materials[].rights`, `.attribution`, `.aiNote`.
 
-### Go deeper (optional)
+### Go deeper (supplemental)
 
 - `src:guide-copyright`
 - `src:assignment-m5-writing-attributions`

@@ -142,7 +142,7 @@ Planning document: Learning Activities Plan Part 3 (Cohort Session Activities) r
 and 2, for example "Telling Greg He's Wrong: role-play in threes after a week-long poll."
 Project file: `modules[].cohort`; in refresh, `.original`, `.changeNote`.
 
-### Go deeper (optional)
+### Go deeper (supplemental)
 
 - `src:reading-m7-going-live`: the research behind the recording test, and eight ways to use
   your story live.

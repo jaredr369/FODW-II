@@ -137,7 +137,7 @@ Planning document: Learning Media Plan row in Tables 1 and 2, one line per item,
 Project file: `modules[].media`; in refresh, `.original`, `.changeNote`.
 
 
-### Go deeper (optional)
+### Go deeper (supplemental)
 
 - `src:guide-planning-media`
 - `src:jobaid-media-selection-matrix`
@@ -230,7 +230,7 @@ Learning Media. There's nothing to fill out or submit; it's there to show and sh
 Project file: `scripts[]` (video, rows, status).
 
 
-### Go deeper (optional)
+### Go deeper (supplemental)
 
 - `src:guide-script-writing`
 - `src:template-av-script`

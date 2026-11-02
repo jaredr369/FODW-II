@@ -115,7 +115,7 @@ or note.
 Planning document: no new section. The change log (refresh) and check-in summary are complete.
 Project file: `alignment.final`.
 
-### Go deeper (optional)
+### Go deeper (supplemental)
 
 - `src:guide-grading-weight`
 - `src:guide-large-enrollment`
@@ -220,7 +220,7 @@ section under the syllabus statement.
 Download: the Module 1 announcement sequence as a Word file. There's nothing to fill out or submit; it's there to show and share.
 Project file: `communication.plan`, `communication.announcements`.
 
-### Go deeper (optional)
+### Go deeper (supplemental)
 
 - `src:reading-m8-preparing-for-development`
 - `src:guide-online-teaching-practices`

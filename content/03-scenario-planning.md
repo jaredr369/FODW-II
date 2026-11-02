@@ -126,7 +126,7 @@ one module in the arc.
 Planning document: storyline premise at the start of the Storyline section.
 Project file: `story.premise`, `story.arc`.
 
-### Go deeper (optional)
+### Go deeper (supplemental)
 
 - `src:guide-storytelling`: Building Your Storyline, and the options for courses where one
   character doesn't fit.
@@ -297,7 +297,7 @@ Project file: `modules[].scenario` (all five elements, title, premise and CLOs);
 > AI two options in every module. The other alternatives are the side plots from
 > `src:example-mgmt615-character`.
 
-### Go deeper (optional)
+### Go deeper (supplemental)
 
 - `src:guide-storytelling`: includes scenario planning, which you'll do with your ID during
   development for scenarios that need production.

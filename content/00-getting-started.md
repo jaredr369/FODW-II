@@ -43,8 +43,8 @@ before you start. Then you work on your own course:
   Planning Document. **Checks** then run and flag anything to fix, or to keep with a note for your
   ID.
 
-Some steps include a **Go deeper** option that leads to additional readings and tools if you want
-more.
+Some steps end with **Go deeper (supplemental)**: readings and tools that build on the step. Use
+them to strengthen that part of your plan.
 
 After the workshop comes a kick-off meeting with your ID to plan the development schedule, then 13
 weeks of development, 2 weeks of quality review, and a final week to review the course and train on
@@ -149,7 +149,7 @@ Browser only: `course-plan-builder:apiKey`, `course-plan-builder:aiSkipped`,
 Project file: `course.idName`, `checkins.day`, `checkins.time`, `checkins.format`,
 `checkins.log[]`.
 
-### Go deeper (optional)
+### Go deeper (supplemental)
 
 - `src:guide-course-development-process`: roles, phases and the full development process.
 

@@ -123,7 +123,7 @@ Planning document: Instructor Interaction (near the end; see `export.md`). Modul
 communication and feedback plan to the same section.
 Project file: `rsi.statement`; in refresh, `rsi.original`, `rsi.changeNote`.
 
-### Go deeper (optional)
+### Go deeper (supplemental)
 
 - `src:guide-rsi`: full tables for each category, and the rules behind them.
 - `src:article-maxwell-2026`: what students need from a professor once AI can explain the
@@ -330,7 +330,7 @@ Planning document: Character Profile in the Storyline section, after Tables 1 an
 Project file: `story.performance`, `story.conflict`, `story.character`; in refresh,
 `story.throughline`.
 
-### Go deeper (optional)
+### Go deeper (supplemental)
 
 - `src:guide-storytelling`
 - `src:jobaid-media-selection-matrix`

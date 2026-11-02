@@ -37,7 +37,7 @@ Each step has the same parts, in this order:
 - **Decide**: what the faculty member edits, chooses or rejects, and the checklist shown beside it.
 - **Checks**: the automatic checks that run when the section is saved.
 - **Save**: where the result goes in the planning document and in the project file.
-- **Go deeper**: optional material.
+- **Go deeper (supplemental)**: readings and tools that build on the step.
 
 ## Activity patterns
 

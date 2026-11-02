@@ -163,7 +163,7 @@ your learner description.
 Project file: `learners.profile`, `catalog.text`, `catalog.commitments`, `programOutcomes`,
 `programDirectorReview.status`.
 
-### Go deeper (optional)
+### Go deeper (supplemental)
 
 - `src:reading-m1-setting-the-foundation`: the principles behind Flex Online design.
 - `src:ext-wiggins-mctighe-2005`, `src:ext-knowles-2015`, `src:ext-cast-2018`
@@ -177,50 +177,51 @@ Pattern: interview, then draft
 
 ### Learn
 
-Your vision describes what your course helps students do in the workplace. Try this: a student
-runs into you a year after the course. What do you hope they tell you they now do differently at
-work? That answer is the core of your vision.
+Your course vision describes what your course helps students do in the workplace. Think about
+the situations your students face at work and what your course helps them do about those
+situations.
 
-Write 3 or 4 sentences about what students do at work because they took your course, within the
-scope of your catalog description. Describe their actions on the job, not what the course covers
-or how it's taught. A vision drives every later choice: each topic, activity and reading has to
-help students do what it describes.
+Write 3 or 4 sentences, within the scope of your catalog description. Describe what students do
+on the job, not what the course covers or how it's taught. A vision drives every later choice:
+each topic, activity and reading has to help students do what it describes.
 
 ### See it
 
 ::: full
-Here's the vision the MGMT 615 instructor settled on. In four sentences, it says what graduates
-do at work.
+Here's the vision the MGMT 615 instructor settled on. In four sentences, it says what the course
+helps students do at work.
 :::
 
 ::: refresh
 Here's how the MGMT 615 instructor did this step. Their existing vision ran seven sentences and
-mostly described the course itself, so they cut it to four that say what graduates do at work.
+mostly described the course itself, so they cut it to four that say what the course helps
+students do at work.
 :::
 
 ::: plan Course vision
 MGMT 615 helps new managers run a team instead of doing the team's work themselves. When someone
-struggles, graduates find out what is actually wrong before they act. They give feedback that
-changes behavior, delegate real decisions and have the hard conversations they used to avoid.
-They lead their teams through change and hire people who fit the work.
+on their team struggles, students find out what is actually wrong before they act. They give
+feedback that changes behavior, delegate real decisions and have the hard conversations managers
+often avoid. They lead their teams through change and hire people who fit the work.
 :::
 
 ### Draft (full build)
 
 Answer one question. The AI uses your answer, along with your learner description and catalog
-commitments from 1.1, to draft two versions of your vision, each worded differently. Pick one,
-combine them or write your own.
+commitments from 1.1, to draft two versions of your vision, each worded differently. Under the
+version you like best, select **Use this version** to copy it into the box under Decide, where
+you'll edit it.
 
 ::: fields
-- A year after the course, what do you hope a student tells you they now do differently at work? | That they stopped fixing everything themselves, figured out what was really wrong with their team before reacting, and had the conversation they were avoiding.
+- What does your course help students do in the workplace? | Stop fixing everything themselves, figure out what is really wrong with their team before reacting, and have the hard conversations managers often avoid.
 :::
 
 AI instructions:
 
 ```text
 Draft two course visions of 3 or 4 sentences each from the faculty member's answer, the learner
-description and the catalog commitments. Describe what students do in the workplace because they
-took the course: actions on the job, not course content, activities or teaching methods. Stay
+description and the catalog commitments. Describe what the course helps students do in the
+workplace: actions on the job, not course content, activities or teaching methods. Stay
 inside the catalog commitments. Make the two differ: one opens with the situations students will
 face at work, the other with the actions they take.
 
@@ -232,8 +233,8 @@ Demo response (MGMT 615):
 ```json
 {
   "versions": [
-    "MGMT 615 prepares new managers for the moments that test them: an employee who is struggling, a team in conflict, a change no one wants. Graduates work out what is really wrong before they react, then choose a fix that fits. They give feedback that changes behavior, delegate real decisions and hire people who fit the work. Their teams bring them problems to solve together instead of waiting for the manager to fix everything.",
-    "MGMT 615 helps new managers stop fixing everything themselves and start running a team. Graduates diagnose why a person or team is underperforming before they act. They have the conversations they used to avoid, delegate with clear decision rights and repair working relationships after conflict. They lead change and hire with a clear picture of what the job needs."
+    "MGMT 615 prepares new managers for the moments that test them: an employee who is struggling, a team in conflict, a change no one wants. Students learn to work out what is really wrong before they react, then choose a fix that fits. They give feedback that changes behavior, delegate real decisions and hire people who fit the work. Their teams bring them problems to solve together instead of waiting for the manager to fix everything.",
+    "MGMT 615 helps new managers stop fixing everything themselves and start running a team. Students diagnose why a person or team is underperforming before they act. They have the conversations managers often avoid, delegate with clear decision rights and repair working relationships after conflict. They lead change and hire with a clear picture of what the job needs."
   ]
 }
 ```
@@ -241,8 +242,9 @@ Demo response (MGMT 615):
 ### Review (refresh)
 
 The AI reads your current vision and flags anything that doesn't fit, such as too many sentences
-or sentences that describe the course instead of what students do at work. It also suggests one
-revision that keeps your language.
+or sentences that describe the course instead of what it helps students do at work. It also
+suggests one revision that keeps your language. To start from it, select **Use this revision**
+to copy it into the box under Decide.
 
 Demo response (MGMT 615):
 
@@ -250,32 +252,36 @@ Flags:
 
 - Seven sentences; the Course Planning Document asks for 3 or 4.
 - Most sentences describe the course ("sits at the center of the Flex Online people-management
-  sequence," "every module asks students to…"). A vision should describe what students do at
-  work.
+  sequence," "every module asks students to…"). A vision should describe what the course helps
+  students do at work.
 
-Suggested revision: "MGMT 615 helps new managers run a team instead of doing the team's work themselves. When someone struggles, graduates find out what is actually wrong before they act. They give feedback that changes behavior, delegate real decisions and have the hard conversations they used to avoid. They lead their teams through change and hire people who fit the work."
+Suggested revision: "MGMT 615 helps new managers run a team instead of doing the team's work themselves. When someone on their team struggles, students find out what is actually wrong before they act. They give feedback that changes behavior, delegate real decisions and have the hard conversations managers often avoid. They lead their teams through change and hire people who fit the work."
 
 Change note: "Cut to four sentences. Replaced the course and program description with what
-graduates do at work; kept the diagnosis-first idea."
+the course helps students do at work; kept the diagnosis-first idea."
 
 ### Decide
 
+Your final vision goes in this box. It's what's saved to your Course Planning Document.
+
 ::: full
-Start from the version you like best, or combine them, then edit it into your own words.
+Edit the version you copied into your own words. You can also bring in a phrase from the other
+version, or write your own.
 :::
 
 ::: refresh
-Start from your current vision or the AI's suggested revision, then edit it into your own words.
+Edit the revision you copied into your own words. To keep your current vision instead, paste it
+here.
 :::
 
 ::: fields
-- Your course vision (3 or 4 sentences)
+- Your course vision: what your course helps students do in the workplace (3 or 4 sentences)
 :::
 
 Checklist:
 
 - 3 or 4 sentences.
-- Describes what students do at work, not what the course covers.
+- Describes what the course helps students do at work, not what it covers.
 - Fits the catalog description.
 - You'd be glad to hear a former student describe the course this way.
 
@@ -285,7 +291,7 @@ When you save, the tool checks that your vision:
 
 - has 3 or 4 sentences;
 - stays within your catalog commitments;
-- describes what students do at work, not what the course covers or how it's taught.
+- describes what the course helps students do at work, not what it covers or how it's taught.
 
 ### Save
 
@@ -319,9 +325,9 @@ For a diagram of the six levels with more example verbs, see Texas A&M's
 [Academic Success Center overview of Bloom's taxonomy](https://asc.tamu.edu/tutoring/bloom.html).
 
 Start each CLO with one action verb at the apply level or higher, mostly analyze, evaluate or
-create. Your students are experienced professionals; they need to use and judge ideas, not just
-recall them. Avoid verbs like "understand" or "know." You can't see them happen, so you can't
-grade them. Describe something within the student's control.
+create. The students are experienced professionals; they need to use and judge ideas, not just
+recall them. Avoid verbs like "understand" or "know." You can't see them happen, so you can't grade
+them. Describe something within the student's control.
 
 | Level | Example verbs |
 |---|---|
@@ -334,27 +340,43 @@ Each CLO should also suggest a decision someone in your students' role would fac
 you'll create a character, someone in your students' role, whose story runs through the course.
 These decisions become that character's story.
 
-**Spot the problem.** Before drafting, you'll see one weak objective. In a sentence, say what
-you would change, and why. The AI then confirms what you caught and adds anything you missed.
+**Spot the problem.** Before you draft your own CLOs, practice on a weak one. Read the objective
+below, say in a sentence or two what you would change and why, then select **Check my answer**.
+The AI tells you what you caught and adds anything you missed.
 
-> Example: "Students will understand how to give feedback that changes an employee's behavior."
+> Weak objective: "Students will understand how to give feedback that changes an employee's
+> behavior."
 
-::: fields
+::: check
 - What would you change in this objective, and why?
+Feedback: You're right that "understand" is the main problem: you can't see or grade it, so
+start with a verb that shows what students do, such as "design." One more problem: "changes an
+employee's behavior" depends on the employee, which the student can't control. A stronger
+version: "Design a feedback conversation that targets a specific behavior and states the change
+expected."
 :::
 
 > App note: expected points: "understand" can't be observed; "changes an employee's behavior"
-> depends on the employee, which the student can't control. A stronger version: "Design a
-> feedback conversation that targets a specific behavior and states the change expected." The
-> AI confirms what the faculty member caught and adds what they missed, in two sentences.
+> depends on the employee, which the student can't control. The AI confirms what the faculty
+> member caught and adds what they missed, in two or three sentences, ending with a stronger
+> version.
 
 ### See it
 
-Here's how the MGMT 615 instructor did this step. Their first CLO began as "Apply core theories
-of motivation and performance to diagnose why an employee or team is underperforming." It had two
-verbs, so the refresh kept the one students are graded on. That CLO gives MGMT 615's character,
-Dana Ortiz, a newly promoted manager you'll meet in Module 2, her first decision: is the shift lead
-the problem? The instructor also added a sixth CLO for hiring, which the catalog promises.
+::: full
+Here are the CLOs the MGMT 615 instructor settled on. The first one gives MGMT 615's character,
+Dana Ortiz, a newly promoted manager you'll meet in Module 2, her first decision: is the shift
+lead the problem? The sixth covers hiring, which the catalog promises.
+:::
+
+::: refresh
+Here's how the MGMT 615 instructor did this step. Their first CLO began as "Apply core theories of
+motivation and performance to diagnose why an employee or team is underperforming." It had two
+verbs, so the refresh kept the one students are graded on (number 1, below). That CLO gives MGMT
+615's character, Dana Ortiz, a newly promoted manager you'll meet in Module 2, her first decision:
+is the shift lead the problem? The instructor also added a sixth CLO for hiring, which the catalog
+promises.
+:::
 
 ::: plan Course-Level Objectives
 1. Diagnose why an employee or team is underperforming using core theories of motivation and
@@ -428,17 +450,21 @@ Demo response (MGMT 615):
 
 ### Decide
 
+Your final CLOs go in this box. They're what's saved to your Course Planning Document.
+
 ::: full
-Start from the AI's draft, then edit, reorder, remove or add CLOs.
+Under the AI's draft, select **Use these CLOs** to copy them here. Then edit, reorder, remove or
+add CLOs.
 :::
 
 ::: refresh
-For each current CLO, keep it, accept the AI's suggested revision, edit it or rewrite it. Accept,
-edit or reject each new CLO the AI suggests.
+Under the AI's suggestions, select **Use the suggested CLOs** to copy them here. Then, for each
+CLO, keep the suggestion, go back to your current wording or rewrite it. Keep or delete each new
+CLO the AI added.
 :::
 
 ::: fields
-- Your CLOs, one per line
+- Your CLOs, one per line, each starting with its verb. Don't number them; the tool numbers them in this order.
 :::
 
 Checklist:
@@ -465,7 +491,7 @@ Planning document: Course-Level Objectives (CLOs).
 Project file: `clos` (text, verb, level, commitments, programOutcomes, decision); in refresh,
 `clos[].original`, `clos[].changeNote`.
 
-### Go deeper (optional)
+### Go deeper (supplemental)
 
 - `src:guide-learning-objectives`: verb tables and the case for higher-order objectives.
 - `src:ext-anderson-krathwohl-2001`
@@ -482,19 +508,26 @@ Pattern: pick and combine (full build) or edit in place (refresh)
 ### Learn
 
 Lay out the weekly modules; the Course Planning Document has room for eight. Each gets a title a
-student would understand on day one, one CLO the module mainly works toward and at most one more
-it also supports, and three to five topics. Start from the CLOs: list what students need to know or practice to meet each
+student would understand on day one. Make sure each module focuses on one or two CLOs and has
+three to five topics. Start from the CLOs: list what students need to know or practice to meet each
 one, then cut any topic they don't need to meet a CLO.
 
-Order matters. In Module 3 each module becomes a scenario, a realistic situation your character
-faces that week, so order
-the modules the way the decisions would come up at work: diagnosis before treatment, one person
-before the whole team.
+Order matters. In Module 3, each module becomes a scenario, a realistic situation your character
+faces that week, so order the modules the way the decisions would come up at work: diagnosis before
+treatment, one person before the whole team.
 
 ### See it
 
+::: full
+Here's the module plan the MGMT 615 instructor settled on. Each of the eight modules focuses on
+one or two CLOs and has three topics. The order follows the decisions a new manager meets, from
+understanding the role to building the team.
+:::
+
+::: refresh
 Here's how the MGMT 615 instructor did this step. They kept the eight modules and their order,
 replaced one Module 4 topic, and updated the CLO numbers to match the six revised CLOs.
+:::
 
 ::: plan Module titles, CLOs met and topics
 | Module | Title | CLOs met | Topics |
@@ -556,16 +589,20 @@ Demo response (MGMT 615):
 
 ### Decide
 
+Your final modules go in this box. They're what's saved to your Course Planning Document.
+
 ::: full
-Start from the AI's draft, then edit titles, CLOs met and topics, and reorder modules as needed.
+Under the AI's draft, select **Use these modules** to copy them here. Then edit titles, CLOs met
+and topics, and reorder modules as needed.
 :::
 
 ::: refresh
-For each module, keep it, accept the AI's suggested revision, edit it or rewrite it.
+Under the AI's suggestions, select **Use the suggested modules** to copy them here. Then, for
+each module, keep the suggestion, go back to your current wording or rewrite it.
 :::
 
 ::: fields
-- Your modules, one per line: title, CLOs met and topics | Module 2: Motivating People. CLO 1, CLO 5. Expectancy and self-determination theory; why incentives backfire; diagnosing a motivation problem before choosing a fix.
+- Your modules, one per line, in order: the title, then the CLOs it meets, then its topics separated by semicolons. Don't number them; the tool numbers them in this order. | Motivating People. CLO 1, CLO 5. Expectancy and self-determination theory; Why incentives backfire; Diagnosing a motivation problem before choosing a fix.
 :::
 
 Checklist:
@@ -593,7 +630,7 @@ Project file: `modules[].title`, `modules[].closMet`, `modules[].topics`; in ref
 `.original` and `.changeNote`. Other columns from an uploaded course map stay in
 `source.sections` for later modules.
 
-### Go deeper (optional)
+### Go deeper (supplemental)
 
 - `src:guide-course-alignment`
 

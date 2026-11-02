@@ -260,7 +260,7 @@ in Tables 1 and 2, one line per activity, for example "Assignment: Feedback Conv
 Project file: `modules[].activities` (with `rsi`, `hours`, `aiRisk`, `aiPolicy`, `aiChange`),
 `modules[].toolActivities`; in refresh, `.original` and `.changeNote`.
 
-### Go deeper (optional)
+### Go deeper (supplemental)
 
 - `src:reading-m4-crafting-part-1`, `src:reading-m4-crafting-part-2`
 - `src:guide-learning-activities`, `src:guide-rubrics`, `src:guide-third-party-tools`
