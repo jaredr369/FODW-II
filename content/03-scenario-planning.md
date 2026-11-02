@@ -61,22 +61,56 @@ A storyline works when:
 
 ### See it
 
-MGMT 615's storyline premise: "MGMT 615 is a story about Dana Ortiz, a newly promoted operations
-manager, who struggles to find and fix the real causes of her site's slipping performance before
-peak season, when her director has already decided who to blame."
+::: full
+Here's the storyline the MGMT 615 instructor settled on.
+:::
 
-The arc runs from Dana's first bad week in Module 1, when on-time shipping drops, to Module 8,
-when she hires the shift lead who will own the broken handoff for good. The pressure rises as
-peak season gets closer. By Module 5 she has to tell her director he's wrong, and by Module 6
-peak season has started.
+::: refresh
+MGMT 615's Course Map had no storyline, so the instructor built one, as on the full build. Here's
+what they settled on.
+:::
 
-### Draft (full build)
+::: plan Storyline premise
+MGMT 615 is a story about Dana Ortiz, a newly promoted operations manager, who struggles to find
+and fix the real causes of her site's slipping performance before peak season, when her director
+has already decided who to blame.
+:::
 
+::: figure arc | MGMT 615's arc: pressure rises toward peak season
+- 1 | The First Bad Week | 1
+- 2 | The Bonus That Backfired | 2
+- 3 | The Conversation With Jordan | 2
+- 4 | The Handoff Nobody Owns | 3
+- 5 | Telling Greg He's Wrong | 5 | peak
+- 6 | Twelve Things on Dana's List | 4
+- 7 | Ending the Bonus | 4
+- 8 | Proven vs. Potential | 4
+- Note | Pressure peaks in Module 5, when Dana has to tell her director he's wrong. Peak season starts in Module 6, so the stakes stay high to the end.
+:::
+
+### Draft (full build) and Review (refresh)
+
+Answer the optional question if you want a say in where the story goes, then select the button
+below. The AI drafts a premise and an arc: one line per module with a working episode title and the
+decision your character faces, built from your character, conflict, CLOs, and modules. Under the
+draft, select **Use this storyline** to copy it into the boxes under Decide.
+
+::: refresh
+If your Course Map already has a storyline or a case that runs through several modules, the AI
+starts from it instead: it checks it against the Learn section, keeps what works, and suggests
+fixes.
+:::
+
+::: fields
+- What does your character want by the end of the course? (optional) | To get her site running well without fixing everything herself, and to keep her team through peak season.
+:::
+
+::: full
 AI instructions:
 
 ```text
 Draft a storyline for the course from the character profile, the conflict (step 2.2), the CLOs,
-and the module titles and topics. Return:
+and the module titles and topics. Include:
 1. A storyline premise in the form "[Course] is a story about [character, role] who struggles
    to [long-term goal] when [conflict]."
 2. An arc: one line per module giving a working episode title and the decision the character
@@ -84,52 +118,82 @@ and the module titles and topics. Return:
    across the modules.
 3. A one-sentence note on where pressure peaks.
 Use the character profile exactly as written. Do not change names, numbers, or relationships.
+If the faculty member described the character's long-term goal, use it.
 
 Return: {"premise": string, "arc": [{"module": int, "title": string, "decision": string, "clos": [string]}], "peak": string}
 ```
+:::
 
-Demo response (MGMT 615): the premise above, and the arc from the episode titles in
-`demo/mgmt615-scenarios.json`. Peak note: "Pressure peaks in Module 5, when Dana has to
-challenge her director with a week until his deadline."
-
-### Review (refresh)
-
-If the uploaded document has a storyline, the app shows it and checks it. If not, this step runs
-as a full build.
-
+::: refresh
 AI instructions:
 
 ```text
-The faculty member's existing storyline is given. Check it against this checklist: a premise
-names the character, the long-term goal, and the conflict; pressure builds across modules; every
-CLO drives at least one module; details stay consistent. Keep what passes. For each gap, quote
-the problem and suggest a fix. Then return a premise and arc as in the full build.
+The faculty member's existing storyline or recurring case, if any, is given. If there is none,
+draft a storyline as on the full build. If there is one, check it against this checklist: a
+premise names the character, the long-term goal, and the conflict; pressure builds across
+modules; every CLO drives at least one module; details stay consistent. Keep what passes. For
+each gap, quote the problem and suggest a fix. Then give a premise and arc as on the full build.
 
 Return: {"passes": boolean, "issues": [string], "premise": string, "arc": [...], "peak": string}
 ```
+:::
 
-Demo response (MGMT 615): no storyline in the course map, so this step runs as a full build.
+Demo response (MGMT 615):
+
+::: refresh
+MGMT 615's Course Map had no storyline, so the AI drafted one.
+:::
+
+**Premise:** MGMT 615 is a story about Dana Ortiz, a newly promoted operations manager, who
+struggles to find and fix the real causes of her site's slipping performance before peak season,
+when her director has already decided who to blame.
+
+**Arc:**
+
+- Module 1, The First Bad Week: work the floor to recover the number, or step back and find out what is driving the drop.
+- Module 2, The Bonus That Backfired: leave the pick-rate bonus alone, add an accuracy threshold, or propose replacing it.
+- Module 3, The Conversation With Jordan: issue the warning Greg wants, coach with no record, or coach and document the agreed next steps.
+- Module 4, The Handoff Nobody Owns: host Greg's team lunch, hold a joint meeting, or name a handoff owner and change the structure.
+- Module 5, Telling Greg He's Wrong: send Greg's replacement plan, or ask for 30 minutes to walk him through the data.
+- Module 6, Twelve Things on Dana's List: decide what to keep, what to hand off, and what to hand off with checkpoints.
+- Module 7, Ending the Bonus: announce the change in writing, through her leads, or to each shift in person.
+- Module 8, Proven vs. Potential: hire the proven candidate, hire Luis, or hire one and develop the other.
+
+**Where pressure peaks:** Module 5, when Dana has to challenge her director with a week until his
+deadline.
 
 ### Decide
 
-The faculty member edits the premise and the arc. Episode titles stay working titles until step
-3.2.
+Your final premise and arc go in these boxes. Type in any box to change it, or select **Redraft
+with AI** under a box to have the AI rewrite just that part.
+
+Under the AI's draft, select **Use this storyline** to copy it here, then edit it into your own
+words. Episode titles are working titles; you can change them in step 3.2.
+
+::: fields
+- Your storyline premise (one sentence)
+- Your arc, one module per line: episode title and the decision your character faces
+:::
 
 Checklist:
 
 - The premise names the character, the goal, and the conflict.
 - Pressure rises across the modules.
 - Every CLO drives at least one module's decision.
-- At least one module is in a different setting, if transfer matters for your course.
+- At least one module is in a different setting, so students practice applying the skills
+  somewhere new.
 
 ### Checks
 
-On save: the premise names the character, the goal, and the conflict; every CLO drives at least
-one module in the arc.
+When you save, the tool checks that:
+
+- the premise names the character, the goal, and the conflict;
+- every CLO drives at least one module in the arc.
 
 ### Save
 
-Planning document: storyline premise at the start of the Storyline section.
+Planning document: Storyline premise, at the start of the Storyline section. Step 3.2 turns each
+line of your arc into a full scenario.
 Project file: `story.premise`, `story.arc`.
 
 ### Go deeper (supplemental)
@@ -164,12 +228,13 @@ mistake is easy to make and costly to fix.
 
 Each scenario answers five questions:
 
-- **Situation.** What's the setting, and what was supposed to happen?
-- **Trigger.** What went wrong or became uncertain, and what new pressure appeared?
-- **Stakeholders.** Who is affected, and who else has something at stake?
-- **Decision.** What has to be decided, and which options are realistically on the table?
-- **Outcome and learning.** What changes at the end, and which idea from this module would have
-  improved the outcome?
+::: flow
+- Situation | What's the setting, and what was supposed to happen?
+- Trigger | What went wrong or became uncertain, and what new pressure appeared?
+- Stakeholders | Who is affected, and who else has something at stake?
+- Decision | What has to be decided, and which options are realistically on the table?
+- Outcome and learning | What changes at the end, and which idea from this module would have improved the outcome?
+:::
 
 A good scenario can't be handled well without the module's skills, and its options are ones a
 professional could defend. If one option is obviously right, students learn to spot the answer
@@ -182,9 +247,16 @@ skills build on each other.
 
 ### See it
 
-MGMT 615, Module 4, "The Handoff Nobody Owns":
+Here's one of the eight scenarios the MGMT 615 instructor planned, for Module 4. Its title and
+premise go into the Course Planning Document; the five parts guide the activities, media, and
+cohort session you'll plan in Modules 4 to 7.
 
-| | |
+::: plan Scenario, Module 4
+**The Handoff Nobody Owns.** Dana struggles to fix the broken handoff between her two shifts with a
+structural change, when her director is pushing a team-building lunch.
+:::
+
+| Part | MGMT 615, Module 4 |
 |---|---|
 | Situation | The two shifts pass work to each other every afternoon, but no one owns the handoff. |
 | Trigger | The shift leads now blame each other for the late orders. Greg, the director, suggests a team-building lunch. |
@@ -192,63 +264,69 @@ MGMT 615, Module 4, "The Handoff Nobody Owns":
 | Decision | Host the lunch, hold a joint meeting to air the tension, or change the structure: name a handoff owner and add a shared checklist and an overlap window. |
 | Outcome and learning | A team-effectiveness framework shows the problem is unclear roles, so a lunch won't touch it. Dana has to explain to Greg why the structural fix beats his idea. |
 
-### Draft (full build)
+### Draft (full build) and Review (refresh)
 
-The AI proposes two scenarios for each module. The faculty member picks one per module, edits it,
-or writes their own.
+Work through your modules one at a time. Choose a module, then select the button below. The AI
+proposes two scenarios for that module from your storyline arc (step 3.1), your character, and the
+module's CLOs and topics. The first follows your arc; the second takes a different angle. Under the
+one you like better, select **Use this scenario** to copy it into the boxes under Decide.
 
+::: refresh
+The AI also looks at your Course Map's existing cases and examples for each module. Where one
+fits, it builds an option from it and names the case.
+:::
+
+::: scenario-picker
+:::
+
+::: full
 AI instructions:
 
 ```text
-Propose two scenario options for each of the given modules, using the storyline arc (step 3.1),
-the character profile, the CLOs, and each module's title, CLOs met, and topics. Each option puts
-the character in a moment of decision that calls for that module's CLOs. Use the character
-profile exactly as written. For each option give: a short episode title; a premise in the form
+Propose two scenario options for the given module, using the storyline arc (step 3.1), the
+character profile, the CLOs, and the module's title, CLOs met, and topics. Each option puts the
+character in a moment of decision that calls for that module's CLOs. Use the character profile
+exactly as written. For each option give: a short episode title; a premise in the form
 "[Character] struggles to [decision] when [complication]."; the CLOs it supports; situation;
 trigger; stakeholders; decision with 2 or 3 realistic options a professional could defend;
 outcome and learning, naming the module concept that improves the outcome. Keep each element to
-one or two sentences. The first option should follow the arc; the second can depart from it.
+one or two sentences. The first option should follow the arc; the second can depart from it. For
+modules after the first, where it fits, connect a scenario to a decision the character made in an
+earlier module, and say which one.
 
-Return: {"modules": [{"module": int, "options": [{"title": string, "premise": string, "clos": [string], "situation": string, "trigger": string, "stakeholders": string, "decision": string, "outcome": string}]}]}
+Return: {"module": int, "options": [{"title": string, "premise": string, "clos": [string], "situation": string, "trigger": string, "stakeholders": string, "decision": string, "outcome": string}]}
 ```
+:::
 
-For modules after the first, add:
-
-```text
-Where it fits, connect a scenario to a decision the character made in an earlier module, and
-say which one.
-```
-
-Demo response (MGMT 615): each module from `demo/mgmt615-scenarios.json`, with `chosen` as the
-first option and `alternative` as the second.
-
-### Review (refresh)
-
-If the uploaded document has scenarios for these modules, the app checks them. Either way, the
-AI draws on the course's existing cases and examples.
-
+::: refresh
 AI instructions:
 
 ```text
-The faculty member's existing scenarios for these modules are given, if any, along with each
-module's current activities and materials. For existing scenarios, check: the decision calls for
+The faculty member's existing scenario for the given module is given, if any, along with the
+module's current activities and materials. For an existing scenario, check: the decision calls for
 that module's CLOs; the options are ones a professional could defend; the stakes are visible;
-character details match the profile. Keep what passes and suggest fixes for the rest.
-For modules with no scenario, propose two options as in the full build. Where an existing case
-or example fits, build an option from it and name the case.
+character details match the profile. Keep what passes and suggest fixes for the rest. If there is
+no scenario, propose two options as on the full build. Where an existing case or example fits,
+build an option from it and name the case.
 
-Return: {"modules": [{"module": int, "existing": {"passes": boolean, "issues": [string]} | null, "options": [...]}]}
+Return: {"module": int, "existing": {"passes": boolean, "issues": [string]} | null, "options": [...]}
 ```
+:::
 
-Demo response (MGMT 615): no scenarios in the course map, so the full-build options play, with
-one note added to Module 1: "Your existing case, Maria's First Ninety Days, covers the same
-moment from another company. Keep it as a contrast: students compare Maria's first quarter with
-Dana's first bad week."
+Demo response (MGMT 615):
+
+::: scenario-options
+- 1 | refresh | Your Course Map's existing case, Maria's First Ninety Days, covers the same moment at another company. Keep it as a contrast: students compare Maria's first quarter with Dana's first bad week.
+:::
 
 ### Decide
 
-For each module the faculty member picks an option, edits it, or writes their own. They can ask
-for new options for one module without redoing the others.
+Your final scenario for each module goes in these boxes. Type in any box to change it, or select
+**Redraft with AI** under a box to have the AI rewrite just that part. To work on another module,
+choose it above; what you've typed is kept.
+
+::: scenario-fields
+:::
 
 Checklist (for each scenario):
 
@@ -259,54 +337,45 @@ Checklist (for each scenario):
 
 ### Checks
 
-On save of each scenario: the decision calls for the module's CLOs; two or three defensible
-options; character details match the profile.
+When you save each scenario, the tool checks that:
 
-When all scenarios are saved, a storyline check runs across them and shows flags on the modules
-involved.
+- the decision calls for the module's CLOs;
+- there are two or three defensible options;
+- character details match your profile.
+
+When all your scenarios are saved, a storyline check looks across them: pressure rises, every
+CLO drives a decision, details stay consistent, no two scenarios turn on the same decision, and at
+least one uses a different setting. Flags appear on the modules involved.
+
+In MGMT 615, the storyline check passed four checks and flagged one: every scenario takes place at
+Dana's site. The instructor kept it with a note: "Module 5 uses data from a sister site, and the
+existing cases in Modules 1, 2, 4, and 7 give students other companies to compare."
 
 AI instructions:
 
 ```text
-Check the eight saved scenarios as one storyline against the character profile and the CLOs:
+Check the saved scenarios as one storyline against the character profile and the CLOs:
 1. Pressure rises across the modules.
 2. Every CLO drives at least one scenario's decision.
 3. Names, numbers, and relationships match the profile and each other.
 4. No two scenarios turn on the same decision.
 5. At least one scenario uses a different setting.
-Return one result per check: pass, or issue with the module(s) involved and a one-sentence fix.
+Give one result per check: pass, or issue with the module(s) involved and a one-sentence fix.
 
 Return: {"checks": [{"check": string, "result": "pass" | "issue", "modules": [int], "detail": string | null}]}
 ```
 
-Demo response (MGMT 615):
-
-```json
-{
-  "checks": [
-    {"check": "Pressure rises", "result": "pass", "modules": [], "detail": null},
-    {"check": "Every CLO drives a decision", "result": "pass", "modules": [], "detail": null},
-    {"check": "Details are consistent", "result": "pass", "modules": [], "detail": null},
-    {"check": "No repeated decisions", "result": "pass", "modules": [], "detail": null},
-    {"check": "A different setting", "result": "issue", "modules": [1, 2, 3, 4, 5, 6, 7, 8], "detail": "Every scenario takes place at Dana's site. Consider setting one, such as Module 6, at the sister site Alicia runs."}
-  ]
-}
-```
-
-Demo kept note: MGMT 615's check passed with one note: every scenario takes place at Dana's site. The instructor
-kept it, with the note "Module 5 uses data from a sister site, and the existing cases in Modules
-1, 2, 4, and 7 give students other companies to compare."
-
 ### Save
 
 Planning document: the Scenario row in Tables 1 and 2 (episode title and premise).
-Project file: `modules[].scenario` (all five elements, title, premise and CLOs); `alignment.m3`.
+Project file: `modules[].scenario` (all five elements, title, premise, and CLOs); `alignment.m3`.
 
 > Review note: the MGMT 615 scenarios now use the revised CLO numbers from step 1.3. Module 8
 > maps to CLO 6 (hiring) instead of CLO 4. Module 2's alternative ("Luis Checks Out"), Module 4's
 > ("Two Shifts, Two Rulebooks") and Module 7's ("The Overlap Window") are new, written to give the
 > AI two options in every module. The other alternatives are the side plots from
-> `src:example-mgmt615-character`.
+> `src:example-mgmt615-character`. Demo data: `demo/mgmt615-scenarios.json` gives each module's
+> `chosen` option in full and the `alternative` as title and premise only.
 
 ### Go deeper (supplemental)
 
