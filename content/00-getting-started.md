@@ -37,10 +37,11 @@ development of your course. You can work ahead; if you do, ask your ID to meet m
 module is reviewed before the next one builds on it.
 
 **How each step works.** Throughout the workshop, AI drafts ideas for you to decide on, modify, and
-save. Each step opens with **Learn**, a short read on what the section is for, and **See it**, an
-example from MGMT 615 (a fictitious course used throughout the workshop). See it shows what the MGMT
-615 instructor did in that step and what came out of it, so you can see what you're aiming for
-before you start. Then you work on your own course. Doing so has a few quick steps:
+save. Each step opens with **Learn**, a short read on what the section is for. It starts with a box
+that says what you'll do in the step and why it matters. **See it** follows: an example from MGMT
+615 (a fictitious course used throughout the workshop). See it shows what the MGMT 615 instructor
+did in that step and what came out of it, so you can see what you're aiming for before you start.
+Then you work on your own course. Doing so has a few quick steps:
 
 - **Draft.** Select Draft with AI, and the AI writes a first version of one section of your plan
   from your course details. If you're updating a course you already teach, Review with AI checks
