@@ -91,8 +91,9 @@ A planned activity:
 
 ::: fold How the time estimates work
 The AI estimates each activity's time, and you can change any estimate: it's the number of hours in
-parentheses on each line of your activities box. Add a due day too, such as "due Wed," so the
-checker can spot days when too much is due at once. Everything else uses these rates:
+parentheses on each line of your activities box. Due dates follow the Flex Online pattern, so you
+don't need to add them; to use a different day for one activity, add it to its line, such as "due
+Thu." Everything else uses these rates:
 
 - **Reading:** about 8 pages an hour (6 for dense material such as research articles, 10 for
   lighter reading such as trade articles and cases).
@@ -249,10 +250,14 @@ choose it above; what you've typed is kept.
 
 For each high-weight activity, decide what AI use is allowed and say so in the second box. The week
 check below adds up the whole week as you type: your activities, readings and media, and the cohort
-session.
+session. If you've entered your course start date, you'll also see each activity's due date.
 
 ::: module-fields
 :::
+
+::: due-dates
+:::
+
 
 ::: week-check
 :::
@@ -275,7 +280,8 @@ When you save each module, the tool checks:
   responsive weekly announcements if your interaction statement promises them.
 - **Workload:** the whole week comes close to your weekly target, counting activities, readings and
   media, and the cohort session (about 4 hours in Module 1). A week more than about 1 hour over or
-  1.5 hours under is flagged, and so is any day with more than about 4 hours of activity work due.
+  1.5 hours under is flagged, and so is a module with two major assignments due the same day or one
+  activity over about 4 hours.
 - **AI risk:** each high-weight activity is rated high, medium, or low, with a suggested change for
   high and medium.
 - **Tools:** each third-party tool answers six questions: alignment, feedback quality, academic
@@ -296,8 +302,9 @@ module has a cohort session (assume yes for modules 2 to 8 unless told otherwise
    student-only activities are null unless the faculty member described instructor involvement.
 2. Count the categories the module covers, including the cohort session (4) and responsive weekly
    announcements (3) if the syllabus statement promises them.
-3. Total the activity hours, and total them by due day.
-Flag modules with fewer than two categories, and any due day with more than 4 hours of activity work.
+3. Total the activity hours.
+Flag modules with fewer than two categories, modules with two high-weight activities due the same
+day, and any activity over about 4 hours.
 For each flag, suggest one specific change. The tool adds readings, media, and the cohort session to
 the activity hours and checks the week against the weekly target.
 

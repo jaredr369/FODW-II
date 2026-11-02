@@ -13,8 +13,7 @@
           "weight": "low",
           "hours": 1,
           "rsi": 4,
-          "aiRisk": "low",
-          "due": "Wed"
+          "aiRisk": "low"
         },
         {
           "type": "Assignment",
@@ -25,8 +24,7 @@
           "weight": "medium",
           "hours": 3,
           "rsi": 2,
-          "aiRisk": "medium",
-          "due": "Sun"
+          "aiRisk": "medium"
         },
         {
           "type": "Quiz",
@@ -37,8 +35,7 @@
           "weight": "low",
           "hours": 0.5,
           "rsi": null,
-          "aiRisk": "low",
-          "due": "Thu"
+          "aiRisk": "low"
         }
       ],
       "review": [
@@ -59,8 +56,7 @@
           "weight": "high",
           "hours": 4,
           "rsi": 2,
-          "aiRisk": "medium",
-          "due": "Sun"
+          "aiRisk": "medium"
         },
         {
           "type": "Quiz",
@@ -71,8 +67,7 @@
           "weight": "low",
           "hours": 0.5,
           "rsi": null,
-          "aiRisk": "low",
-          "due": "Thu"
+          "aiRisk": "low"
         },
         {
           "type": "Interactive",
@@ -83,8 +78,7 @@
           "weight": "low",
           "hours": 0.5,
           "rsi": null,
-          "aiRisk": "low",
-          "due": "Wed"
+          "aiRisk": "low"
         }
       ],
       "review": [
@@ -103,8 +97,7 @@
           "weight": "high",
           "hours": 4,
           "rsi": 2,
-          "aiRisk": "high",
-          "due": "Sun"
+          "aiRisk": "high"
         },
         {
           "type": "Perusall",
@@ -115,8 +108,7 @@
           "weight": "low",
           "hours": 1.5,
           "rsi": 4,
-          "aiRisk": "low",
-          "due": "Thu"
+          "aiRisk": "low"
         },
         {
           "type": "Interactive",
@@ -127,8 +119,7 @@
           "weight": "low",
           "hours": 0.5,
           "rsi": null,
-          "aiRisk": "low",
-          "due": "Wed"
+          "aiRisk": "low"
         }
       ],
       "review": [
@@ -147,8 +138,7 @@
           "weight": "high",
           "hours": 4,
           "rsi": 2,
-          "aiRisk": "medium",
-          "due": "Sun"
+          "aiRisk": "medium"
         },
         {
           "type": "Discussion",
@@ -159,8 +149,7 @@
           "weight": "low",
           "hours": 1,
           "rsi": 4,
-          "aiRisk": "low",
-          "due": "Wed"
+          "aiRisk": "low"
         }
       ],
       "review": [
@@ -180,8 +169,7 @@
           "weight": "high",
           "hours": 4,
           "rsi": 2,
-          "aiRisk": "medium",
-          "due": "Sun"
+          "aiRisk": "medium"
         },
         {
           "type": "Interactive",
@@ -192,8 +180,7 @@
           "weight": "low",
           "hours": 0.5,
           "rsi": null,
-          "aiRisk": "low",
-          "due": "Wed"
+          "aiRisk": "low"
         },
         {
           "type": "Perusall",
@@ -204,8 +191,7 @@
           "weight": "low",
           "hours": 1.5,
           "rsi": null,
-          "aiRisk": "low",
-          "due": "Thu"
+          "aiRisk": "low"
         }
       ],
       "review": [
@@ -224,8 +210,7 @@
           "weight": "high",
           "hours": 4,
           "rsi": 2,
-          "aiRisk": "medium",
-          "due": "Sun"
+          "aiRisk": "medium"
         },
         {
           "type": "Quiz",
@@ -236,8 +221,7 @@
           "weight": "low",
           "hours": 0.5,
           "rsi": null,
-          "aiRisk": "low",
-          "due": "Thu"
+          "aiRisk": "low"
         }
       ],
       "review": []
@@ -254,8 +238,7 @@
           "weight": "high",
           "hours": 4,
           "rsi": 2,
-          "aiRisk": "high",
-          "due": "Sun"
+          "aiRisk": "high"
         },
         {
           "type": "Discussion",
@@ -266,8 +249,7 @@
           "weight": "low",
           "hours": 1,
           "rsi": 4,
-          "aiRisk": "low",
-          "due": "Wed"
+          "aiRisk": "low"
         }
       ],
       "review": []
@@ -284,8 +266,7 @@
           "weight": "high",
           "hours": 4,
           "rsi": 2,
-          "aiRisk": "medium",
-          "due": "Sun"
+          "aiRisk": "medium"
         },
         {
           "type": "Assignment",
@@ -301,8 +282,7 @@
           "weight": "high",
           "hours": 3,
           "rsi": 2,
-          "aiRisk": "high",
-          "due": "Sun"
+          "aiRisk": "high"
         }
       ],
       "review": [

@@ -203,6 +203,9 @@ summary { cursor: pointer; color: var(--muted); font-size: 14px; }
 .scen-opt { border-top: 1px solid #c7d8e0; padding-top: 8px; margin-top: 8px; }
 .scen-opt ul { margin: 6px 0; }
 .scen-note { font-size: 14px; color: var(--muted); }
+.due-dates { border: 1px solid var(--line); border-radius: 8px; padding: 10px 14px; margin: 12px 0; background: #fff; font-size: 15px; }
+.due-dates p { margin: 4px 0; }
+.due-dates ul { margin: 4px 0 6px; }
 .week-check { border: 1px solid var(--line); border-radius: 8px; padding: 10px 14px; margin: 12px 0; background: #fff; font-size: 15px; }
 .week-check p { margin: 4px 0; }
 .wl-flags { margin: 4px 0; color: var(--warn); }
@@ -536,6 +539,10 @@ function md(text, opts = {}) {
       i++; html += moduleBlock(which, rows, opts); continue;
     }
     // ::: week-check shows the picked module's week against the target, live; ::: workload-chart shows all eight.
+    if (/^:::\s*due-dates\s*$/.test(line)) {
+      i++; while (i < lines.length && !/^:::\s*$/.test(lines[i])) i++;
+      i++; html += '<div class="due-dates">' + dueDates(pickOf('4.1')) + '</div>'; continue;
+    }
     if (/^:::\s*(week-check|workload-chart)\s*$/.test(line)) {
       const which = line.match(/week-check|workload-chart/)[0]; i++;
       while (i < lines.length && !/^:::\s*$/.test(lines[i])) i++;
@@ -627,7 +634,9 @@ function md(text, opts = {}) {
       if (head[0] === 'Field' && /^Example/.test(head[2] || '')) {
         html += '<div class="form">' + body.map((r, j) => {
           const id = 'f' + (++formId), req = /^yes/i.test(r[1]);
-          const box = /^Weekly hours target/.test(r[0])
+          const box = /^Course start date/.test(r[0])
+            ? '<input id="' + id + '" type="date" data-setting="startDate" value="' + esc(state.startDate || '') + '">'
+            : /^Weekly hours target/.test(r[0])
             ? '<input id="' + id + '" type="number" min="1" max="20" step="0.5" data-setting="weeklyTarget" value="' + esc(String(weeklyTarget())) + '">'
             : /^Track/.test(r[0])
             ? '<select id="' + id + '"><option value="">Choose…</option><option' + (state.track === 'full' ? ' selected' : '') + '>Full build</option><option' + (state.track === 'refresh' ? ' selected' : '') + '>Refresh</option></select>'
@@ -668,9 +677,9 @@ function md(text, opts = {}) {
 const SCEN_PARTS = [['title', 'Episode title'], ['premise', 'Premise: "[Character] struggles to [decision] when [complication]."'],
   ['situation', 'Situation'], ['trigger', 'Trigger'], ['stakeholders', 'Stakeholders'], ['decision', 'Decision, with two or three options'],
   ['outcome', 'Outcome and learning']];
-const ACT_PARTS = [['activities', 'Your activities for this module, one per line: type: title (CLOs, weight, hours, due day)'],
+const ACT_PARTS = [['activities', 'Your activities for this module, one per line: type: title (CLOs, weight, hours)'],
   ['aiuse', 'For each high-weight activity, the AI use allowed: not allowed, allowed with disclosure, or required as part of the task']];
-const actLine = a => a.type + ': ' + a.title + ' (' + a.clos.join(', ') + ', ' + a.weight + ', ' + a.hours + (a.hours === 1 ? ' hour' : ' hours') + (a.due ? ', due ' + a.due : '') + ')';
+const actLine = a => a.type + ': ' + a.title + ' (' + a.clos.join(', ') + ', ' + a.weight + ', ' + a.hours + (a.hours === 1 ? ' hour' : ' hours') + ')';
 // Each module-at-a-time step: its boxes, which box marks a module as started, and the AI draft for module n.
 const MODULE_STEPS = {
   '3.2': { parts: SCEN_PARTS, done: 'title', rows: k => k === 'title' ? 1 : 3, draft: scenarioDraft },
@@ -724,43 +733,75 @@ function activityDraft(n) {
 // Modules 5 and 6 are saved) + the 90-minute cohort session (Modules 2 to 8). Module 1's target is about 4 hours.
 const weeklyTarget = () => { const v = +state.weeklyTarget; return v > 0 ? v : 10; };
 function parseActs(text) {
-  return text.split('\n').map(l => ({ hours: +((l.match(/(\d+(?:\.\d+)?)\s*(?:hours?|hrs?)\b/i) || [])[1] || 0),
-    due: ((l.match(/\bdue\s+(mon|tue|wed|thu|fri|sat|sun)/i) || [])[1] || '') })).filter(a => a.hours);
+  return text.split('\n').filter(l => l.trim()).map(l => ({ title: l.replace(/\s*\([^)]*\)\s*$/, '').trim(),
+    type: (l.match(/^\s*([^:]+):/) || [])[1] || '', weight: ((l.match(/\b(high|medium|low)\b/i) || [])[1] || '').toLowerCase(),
+    hours: +((l.match(/(\d+(?:\.\d+)?)\s*(?:hours?|hrs?)\b/i) || [])[1] || 0),
+    due: ((l.match(/\bdue\s+(mon|tue|wed|thu|fri|sat|sun)/i) || [])[1] || '') }));
+}
+const moduleActs = n => {
+  const typed = (modText('4.1', n).activities || '').trim();
+  return typed ? parseActs(typed) : DATA.demo['mgmt615-activities.json'].modules[n - 1].activities.map(a => ({ title: a.type + ': ' + a.title, type: a.type, weight: a.weight, hours: a.hours, due: '' }));
+};
+// Flex Online due dates: everything Sunday at 11:59 p.m. Central; discussions have a first post due Wednesday and
+// replies due Sunday. A "due Thu" on an activity's line overrides the default.
+const DAYN = { sun: 0, mon: 1, tue: 2, wed: 3, thu: 4, fri: 5, sat: 6 };
+const MON = ['Jan.', 'Feb.', 'March', 'April', 'May', 'June', 'July', 'Aug.', 'Sept.', 'Oct.', 'Nov.', 'Dec.'];
+const WK = ['Sun.', 'Mon.', 'Tue.', 'Wed.', 'Thu.', 'Fri.', 'Sat.'];
+const fmtDate = d => WK[d.getDay()] + ', ' + MON[d.getMonth()] + ' ' + d.getDate();
+function moduleStart(n) {
+  const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(state.startDate || ''); if (!m) return null;
+  const d = new Date(+m[1], +m[2] - 1, +m[3]); d.setDate(d.getDate() + 7 * (n - 1)); return d;
+}
+const dayIn = (start, day) => { const d = new Date(start); d.setDate(d.getDate() + ((DAYN[day] - d.getDay() + 7) % 7)); return d; };
+function dueDates(n) {
+  const start = moduleStart(n);
+  if (!start) return '<p class="scen-note">Add your course start date in your course details (step GS.2) to see each activity\u2019s due date.</p>';
+  const end = new Date(start); end.setDate(end.getDate() + 6);
+  const at = d => fmtDate(d) + ', 11:59 p.m. CT';
+  const items = moduleActs(n).map(a => {
+    const disc = /discussion/i.test(a.type) && !a.due;
+    const when = disc ? 'first post ' + at(dayIn(start, 'wed')) + '; replies ' + at(dayIn(start, 'sun')) : at(dayIn(start, (a.due || 'sun').toLowerCase()));
+    return '<li><strong>' + esc(a.title) + ':</strong> ' + when + '</li>';
+  }).join('');
+  return '<p><strong>Module ' + n + ' dates:</strong> ' + fmtDate(start) + ' to ' + fmtDate(end) + '</p><ul>' + items + '</ul>' +
+    '<p class="scen-note">Dates follow the Flex Online pattern: work due Sunday at 11:59 p.m. Central, and discussions with a first post due Wednesday. Check them against the academic calendar for breaks and holidays.</p>';
 }
 function weekLoad(n) {
-  const typed = (modText('4.1', n).activities || '').trim();
-  const acts = typed ? parseActs(typed) : DATA.demo['mgmt615-activities.json'].modules[n - 1].activities.map(a => ({ hours: a.hours, due: a.due || '' }));
+  const acts = moduleActs(n);
   const act = acts.reduce((s, a) => s + a.hours, 0);
   const mat = DATA.demo['mgmt615-materials.json'].modules[n - 1], med = DATA.demo['mgmt615-media.json'].modules[n - 1];
   const rdgEst = !state.done['5.1'], medEst = !state.done['6.1'];
   const rdg = rdgEst ? (n === 1 ? 0.75 : 1.5) : mat.pages / 8;
   const media = medEst ? (n === 1 ? 0.25 : 0.5) : med.minutes * 1.25 / 60;
   const coh = n > 1 ? 1.5 : 0, total = act + rdg + media + coh, target = n === 1 ? 4 : weeklyTarget();
-  const byDay = {}; acts.forEach(a => { if (a.due) { const d = a.due[0].toUpperCase() + a.due.slice(1, 3).toLowerCase(); byDay[d] = (byDay[d] || 0) + a.hours; } });
-  const [peakDay, peak] = Object.entries(byDay).sort((x, y) => y[1] - x[1])[0] || ['', 0];
+  // Crunch: two high-weight activities due the same day, or one activity over about 4 hours.
+  const byDay = {}; acts.filter(a => a.weight === 'high').forEach(a => { const d = (a.due || 'sun').toLowerCase(); byDay[d] = (byDay[d] || 0) + 1; });
+  const sameDay = Object.entries(byDay).find(([, c]) => c > 1), big = acts.find(a => a.hours > 4);
+  const peakDay = sameDay ? WK[DAYN[sameDay[0]]].replace('.', '') + 'day' : '', peak = big ? big.hours : 0;
   const flags = [];
   if (total > target + 1) flags.push('heavy');
   if (total < target - 1.5) flags.push('light');
-  if (peak > 4) flags.push('crunch');
-  return { act, rm: rdg + media, est: rdgEst || medEst, coh, total, target, peakDay, peak, flags, dated: Object.keys(byDay).length > 0 };
+  if (sameDay || big) flags.push('crunch');
+  return { act, rm: rdg + media, est: rdgEst || medEst, coh, total, target, sameDay: !!sameDay, big, flags };
 }
 const hrs = x => (Math.round(x * 2) / 2).toString().replace(/\.0$/, '');
 function weekCheck(n) {
   const w = weekLoad(n);
   const msg = { heavy: 'Heavier than the target. Shorten or drop an activity, or move work to a lighter module.',
     light: 'Lighter than the target. Consider adding a short activity or more practice.',
-    crunch: 'About ' + hrs(w.peak) + ' hours of activity work is due on ' + w.peakDay + '. Open the work earlier or add an earlier checkpoint so it isn’t one long day.' };
+    crunch: (w.sameDay ? 'Two major assignments are due the same day. ' : 'One activity runs about ' + hrs(w.big ? w.big.hours : 0) + ' hours. ') +
+      'Add an earlier checkpoint, such as a Wednesday draft, or move part of the work to another module.' };
   return '<p><strong>Module ' + n + ' week:</strong> about ' + hrs(w.total) + ' hours (activities ' + hrs(w.act) + ', readings and media ' + hrs(w.rm) + (w.est ? ' estimated' : '') +
     (w.coh ? ', cohort session 1.5' : '') + '). Target: ' + (n === 1 ? 'about 4 hours in Module 1' : 'close to ' + hrs(w.target) + ' hours') + '.</p>' +
     (w.flags.length ? '<ul class="wl-flags">' + w.flags.map(f => '<li>' + msg[f] + '</li>').join('') + '</ul>' : '<p class="wl-ok">✓ Close to the target.</p>') +
-    (w.dated ? '' : '<p class="scen-note">Add a due day to each activity, such as "due Wed," to check for days when too much is due at once.</p>');
+    '';
 }
 function workloadChart() {
   const mods = DATA.demo['mgmt615-foundation.json'].modules, ws = mods.map((m, k) => weekLoad(k + 1)), top = Math.max(12, ...ws.map(w => w.total + 1));
   return '<figure class="fig fig-wl"><figcaption>Your course at a glance: hours each week</figcaption><ol class="wl-chart">' + ws.map((w, k) =>
     '<li class="' + (w.flags.length ? 'flag' : 'ok') + '"><span class="col" aria-hidden="true"><span class="tgt" style="bottom:' + (100 * w.target / top) + '%"></span>' +
     '<span class="bar" style="height:' + (100 * w.total / top) + '%"></span></span><span class="m">Module ' + (k + 1) + '</span><span class="v">' + hrs(w.total) + ' h' +
-    (w.flags.length ? ' <em>' + w.flags.map(f => ({ heavy: 'heavy', light: 'light', crunch: 'crunch day' })[f]).join(', ') + '</em>' : '') + '</span></li>').join('') + '</ol>' +
+    (w.flags.length ? ' <em>' + w.flags.map(f => ({ heavy: 'heavy', light: 'light', crunch: 'deadline crunch' })[f]).join(', ') + '</em>' : '') + '</span></li>').join('') + '</ol>' +
     '<p class="fig-note"><span class="tgt-key" aria-hidden="true"></span> Target: about 4 hours in Module 1, close to ' + hrs(weeklyTarget()) + ' in the rest. Readings and media are estimated until you save Modules 5 and 6.</p>' +
     '<p class="fig-credit">' + credit('Your course at a glance: hours each week', '') + '</p></figure>';
 }
@@ -1156,7 +1197,7 @@ document.addEventListener('input', e => {
   const k = e.target.dataset && e.target.dataset.mfield; if (!k) return;
   const key = stepKey(), n = pickOf(key); state.mods = state.mods || {}; state.mods[key] = state.mods[key] || {};
   state.mods[key][n] = state.mods[key][n] || {}; state.mods[key][n][k] = e.target.value; save();
-  if (key === '4.1') { const wc = document.querySelector('.week-check'); if (wc) wc.innerHTML = weekCheck(n); const ch = document.querySelector('.wl-chart-wrap'); if (ch) ch.innerHTML = workloadChart(); }
+  if (key === '4.1') { const dd = document.querySelector('.due-dates'); if (dd) dd.innerHTML = dueDates(n); const wc = document.querySelector('.week-check'); if (wc) wc.innerHTML = weekCheck(n); const ch = document.querySelector('.wl-chart-wrap'); if (ch) ch.innerHTML = workloadChart(); }
 });
 document.addEventListener('keydown', e => {
   const el = editable(e.target);
