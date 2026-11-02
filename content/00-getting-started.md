@@ -197,13 +197,13 @@ Fill in a few details about your course. There's no AI draft in this step.
 | Course number | Yes | MGMT 615 |
 | Course title | Yes | Managing People and Performance |
 | Credit hours | Yes | 3 |
-| Program (the degree or certificate the course belongs to) | Yes | MS in Management |
-| First term taught online | No | [Term] |
+| Degree or certificate program | Yes | MS in Management |
+| First term taught online | No | Fall 2027 |
 | Track | Yes | Refresh |
 
 ### Review (refresh)
 
-Fill in the same details, then upload your Course Map as a Word file or paste its text. The AI
+Next, upload your Course Map as a Word file or paste its text. Select Sort with AI, and the AI
 sorts it into the sections of your Course Planning Document. Without the AI, you skip the upload
 and paste each current section when you reach it.
 
@@ -245,14 +245,15 @@ Demo response (MGMT 615, from `src:example-mgmt615-course-map`):
 
 ### Decide
 
-You'll see each section the AI found next to its label. Confirm each one, move any text that
-landed in the wrong place, or mark a section as not in your document.
+Check that your course details are correct. If you uploaded a Course Map, you'll also see each
+section the AI found next to its label. Confirm each one, move any text that landed in the wrong
+place, or mark a section as not in your document.
 
 Checklist:
 
 - Course number, title and program are correct.
-- Each found section is under the right label.
-- You know which sections the tool will draft from scratch.
+- If you uploaded a Course Map: each found section is under the right label.
+- If you uploaded a Course Map: you know which sections the tool will draft from scratch.
 
 ### Checks
 
@@ -264,4 +265,4 @@ Planning document: course number and title in the document title; program on the
 section.
 Project file: `course`, `track`, `source.sections`, `source.missing`, `source.fileName`.
 
-Getting Started ends without check-in prep; the first check-in follows Module 1.
+Next is Module 1. Your first check-in with your ID comes after it.
