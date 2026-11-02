@@ -69,7 +69,7 @@ Choose from least to most effort to produce:
 | Curated video | Low | An existing video covers it well. |
 | Instructor-authored reading (4 to 10 pages) | Several hours each | Nothing curated fits, or your own experience is the point. |
 | Interactive reading (built by your ID) | High | Complex content that benefits from short sections and checks. |
-| Instructor-recorded video | Highest | Planned in Module 6, up to 30 minutes a module. |
+| Instructor-recorded video | Highest | Planned in Module 6, up to 30 minutes of scripted video and audio a module. |
 
 **Your scenario is a material too.** The narrative, and any exhibits the character works from (an
 email from a boss, a dashboard, a complaint), are created content. List them.
@@ -80,9 +80,10 @@ of source you want. Check every suggestion before you list it: authored by someo
 current, stable, and tied to an objective. Start with TAMU Libraries, and link to the library
 record instead of uploading a PDF.
 
-**Load.** Aim for roughly 20 pages of required reading a module, adjusted for density. With 4 to
-5 hours of activities and a 90-minute cohort session, that keeps the week close to 10 hours. Module 1
-targets about 4 hours in all, so keep its reading to a few pages.
+**Load.** Plan 5 to 25 pages of required reading a module, adjusted for density. At 6 to 10 pages an
+hour, that's about 1 to 3 hours. With up to 30 minutes of scripted video and audio, a few short
+curated videos, 5 to 6 hours of activities, and the 90-minute cohort session, the week stays close
+to 10 hours. Module 1 targets about 4 hours in all, so keep its reading to a few pages.
 
 ### See it
 
@@ -150,7 +151,7 @@ Checklist:
 ### Checks
 
 On save of each module: every item tied to an activity; required pages and minutes total (flag
-over about 25 pages, or about 8 in Module 1, adjusted for type); items older than 5 years flagged; scenario listed. After
+under 5 or over about 25 pages, or over about 8 in Module 1, adjusted for type); items older than 5 years flagged; scenario listed. After
 saving, the week-in-your-student's-shoes walk-through for the module refreshes with the real
 reading load.
 

@@ -83,8 +83,8 @@ A planned activity:
   students are always at a disadvantage.
 
 ::: figure budget | A typical week in Modules 2 to 8: close to 10 hours
-- Activities | about 4 to 5 hours | 45
-- Readings and media | about 3 to 4 hours | 40
+- Activities | about 5 to 6 hours | 56
+- Readings and media | about 2 to 3 hours | 29
 - Cohort session | 90 minutes, live or recorded | 15
 - Note | Module 1 is different: about 4 hours in all, with no cohort session, while students get oriented.
 :::
@@ -249,7 +249,7 @@ When you save each module, the tool checks:
 - **Alignment:** each activity traces to a CLO the module lists and uses its verb.
 - **RSI:** at least two categories of instructor activity, counting the cohort session and
   responsive weekly announcements if your interaction statement promises them.
-- **Workload:** activities total about 4 to 5 hours (about 1.5 to 2 in Module 1). The last module is
+- **Workload:** activities total about 5 to 6 hours (about 1.5 to 2 in Module 1). The last module is
   flagged if it runs much heavier than the others.
 - **AI risk:** each high-weight activity is rated high, medium, or low, with a suggested change for
   high and medium.
@@ -272,7 +272,7 @@ module has a cohort session (assume yes for modules 2 to 8 unless told otherwise
 2. Count the categories the module covers, including the cohort session (4) and responsive weekly
    announcements (3) if the syllabus statement promises them.
 3. Total the activity hours.
-Flag modules with fewer than two categories, and modules whose activities exceed 5 hours (2 hours
+Flag modules with fewer than two categories, and modules whose activities exceed 6 hours (2 hours
 in Module 1). For each flag, suggest one specific change.
 
 Return: {"modules": [{"module": int, "activities": [{"title": string, "rsi": int | null, "reason": string}], "categories": [int], "hours": number, "flags": [string]}]}
@@ -416,7 +416,7 @@ Demo response (MGMT 615):
 {
   "changed": ["Activities for all eight modules: three main assignments moved onto the storyline", "Module 5 Perusall: instructor replies added", "Module 8: summary draft moved to Module 7", "AI changes for three high-risk assessments"],
   "keptFlags": [],
-  "questions": ["Is about 4 to 5 hours of activities a module the right target for this program?", "Should students be allowed to draft with AI on the change message if they critique the draft?"]
+  "questions": ["Is about 5 to 6 hours of activities a module the right target for this program?", "Should students be allowed to draft with AI on the change message if they critique the draft?"]
 }
 ```
 

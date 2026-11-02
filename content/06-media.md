@@ -68,10 +68,11 @@ and supports RSI.
 present a moment from your storyline, audio, and graphics such as an infographic of the data
 your character works from.
 
-**Limits.** Recorded video totals no more than 30 minutes a module. Engagement drops sharply
-after about six minutes (Guo, Kim, & Rubin, 2014), so split anything longer into short pieces,
-one idea each. Every item should add something a reading can't: a process to watch, a voice and
-face, a moment of tension.
+**Limits.** Video and audio you script and record total no more than 30 minutes a module. Curated
+videos from other sources should run no more than 6 to 10 minutes each. Engagement drops sharply
+after about six minutes (Guo, Kim, & Rubin, 2014), so split anything longer into short pieces, one
+idea each. Every item should add something a reading can't: a process to watch, a voice and face, a
+moment of tension.
 
 **Media for your story.** Go through your scenarios and decide which need production. A scenario
 video opens in the character's situation and ends at the decision, before the answer, so the
@@ -100,7 +101,8 @@ in Module 1 and the closing video in the last module. For each item give: kind (
 overview, teaching, scenario, closing, graphic, audio), a working title, minutes, where it is
 made (xr-stage for instructor videos, media-team for produced scenarios and graphics,
 faculty-self for screen recordings), one sentence on what it adds that a reading can't, and its
-connection to the storyline. Keep video at or under 30 minutes for the module and each video at
+connection to the storyline. Keep scripted video and audio at or under 30 minutes for
+the module and each video at
 or under 6 minutes unless it is split into parts.
 
 Return: {"versions": [{"items": [{"kind": string, "title": string, "minutes": number, "where": string, "adds": string, "story": string}]}]}
@@ -141,7 +143,8 @@ Checklist (for each module):
 ### Checks
 
 On save of each module: required videos present (welcome in Module 1, overview in every module,
-closing in the last); total video at or under 30 minutes; each video at or under 6 minutes or
+closing in the last); scripted video and audio at or under 30 minutes
+in total; each video at or under 6 minutes or
 split; every item has a storyline connection or a note. The week-in-your-student's-shoes
 walk-through refreshes with video time.
 
