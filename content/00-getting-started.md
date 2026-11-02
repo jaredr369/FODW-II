@@ -4,7 +4,7 @@ Module id: `gs`
 Steps: 2
 ID check-in: none (first check-in follows Module 1)
 
-Faculty complete: AI connection, save folder, ID and check-in details, course details and
+Faculty complete: AI connection, save folder, ID and check-in details, course details, and
 track. Refresh track also uploads the current Course Map or syllabus.
 
 Sources: `src:reading-gs-flex-online-process`, `src:guide-course-development-process`,
@@ -28,7 +28,7 @@ designer (ID). Your ID is assigned to you before the workshop begins and works w
 development of your course. You can work ahead; if you do, ask your ID to meet more often, so each
 module is reviewed before the next one builds on it.
 
-**How each step works.** Throughout the workshop, AI drafts ideas for you to decide on, modify and
+**How each step works.** Throughout the workshop, AI drafts ideas for you to decide on, modify, and
 save. Each step opens with **Learn**, a short read on what the section is for, and **See it**, an
 example from MGMT 615 (a fictitious course used throughout the workshop). See it shows what the
 MGMT 615 instructor did in that step and what came out of it, so you can see what you're aiming for
@@ -111,7 +111,7 @@ prefers Claude Sonnet, then other Claude models, then GPT models.
 
 1. Paste your key and select Test connection, or select Continue without AI.
 2. Select Choose save folder and pick a folder your ID can see.
-3. Enter your ID's name and your weekly check-in day, time and format. Any of these can wait.
+3. Enter your ID's name and your weekly check-in day, time, and format. Any of these can wait.
 
 > App note: Continue without AI is a smaller link and asks for confirmation: "Without the AI
 > you'll write every section of your plan yourself. You won't get first drafts, checks on your
@@ -151,7 +151,7 @@ Project file: `course.idName`, `checkins.day`, `checkins.time`, `checkins.format
 
 ### Go deeper (supplemental)
 
-- `src:guide-course-development-process`: roles, phases and the full development process.
+- `src:guide-course-development-process`: roles, phases, and the full development process.
 
 ---
 
@@ -213,7 +213,7 @@ AI instructions:
 
 ```text
 You are given the text of a faculty member's existing Course Map or syllabus.
-Find the content for each section below. Copy text exactly as written. Do not rewrite, fix or
+Find the content for each section below. Copy text exactly as written. Do not rewrite, fix, or
 summarize. If a section is not in the document, return null for it. If you are unsure where
 something belongs, put it in "unsorted".
 
@@ -239,7 +239,7 @@ Demo response (MGMT 615):
 |---|---|
 | Catalog description, course vision | Found |
 | CLOs | Found, 5 |
-| Modules | Found, 8, with titles, CLOs met, topics, objectives, activities, materials, media, cohort sessions and overviews |
+| Modules | Found, 8, with titles, CLOs met, topics, objectives, activities, materials, media, cohort sessions, and overviews |
 | Program outcomes, learners, character, storyline and scenarios, communication plan | Missing |
 
 > Review note: the recorded JSON for this response will be generated from the MGMT 615 course map
@@ -253,7 +253,7 @@ place, or mark a section as not in your document.
 
 Checklist:
 
-- Course number, title and program are correct.
+- Course number, title, and program are correct.
 - If you uploaded a Course Map: each found section is under the right label.
 - If you uploaded a Course Map: you know which sections are missing from it. You'll fill them in
   when you reach them.

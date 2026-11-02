@@ -47,10 +47,10 @@ A storyline works when:
 - **Pressure builds.** Early modules can start small. By the last few, more is at stake and the
   character has fewer easy options.
 - **Every CLO gets a turn.** Each CLO should drive at least one module's decision.
-- **The details hold.** Names, numbers and relationships stay the same from module to module.
+- **The details hold.** Names, numbers, and relationships stay the same from module to module.
 - **The setting changes at least once.** A student who follows one character through one company
   learns to reason about that company. To help students apply the thinking elsewhere, put at
-  least one scenario in a different setting, such as a sister site, a client or the character's
+  least one scenario in a different setting, such as a sister site, a client, or the character's
   past job (Gick & Holyoak, 1983).
 
 ### See it
@@ -69,7 +69,7 @@ peak season has started.
 AI instructions:
 
 ```text
-Draft a storyline for the course from the character profile, the conflict (step 2.2), the CLOs
+Draft a storyline for the course from the character profile, the conflict (step 2.2), the CLOs,
 and the module titles and topics. Return:
 1. A storyline premise in the form "[Course] is a story about [character, role] who struggles
    to [long-term goal] when [conflict]."
@@ -77,7 +77,7 @@ and the module titles and topics. Return:
    faces, in module order. Each decision must call for that module's CLOs. Pressure should rise
    across the modules.
 3. A one-sentence note on where pressure peaks.
-Use the character profile exactly as written. Do not change names, numbers or relationships.
+Use the character profile exactly as written. Do not change names, numbers, or relationships.
 
 Return: {"premise": string, "arc": [{"module": int, "title": string, "decision": string, "clos": [string]}], "peak": string}
 ```
@@ -95,7 +95,7 @@ AI instructions:
 
 ```text
 The faculty member's existing storyline is given. Check it against this checklist: a premise
-names the character, the long-term goal and the conflict; pressure builds across modules; every
+names the character, the long-term goal, and the conflict; pressure builds across modules; every
 CLO drives at least one module; details stay consistent. Keep what passes. For each gap, quote
 the problem and suggest a fix. Then return a premise and arc as in the full build.
 
@@ -111,14 +111,14 @@ The faculty member edits the premise and the arc. Episode titles stay working ti
 
 Checklist:
 
-- The premise names the character, the goal and the conflict.
+- The premise names the character, the goal, and the conflict.
 - Pressure rises across the modules.
 - Every CLO drives at least one module's decision.
 - At least one module is in a different setting, if transfer matters for your course.
 
 ### Checks
 
-On save: the premise names the character, the goal and the conflict; every CLO drives at least
+On save: the premise names the character, the goal, and the conflict; every CLO drives at least
 one module in the arc.
 
 ### Save
@@ -162,7 +162,7 @@ professional could defend. If one option is obviously right, students learn to s
 the course wants instead of making a judgment.
 
 A clear scenario now saves work later. The same moment can anchor a module overview, a
-discussion, an assignment and a cohort session.
+discussion, an assignment, and a cohort session.
 
 Work one module at a time, in order. The second half is usually where pressure peaks, and earlier
 decisions can come back: in MGMT 615, the bonus Dana questions in Module 2 is the change she
@@ -190,7 +190,7 @@ AI instructions:
 
 ```text
 Propose two scenario options for each of the given modules, using the storyline arc (step 3.1),
-the character profile, the CLOs and each module's title, CLOs met and topics. Each option puts
+the character profile, the CLOs, and each module's title, CLOs met, and topics. Each option puts
 the character in a moment of decision that calls for that module's CLOs. Use the character
 profile exactly as written. For each option give: a short episode title; a premise in the form
 "[Character] struggles to [decision] when [complication]."; the CLOs it supports; situation;
@@ -244,7 +244,7 @@ Checklist (for each scenario):
 - The decision can't be made well without this module's skills.
 - There are two or three options a professional could defend.
 - The stakes are visible.
-- Names, numbers and relationships match your character profile.
+- Names, numbers, and relationships match your character profile.
 
 ### Checks
 
@@ -260,7 +260,7 @@ AI instructions:
 Check the eight saved scenarios as one storyline against the character profile and the CLOs:
 1. Pressure rises across the modules.
 2. Every CLO drives at least one scenario's decision.
-3. Names, numbers and relationships match the profile and each other.
+3. Names, numbers, and relationships match the profile and each other.
 4. No two scenarios turn on the same decision.
 5. At least one scenario uses a different setting.
 Return one result per check: pass, or issue with the module(s) involved and a one-sentence fix.
@@ -284,7 +284,7 @@ Demo response (MGMT 615):
 
 Demo kept note: MGMT 615's check passed with one note: every scenario takes place at Dana's site. The instructor
 kept it, with the note "Module 5 uses data from a sister site, and the existing cases in Modules
-1, 2, 4 and 7 give students other companies to compare."
+1, 2, 4, and 7 give students other companies to compare."
 
 ### Save
 

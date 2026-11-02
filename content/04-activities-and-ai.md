@@ -5,7 +5,7 @@ Steps: 2
 ID check-in: live review of this module's sections, at the end of the week or sooner
 
 Faculty complete: learning activities for every module, including third-party tools, checked
-automatically for RSI, workload and AI risk, and a week-in-your-student's-shoes review of each
+automatically for RSI, workload, and AI risk, and a week-in-your-student's-shoes review of each
 module.
 
 Refresh checks for this module: at least two RSI categories of instructor activity per module;
@@ -68,7 +68,7 @@ A planned activity:
 - **Asks students to do what professionals do**: analyze data, recommend a course of action,
   design a process, run a conversation.
 - **Fits the week.** Flex Online courses plan for about 10 hours of student work a week,
-  including readings, videos, activities and the 90-minute cohort session. Module 1 is lighter,
+  including readings, videos, activities, and the 90-minute cohort session. Module 1 is lighter,
   about 4 hours, while students get oriented.
 - **Adds variety.** If every module has the same format, the course feels repetitive and the same
   students are always at a disadvantage.
@@ -83,12 +83,12 @@ where it fits.
 analysis or a plan. Discussions are for dialogue across professional perspectives. Quizzes are
 for low-stakes checks before harder work. Cohort sessions come in Module 7.
 
-**Weight.** Mark each activity high, medium or low. Activities that show mastery of a CLO carry
+**Weight.** Mark each activity high, medium, or low. Activities that show mastery of a CLO carry
 more weight than the practice that builds toward it. Points and rubrics are finished with your
 ID during development.
 
 **Aggie Core Values.** Look for one or two places where an activity asks students to act with
-integrity, lead or consider who their decision affects. Your character's decisions are often
+integrity, lead, or consider who their decision affects. Your character's decisions are often
 the natural spot. You don't need all six values.
 
 **Watch the last module.** Courses often stack a final project on the module's normal work, and
@@ -100,12 +100,12 @@ hand the prompt to an AI tool and submit what comes back without doing the think
 for. Banning AI rarely solves this, and detection tools are unreliable. Design does better. Changes
 that make a student's own thinking visible:
 
-- **Their own context.** Students apply the concept to their own team, client or organization,
+- **Their own context.** Students apply the concept to their own team, client, or organization,
   which an AI tool doesn't know.
 - **Process evidence.** Students submit annotations explaining their choices, a draft
   with revisions, or a short reflection on what they changed and why.
-- **A live part.** Students defend, rehearse or present the work in a cohort session.
-- **Course-specific material.** The work depends on your storyline, data or earlier submissions.
+- **A live part.** Students defend, rehearse, or present the work in a cohort session.
+- **Course-specific material.** The work depends on your storyline, data, or earlier submissions.
 
 You can also allow AI on purpose: let students draft with it, then grade their critique and
 revision of the draft. Say clearly in the prompt what use is allowed.
@@ -117,7 +117,7 @@ activity would. The AI may suggest one where it fits.
 
 | Tool | What it does | Fits a story-based course when |
 |---|---|---|
-| Perusall | Students annotate readings, video or web pages together; grades automatically | Students annotate a scenario and flag what they'd do before the discussion |
+| Perusall | Students annotate readings, video, or web pages together; grades automatically | Students annotate a scenario and flag what they'd do before the discussion |
 | Peerceptiv | Structured peer review; students review the reviews; grades from review quality | Students compare how classmates reasoned through the same decision |
 | Poll Everywhere | Polls and open questions, live or on students' own time | Students vote on the character's choice, then argue it in the cohort session |
 
@@ -155,7 +155,7 @@ AI instructions:
 
 ```text
 For the given module, propose two versions of its activity set, each with 2 to 4
-activities, from the module's CLOs met, topics and saved scenario. Make the main activity sit at the scenario's decision point. For each activity
+activities, from the module's CLOs met, topics, and saved scenario. Make the main activity sit at the scenario's decision point. For each activity
 give: type (Assignment, Discussion, Quiz), a short title, the CLOs it assesses with the verb it
 uses, weight (high, medium, low), estimated student hours, and one sentence on what students do.
 Every module needs exactly one high-weight activity unless the faculty member's notes say
@@ -177,7 +177,7 @@ The app shows each module's current activities from the uploaded course map.
 AI instructions:
 
 ```text
-Each module's current activities are given, with the module's CLOs met, topics and saved
+Each module's current activities are given, with the module's CLOs met, topics, and saved
 scenario. For each activity check: it traces to a CLO and matches the CLO's verb; students do
 something professionals do; the main activity sits at or near the scenario's decision. Keep
 what passes. For the rest, quote the problem and suggest one revision. Add estimated hours and
@@ -193,7 +193,7 @@ scenario decision and keeps the original cases as readings or comparisons.
 
 ### Decide
 
-For each module the faculty member edits, adds or removes activities and marks, for each
+For each module the faculty member edits, adds, or removes activities and marks, for each
 high-weight activity, the AI use allowed: not allowed, allowed with disclosure, or required as
 part of the task.
 
@@ -211,8 +211,8 @@ On save of each module:
 - **RSI:** at least two categories of instructor activity, counting the cohort session (4) and
   responsive weekly announcements (3) if the interaction statement promises them.
 - **Workload:** activities total about 4 to 5 hours (about 1.5 in Module 1), leaving room for
-  readings, media and the 90-minute cohort session. The last module is flagged if it runs much heavier than the others.
-- **AI risk:** each high-weight activity rated high, medium or low, with a suggested change for
+  readings, media, and the 90-minute cohort session. The last module is flagged if it runs much heavier than the others.
+- **AI risk:** each high-weight activity rated high, medium, or low, with a suggested change for
   high and medium.
 - **Tools:** each third-party tool answers the six questions (alignment, feedback quality,
   academic integrity, access, privacy, your time); privacy shows "check with your ID" unless the
@@ -238,9 +238,9 @@ AI-risk instructions:
 
 ```text
 For each high-weight activity, judge how easily a student could complete it with a general AI
-tool and no course-specific thinking: high, medium or low. Give a one-sentence reason based on
+tool and no course-specific thinking: high, medium, or low. Give a one-sentence reason based on
 what the activity asks for. For high and medium, suggest one change that makes the student's own
-thinking visible, using their own context, process evidence, a live part or course-specific
+thinking visible, using their own context, process evidence, a live part, or course-specific
 material. Keep the activity's CLO and verb. Do not suggest AI detection tools.
 
 Return: {"assessments": [{"module": int, "activity": string, "risk": "high" | "medium" | "low", "why": string, "change": string | null}]}
@@ -279,8 +279,8 @@ Pattern: a week in your student's shoes
 
 A plan can pass every check and still feel wrong to a student. In this step the AI walks through
 each module's week as one of your students would live it: what they open on Monday, what they
-read, do and submit, when they hear from you, and how long it takes. You react to what feels
-heavy, thin or silent, and fix it in step 4.1 if you want to.
+read, do, and submit, when they hear from you, and how long it takes. You react to what feels
+heavy, thin, or silent, and fix it in step 4.1 if you want to.
 
 Readings and media aren't planned yet, so the walk-through uses placeholders for them. You'll
 see the full week again in Modules 5 and 6.

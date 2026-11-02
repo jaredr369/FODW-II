@@ -3,7 +3,7 @@
   "course": {"number": "MGMT 615", "title": "Managing People and Performance", "credits": 3, "program": "[Program name]", "idName": "[ID name]"},
   "catalog": "MGMT 615 prepares working professionals to manage the people side of organizational performance. Students learn to diagnose why employees and teams underperform, deliver feedback that actually changes behavior, build and repair team dynamics, delegate and make decision-rights calls under pressure, lead a team through change, and hire well. 3 credit hours.",
   "programOutcomes": ["PLO 1: Lead individuals and teams to meet organizational goals.", "PLO 2: Analyze business problems using evidence and established frameworks.", "PLO 3: Communicate decisions clearly to varied audiences."],
-  "vision": "MGMT 615 helps new managers run a team instead of doing the team's work themselves. When someone on their team struggles, students find out what is actually wrong before they act. They give feedback that changes behavior, delegate real decisions and have the hard conversations managers often avoid. They lead their teams through change and hire people who fit the work.",
+  "vision": "MGMT 615 helps new managers run a team instead of doing the team's work themselves. When someone on their team struggles, students find out what is actually wrong before they act. They give feedback that changes behavior, delegate real decisions, and have the hard conversations managers often avoid. They lead their teams through change and hire people who fit the work.",
   "learners": "Students are working professionals in a first management role or about to step into one, most promoted after strong work as individual contributors. They arrive with years of workplace experience and plenty of stories about good and bad managers, but little formal training in managing people. They take the course to handle the conversations and decisions their new role puts in front of them. Most work full time and study in the evenings and on weekends.",
   "clos": [
     "CLO 1: Diagnose why an employee or team is underperforming using core theories of motivation and performance.",
@@ -18,18 +18,18 @@
     {"title": "Motivating People", "closMet": ["CLO 1", "CLO 5"], "topics": ["Expectancy and self-determination theory", "Why incentives backfire", "Diagnosing a motivation problem before choosing a fix"]},
     {"title": "Performance Management and Feedback", "closMet": ["CLO 2", "CLO 5"], "topics": ["Setting expectations", "The SBI feedback model", "Coaching vs. disciplinary conversations"]},
     {"title": "Building and Leading Teams", "closMet": ["CLO 3", "CLO 1"], "topics": ["What predicts team performance", "Structural vs. motivational fixes", "Role clarity and ownership of handoffs"]},
-    {"title": "Managing Conflict and Difficult Conversations", "closMet": ["CLO 3", "CLO 2"], "topics": ["Task, process and relationship conflict", "Structuring a difficult conversation", "Repairing a working relationship after conflict"]},
+    {"title": "Managing Conflict and Difficult Conversations", "closMet": ["CLO 3", "CLO 2"], "topics": ["Task, process, and relationship conflict", "Structuring a difficult conversation", "Repairing a working relationship after conflict"]},
     {"title": "Delegation and Decision-Making", "closMet": ["CLO 4", "CLO 5"], "topics": ["Sorting tasks by delegation readiness", "Decision rights", "Where AI helps a management decision, and where it misleads"]},
     {"title": "Leading Through Change", "closMet": ["CLO 5", "CLO 3"], "topics": ["Why change efforts stall", "Sources of resistance", "Communicating change"]},
     {"title": "Hiring and Building Your Team", "closMet": ["CLO 6", "CLO 1"], "topics": ["Why gut-feel hiring fails", "Structured interviews and scorecards", "Proven experience vs. potential"]}
   ],
   "interactionStatement": "Every Monday I'll post an announcement that introduces the week's management decision and responds to what I saw in your last assignment. You'll get written feedback on each module's main assignment within five days of the due date. I check activity every Wednesday, and if you've missed a module's work, I'll contact you that week.",
   "character": {
-    "premise": "A story about Dana Ortiz, a newly promoted operations manager at a regional distribution center, who struggles to find the real causes of her site's slipping performance and coach, delegate, communicate and hire her way to a fix when leadership has already decided who to blame.",
+    "premise": "A story about Dana Ortiz, a newly promoted operations manager at a regional distribution center, who struggles to find the real causes of her site's slipping performance and coach, delegate, communicate, and hire her way to a fix when leadership has already decided who to blame.",
     "position": "Operations manager at a regional distribution center for a mid-size home-goods retailer. Leads 3 shift leads and about 45 hourly associates and reports to a regional director. Promoted 8 months ago from day-shift lead; her first time managing managers.",
     "conflict": "On-time shipping has dropped from 97% to 89% six weeks before peak season, and her director has already blamed her day-shift lead. Dana sees a speed bonus and a shift handoff no one owns.",
     "peers": "Ray Kowalski, night-shift lead, agrees with the director. Jordan Pike, day-shift lead, senses he's being blamed. Alicia Grant, a manager at a sister site, has the data but says to replace Jordan. Luis Ferreira, an associate, keeps missing the bonus because he won't cut corners.",
-    "valuesFears": "Values reliability, fairness and loyalty to the floor. Fears being wrong about her boss, losing the crew's trust and missing peak season in her first year.",
+    "valuesFears": "Values reliability, fairness, and loyalty to the floor. Fears being wrong about her boss, losing the crew's trust, and missing peak season in her first year.",
     "backstory": "Started as a seasonal picker. Known as the lead who \"just fixes it.\" Her first review as manager called her a bottleneck, which led her to the graduate program."
   },
   "communicationPlan": [

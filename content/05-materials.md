@@ -4,7 +4,7 @@ Module id: `m5`
 Steps: 2
 ID check-in: live review of this module's sections, at the end of the week or sooner
 
-Faculty complete: the learning materials for each module, with rights status, attribution and
+Faculty complete: the learning materials for each module, with rights status, attribution, and
 AI-use notes.
 
 Refresh checks for this module: dated sources, missing attribution, unclear rights.
@@ -43,7 +43,7 @@ Pattern: pick and combine, one module at a time (full build); edit in place (ref
 
 ### Learn
 
-Learning materials are everything that isn't an activity: what students read, watch or work with
+Learning materials are everything that isn't an activity: what students read, watch, or work with
 to get ready for the module's decision. Every item should earn its place by preparing students
 for a specific activity.
 
@@ -61,7 +61,7 @@ Choose from least to most effort to produce:
 email from a boss, a dashboard, a complaint), are created content. List them.
 
 **Finding sources with AI.** Perplexity is licensed through the university and cites its sources,
-which makes its suggestions easy to check. Describe the CLO, topic, your students and the kind
+which makes its suggestions easy to check. Describe the CLO, topic, your students, and the kind
 of source you want. Check every suggestion before you list it: authored by someone credible,
 current, stable, and tied to an objective. Start with TAMU Libraries, and link to the library
 record instead of uploading a PDF.
@@ -85,12 +85,12 @@ module needs and how to find it; the faculty member enters the actual sources.
 AI instructions:
 
 ```text
-For the given module, using its CLOs, topics, scenario and activities, propose two versions of a
+For the given module, using its CLOs, topics, scenario, and activities, propose two versions of a
 materials list. Each item gives: type (curated reading, curated video, instructor-authored
 reading, interactive reading, scenario exhibit), what it must cover, the activity it prepares
 students for, and an estimated page count or minutes. Prefer curated types. Always include the
 scenario narrative and any exhibits the character works from. Never name a specific article,
-book, author or video. For each curated item, write one search prompt the faculty member can
+book, author, or video. For each curated item, write one search prompt the faculty member can
 paste into Perplexity or the TAMU Libraries search.
 
 Return: {"versions": [{"items": [{"type": string, "covers": string, "supports": string, "pages": number | null, "minutes": number | null, "searchPrompt": string | null}]}]}
@@ -154,7 +154,7 @@ Project file: `modules[].materials`; in refresh, `.original`, `.changeNote`.
 
 ---
 
-## 5.2 Rights, attribution and AI notes
+## 5.2 Rights, attribution, and AI notes
 
 Time: about 25 minutes
 Pattern: spot the problem, then edit in place
@@ -170,10 +170,10 @@ you're unsure, link instead of uploading.
 the nature of the work, how much you use, and the effect on the market. It's never blanket
 permission, and paywalled content can't be uploaded for students.
 
-**Attribution** credits the creator: name, title, source and license. Use it even when the
+**Attribution** credits the creator: name, title, source, and license. Use it even when the
 license doesn't require it.
 
-**AI-assisted content.** If you used AI to draft a scenario, an exhibit, an image or part of a
+**AI-assisted content.** If you used AI to draft a scenario, an exhibit, an image, or part of a
 reading, tell students. Check it for accuracy and for anything that closely reproduces someone
 else's work, and ask your ID before treating it as your own original work. The U.S.
 Copyright Office has said that purely AI-generated material isn't protected by copyright.
@@ -198,14 +198,14 @@ disclosure note: "Drafted with AI assistance and reviewed by the instructor."
 
 Same for both tracks. The app shows every material in one table with its rights status. The
 faculty member answers, for each item, where it came from and whether AI helped make it. The AI
-proposes the rights status, an attribution line and any AI-disclosure note.
+proposes the rights status, an attribution line, and any AI-disclosure note.
 
 AI instructions:
 
 ```text
 For each material, from the faculty member's answers (source, link, license if known, whether AI
 helped create it), set rights to one of: library, open (name the license), public (linked, not
-uploaded), created, ai-assisted, unclear. Write an attribution line with creator, title, source
+uploaded), created, ai-assisted, unclear. Write an attribution line with creator, title, source,
 and license where known; do not invent missing details, use [check] instead. For ai-assisted
 items, write a one-sentence disclosure note. For unclear items, suggest the safest fix: link
 instead of upload, find a licensed alternative, or recreate it.

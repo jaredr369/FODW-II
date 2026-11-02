@@ -26,7 +26,7 @@ Short notes are fine. The AI uses your answers when it reviews each section in t
 
 1. Which course objectives did students struggle to meet? What did you see in their work?
 2. Were there weeks that felt overloaded or thin, or topics that came too early or too late?
-3. Is there a topic you want to add, cut or update?
+3. Is there a topic you want to add, cut, or update?
 4. What worked well enough that you want to keep it as it is?
 
 AI instructions (added to each Review step in this module):
@@ -55,7 +55,7 @@ Project file: `reflection.m1`.
 
 ---
 
-## 1.1 Learners, catalog and program outcomes
+## 1.1 Learners, catalog, and program outcomes
 
 Time: about 20 minutes
 Pattern: faculty input (no AI)
@@ -104,7 +104,7 @@ lead a team through change; hire well.
 
 ### Write (no AI)
 
-There's no AI in this step. Everything here comes from you, the catalog and your program.
+There's no AI in this step. Everything here comes from you, the catalog, and your program.
 
 ::: refresh
 Your Course Map may not have all of this. Anything it did include is already filled in below,
@@ -139,7 +139,7 @@ copied word for word. Check it, then fill in what's missing:
 
 ::: fields
 - Paste your program's outcomes.
-- Which two to four of these does your course support? | PLO 1, PLO 2 and PLO 3.
+- Which two to four of these does your course support? | PLO 1, PLO 2, and PLO 3.
 :::
 
 ### Decide
@@ -183,7 +183,7 @@ situations.
 
 Write 3 or 4 sentences, within the scope of your catalog description. Describe what students do
 on the job, not what the course covers or how it's taught. A vision drives every later choice:
-each topic, activity and reading has to help students do what it describes.
+each topic, activity, and reading has to help students do what it describes.
 
 ### See it
 
@@ -201,7 +201,7 @@ students do at work.
 ::: plan Course vision
 MGMT 615 helps new managers run a team instead of doing the team's work themselves. When someone
 on their team struggles, students find out what is actually wrong before they act. They give
-feedback that changes behavior, delegate real decisions and have the hard conversations managers
+feedback that changes behavior, delegate real decisions, and have the hard conversations managers
 often avoid. They lead their teams through change and hire people who fit the work.
 :::
 
@@ -221,7 +221,7 @@ AI instructions:
 ```text
 Draft two course visions of 3 or 4 sentences each from the faculty member's answer, the learner
 description and the catalog commitments. Describe what the course helps students do in the
-workplace: actions on the job, not course content, activities or teaching methods. Stay
+workplace: actions on the job, not course content, activities, or teaching methods. Stay
 inside the catalog commitments. Make the two differ: one opens with the situations students will
 face at work, the other with the actions they take.
 
@@ -233,8 +233,8 @@ Demo response (MGMT 615):
 ```json
 {
   "versions": [
-    "MGMT 615 prepares new managers for the moments that test them: an employee who is struggling, a team in conflict, a change no one wants. Students learn to work out what is really wrong before they react, then choose a fix that fits. They give feedback that changes behavior, delegate real decisions and hire people who fit the work. Their teams bring them problems to solve together instead of waiting for the manager to fix everything.",
-    "MGMT 615 helps new managers stop fixing everything themselves and start running a team. Students diagnose why a person or team is underperforming before they act. They have the conversations managers often avoid, delegate with clear decision rights and repair working relationships after conflict. They lead change and hire with a clear picture of what the job needs."
+    "MGMT 615 prepares new managers for the moments that test them: an employee who is struggling, a team in conflict, a change no one wants. Students learn to work out what is really wrong before they react, then choose a fix that fits. They give feedback that changes behavior, delegate real decisions, and hire people who fit the work. Their teams bring them problems to solve together instead of waiting for the manager to fix everything.",
+    "MGMT 615 helps new managers stop fixing everything themselves and start running a team. Students diagnose why a person or team is underperforming before they act. They have the conversations managers often avoid, delegate with clear decision rights, and repair working relationships after conflict. They lead change and hire with a clear picture of what the job needs."
   ]
 }
 ```
@@ -255,7 +255,7 @@ Flags:
   sequence," "every module asks students to…"). A vision should describe what the course helps
   students do at work.
 
-Suggested revision: "MGMT 615 helps new managers run a team instead of doing the team's work themselves. When someone on their team struggles, students find out what is actually wrong before they act. They give feedback that changes behavior, delegate real decisions and have the hard conversations managers often avoid. They lead their teams through change and hire people who fit the work."
+Suggested revision: "MGMT 615 helps new managers run a team instead of doing the team's work themselves. When someone on their team struggles, students find out what is actually wrong before they act. They give feedback that changes behavior, delegate real decisions, and have the hard conversations managers often avoid. They lead their teams through change and hire people who fit the work."
 
 Change note: "Cut to four sentences. Replaced the course and program description with what
 the course helps students do at work; kept the diagnosis-first idea."
@@ -319,12 +319,12 @@ levels, from least to most demanding:
 3. **Apply:** use a method or idea in a new situation.
 4. **Analyze:** break a situation into parts and see how they relate.
 5. **Evaluate:** judge options against criteria and defend a choice.
-6. **Create:** put ideas together into something new, such as a plan, design or proposal.
+6. **Create:** put ideas together into something new, such as a plan, design, or proposal.
 
 For a diagram of the six levels with more example verbs, see Texas A&M's
 [Academic Success Center overview of Bloom's taxonomy](https://asc.tamu.edu/tutoring/bloom.html).
 
-Start each CLO with one action verb at the apply level or higher, mostly analyze, evaluate or
+Start each CLO with one action verb at the apply level or higher, mostly analyze, evaluate, or
 create. The students are experienced professionals; they need to use and judge ideas, not just
 recall them. Avoid verbs like "understand" or "know." You can't see them happen, so you can't grade
 them. Describe something within the student's control.
@@ -399,10 +399,10 @@ catalog commitments, with the Bloom's level of each.
 AI instructions:
 
 ```text
-Draft 4 to 6 CLOs from the vision, the catalog commitments, the supported program outcomes and
+Draft 4 to 6 CLOs from the vision, the catalog commitments, the supported program outcomes, and
 the learner profile. One measurable verb per CLO, Bloom's apply or higher, mostly analyze,
-evaluate or create; describe what the student does, within their control; together cover every
-catalog commitment. For each give its verb, level, the commitments and program outcomes it
+evaluate, or create; describe what the student does, within their control; together cover every
+catalog commitment. For each give its verb, level, the commitments, and program outcomes it
 covers, and one decision a professional in the students' role would face.
 
 Return: {"clos": [{"text": string, "verb": string, "level": string, "commitments": [string], "programOutcomes": [string], "decision": string}]}
@@ -453,13 +453,13 @@ Demo response (MGMT 615):
 Your final CLOs go in this box. They're what's saved to your Course Planning Document.
 
 ::: full
-Under the AI's draft, select **Use these CLOs** to copy them here. Then edit, reorder, remove or
+Under the AI's draft, select **Use these CLOs** to copy them here. Then edit, reorder, remove, or
 add CLOs.
 :::
 
 ::: refresh
 Under the AI's suggestions, select **Use the suggested CLOs** to copy them here. Then, for each
-CLO, keep the suggestion, go back to your current wording or rewrite it. Keep or delete each new
+CLO, keep the suggestion, go back to your current wording, or rewrite it. Keep or delete each new
 CLO the AI added.
 :::
 
@@ -529,14 +529,14 @@ Here's how the MGMT 615 instructor did this step. They kept the eight modules an
 replaced one Module 4 topic, and updated the CLO numbers to match the six revised CLOs.
 :::
 
-::: plan Module titles, CLOs met and topics
+::: plan Module titles, CLOs met, and topics
 | Module | Title | CLOs met | Topics |
 |---|---|---|---|
 | 1 | What Managers Actually Do | CLO 1, CLO 5 | What management is and isn't; from doing the work to getting work done through others; common first-90-days mistakes |
 | 2 | Motivating People | CLO 1, CLO 5 | Expectancy and self-determination theory; why incentives backfire; diagnosing a motivation problem before choosing a fix |
 | 3 | Performance Management and Feedback | CLO 2, CLO 5 | Setting expectations; the SBI feedback model; coaching vs. disciplinary conversations |
 | 4 | Building and Leading Teams | CLO 3, CLO 1 | What predicts team performance; structural vs. motivational fixes; role clarity and ownership of handoffs |
-| 5 | Managing Conflict and Difficult Conversations | CLO 3, CLO 2 | Task, process and relationship conflict; structuring a difficult conversation; repairing a working relationship after conflict |
+| 5 | Managing Conflict and Difficult Conversations | CLO 3, CLO 2 | Task, process, and relationship conflict; structuring a difficult conversation; repairing a working relationship after conflict |
 | 6 | Delegation and Decision-Making | CLO 4, CLO 5 | Sorting tasks by delegation readiness; decision rights; where AI helps a management decision, and where it misleads |
 | 7 | Leading Through Change | CLO 5, CLO 3 | Why change efforts stall; sources of resistance; communicating change |
 | 8 | Hiring and Building Your Team | CLO 6, CLO 1 | Why gut-feel hiring fails; structured interviews and scorecards; proven experience vs. potential |
@@ -544,13 +544,13 @@ replaced one Module 4 topic, and updated the CLO numbers to match the six revise
 
 ### Draft (full build)
 
-The AI drafts a title, CLOs met and topics for each module from your CLOs, and explains the
+The AI drafts a title, CLOs met, and topics for each module from your CLOs, and explains the
 order it chose.
 
 AI instructions:
 
 ```text
-Draft a module sequence from the CLOs, catalog commitments and learner profile, using the number
+Draft a module sequence from the CLOs, catalog commitments, and learner profile, using the number
 of modules the faculty member chose (default 8). For each module: a plain title, one primary CLO
 and at most one supporting CLO, and 3 to 5 topics. Every CLO appears at least once. Order the
 modules the way the decisions would come up for a professional in the students' role, with a
@@ -580,7 +580,7 @@ step 1.3.
 
 Demo response (MGMT 615):
 
-- Modules 1, 2, 3, 5, 6 and 7: keep.
+- Modules 1, 2, 3, 5, 6, and 7: keep.
 - Module 4: revise. The topic "Designing team assignments that are accessible to every learner"
   is a note about designing the course; students wouldn't study it. Replacement: "Role clarity
   and ownership of handoffs." Matches the reflection that Module 4 never reached the handoff
@@ -592,13 +592,13 @@ Demo response (MGMT 615):
 Your final modules go in this box. They're what's saved to your Course Planning Document.
 
 ::: full
-Under the AI's draft, select **Use these modules** to copy them here. Then edit titles, CLOs met
+Under the AI's draft, select **Use these modules** to copy them here. Then edit titles, CLOs met,
 and topics, and reorder modules as needed.
 :::
 
 ::: refresh
 Under the AI's suggestions, select **Use the suggested modules** to copy them here. Then, for
-each module, keep the suggestion, go back to your current wording or rewrite it.
+each module, keep the suggestion, go back to your current wording, or rewrite it.
 :::
 
 ::: fields
@@ -625,7 +625,7 @@ one module."
 
 ### Save
 
-Planning document: each module's title, CLOs met and topics.
+Planning document: each module's title, CLOs met, and topics.
 Project file: `modules[].title`, `modules[].closMet`, `modules[].topics`; in refresh,
 `.original` and `.changeNote`. Other columns from an uploaded course map stay in
 `source.sections` for later modules.
@@ -643,7 +643,7 @@ Project file: `modules[].title`, `modules[].closMet`, `modules[].topics`; in ref
 AI instructions:
 
 ```text
-From this module's saved sections, change notes and kept flags, list what's new or changed since
+From this module's saved sections, change notes, and kept flags, list what's new or changed since
 the last check-in, the flags kept with their notes, and two questions worth raising with the ID.
 Keep it under 150 words.
 

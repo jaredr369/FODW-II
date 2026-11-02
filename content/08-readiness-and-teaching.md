@@ -49,7 +49,7 @@ For each module you should be able to point to the story thread: the scenario an
 the activity where students work through it, the materials that prepare them, the media it needs,
 and how the cohort session builds on it. If a piece is missing or doesn't connect, fix it now.
 
-Then look at the whole week. With activities, materials, media and the cohort session all
+Then look at the whole week. With activities, materials, media, and the cohort session all
 planned, the week-in-your-student's-shoes walk-through can now show the full week: about 4 hours in
 Module 1 and about 10 in the rest.
 
@@ -129,7 +129,7 @@ Pattern: interview, then draft (full build) or edit in place (refresh)
 
 ### Learn
 
-In a Flex Online course the content does the presenting; your weekly job is to guide, respond
+In a Flex Online course the content does the presenting; your weekly job is to guide, respond,
 and give feedback. That's also how you meet RSI week after week. Plan it now, so it holds up in
 week ten.
 
@@ -144,8 +144,8 @@ The opening and closing can be drafted ahead. The midpoint can't, because it res
 students actually did; that's what makes it count as RSI. AI can draft any of them quickly. Edit
 each one so it sounds like you and reflects what's happening in your course.
 
-**Feedback.** Students want to know what they did well, what fell short and what to change, along
-with the grade. SpeedGrader's comment library, markup, clickable rubrics and short audio or video
+**Feedback.** Students want to know what they did well, what fell short, and what to change, along
+with the grade. SpeedGrader's comment library, markup, clickable rubrics, and short audio or video
 comments all save time without thinning feedback. If AI drafts comments, read and edit each one
 before release. Keep the turnaround your interaction statement promises.
 
@@ -165,14 +165,14 @@ opening and closing announcements are drafted before the term and scheduled.
 
 The AI asks three questions, then drafts the plan and the Module 1 announcement sequence:
 
-1. Which format of feedback suits you best: written, audio or video?
+1. Which format of feedback suits you best: written, audio, or video?
 2. Which weeks of the term are your busiest outside the course?
 3. Is there anything you already do in announcements that you want to keep?
 
 AI instructions:
 
 ```text
-From the answers, the interaction statement, the activities and the scenarios, draft:
+From the answers, the interaction statement, the activities, and the scenarios, draft:
 1. A communication and feedback plan of 5 to 8 short lines: announcement days, feedback format and
    turnaround for main assignments, how AI drafting will be reviewed, how common questions are
    answered, and how the plan holds in the faculty member's busiest weeks.
@@ -192,7 +192,7 @@ where you'll decide what Dana should do with her first week."
 
 ### Review (refresh)
 
-Edit in place. Existing announcements, feedback practices and communication notes from the upload
+Edit in place. Existing announcements, feedback practices, and communication notes from the upload
 are checked against the interaction statement and the Learn section; the reflection points the
 AI at what slipped.
 

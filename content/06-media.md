@@ -7,7 +7,7 @@ ID check-in: live review of this module's sections, at the end of the week or so
 Faculty complete: the media plan for each module, with each item's connection to the storyline,
 and a first script ready for the XR stage.
 
-Refresh checks for this module: dated media; required welcome, overview and closing videos
+Refresh checks for this module: dated media; required welcome, overview, and closing videos
 present.
 
 Sources: `src:reading-m6-planning-media`, `src:assignment-m6-media-planning`,
@@ -42,7 +42,7 @@ Pattern: pick and combine, one module at a time (full build); edit in place (ref
 
 ### Learn
 
-Your media plan lists what will be produced for your course: video, audio and graphics. Curated
+Your media plan lists what will be produced for your course: video, audio, and graphics. Curated
 videos from other sources belong in your materials plan.
 
 **Required in every course:** a welcome video, a short overview video for each module, and a
@@ -79,7 +79,7 @@ scenario video setting Greg's team-building lunch against a handoff owner. 11 mi
 AI instructions:
 
 ```text
-For the given module, using its scenario, activities and materials, propose two versions of its
+For the given module, using its scenario, activities, and materials, propose two versions of its
 media list. Always include a module overview video of about 2 minutes; include the welcome video
 in Module 1 and the closing video in the last module. For each item give: kind (welcome,
 overview, teaching, scenario, closing, graphic, audio), a working title, minutes, where it is
@@ -200,7 +200,7 @@ Return: {"title": string, "minutes": number, "rows": [{"section": string, "dialo
 ```
 
 Refresh track: if an existing script is uploaded, the same instructions check it for length,
-spoken style and the decision ending, and suggest edits in place.
+spoken style, and the decision ending, and suggest edits in place.
 
 Demo response (MGMT 615): the Module 1 overview, 2 minutes, opening as under See it and closing
 with "Start with Dana's Monday report, then the reading on what managers actually do. Thursday's

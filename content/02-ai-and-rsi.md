@@ -31,10 +31,10 @@ is regular and substantive interaction (RSI). A course that can't show it is tre
 correspondence course, and its students lose eligibility for federal financial aid. Your ID's
 team checks for it in every course review.
 
-**Substantive** means about teaching, learning or assessment: an announcement explaining the
-concept half the class missed counts; a due-date reminder doesn't. **Regular** means
-predictable, proactive and responsive to how students are doing. Your syllabus has to say how and
-when students will hear from you. That statement is what you write in this step.
+**Substantive** refers to teaching, learning, or assessment. An announcement explaining a concept
+half the class missed counts; a due-date reminder doesn't. **Regular** means predictable, proactive,
+and responsive to how students are doing. Your syllabus has to say how and when students will hear
+from you. That statement is what you write in this step.
 
 For the substantive test, your course needs instructor activity in at least two of these five
 categories:
@@ -44,15 +44,15 @@ categories:
 | 1. Direct instruction | Your recorded lectures, worked examples you narrate, case debriefs, guided questions | Third-party videos with no framing or follow-up, reading lists with no instructions, quizzes graded only automatically |
 | 2. Assessing or giving feedback | Comments on graded work, audio or video feedback, feedback on drafts, peer review you oversee, AI-drafted feedback you review and edit | Scores only, generic comments such as "good job", peer grading you never see, AI feedback you didn't review |
 | 3. Giving information or answering questions | Announcements that clear up a hard concept, content answers by email or in forums, module orientation videos that explain how the content fits together, Q&A sessions about content | Deadline reminders, automated messages, welcome videos with no later engagement, forums where only students answer |
-| 4. Facilitating discussion | Follow-up questions, summaries that connect posts to the readings, live sessions about content | Posting a prompt and grading replies with no comment, office hours used only for logistics |
+| 4. Facilitating discussion | Follow-up questions, summaries that connect posts to the assigned readings, live sessions about content | Posting a prompt and grading replies with no comment, office hours used only for logistics |
 | 5. Other instructional activities | Feedback on journals, simulations you debrief, debriefs after group projects | Reflections nobody reads, simulations nobody discusses |
 
-Most of the right-hand column isn't bad teaching. A good industry video helps students learn.
-So does an auto-graded practice quiz. They count as RSI once you add your own engagement, such
-as a two-minute introduction on what to watch for and a follow-up on what students noticed. The
-fix often takes about ten minutes.
+Most of the right-hand column isn't bad teaching. A good industry video helps students learn. So
+does an auto-graded practice quiz. They count as RSI once you add your own engagement, such as a
+two-minute introduction on what to watch for and a follow-up on what students noticed. The fix often
+takes a short amount of time.
 
-**Where AI fits.** AI can draft feedback, summarize discussion threads or flag students who have
+**Where AI fits.** AI can draft feedback, summarize discussion threads, or flag students who have
 gone quiet. The interaction counts when you review and adjust what goes to students. Feedback an
 AI writes and you release unread does not. As AI takes on more of the explaining, what students
 need most from you is the judgment it can't supply: framing the problem, weighing evidence,
@@ -64,7 +64,7 @@ automatically for every module.
 ### See it
 
 Here's the statement the MGMT 615 instructor settled on. In three sentences, it says when
-students hear from the instructor, how soon feedback comes back and what happens when a student
+students hear from the instructor, how soon feedback comes back, and what happens when a student
 falls behind.
 
 ::: plan Instructor Interaction
@@ -149,7 +149,7 @@ words. Confirm or remove anything marked [check].
 
 Checklist:
 
-- It says when students hear from you, how soon feedback comes back and what you do when a
+- It says when students hear from you, how soon feedback comes back, and what you do when a
   student falls behind.
 - You can keep this up during the busiest week of the term.
 - Nothing marked [check] is left.
@@ -183,18 +183,24 @@ Pattern: interview, then pick and combine
 
 ### Learn
 
-The rest of the workshop builds a story through your course: a character who faces a decision
-in each module. A story earns its place when it gives busy professionals a reason to care about
-a concept now, and a place to file what they learn (Mayer, 2021). This step names what the story
-is about. The next step creates the character.
+The rest of the workshop has elements that build a story through your course. This is achieved by
+developing a character who faces a decision in each module. A story earns its place when it gives
+busy professionals a reason to care about a concept now, and a place to file what they learn (Mayer,
+2021). This step names what the story is about. The next step creates the character.
 
 Start with the **performance**: one sentence, taken from one of your CLOs, saying what students
 should be able to do. Pick the CLO that names the decision your students will face most often.
 
 Then the **conflict**: what makes that performance hard in real life. It pushes directly against
-the performance: conflicting goals, ambiguous data, misaligned incentives or time pressure. If
+the performance: conflicting goals, ambiguous data, misaligned incentives, or time pressure. If
 more information would settle it, it isn't a conflict yet. A good conflict can come back in most
 modules, so the story holds the course together.
+
+**Where this leads.** This step is practice for Module 3. There, you'll plan a **scenario** for
+each module in your course: a realistic situation in which your character faces a decision that
+calls for that module's CLOs. Every scenario follows the pattern you're using here: something the
+character needs to do, and a conflict that makes it hard. Getting the course-level performance and
+conflict right now makes each module's scenario easier to plan.
 
 ### See it
 
@@ -207,7 +213,7 @@ already blamed one shift lead, while the evidence points to a speed bonus and a 
 one owns. Fixing the real causes takes longer and means questioning the boss.
 
 The conflict is a judgment problem, not missing information: the manager can see the evidence,
-but acting on it is costly. It also comes back in later modules, in feedback, delegation and
+but acting on it is costly. It also comes back in later modules, in feedback, delegation, and
 hiring decisions.
 
 ### Draft (full build) and Review (refresh)
@@ -216,7 +222,7 @@ Answer two questions, then select the button below. The AI suggests two or three
 and conflict pairs. Under the pair you like best, select **Use this pair**.
 
 ::: refresh
-The AI first looks through your Course Map for a **throughline**: a company, person, case or
+The AI first looks through your Course Map for a **throughline**: a company, person, case, or
 project that appears in more than one module. If it finds one, it says whether it could become
 your course's story. Either way, it suggests pairs that fit what your course already teaches.
 :::
@@ -230,7 +236,7 @@ your course's story. Either way, it suggests pairs that fit what your course alr
 AI instructions:
 
 ```text
-From the CLOs, the learner description and the faculty member's answers, propose two or three
+From the CLOs, the learner description, and the faculty member's answers, propose two or three
 performance and conflict pairs for a course storyline. Each performance is one sentence tied to
 a named CLO. Each conflict pushes directly against that performance and is a judgment problem,
 not missing information. Prefer pairs that can recur across most modules. For each pair, list
@@ -244,8 +250,8 @@ Return: {"pairs": [{"performance": string, "clo": string, "conflict": string, "c
 AI instructions:
 
 ```text
-The faculty member's existing modules, activities and materials are given. Look for a
-throughline: a company, person, case or project that appears in more than one module. Report
+The faculty member's existing modules, activities, and materials are given. Look for a
+throughline: a company, person, case, or project that appears in more than one module. Report
 what you found and in which modules. Then say whether one of the existing cases could become
 the course's central story, or whether the course needs a new character, and why. Finally
 propose one or two performance and conflict pairs, as on the full build, that fit what the
@@ -286,7 +292,7 @@ situation. The existing cases can stay as contrasts in their modules.
 
 ### Decide
 
-Your final performance and conflict go in these boxes. The next step uses them to draft your
+Your final performance and conflict go in these boxes. The next step uses them to help draft your
 character.
 
 Under the pair you like best, select **Use this pair** to copy it here, then edit it into your
@@ -338,7 +344,7 @@ The profile has six parts:
 
 1. **Premise statement:** "A story about [name, role] who struggles to [performance] when
    [conflict]."
-2. **Position:** title, type of organization, team size and experience.
+2. **Position:** title, type of organization, team size, and experience.
 3. **Conflict:** the step 2.2 conflict, made specific to this person.
 4. **Peers:** two to four people who see the problem differently.
 5. **Values and fears:** what the character cares about and what they're afraid of.
@@ -355,7 +361,7 @@ Here's the character profile the MGMT 615 instructor settled on.
 ::: plan Character Profile
 **Premise statement:** A story about Dana Ortiz, a newly promoted operations manager at a
 regional distribution center, who struggles to find the real causes of her site's slipping
-performance and coach, delegate, communicate and hire her way to a fix when leadership has
+performance and coach, delegate, communicate, and hire her way to a fix when leadership has
 already decided who to blame.
 
 **Position:** Operations manager at a regional distribution center for a mid-size home-goods
@@ -371,8 +377,8 @@ senses he's being blamed. Alicia Grant, a manager at a sister site, has the data
 replace Jordan. Luis Ferreira, an associate, keeps missing the bonus because he won't cut
 corners.
 
-**Values and fears:** Values reliability, fairness and loyalty to the floor. Fears being wrong
-about her boss, losing the crew's trust and missing peak season in her first year.
+**Values and fears:** Values reliability, fairness, and loyalty to the floor. Fears being wrong
+about her boss, losing the crew's trust, and missing peak season in her first year.
 
 **Backstory:** Started as a seasonal picker. Known as the lead who "just fixes it." Her first
 review as manager called her a bottleneck, which led her to the graduate program.
@@ -380,13 +386,13 @@ review as manager called her a bottleneck, which led her to the graduate program
 
 ### Draft (full build) and Review (refresh)
 
-The AI drafts a profile from your performance and conflict (step 2.2), your CLOs and your learner
+The AI drafts a profile from your performance and conflict (step 2.2), your CLOs, and your learner
 description. Answer the optional question if you want a say in the setting, then select the
 button below. Under the draft, select **Use this profile** to copy it into the boxes under Decide.
 
 ::: refresh
 If your Course Map already has a character or a recurring case, the AI checks it against the
-Learn section instead, keeps what works, suggests additions and fills in any missing parts.
+Learn section instead, keeps what works, suggests additions, and fills in any missing parts.
 :::
 
 ::: fields
@@ -397,7 +403,7 @@ Learn section instead, keeps what works, suggests additions and fills in any mis
 AI instructions:
 
 ```text
-Draft a character profile from the chosen performance and conflict, the CLOs and the learner
+Draft a character profile from the chosen performance and conflict, the CLOs, and the learner
 description. Include: premise statement in the form "A story about [name, role] who struggles to
 [performance] when [conflict].", position (title, organization type, team size, experience),
 conflict (specific to this person), 2 to 4 peers with contrasting views of the problem, 2 or 3
@@ -432,7 +438,7 @@ MGMT 615's Course Map had no character or recurring case, so the AI drafted one.
 
 **Premise statement:** A story about Dana Ortiz, a newly promoted operations manager at a
 regional distribution center, who struggles to find the real causes of her site's slipping
-performance and coach, delegate, communicate and hire her way to a fix when leadership has
+performance and coach, delegate, communicate, and hire her way to a fix when leadership has
 already decided who to blame.
 
 **Position:** Operations manager at a regional distribution center for a mid-size home-goods
@@ -444,7 +450,7 @@ lead; her first time managing managers.
 director, Greg Halvorsen, has named the cause: "Jordan's shift is the problem. Fix him or replace
 him." Dana sees more. A pick-rate bonus rewards speed over accuracy, the handoff between shifts
 has no owner, and Jordan avoids hard calls with his crew. Blaming Jordan would satisfy Greg
-quickly. Fixing the causes takes longer, means questioning her boss and requires changes the
+quickly. Fixing the causes takes longer, means questioning her boss, and requires changes the
 crew won't like.
 
 **Peers:**
@@ -477,7 +483,7 @@ part on its own; the AI can redraft one part without changing the rest.
 - Premise statement
 - Position
 - Conflict
-- Peers, one per line: name, role and how they see the problem
+- Peers, one per line: name, role, and how they see the problem
 - Values and fears
 - Backstory, one point per line
 :::
@@ -486,7 +492,7 @@ Checklist:
 
 - Your students could hold this role within a few years.
 - There's more than one reasonable choice, so students ask "What would I do?"
-- All characters, companies and places are fictional.
+- All characters, companies, and places are fictional.
 
 ### Checks
 

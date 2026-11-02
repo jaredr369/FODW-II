@@ -56,7 +56,7 @@ them:
 |---|---|
 | Feedback on their own work | Students bring a draft of the next assignment and get responses |
 | Applying the concept to their own job | Students map the week's framework onto a problem at work |
-| Practice with peers | Students rehearse a conversation, pitch or negotiation in breakouts |
+| Practice with peers | Students rehearse a conversation, pitch, or negotiation in breakouts |
 | Your judgment on a messy case | You work through a case with no clean answer and explain your reasoning |
 | A preview of the next assessment | Students work a problem shaped like the next assignment with you there |
 
@@ -74,7 +74,7 @@ only comes together in the debrief.
 **RSI.** A session built this way is facilitated discussion (category 4) every week, often with
 feedback (2) or direct instruction (1) as well.
 
-**Your Instructional Technologist** runs Zoom, polls, breakouts, captions and timers, if they know
+**Your Instructional Technologist** runs Zoom, polls, breakouts, captions, and timers, if they know
 the plan. Note poll wording, breakout sizes and timing, and anything to drop in the chat.
 
 ### See it
@@ -89,7 +89,7 @@ class and get the instructor's feedback.
 AI instructions:
 
 ```text
-For the given module, using its scenario, activities and the learner profile, propose two
+For the given module, using its scenario, activities, and the learner profile, propose two
 versions of a 90-minute cohort session. Each gives: a title; the decision it centers on; which
 of the five live benefits it offers (feedback on own work, own job, practice with peers,
 instructor judgment, assessment preview); 3 to 5 timed segments that start low-stakes (poll or
@@ -133,7 +133,7 @@ Checklist (for each module):
 ### Checks
 
 On save of each module: passes the recording test; ties to the module's scenario or activities;
-starts with a poll, chat or small group; shows at least one RSI category; segments total about 90
+starts with a poll, chat, or small group; shows at least one RSI category; segments total about 90
 minutes. The week-in-your-student's-shoes walk-through refreshes with the session.
 
 ### Save
@@ -160,7 +160,7 @@ Pattern: interview, then draft
 
 Cohort sessions are broadcast live on Zoom from the XR stage. For each session you fill out a
 preparation template, the run of show, that tells Learning Delivery and your Instructional
-Technologist what happens minute by minute: segments, slides, polls, breakouts and anything that
+Technologist what happens minute by minute: segments, slides, polls, breakouts, and anything that
 goes in the chat. You'll have 30 minutes of setup before each session.
 
 Before your first session, schedule a practice session on the stage with Learning Delivery. It's
