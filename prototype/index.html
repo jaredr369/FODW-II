@@ -46,6 +46,19 @@ nav .bar span { display: block; height: 100%; background: var(--ok); }
    larger so the longer lines stay easy to read. */
 main { padding: 24px clamp(16px, 4vw, 48px) 80px; min-width: 0; width: 100%; max-width: 1100px; margin: 0 auto; font-size: 17px; }
 .crumb { color: var(--muted); font-size: 14px; margin: 0 0 4px; }
+/* Banners: an original maroon design (no logos). The large one opens the welcome page; a thin one
+   names the module at the top of every step. The art is decorative; the text carries the meaning. */
+.banner { position: relative; overflow: hidden; border-radius: 10px; color: #fff; background: linear-gradient(115deg, #3a0000 0%, #500000 50%, #6e2424 100%); }
+.banner svg { position: absolute; top: 0; right: 0; height: 100%; width: 100%; }
+.banner .txt { position: relative; }
+.banner.hero { min-height: 210px; display: flex; align-items: flex-end; margin: 0 0 22px; }
+.banner.hero .txt { padding: 28px 32px; max-width: 640px; }
+.banner.hero .kicker { margin: 0; font-size: 13px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: #f1dede; }
+.banner.hero h2 { margin: 6px 0 4px; font-size: 34px; line-height: 1.15; color: #fff; }
+.banner.hero .sub { margin: 0; font-size: 16px; color: #f6eaea; }
+.banner.thin { height: 54px; display: flex; align-items: center; margin: 0 0 16px; }
+.banner.thin .txt { padding: 0 18px; font-size: 15px; font-weight: 600; letter-spacing: .01em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
+.banner.thin .txt span { font-weight: 400; color: #f1dede; margin-right: 8px; }
 main h2.step { font-size: 28px; margin: 0 0 6px; color: var(--maroon); }
 .meta { color: var(--muted); font-size: 14px; margin-bottom: 18px; }
 .part { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 18px 22px; margin: 14px 0; }
@@ -135,6 +148,9 @@ body.editing main { padding-bottom: 140px; }
   header { position: static; }
   .doc { inset: 0; }
   .choice { grid-template-columns: 1fr; }
+  .banner.hero { min-height: 170px; }
+  .banner.hero .txt { padding: 20px; }
+  .banner.hero h2 { font-size: 26px; }
   .doc { padding: 18px 16px; }
 }
 </style>
@@ -551,8 +567,20 @@ function order() {
 function go(where) { state.at = where; delete navOpen[where.split(':')[0]]; document.body.classList.remove('nav-open'); save(); render(); $('#main').focus(); window.scrollTo(0, 0); }
 function next() { const o = order(); const i = o.indexOf(state.at); if (i < o.length - 1) go(o[i + 1]); }
 
+// Banner art: a storyline path through module "stops," drawn on the right so the text stays clear.
+function bannerArt() {
+  let dots = '';
+  for (let x = 560; x <= 1000; x += 22) for (let y = 14; y <= 210; y += 22) dots += '<circle cx="' + x + '" cy="' + y + '" r="1.4"/>';
+  const stops = [[600, 168], [700, 128], [800, 150], [890, 96], [975, 70]];
+  return '<svg viewBox="0 0 1000 220" preserveAspectRatio="xMaxYMid slice" aria-hidden="true" focusable="false">' +
+    '<g fill="#fff" opacity=".07">' + dots + '</g>' +
+    '<g fill="none" stroke="#fff"><circle cx="880" cy="30" r="170" opacity=".07" stroke-width="2"/><circle cx="1000" cy="230" r="120" opacity=".06" stroke-width="2"/>' +
+    '<path d="M470 200 C 540 190, 560 168, 600 168 S 660 128, 700 128 S 760 150, 800 150 S 850 96, 890 96 S 940 70, 975 70 L 1040 40" opacity=".38" stroke-width="2.5"/></g>' +
+    '<g fill="#fff">' + stops.map(([x, y], i) => '<circle cx="' + x + '" cy="' + y + '" r="' + (i === stops.length - 1 ? 7 : 5) + '" opacity="' + (i === stops.length - 1 ? '.8' : '.45') + '"/>').join('') + '</g></svg>';
+}
 function renderWelcome() {
-  return '<div class="welcome"><p class="crumb">Flex Online Design Workshop II</p><h2 class="step">Plan your Flex Online course</h2>' +
+  return '<div class="banner hero">' + bannerArt() + '<div class="txt"><p class="kicker">Flex Online Design Workshop II</p><h2>Plan your Flex Online course</h2>' +
+    '<p class="sub">Build your Course Planning Document, one module a week, with your ID.</p></div></div><div class="welcome">' +
     '<p>This prototype walks through the workshop with MGMT 615: Managing People and Performance, a fictitious course, and plays back recorded AI responses so the demo never depends on a live connection. Every step builds or reviews one section of the Course Planning Document; open it any time with <strong>Planning document</strong>.</p>' +
     '<h3>Choose a track</h3><div class="choice">' +
     '<button type="button" data-track="full" aria-pressed="' + (state.track === 'full') + '"><strong>Full build</strong>A new course, or a course rebuilt from the beginning. Each step drafts its section from your course details.</button>' +
@@ -609,7 +637,8 @@ function renderStep(goKey) {
   const { m, key, step } = findStep(goKey);
   const src = DATA.modules.find(x => x.id === m.id);
   CUR = { file: src.file, mod: src };
-  const crumb = '<p class="crumb">' + esc(m.title) + '</p>';
+  const mm = m.title.match(/^Module (\d+)\. (.+)$/);
+  const crumb = '<div class="banner thin">' + bannerArt() + '<p class="txt">' + (mm ? '<span>Module ' + mm[1] + '</span>' + esc(mm[2]) : esc(m.title)) + '</p></div>';
   if (key === 'reflection' || key === 'prep') {
     let body = key === 'reflection' ? m.reflection : m.prep;
     // "Same instructions as Module 1." borrows Module 1's AI instructions for the summary.
