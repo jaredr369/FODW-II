@@ -21,8 +21,13 @@ Sources: `src:reading-m1-setting-the-foundation`, `src:guide-course-alignment`,
 > App note: shown once, in the refresh track only, before step 1.1. The answers go to the AI in
 > every Review step of this module.
 
-Think about the last time you taught this course. Answer whichever of these questions apply.
-Short notes are fine. The AI uses your answers when it reviews each section in this module.
+::: purpose
+**What you'll do:** Answer a few questions about the last time you taught this course. Answer
+whichever apply; short notes are fine.
+
+**Why it matters:** The AI uses your answers when it reviews each section in this module, so its
+suggestions reflect what actually happened in your course.
+:::
 
 1. Which course objectives did students struggle to meet? What did you see in their work?
 2. Were there weeks that felt overloaded or thin, or topics that came too early or too late?
@@ -62,14 +67,22 @@ Pattern: faculty input (no AI)
 
 ### Learn
 
-Flex Online courses are planned backward: decide what students should be able to do at the end,
-then how you'll see it, then what they'll read and watch (Wiggins & McTighe, 2005). That's the
-order of this workshop. Module 1 sets the end point.
+::: purpose
+**What you'll do:** Describe who takes your course, and record your catalog description, its
+commitments, and the program outcomes your course supports.
 
-Start with who the students are. They're working professionals who connect new ideas to their
-own experience, want to know why something matters before they invest time, and want to use it
-soon (Knowles, Holton, & Swanson, 2015). Every AI draft from here on uses the learner description you
-write in this step: 3 or 4 sentences about who takes your course.
+**Why it matters:** These set the end point for your whole plan. Every AI draft uses your learner
+description, and later steps check your vision and CLOs against the catalog and program outcomes.
+:::
+
+Flex Online courses are planned backward: decide what students should be able to do at the end, then
+how you'll see it, then what they'll read and watch (Wiggins & McTighe, 2005). That's the order of
+this workshop.
+
+Start with who the students are. They're working professionals who connect new ideas to their own
+experience, want to know why something matters before they invest time, and want to use it soon
+(Knowles, Holton, & Swanson, 2015). Your learner description is 3 or 4 sentences about who takes
+your course.
 
 Your catalog description is the course's public promise, so your course vision and course-level
 objectives (CLOs), which you'll write in steps 1.2 and 1.3, stay within it. Paste the official
@@ -177,14 +190,19 @@ Pattern: interview, then draft
 
 ### Learn
 
-Your course vision describes what your course helps students do in the workplace. Think about
-the situations your students face at work and what your course helps them do about those
+::: purpose
+**What you'll do:** Write your course vision: 3 or 4 sentences on what your course helps students do
+in the workplace.
+
+**Why it matters:** Your vision drives every later choice. Each topic, activity, and reading has to
+help students do what it describes.
+:::
+
+Think about the situations your students face at work and what your course helps them do about those
 situations.
 
-Write 3 or 4 sentences, within the scope of your catalog description. Describe what students do
-on the job, not what the course covers or how it's taught. A vision drives every later choice:
-each topic, activity, and reading has to help students do what it describes.
-
+Stay within the scope of your catalog description. Describe what students do on the job, not what
+the course covers or how it's taught.
 ### See it
 
 ::: full
@@ -307,8 +325,13 @@ Pattern: spot the problem, then pick and combine (full build) or edit in place (
 
 ### Learn
 
-CLOs say what students will be able to do by the end of the course, in a way you can observe and
-grade. Everything later traces back to them. Write 3 to 6.
+::: purpose
+**What you'll do:** Write 3 to 6 course-level objectives (CLOs): what students will be able to do by
+the end of the course, in a way you can observe and grade.
+
+**Why it matters:** Everything later traces back to your CLOs. Your modules, activities, and
+materials are each checked against them.
+:::
 
 To pitch them at the right level, use Bloom's taxonomy, a widely used framework that sorts
 learning by how much thinking it asks of students (Anderson & Krathwohl, 2001). It has six
@@ -507,9 +530,16 @@ Pattern: pick and combine (full build) or edit in place (refresh)
 
 ### Learn
 
-Lay out the weekly modules; the Course Planning Document has room for eight. Each gets a title a
-student would understand on day one. Make sure each module focuses on one or two CLOs and has
-three to five topics. Start from the CLOs: list what students need to know or practice to meet each
+::: purpose
+**What you'll do:** Lay out your course's weekly modules, each with a title, the one or two CLOs it
+focuses on, and three to five topics.
+
+**Why it matters:** This list is the backbone of your plan. Every later module fills in your Course
+Planning Document one module at a time.
+:::
+
+The Course Planning Document has room for eight modules. Give each a title a student would
+understand on day one. Start from the CLOs: list what students need to know or practice to meet each
 one, then cut any topic they don't need to meet a CLO.
 
 Order matters. In Module 3, each module becomes a scenario, a realistic situation your character

@@ -26,15 +26,21 @@ Pattern: interview, then draft (full build) or edit in place (refresh)
 
 ### Learn
 
-Every Flex Online course has to show that the instructor is actively teaching. The federal term
-is regular and substantive interaction (RSI). A course that can't show it is treated as a
-correspondence course, and its students lose eligibility for federal financial aid. Your ID's
-team checks for it in every course review.
+::: purpose
+**What you'll do:** Write the statement for your syllabus that tells students how and when they'll
+hear from you.
+
+**Why it matters:** Federal rules require every online course to show that the instructor is
+actively teaching, and your syllabus statement is where you commit to it.
+:::
+
+The federal term for active teaching is regular and substantive interaction (RSI). A course that
+can't show it is treated as a correspondence course, and its students lose eligibility for federal
+financial aid. Your ID's team checks for it in every course review.
 
 **Substantive** refers to teaching, learning, or assessment. An announcement explaining a concept
 half the class missed counts; a due-date reminder doesn't. **Regular** means predictable, proactive,
-and responsive to how students are doing. Your syllabus has to say how and when students will hear
-from you. That statement is what you write in this step.
+and responsive to how students are doing.
 
 For the substantive test, your course needs instructor activity in at least two of these five
 categories:
@@ -183,10 +189,18 @@ Pattern: interview, then pick and combine
 
 ### Learn
 
+::: purpose
+**What you'll do:** Choose the performance and conflict at the center of your course's story: one
+thing students must be able to do, and what makes it hard in real life.
+
+**Why it matters:** Your character, storyline, and scenarios all grow from this pair, so a strong
+one makes every later step easier.
+:::
+
 The rest of the workshop has elements that build a story through your course. This is achieved by
 developing a character who faces a decision in each module. A story earns its place when it gives
 busy professionals a reason to care about a concept now, and a place to file what they learn (Mayer,
-2021). This step names what the story is about. The next step creates the character.
+2021).
 
 Start with the **performance**: one sentence, taken from one of your CLOs, saying what students
 should be able to do. Pick the CLO that names the decision your students will face most often.
@@ -336,9 +350,16 @@ Pattern: draft, then edit in place
 
 ### Learn
 
-Your character is someone in a role your students could hold within a few years, with enough
-authority to feel the decision and facing the constraints your students face. The character
-lives inside the conflict you named in step 2.2.
+::: purpose
+**What you'll do:** Build a profile of the character your students will follow through the course.
+
+**Why it matters:** Your students meet this person in every module. A believable character makes
+each scenario feel like a real decision, not a textbook exercise.
+:::
+
+Your character is someone in a role your students could hold in the near future, with enough
+authority to feel the decision and facing the constraints your students face. The character lives
+inside the conflict you named in step 2.2.
 
 The profile has six parts:
 

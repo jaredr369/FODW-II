@@ -80,6 +80,8 @@ summary { cursor: pointer; color: var(--muted); font-size: 14px; }
 .thinking { color: var(--muted); font-style: italic; }
 .row.use { margin: 6px 0 10px; }
 .use-note { color: var(--ok); font-weight: 600; margin: 4px 0 0; }
+.purpose { background: var(--tint); border-left: 4px solid var(--maroon); border-radius: 6px; padding: 10px 16px; margin: 0 0 14px; }
+.purpose p { margin: 6px 0; }
 .check-msg { color: var(--muted); }
 .kv { margin: 6px 0; }
 .kv > .k { font-weight: 600; color: var(--maroon-2); font-size: 13px; text-transform: capitalize; }
@@ -343,6 +345,12 @@ function md(text, opts = {}) {
       if (state.track === which) html += md(buf.join('\n'), opts);
       continue;
     }
+    // ::: purpose block: the "What you'll do / Why it matters" opener at the top of a step.
+    if (/^:::\s*purpose/.test(line)) {
+      const buf = []; i++;
+      while (i < lines.length && !/^:::\s*$/.test(lines[i])) buf.push(lines[i++]);
+      i++; html += '<div class="purpose">' + md(buf.join('\n'), opts) + '</div>'; continue;
+    }
     // ::: fields block: each "- Question | Example answer" line becomes a labeled answer box, with the
     // MGMT 615 answer as a hint below. Questions that ask for pasted text get a taller box.
     // ::: check block (spot the problem): "- Question" gets an answer box and a Check my answer
@@ -569,7 +577,7 @@ function renderStep(goKey) {
     const t = key === 'reflection' ? 'Refresh reflection' : 'Check-in prep';
     const done = state.done[goKey];
     return crumb + '<h2 class="step">' + t + '</h2>' +
-      (key === 'prep' ? '<section class="part"><p>Before your weekly check-in, the tool summarizes what you built in this module, lists any flags you kept, and suggests two questions for your ID. It takes about a minute. Review it, then select Ready for check-in.</p></section>' + aiPart('Summary for your ID', body) : reflectionPart(body)) +
+      (key === 'prep' ? '<section class="part"><div class="purpose"><p><strong>What you\'ll do:</strong> Review a one-minute summary of this module before your weekly check-in: what you built, any flags you kept, and two questions for your ID. Then select Ready for check-in.</p><p><strong>Why it matters:</strong> Your ID sees what changed before you meet, so your check-in time goes to decisions instead of catching up.</p></div></section>' + aiPart('Summary for your ID', body) : reflectionPart(body)) +
       '<div class="row"><button type="button" class="btn" data-save="' + esc(goKey) + '">' + (key === 'prep' ? 'Ready for check-in' : 'Save answers') + '</button>' + (done ? '<span class="done-note">Saved</span>' : '') + '</div>';
   }
   const p = step.parts;

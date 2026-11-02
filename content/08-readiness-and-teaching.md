@@ -16,15 +16,23 @@ Sources: `src:reading-m8-preparing-for-development`, `src:assignment-m8-course-p
 
 ## Refresh reflection
 
-Shown once, in the refresh track only, before step 8.1. It asks only about how the course was
-taught last time.
+> App note: Shown once, in the refresh track only, before step 8.1. It asks only about how the
+> course was taught last time.
+
+::: purpose
+**What you'll do:** Answer a few questions about how you communicated with students and gave
+feedback the last time you taught the course. Answer whichever apply; short notes are fine.
+
+**Why it matters:** The AI uses your answers when it reviews each section in this module, so its
+suggestions reflect what actually happened in your course.
+:::
 
 1. How did students hear from you each week, and did it hold up in the busiest weeks?
 2. Where did grading and feedback take the most time?
 3. What did students say about feedback?
 4. Which routines would you keep exactly as they are?
 
-AI instructions: same as the Module 1 reflection instruction.
+> App note: AI instructions are the same as the Module 1 reflection instruction.
 
 Demo answers (MGMT 615): (1) "Monday announcements, but they slipped mid-term." (2) "The
 Management Approach Summary and the memos." (3) "They wanted it faster." (4) "Monday
@@ -41,9 +49,15 @@ Pattern: edit in place
 
 ### Learn
 
-Your planning document is what your ID builds from, and it's much easier to adjust the plan now
-than to rebuild a module in development. This step runs every check across the whole document at
-once and shows the results by module.
+::: purpose
+**What you'll do:** Run every check across your whole planning document and fix what it flags,
+module by module.
+
+**Why it matters:** Your ID builds the course from this document, and it's much easier to adjust the
+plan now than to rebuild a module in development.
+:::
+
+The checks run across the whole document at once and show the results by module.
 
 For each module you should be able to point to the story thread: the scenario and its decision,
 the activity where students work through it, the materials that prepare them, the media it needs,
@@ -129,9 +143,15 @@ Pattern: interview, then draft (full build) or edit in place (refresh)
 
 ### Learn
 
-In a Flex Online course the content does the presenting; your weekly job is to guide, respond,
-and give feedback. That's also how you meet RSI week after week. Plan it now, so it holds up in
-week ten.
+::: purpose
+**What you'll do:** Plan how you'll communicate with students each week: announcements, feedback,
+and answers to questions.
+
+**Why it matters:** In a Flex Online course the content does the presenting; your weekly job is to
+guide, respond, and give feedback. That's also how you meet RSI week after week.
+:::
+
+Plan it now, so it holds up in week ten, not just week one.
 
 **Announcements.** Plan a sequence for each module:
 

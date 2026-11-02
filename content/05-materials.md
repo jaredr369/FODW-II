@@ -18,15 +18,23 @@ Demo data: `demo/mgmt615-materials.json`
 
 ## Refresh reflection
 
-Shown once, in the refresh track only, before step 5.1. It asks only about materials the course
-already has.
+> App note: Shown once, in the refresh track only, before step 5.1. It asks only about materials the
+> course already has.
+
+::: purpose
+**What you'll do:** Answer a few questions about the materials in the last version of your course.
+Answer whichever apply; short notes are fine.
+
+**Why it matters:** The AI uses your answers when it reviews each section in this module, so its
+suggestions reflect what actually happened in your course.
+:::
 
 1. Which readings or videos did students skip, struggle with, or tell you were out of date?
 2. Which materials do students still bring up later in the course?
 3. Is there anything you've been meaning to replace?
 4. Which materials would you keep exactly as they are?
 
-AI instructions: same as the Module 1 reflection instruction.
+> App note: AI instructions are the same as the Module 1 reflection instruction.
 
 Demo answers (MGMT 615): (1) "The SBI job aid confuses people; it's a photocopy of a diagram."
 (2) "The Marsh chapters." (3) "Nothing specific." (4) "Both Marsh chapters and the Park and Marsh
@@ -43,9 +51,15 @@ Pattern: pick and combine, one module at a time (full build); edit in place (ref
 
 ### Learn
 
-Learning materials are everything that isn't an activity: what students read, watch, or work with
-to get ready for the module's decision. Every item should earn its place by preparing students
-for a specific activity.
+::: purpose
+**What you'll do:** Plan the learning materials for each module: what students will read, watch, or
+work with to get ready for the module's decision.
+
+**Why it matters:** Materials fill much of a student's week, so each item should earn its place by
+preparing students for a specific activity.
+:::
+
+Learning materials are everything in a module that isn't an activity.
 
 Choose from least to most effort to produce:
 
@@ -160,6 +174,14 @@ Time: about 25 minutes
 Pattern: spot the problem, then edit in place
 
 ### Learn
+
+::: purpose
+**What you'll do:** For each material, record its rights status, an attribution line, and a note if
+AI helped make it.
+
+**Why it matters:** Using material without the right permission puts you and the university at legal
+risk. Clear attributions and AI notes also show students the integrity you ask of them.
+:::
 
 Everything you use is protected by copyright unless it says otherwise, and the lack of a notice
 doesn't make it free. For each material, you need one of four things: a library link, an open

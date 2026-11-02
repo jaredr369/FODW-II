@@ -28,14 +28,20 @@ Pattern: interview, then draft (full build) or edit in place (refresh)
 
 ### Learn
 
-In Module 2 you built a character and named the conflict at the center of your course. The
-storyline is what happens to that character from the first module to the last.
+::: purpose
+**What you'll do:** Draft your course's storyline: a one-sentence premise and the arc of decisions
+your character faces from the first module to the last.
+
+**Why it matters:** Because the same person keeps coming back, students see how a decision in one
+module shapes what's possible later, which is how the skills connect on the job.
+:::
+
+In Module 2 you built a character and named the conflict at the center of your course. This module
+turns them into a story.
 
 At the course level, the character has one long-term goal, and it lines up with your CLOs. Each
-module then puts a new obstacle or decision in the way. Some decisions move the character
-closer to the goal, and some set them back. Because the same person keeps coming back, students
-see how a decision in Module 2 shapes what is possible in Module 7, which is how the skills
-connect on the job.
+module then puts a new obstacle or decision in the way. Some decisions move the character closer to
+the goal, and some set them back.
 
 A storyline premise keeps it focused. It's one sentence:
 
@@ -141,8 +147,16 @@ Pattern: pick and combine, one module at a time (full build); edit in place (ref
 
 ### Learn
 
-A scenario is one specific moment in your storyline: your character has to make a decision that
-calls for that module's objectives. It doesn't need to be dramatic. It needs to be specific.
+::: purpose
+**What you'll do:** Plan a scenario for each module: a specific moment when your character has to
+make a decision that calls for that module's CLOs.
+
+**Why it matters:** A clear scenario now saves work later. The same moment can anchor the module's
+overview video, discussion, assignment, and cohort session.
+:::
+
+A scenario follows the pattern you practiced in step 2.2: something the character needs to do, and a
+conflict that makes it hard. It doesn't need to be dramatic. It needs to be specific.
 
 Look for turning points. Reasonable professionals disagree about a decision. A plan looks sound
 until reality exposes a weakness. New data, or a stakeholder, forces a change in approach. A
@@ -160,9 +174,6 @@ Each scenario answers five questions:
 A good scenario can't be handled well without the module's skills, and its options are ones a
 professional could defend. If one option is obviously right, students learn to spot the answer
 the course wants instead of making a judgment.
-
-A clear scenario now saves work later. The same moment can anchor a module overview, a
-discussion, an assignment, and a cohort session.
 
 Work one module at a time, in order. The second half is usually where pressure peaks, and earlier
 decisions can come back: in MGMT 615, the bonus Dana questions in Module 2 is the change she

@@ -19,6 +19,14 @@ Pattern: setup (no AI draft)
 
 ### Learn
 
+::: purpose
+**What you'll do:** Connect the AI, choose where your work is saved, and enter your ID's name and
+check-in details.
+
+**Why it matters:** Every step after this one depends on them. The AI drafts and checks each
+section, and the files you save are how your ID sees your work.
+:::
+
 **How this workshop works.** A Flex Online course is a Mays online business course built on a shared
 template and common design standards. In this workshop, you'll build your Course Planning Document,
 a working plan that will guide the future development of the entire course. Each module in this
@@ -30,9 +38,9 @@ module is reviewed before the next one builds on it.
 
 **How each step works.** Throughout the workshop, AI drafts ideas for you to decide on, modify, and
 save. Each step opens with **Learn**, a short read on what the section is for, and **See it**, an
-example from MGMT 615 (a fictitious course used throughout the workshop). See it shows what the
-MGMT 615 instructor did in that step and what came out of it, so you can see what you're aiming for
-before you start. Then you work on your own course:
+example from MGMT 615 (a fictitious course used throughout the workshop). See it shows what the MGMT
+615 instructor did in that step and what came out of it, so you can see what you're aiming for
+before you start. Then you work on your own course. Doing so has a few quick steps:
 
 - **Draft.** Select Draft with AI, and the AI writes a first version of one section of your plan
   from your course details. If you're updating a course you already teach, Review with AI checks
@@ -162,10 +170,16 @@ Pattern: setup; edit in place for the refresh upload
 
 ### Learn
 
+::: purpose
+**What you'll do:** Enter your course's details and choose a track: Full build or Refresh.
+
+**Why it matters:** Every later step uses your choices. Your course details go into each AI draft,
+and your track decides whether each step drafts a new section or reviews the one you already have.
+:::
+
 Choose a track:
 
-- **Full build** if the course is new or you're rebuilding it from the beginning. Each module
-  drafts its sections from your course details.
+- **Full build** if the course is new or you're rebuilding it from the beginning.
 - **Refresh** if your course has already been developed and taught in the Flex Online program.
   Upload its Course Map as a Word file, or paste the text. Your ID can help you get the latest version. In each module you'll see the matching section of your Course Map with flags beside it that note what may need
   attention. You keep the section, accept or edit a suggested revision,

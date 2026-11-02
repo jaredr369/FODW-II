@@ -18,15 +18,23 @@ Demo data: `demo/mgmt615-media.json`
 
 ## Refresh reflection
 
-Shown once, in the refresh track only, before step 6.1. It asks only about the course's existing
-videos and graphics.
+> App note: Shown once, in the refresh track only, before step 6.1. It asks only about the course's
+> existing videos and graphics.
+
+::: purpose
+**What you'll do:** Answer a few questions about the videos and graphics in the last version of your
+course. Answer whichever apply; short notes are fine.
+
+**Why it matters:** The AI uses your answers when it reviews each section in this module, so its
+suggestions reflect what actually happened in your course.
+:::
 
 1. Which videos do students mention, and which do they seem to skip?
 2. Which videos are out of date: wrong numbers, old examples, a different version of you?
 3. Which visuals do students need that the course doesn't have yet?
 4. Which videos would you keep exactly as they are?
 
-AI instructions: same as the Module 1 reflection instruction.
+> App note: AI instructions are the same as the Module 1 reflection instruction.
 
 Demo answers (MGMT 615): (1) "They mention the role-plays. Nobody mentions the discussion
 primers." (2) "None, really." (3) "A picture of the shift handoff." (4) "The role-plays and the feedback video."
@@ -42,8 +50,15 @@ Pattern: pick and combine, one module at a time (full build); edit in place (ref
 
 ### Learn
 
-Your media plan lists what will be produced for your course: video, audio, and graphics. Curated
-videos from other sources belong in your materials plan.
+::: purpose
+**What you'll do:** Plan the media to be produced for each module: video, audio, and graphics,
+including the videos every course requires.
+
+**Why it matters:** Media takes the longest to produce, so planning it now gives you and the
+Learning Media team time to make it well.
+:::
+
+Curated videos from other sources belong in your materials plan, not here.
 
 **Required in every course:** a welcome video, a short overview video for each module, and a
 closing video. These are how students see and hear you each week, which is part of your presence
@@ -152,18 +167,24 @@ Pattern: interview, then draft
 
 ### Learn
 
-Every instructor video starts with an A/V script: two columns, what you'll say (Dialogue) and
-what appears on screen (Graphics). The template has four parts: a branded opening, an
-introduction where you greet students and frame the topic, the content in short chunks, and a
-conclusion with a clear next step, then a branded close. The script is what you share with the
-Learning Media team before your practice session on the XR stage.
+::: purpose
+**What you'll do:** Draft one A/V script, usually for your welcome video or your Module 1 overview.
+
+**Why it matters:** Writing one script now, with feedback, makes the rest faster during development.
+The script is also what you share with the Learning Media team before your practice session on the
+XR stage.
+:::
+
+Every instructor video starts with an A/V script: two columns, what you'll say (Dialogue) and what
+appears on screen (Graphics). The template has four parts: a branded opening, an introduction where
+you greet students and frame the topic, the content in short chunks, and a conclusion with a clear
+next step, then a branded close.
 
 Write for the ear. Use contractions and full sentences, and read it aloud as you write; if a
 sentence is awkward spoken, rewrite it. Say anything a student needs to know, so nothing depends
 only on what's on screen. A 2-minute overview is about 250 to 300 spoken words.
 
-In this step you draft one script, usually your welcome video or your Module 1 overview. Your ID
-and the Learning Media team will help with the rest during development.
+Your ID and the Learning Media team will help with the rest of your scripts during development.
 
 **Getting ready for the stage.** Send the finished script to your ID, who passes it to Learning
 Media. Schedule a practice session on the XR stage with the Learning Media team. Record your

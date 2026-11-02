@@ -21,12 +21,17 @@ Demo data: `demo/mgmt615-activities.json`
 
 ## Refresh reflection
 
-Shown once, in the refresh track only, before step 4.1. It asks only about activities and
-assessments the course already has. AI and XR, which most courses are adding for the first
-time, are left out.
+> App note: Shown once, in the refresh track only, before step 4.1. It asks only about activities
+> and assessments the course already has. AI and XR, which most courses are adding for the first
+> time, are left out.
 
-Prompt shown: "Think about the activities and assessments in the last version of this course.
-Answer whichever of these apply."
+::: purpose
+**What you'll do:** Answer a few questions about the activities and assessments in the last version
+of your course. Answer whichever apply; short notes are fine.
+
+**Why it matters:** The AI uses your answers when it reviews each section in this module, so its
+suggestions reflect what actually happened in your course.
+:::
 
 1. Which activities gave you the best evidence of what students could do? Which gave you the
    weakest?
@@ -34,8 +39,7 @@ Answer whichever of these apply."
 3. Have you seen work that looked like a student let AI do the thinking? On which activities?
 4. Which activities would you keep exactly as they are?
 
-AI instructions (added to each Review step in this module): same as the Module 1 reflection
-instruction.
+> App note: AI instructions are the same as the Module 1 reflection instruction.
 
 Demo answers (MGMT 615):
 
@@ -57,9 +61,16 @@ Pattern: pick and combine, one module at a time (full build); edit in place (ref
 
 ### Learn
 
-A learning activity moves students toward an objective and gives you evidence of whether they
-got there. At this stage you don't write prompts or rubrics. You decide what students will do in
-each module, clearly enough that your ID can see the plan.
+::: purpose
+**What you'll do:** Plan the learning activities for each module: what students will do, which CLO
+each activity serves, how much it weighs, and how long it takes.
+
+**Why it matters:** Activities are where students practice and show what they've learned. They give
+you the evidence of whether students met your CLOs.
+:::
+
+At this stage you don't write prompts or rubrics. Plan clearly enough that your ID can see what
+students will do.
 
 A planned activity:
 
@@ -277,10 +288,17 @@ Pattern: a week in your student's shoes
 
 ### Learn
 
-A plan can pass every check and still feel wrong to a student. In this step the AI walks through
-each module's week as one of your students would live it: what they open on Monday, what they
-read, do, and submit, when they hear from you, and how long it takes. You react to what feels
-heavy, thin, or silent, and fix it in step 4.1 if you want to.
+::: purpose
+**What you'll do:** Read an AI walk-through of each module's week from a student's point of view,
+and note what feels heavy, thin, or silent.
+
+**Why it matters:** A plan can pass every check and still feel wrong to a student. Seeing the week
+as they'll live it shows problems that numbers miss.
+:::
+
+The walk-through follows one of your students through the week: what they open on Monday, what they
+read, do, and submit, when they hear from you, and how long it takes. If something needs fixing, go
+back to step 4.1.
 
 Readings and media aren't planned yet, so the walk-through uses placeholders for them. You'll
 see the full week again in Modules 5 and 6.

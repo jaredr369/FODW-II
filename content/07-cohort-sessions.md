@@ -17,15 +17,23 @@ Demo data: `demo/mgmt615-cohort.json`
 
 ## Refresh reflection
 
-Shown once, in the refresh track only, before step 7.1. It asks only about sessions the course
-has already run.
+> App note: Shown once, in the refresh track only, before step 7.1. It asks only about sessions the
+> course has already run.
+
+::: purpose
+**What you'll do:** Answer a few questions about the cohort sessions in the last version of your
+course. Answer whichever apply; short notes are fine.
+
+**Why it matters:** The AI uses your answers when it reviews each section in this module, so its
+suggestions reflect what actually happened in your course.
+:::
 
 1. Which sessions drew the most students, and which the fewest?
 2. When did the room go quiet, and when was it hard to stop the conversation?
 3. What do students say about the sessions?
 4. Which sessions would you keep exactly as they are?
 
-AI instructions: same as the Module 1 reflection instruction.
+> App note: AI instructions are the same as the Module 1 reflection instruction.
 
 Demo answers (MGMT 615): (1) "The role-plays and the mock interview. The roundtables in Modules 2
 and 4 were thin." (2) "Quiet when I asked open questions to the whole room." (3) "They like the
@@ -42,10 +50,16 @@ Pattern: pick and combine, one module at a time (full build); edit in place (ref
 
 ### Learn
 
-Every Flex Online course has a 90-minute live session on Zoom each week. Attendance is optional
-and every session is recorded, so students decide each week whether to come or watch later.
-Students don't skip because sessions are recorded; they skip sessions that offer nothing the
-recording doesn't (Morris et al., 2019).
+::: purpose
+**What you'll do:** Plan a cohort session, a 90-minute live class on Zoom, for each module, with at
+least one part students can only get by being there.
+
+**Why it matters:** Students don't skip sessions because they're recorded; they skip sessions that
+offer nothing the recording doesn't (Morris et al., 2019).
+:::
+
+Every Flex Online course has one each week. Attendance is optional and every session is recorded, so
+students decide each week whether to come or watch later.
 
 **The recording test.** Ask: if a student watched only the recording, what would they have
 missed? If the answer is nothing, they'll watch it later. A session passes when at least one
@@ -158,19 +172,25 @@ Pattern: interview, then draft
 
 ### Learn
 
-Cohort sessions are broadcast live on Zoom from the XR stage. For each session you fill out a
-preparation template, the run of show, that tells Learning Delivery and your Instructional
-Technologist what happens minute by minute: segments, slides, polls, breakouts, and anything that
-goes in the chat. You'll have 30 minutes of setup before each session.
+::: purpose
+**What you'll do:** Draft the run of show for your first cohort session: a minute-by-minute plan for
+the people who run the session with you.
+
+**Why it matters:** Sessions are broadcast live from the XR stage. The run of show is how Learning
+Delivery and your Instructional Technologist set up polls, breakouts, and slides before you go live.
+:::
+
+The run of show is a preparation template. It lists what happens minute by minute: segments, slides,
+polls, breakouts, and anything that goes in the chat. You'll have 30 minutes of setup before each
+session.
 
 Before your first session, schedule a practice session on the stage with Learning Delivery. It's
 the time to try the polls and breakouts, find where to look, and get comfortable with the
 setting.
 
-In this step you draft the run of show for your first session. During development you'll do the
-rest with your ID, along with slides and a student-facing outline. Keep slides accessible:
-readable contrast, real text instead of text in images, and nothing important only on a slide.
-
+During development you'll do the rest with your ID, along with slides and a student-facing outline.
+Keep slides accessible: readable contrast, real text instead of text in images, and nothing
+important only on a slide.
 ### See it
 
 MGMT 615's Module 1 run of show, first rows:
