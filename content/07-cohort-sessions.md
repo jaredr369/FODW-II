@@ -94,9 +94,8 @@ arrive, what the session is for, and how the rest of the week is laid out around
 | What the session is for | Close last week and launch this one | Practice and decide with what they've learned |
 | How the week builds | The materials and activities follow the session, toward Sunday's assignment | The session is the rehearsal before Sunday's assignment |
 
-**Choose your session day.** If it isn't set yet, choose the day you'd like and design around it;
-your ID can confirm it with the program. You can change it later, and the AI's drafts follow what
-you choose.
+**Choose your session day.** If it isn't set yet, tentatively choose the day you'd like and design
+around it. You can change it later, and the AI's drafts follow what you choose.
 
 ::: choose cohortDay
 - mon | Monday | Early in the week: students haven't started this week's work.
@@ -303,7 +302,8 @@ You write the lesson plan. The AI drafts the outline and slides from it. You edi
 your ID builds the final slides or checks yours for accessibility.
 
 ::: when cohortDay=wed,thu,
-**A shape for later in the week.** Students arrive having read the material:
+**A shape for cohort sessions that are later in the week.** Students arrive having read the
+material:
 
 1. **Check understanding (about 10 minutes).** Open with a poll or a few chat questions on the
    week's main concepts. It shows you what students took from the materials, and you can clear up
@@ -316,7 +316,7 @@ your ID builds the final slides or checks yours for accessibility.
 :::
 
 ::: when cohortDay=mon,tue
-**A shape for early in the week.** Students arrive with last week fresh and this week unread:
+**A shape for cohort sessions that are early in the week.** Students arrive with last week fresh and this week unread:
 
 1. **Recap last week (about 15 minutes).** Revisit last week's decision and what you saw in
    students' work, and connect it to what comes next. A poll on last week's main idea eases
@@ -331,7 +331,7 @@ your ID builds the final slides or checks yours for accessibility.
 
 Either way, lecturing on new material belongs in the asynchronous content.
 
-**Quiet rooms.** Over a third of distance learners feel stressed when asked to participate live
+**Quiet Zoom rooms.** Over a third of distance learners feel stressed when asked to participate live
 (Donelan et al., 2025). The opening poll eases them in: start with a poll or the chat, then small
 groups, then the whole room.
 
@@ -530,9 +530,9 @@ Pattern: check and complete
 **What you'll do:** Choose your background and list the assets for broadcasting your first cohort
 session from the XR stage.
 
-**Why it matters:** Cohort sessions are broadcast live from the XR stage. Your ID takes your
-background and assets to the team that sets up the stage, Zoom, polls, and breakouts before you go
-live.
+**Why it matters:** Cohort sessions are broadcast live from the XR stage. When you choose your
+background and list your assets ahead of time, the stage, Zoom, polls, and breakouts can all be set
+up before you go live, and the session starts on time.
 :::
 
 The **XR Run of Show** is the production team's plan for the day: call times, who's on the crew, a
@@ -545,8 +545,8 @@ videos works well. Teach with your slides from step 7.2, and post handouts in Ca
 go in the chat.
 
 **On the day.** Arrive at the call time the team gives you for a mic check and a walkthrough. Look
-at the camera lens when you speak to students; a confidence monitor shows your slides and notes.
-The team gives you time signals, and your Instructional Technologist runs Zoom, so you can focus on
+at the camera lens when you speak to students; a confidence monitor shows your slides and notes. The
+team can give you time signals, and your Instructional Technologist runs Zoom, so you can focus on
 teaching.
 
 Before your first session, schedule a practice session on the stage with Learning Delivery. It's
@@ -561,8 +561,8 @@ Here's what the MGMT 615 instructor gave their ID for the Module 5 session.
 | Order | Name | Asset Type | Link (Slides in Canvas) |
 |---|---|---|---|
 | 1 | Module 5 cohort session slides | Slides | Module 5 cohort session page in Canvas |
-| 2 | How should Dana answer Greg? | Poll results (Poll Everywhere) | Shown from the week's poll |
-| 3 | Root causes of disagreement | Poll (Zoom) | Loaded by the Instructional Technologist |
+| 2 | How should Dana answer Greg? | Poll results | Shown from the week's poll |
+| 3 | Root causes of disagreement | Poll | Loaded by the Instructional Technologist |
 | 4 | Observer checklist | Handout | Module 5 page in Canvas, linked in the chat |
 
 ### Write (no AI)
@@ -573,7 +573,7 @@ and handout the plan names. Check them, add anything missing, and name your back
 ### Decide
 
 ::: fields notes
-- Background environment, chosen with the Learning Media Team
+- Background environment
 :::
 
 ::: grid assets
