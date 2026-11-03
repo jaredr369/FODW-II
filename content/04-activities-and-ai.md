@@ -137,50 +137,19 @@ with the student's name removed, and edits every comment before posting it in Ca
 Choose an option in Learn first. The build steps and the AI's draft depend on what you choose.
 :::
 
-::: when aiChoice=assignment
+::: when aiChoice=assignment,tutor
 ::: fold How to build your Gem and add it to Canvas
 **Build the Gem**
 
 1. Go to gemini.google.com and sign in with your TAMU Google account. In the left sidebar, select
    **Gems**, then **Create a new Gem**. Build it under your own account: a Gem belongs to whoever
    creates it, and students lose access if its owner stops sharing it.
-2. Name it for students, such as "Crew Reactions."
+2. Name it for students, such as "Crew Reactions" or "Practice with Greg."
 3. Paste the system instructions the AI drafts below, edited into your own words. Before you save,
    ask yourself: Have I told it what to do? What *not* to do? Does it send students back to me for
    grades and other high-stakes questions? Is its scope narrow enough to stay on topic?
-4. Add knowledge files: the assignment directions, your scenario, and any reading it should draw on. Never add student work or records.
-5. Save it, then test it the way a student would, including a request it should refuse, such as
-   "Can you just write my announcement for me?" Revise the instructions until it behaves.
-
-**Add it to your Canvas course**
-
-1. In your course, select **Modules**, find the module, and select **Add Item** (the plus sign).
-2. Choose **External Tool**, then **Google Gemini**. If asked, sign in with your TAMU Google account
-   and authorize the connection.
-3. Select **Gem**, choose your Gem, set it to open in a new tab if needed, and select **Add Item**.
-4. Publish the item when it's ready. Students open the Gem from the module and get view access to
-   it.
-
-In the assignment directions, say what students do with the Gem and what they submit.
-
-Google Gemini is on by default in Canvas courses. If you don't see it, turn it on in **Settings**,
-**Navigation**. Full steps: `src:ext-tamu-lms-gemini`. Your ID can walk you through the build.
-:::
-:::
-
-
-::: when aiChoice=tutor
-::: fold How to build your Gem and add it to Canvas
-**Build the Gem**
-
-1. Go to gemini.google.com and sign in with your TAMU Google account. In the left sidebar, select
-   **Gems**, then **Create a new Gem**. Build it under your own account: a Gem belongs to whoever
-   creates it, and students lose access if its owner stops sharing it.
-2. Name it for students, such as "Practice with Greg."
-3. Paste the system instructions the AI drafts below, edited into your own words. Before you save,
-   ask yourself: Have I told it what to do? What *not* to do? Does it send students back to me for
-   grades and other high-stakes questions? Is its scope narrow enough to stay on topic?
-4. Add knowledge files: your scenario, the module's key reading, and the assignment directions, so it knows what it must not do for students. Never add student work or records.
+4. Add knowledge files: your scenario, the assignment directions (so it knows what it must not do
+   for students), and any reading it should draw on. Never add student work or records.
 5. Save it, then test it the way a student would, including a request it should refuse, such as
    "Can you just write my assignment for me?" Revise the instructions until it behaves.
 
@@ -193,24 +162,30 @@ Google Gemini is on by default in Canvas courses. If you don't see it, turn it o
 4. Publish the item when it's ready. Students open the Gem from the module and get view access to
    it.
 
+::: when aiChoice=assignment
+In the assignment directions, say what students do with the Gem and what they submit.
+:::
+
+::: when aiChoice=tutor
 Tell students when to use it and what it's for, in the module overview or an announcement.
 
 Want a study space instead of a conversation partner? The same Canvas tool can add a Gemini
 Notebook, grounded in the course materials you choose; students can study with it but can't change
 its sources.
+:::
 
 Google Gemini is on by default in Canvas courses. If you don't see it, turn it on in **Settings**,
 **Navigation**. Full steps: `src:ext-tamu-lms-gemini`. Your ID can walk you through the build.
 :::
 :::
 
-
 ::: when aiChoice=grader
 ::: fold How to build a grading assistant in TAMU AI Chat
 1. Open TAMU AI Chat at chat.tamu.ai and sign in with your NetID.
 2. Create a custom assistant (in TAMU AI Chat's workspace, add a new model) and choose the AI model
    it runs on.
-3. Paste the system instructions the AI drafts below, edited into your own words.
+3. Paste the grading instructions the AI drafts below into the assistant's system prompt, edited
+   into your own words.
 4. Add knowledge files: the assignment prompt and your rubric.
 5. Test it on a sample submission with the student's name removed, and compare its comments with
    your own.

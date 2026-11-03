@@ -563,7 +563,8 @@ function md(text, opts = {}) {
         if (/^:::\s*$/.test(lines[i])) { if (--depth === 0) break; } else if (/^:::\s*\S/.test(lines[i])) depth++;
         buf.push(lines[i]);
       }
-      i++; if ((state[setting] || '') === (want || '')) html += md(buf.join('\n'), opts); continue;
+      // "when aiChoice=assignment,tutor" shows for either choice, so shared text appears once.
+      i++; if ((want || '').split(',').map(s => s.trim()).includes(state[setting] || '')) html += md(buf.join('\n'), opts); continue;
     }
     if (/^:::\s*due-dates\s*$/.test(line)) {
       i++; while (i < lines.length && !/^:::\s*$/.test(lines[i])) i++;
@@ -597,7 +598,11 @@ function md(text, opts = {}) {
     // ::: fold <title> block: a fold-out for detail most people only need once.
     if (/^:::\s*fold\b/.test(line)) {
       const title = line.replace(/^:::\s*fold\s*/, ''), buf = []; i++;
-      while (i < lines.length && !/^:::\s*$/.test(lines[i])) buf.push(lines[i++]);
+      // A fold can hold a when block, so count openings and closings.
+      for (let depth = 1; i < lines.length; i++) {
+        if (/^:::\s*$/.test(lines[i])) { if (--depth === 0) break; } else if (/^:::\s*\S/.test(lines[i])) depth++;
+        buf.push(lines[i]);
+      }
       i++; html += '<details class="fold"><summary>' + inline(title) + '</summary>' + md(buf.join('\n'), opts) + '</details>'; continue;
     }
     // ::: key and ::: folder blocks: the setup controls on GS.1. The prototype acts them out.
