@@ -4,7 +4,7 @@ Module id: `m8`
 Steps: 2
 ID check-in: live review of the finished plan; the ID then schedules the kick-off meeting
 
-Faculty complete: a final check of the whole planning document, and the communication and
+Faculty complete: a summary review of the whole planning document, and the communication and
 feedback plan.
 
 Refresh checks for this module: the planning document is complete and aligned; announcement and
@@ -42,91 +42,58 @@ Project file: `reflection.m8`.
 
 ---
 
-## 8.1 Check the whole plan
+## 8.1 Your Course Planning Document
 
-Time: about 25 minutes
-Pattern: edit in place
+Time: about 20 minutes
+Pattern: review, then fix or note
 
 ### Learn
 
 ::: purpose
-**What you'll do:** Run every check across your whole planning document and fix what it flags,
-module by module.
+**What you'll do:** Read a summary of your finished Course Planning Document, fix or note anything
+still open, and save the final version for your ID.
 
 **Why it matters:** This document guides your course's development, and it's much easier to adjust
 the plan now than to rebuild a module later.
 :::
 
-The checks run across the whole document at once and show the results by module.
+The summary under Decide pulls your whole plan together:
 
-For each module you should be able to point to the story thread: the scenario and its decision,
-the activity where students work through it, the materials that prepare them, the media it needs,
-and, in Modules 2 to 8, how the cohort session builds on it. If a piece is missing or doesn't connect, fix it now.
+- **Your course at a glance:** the hours in each module's week, and totals for the course.
+- **The story thread:** for each module, the scenario, the main activity, the materials and media,
+  and the cohort session. Each piece should connect to the scenario's decision.
+- **Anything still open:** a week far from its target, or a piece of the thread that doesn't
+  connect. Select **Go to the step** to fix it, or keep it with a short note for your ID.
 
-Then look at the whole week. With activities, materials, media, and the cohort session all
-planned, the week-in-your-student's-shoes walk-through can now show the full week: about 4 hours in
-Module 1 and close to 10 in the rest.
-
-::: workload-chart
-:::
+Then open the whole planning document and read it once, top to bottom, the way your ID and the
+development team will.
 
 ### See it
 
-MGMT 615's final check found three things. Module 1 came to about 6.5 hours against a 4-hour
-target; the instructor made the sort optional and moved the book chapter to Module 2. The Module 6 thread had no media tied to the scenario;
-the instructor noted that the AI teaching video carries the story through the scheduling tool.
-And Module 8 still ran heavy at about 11 hours; the instructor cut one reading to supplemental.
-
-### Draft (full build) and Review (refresh)
-
-Same for both tracks. No drafting; the AI runs the checks.
-
-AI instructions:
-
-```text
-Check the whole planning document. For each module, confirm the story thread: scenario and
-decision; an activity at the decision; materials that prepare students for it; media tied to the
-scenario or a note; a cohort session that builds on it. Total the week's hours (activities,
-reading at about 6 pages an hour for dense reading, video minutes, 90-minute cohort session) and
-flag Module 1 if it is far from about 4 hours, and any other week more than 1.5 hours under or 1 hour over
-the weekly target (10 unless the program sets another). List every section that is empty or still a placeholder,
-and every earlier flag kept without a note. Then list the three most important fixes across the
-course, most important first.
-
-Return: {"modules": [{"module": int, "thread": {"scenario": boolean, "activity": boolean, "materials": boolean, "media": boolean, "cohort": boolean}, "hours": number, "flags": [string]}], "missingSections": [string], "unnotedFlags": [string], "topFixes": [string]}
-```
-
-Demo response (MGMT 615):
-
-```json
-{
-  "modules": [
-    {"module": 1, "thread": {"scenario": true, "activity": true, "materials": true, "media": true, "cohort": null}, "hours": 6.5, "flags": ["About 6.5 hours against a 4-hour target for the first week."]},
-    {"module": 6, "thread": {"scenario": true, "activity": true, "materials": true, "media": false, "cohort": true}, "hours": 9.5, "flags": ["No media tied to the scenario 'Twelve Things on Dana's List'."]},
-    {"module": 8, "thread": {"scenario": true, "activity": true, "materials": true, "media": true, "cohort": true}, "hours": 11, "flags": ["About 11 hours, the heaviest week."]}
-  ],
-  "missingSections": [],
-  "unnotedFlags": [],
-  "topFixes": ["Lighten Module 1 to about 4 hours: make the sort optional and move the book chapter to Module 2.", "Lighten Module 8: move one reading to supplemental.", "Tie a Module 6 media item to Dana's list, or note why none is needed."]
-}
-```
-
-Modules not listed passed every check.
+MGMT 615's summary showed four open items. Module 1 came to about 5.5 hours against its 4-hour
+target, so the instructor made the sort optional. Module 6 ran light, at about 8 hours, so the
+instructor added a short practice activity. Modules 6 and 7 had no scenario video or graphic; the
+instructor kept both with a note that the teaching videos carry Dana's story.
 
 ### Decide
 
-For each flag, Fix (opens the section) or Keep with a note.
+::: course-summary
+:::
+
+::: fields notes
+- Notes for your ID on anything you're keeping as it is
+:::
 
 Checklist:
 
-- Every module's story thread is complete, or the gap has a note.
-- Module 1 is about 4 hours, and every other week close to 10.
-- No section is empty.
+- Every module's story thread connects, or the gap has a note.
+- Module 1 is about 4 hours, and every other week is close to your target.
+- You've read the whole planning document once, top to bottom.
 
 ### Checks
 
-This step is the check. Save final version becomes available when no flag is left without a fix
-or note.
+When you save, the tool checks that nothing is left open without a fix or a note. Then **Save final
+version** downloads the planning document as a Word file to share with your ID.
 
 ### Save
 
@@ -142,89 +109,102 @@ Project file: `alignment.final`.
 
 ## 8.2 Communication and feedback plan
 
-Time: about 30 minutes
+Time: about 25 minutes
 Pattern: interview, then draft (full build) or edit in place (refresh)
 
 ### Learn
 
 ::: purpose
-**What you'll do:** Plan how you'll communicate with students each week: announcements, feedback,
-and answers to questions.
+**What you'll do:** Plan how students will hear from you each week: announcements, feedback, and
+answers to questions.
 
 **Why it matters:** In a Flex Online course the content does the presenting; your weekly job is to
 guide, respond, and give feedback. That's also how you meet RSI week after week.
 :::
 
-Plan it now, so it holds up in week ten, not just week one.
+Plan it now, so it holds up in week ten, not just week one. It joins your interaction statement
+from Module 2 in the planning document.
 
-**Announcements.** Plan a sequence for each module:
-
-- **Opening:** welcome to the module, where the story stands, the first thing to do.
-- **Midpoint:** what you're seeing in student work, and the concept people are missing.
-- **Before the cohort session:** what to prepare or bring.
-- **Closing:** what the module added up to and the next decision.
-
-The opening and closing can be drafted ahead. The midpoint can't, because it responds to what
-students actually did; that's what makes it count as RSI. AI can draft any of them quickly. Edit
-each one so it sounds like you and reflects what's happening in your course.
+**Announcements.** Each module gets an opening announcement (where the story stands and the first
+thing to do) and a closing one (what the module added up to and the next decision). Add a midpoint
+note on what you're seeing in student work; it can't be written ahead, because it responds to what
+students actually did, and that's what makes it count as RSI. If your course has cohort sessions,
+add a short note the day before each one on what to prepare or bring. AI can draft any of these;
+edit each one so it sounds like you.
 
 **Feedback.** Students want to know what they did well, what fell short, and what to change, along
-with the grade. SpeedGrader's comment library, markup, clickable rubrics, and short audio or video
-comments all save time without thinning feedback. If AI drafts comments, read and edit each one
-before release. Keep the turnaround your interaction statement promises.
+with the grade. A comment library, clickable rubrics, and short audio or video comments save time
+without thinning feedback. If AI drafts comments, read and edit each one before release.
 
-**Questions.** Reply to student questions within 24 to 48 hours. Answer common questions once, in an
-announcement or the General Q&A discussion, so everyone sees the answer.
+**Questions.** Reply within 24 to 48 hours, and answer common questions once, in an announcement or
+the General Q&A discussion, so everyone sees the answer.
 
 ### See it
 
 MGMT 615's plan: Monday opening announcements carry Dana's story; Wednesday midpoints respond to
-what the instructor sees in the week's drafts and polls; a short Wednesday note before each Thursday
-cohort session says what to bring. Feedback on main assignments is within five days: clickable
-rubric plus a 2-minute video comment, with a comment library built from the first term's most
-common notes. The instructor's reflection said Monday announcements slipped mid-term, so all
+what the instructor sees in the week's drafts and polls and say what to bring to Thursday's cohort
+session. Feedback on main assignments comes within five days: a clickable rubric plus a 2-minute
+video comment. The instructor's reflection said Monday announcements slipped mid-term, so all
 opening and closing announcements are drafted before the term and scheduled.
 
 ### Draft (full build)
 
-The AI asks three questions, then drafts the plan and the Module 1 announcement sequence:
+Answer the questions, then select the button below. The AI drafts your plan and the Module 1
+opening announcement. Select **Use this plan** to copy them into the boxes under Decide.
 
-1. Which format of feedback suits you best: written, audio, or video?
-2. Which weeks of the term are your busiest outside the course?
-3. Is there anything you already do in announcements that you want to keep?
+::: fields
+- Which kind of feedback suits you best: written, audio, or video? | Short video comments, with a rubric.
+- Which weeks of the term are your busiest outside the course? | Weeks 5 and 6, during our program's residency.
+- Is there anything you already do in announcements that you want to keep? | A Monday note that starts with a question.
+:::
 
 AI instructions:
 
 ```text
-From the answers, the interaction statement, the activities, and the scenarios, draft:
-1. A communication and feedback plan of 5 to 8 short lines: announcement days, feedback format and
+From the answers, the interaction statement, the cohort session day (if the course has sessions),
+the activities, and the scenarios, draft:
+1. A communication and feedback plan of 4 to 6 short lines: announcement days, feedback format and
    turnaround for main assignments, how AI drafting will be reviewed, how common questions are
    answered, and how the plan holds in the faculty member's busiest weeks.
-2. The Module 1 announcement sequence: opening, midpoint (as a template with [what I'm seeing]
-   placeholders, since it must respond to real work), before-session note, closing. Each under
-   120 words, in the faculty member's voice, carrying the story forward.
+2. The Module 1 opening announcement, under 120 words, in the faculty member's voice, carrying the
+   story forward. Module 1 has no cohort session.
 Keep every commitment consistent with the interaction statement.
 
-Return: {"plan": [string], "announcements": [{"type": string, "day": string, "text": string}]}
+Return: {"plan": [string], "announcement": string}
 ```
 
-Demo response (MGMT 615): the plan under See it, and a Module 1 opening announcement:
-"Welcome to MGMT 615. This week you meet Dana Ortiz, eight months into running a distribution
-center, with on-time shipping down eight points and a director who's already decided whose fault
-it is. Start with her Monday report and the Whitfield chapter, then join us Tuesday at 6:00,
-where you'll decide what Dana should do with her first week."
+Demo response (MGMT 615):
+
+Plan:
+
+- Monday: an opening announcement that carries Dana's story and names the week's decision.
+- Wednesday: a midpoint announcement on what I'm seeing in drafts and polls, and what to bring to Thursday's cohort session.
+- Main assignments: a clickable rubric plus a 2-minute video comment, within five days.
+- AI-drafted comments are read and edited before release.
+- Common questions are answered once, in the General Q&A discussion.
+- Weeks 5 and 6: opening and closing announcements are written and scheduled before the term.
+
+**Module 1 opening announcement:** Welcome to MGMT 615. This week you meet Dana Ortiz, eight months
+into running a distribution center, with on-time shipping down eight points and a director who's
+already decided whose fault it is. Start with her Monday report and the Whitfield chapter. By
+Sunday, you'll decide what Dana should do with her first week, and why.
 
 ### Review (refresh)
 
-Edit in place. Existing announcements, feedback practices, and communication notes from the upload
-are checked against the interaction statement and the Learn section; the reflection points the
-AI at what slipped.
-
-Demo response (MGMT 615): the course map has no communication plan, so the full build runs. The
-reflection note about announcements slipping mid-term adds the line "Opening and closing
-announcements drafted before the term and scheduled."
+The AI checks the announcements, feedback practices, and communication notes in your Course Map
+against your interaction statement and the Learn section, and your reflection points it at what
+slipped. MGMT 615's Course Map had no communication plan, so the full build ran, and the reflection
+added the line about scheduling announcements before the term.
 
 ### Decide
+
+Your final plan goes in these boxes. Type in either box to change it, or select **Redraft with AI**
+under a box to have the AI rewrite it.
+
+::: fields
+- Your communication and feedback plan, one commitment per line
+- Your Module 1 opening announcement
+:::
 
 Checklist:
 
@@ -234,15 +214,18 @@ Checklist:
 
 ### Checks
 
-On save: every commitment matches the interaction statement (days and turnaround); each module
-has an opening and a closing announcement planned; AI-drafted feedback has a review step.
+When you save, the tool checks that:
+
+- every commitment matches your interaction statement, including days and turnaround;
+- each module has an opening and a closing announcement planned;
+- AI-drafted feedback has a review step.
 
 ### Save
 
 Planning document: the communication and feedback plan, added to the Instructor Interaction
-section under the syllabus statement.
-Download: the Module 1 announcement sequence as a Word file. There's nothing to fill out or submit; it's there to show and share.
-Project file: `communication.plan`, `communication.announcements`.
+section under your interaction statement.
+Download: the Module 1 opening announcement as a Word file, to share with your ID.
+Project file: `communication.plan`, `communication.announcement`.
 
 ### Go deeper (supplemental)
 
@@ -255,7 +238,7 @@ Project file: `communication.plan`, `communication.announcements`.
 ## Check-in prep and finish
 
 Same instructions as Module 1, with one addition: the app offers Save final version once step 8.1
-has no open flags. The final version leaves out the check-in summary and, if the faculty member
+has nothing open without a fix or a note. The final version leaves out the check-in summary and, if the faculty member
 chooses, the change log. The faculty member saves it to the shared folder, and the ID schedules
 the kick-off meeting.
 
@@ -263,8 +246,8 @@ Demo response (MGMT 615):
 
 ```json
 {
-  "changed": ["Final check: Modules 1 and 8 lightened, Module 6 media noted", "Communication and feedback plan", "Module 1 announcement sequence"],
-  "keptFlags": ["Module 6 has no scenario media: the AI teaching video carries the story"],
+  "changed": ["Summary review: Module 1 lightened, Module 6 given a practice activity, Modules 6 and 7 media noted", "Communication and feedback plan", "Module 1 opening announcement"],
+  "keptFlags": ["Modules 6 and 7 have no scenario media: the teaching videos carry the story"],
   "questions": ["Which scenario videos should be produced first?", "Can the comment library be set up in the development shell before the term?"]
 }
 ```

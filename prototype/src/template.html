@@ -210,6 +210,13 @@ summary { cursor: pointer; color: var(--muted); font-size: 14px; }
 .choose .opt input { margin-top: 4px; }
 .choose .desc { display: block; font-size: 15px; color: var(--muted); }
 .grid-cap { margin: 0 0 6px; }
+.plan-summary h4 { margin: 18px 0 6px; }
+.plan-summary .totals { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(118px, 1fr)); gap: 8px; }
+.plan-summary .totals li { background: var(--tint); border-radius: 6px; padding: 8px 10px; }
+.plan-summary .totals strong { display: block; font-size: 22px; color: var(--maroon); }
+.summary td, .summary th { font-size: 15px; vertical-align: top; }
+.summary .ok { color: var(--ok); font-weight: 700; } .summary .warn, .summary td.warn { color: var(--warn); }
+.open-items li { margin-bottom: 6px; }
 .outline { white-space: pre-wrap; font: inherit; font-size: 15px; background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 10px 12px; max-height: 360px; overflow: auto; }
 .slides { list-style: none; padding: 0; margin: 8px 0 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; }
 .slides > li { border: 1px solid var(--line); border-top: 4px solid var(--maroon); border-radius: 6px; background: #fff; padding: 8px 10px; font-size: 14px; aspect-ratio: auto; }
@@ -579,6 +586,8 @@ function md(text, opts = {}) {
       while (i < lines.length && !/^:::\s*$/.test(lines[i])) { if (/^- /.test(lines[i])) rows.push(lines[i].slice(2).split(/\s*\|\s*/)); i++; }
       i++; html += moduleBlock(which, rows, opts); continue;
     }
+    // ::: course-summary: 8.1's look at the whole planning document.
+    if (/^:::\s*course-summary\s*$/.test(line)) { i++; while (i < lines.length && !/^:::\s*$/.test(lines[i])) i++; i++; html += planSummary(); continue; }
     if (/^:::\s*derive\s*$/.test(line)) { i++; while (i < lines.length && !/^:::\s*$/.test(lines[i])) i++; i++;
       html += '<div class="derive"><div class="row"><button type="button" class="btn sec" data-derive>Draft the outline and slides</button><span class="thinking" hidden>Working\u2026</span></div><div class="derive-out"></div></div>'; continue; }
     if (/^:::\s*grid\s+\w+\s*$/.test(line)) { const name = line.replace(/^:::\s*grid\s+/, '').trim(); i++; while (i < lines.length && !/^:::\s*$/.test(lines[i])) i++; i++; html += gridForm(name); continue; }
@@ -997,6 +1006,36 @@ function gridForm(name) {
 function gridRefresh(name, focusSel) {
   const f = document.querySelector('[data-gridname="' + name + '"]'); if (!f) return;
   f.outerHTML = gridForm(name); if (focusSel) { const el = document.querySelector(focusSel); if (el) el.focus(); }
+}
+// 8.1: the whole plan at a glance. Each module's story thread, its week, and anything still open, with a way to
+// jump to the step that fixes it. The demo reads MGMT 615's data wherever the faculty member hasn't typed their own.
+function planSummary() {
+  const D = DATA.demo, f = D['mgmt615-foundation.json'], mods = f.modules, sc = D['mgmt615-scenarios.json'].modules;
+  const act = D['mgmt615-activities.json'].modules, mat = D['mgmt615-materials.json'].modules, med = D['mgmt615-media.json'].modules;
+  const W = { high: 3, medium: 2, low: 1 }, open = [];
+  const goto = (step, n, text) => '<button type="button" class="linkbtn" data-goto="' + step + '" data-pickn="' + n + '">' + text + '</button>';
+  const rows = mods.map((m, k) => {
+    const n = k + 1, w = weekLoad(n, true), main = act[k].activities.slice().sort((x, y) => (W[y.weight] - W[x.weight]) || (y.hours - x.hours))[0];
+    const pages = mat[k].materials.reduce((s, i) => s + (i.pages || 0), 0), mins = med[k].media.reduce((s, i) => s + (i.minutes || 0), 0);
+    const storyMedia = med[k].media.some(i => i.kind === 'scenario' || i.kind === 'graphic');
+    const c = cohortOf(n), cohort = n === 1 ? 'None in Module 1' : !hasCohort() ? 'No cohort sessions' : c ? c.title : '';
+    const target = n === 1 ? 4 : weeklyTarget(), far = w.flags.filter(x => x !== 'crunch');
+    if (far.length) open.push('<li><strong>Module ' + n + ':</strong> about ' + hrs(w.total) + ' hours against a target of ' + (n === 1 ? 'about 4' : 'close to ' + hrs(target)) + '. ' + goto('m4:4.2', n, 'Go to the step') + '</li>');
+    if (!storyMedia) open.push('<li><strong>Module ' + n + ':</strong> no scenario video or graphic. Say how the media carries the story, or note why none is needed. ' + goto('m6:6.1', n, 'Go to the step') + '</li>');
+    const ok = '<span class="ok" aria-label="connects">✓</span> ';
+    return '<tr><th scope="row">' + n + '. ' + esc(m.title) + '</th><td>' + esc(sc[k].chosen.title) + '</td><td>' + esc(main.title) + '</td>' +
+      '<td>' + mat[k].materials.length + ' items, ' + pages + ' pp.</td><td>' + (storyMedia ? ok : '<span class="warn">Not tied to the scenario.</span> ') + hrs(mins) + ' min</td>' +
+      '<td>' + esc(cohort) + '</td><td' + (far.length ? ' class="warn"' : '') + '>' + hrs(w.total) + ' h</td></tr>';
+  }).join('');
+  const nActs = act.reduce((s, m) => s + m.activities.length, 0), pages = mat.reduce((s, m) => s + m.materials.reduce((x, i) => x + (i.pages || 0), 0), 0);
+  const mins = med.reduce((s, m) => s + m.media.reduce((x, i) => x + (i.minutes || 0), 0), 0), sessions = hasCohort() ? mods.length - 1 : 0;
+  return '<div class="plan-summary"><h4>Your course at a glance</h4><ul class="totals">' +
+    '<li><strong>' + f.clos.length + '</strong> CLOs</li><li><strong>' + mods.length + '</strong> modules</li><li><strong>' + nActs + '</strong> activities</li>' +
+    '<li><strong>' + pages + '</strong> pages of reading</li><li><strong>' + hrs(mins) + '</strong> minutes of produced media</li><li><strong>' + sessions + '</strong> cohort sessions</li></ul>' +
+    '<h4>The story thread, module by module</h4><div class="scroll"><table class="summary"><thead><tr><th scope="col">Module</th><th scope="col">Scenario</th><th scope="col">Main activity</th><th scope="col">Materials</th><th scope="col">Media</th><th scope="col">Cohort session</th><th scope="col">Week</th></tr></thead><tbody>' + rows + '</tbody></table></div>' +
+    '<h4>Still open</h4>' + (open.length ? '<ul class="open-items">' + open.join('') + '</ul><p class="scen-note">Fix each one, or keep it with a note for your ID in the box below.</p>' : '<p class="wl-ok">✓ Nothing is open.</p>') +
+    '<h4>The whole document</h4><p>Read it once, top to bottom, the way your ID and the development team will.</p>' +
+    '<div class="row"><button type="button" class="btn sec" data-opendoc>Open the planning document</button><button type="button" class="btn" data-final>Save final version</button></div></div>';
 }
 // Workload: a module's week = activities (typed in 4.2, or the AI draft) + readings and media (estimated until
 // Modules 5 and 6 are saved) + the 90-minute cohort session (Modules 2 to 8). Module 1's target is about 4 hours.
@@ -1442,6 +1481,7 @@ function useButtons(sec) {
     out.insertAdjacentHTML('beforeend', btn('Use this script', { av: { title: grab(/Title:\s*(.+?)\.\s*Duration:/), minutes: grab(/Duration:\s*about\s*([\d.]+)/),
       module: grab(/Module & Section:\s*(.+?)\.?\s*(?:Part|$)/), rows } }));
   }
+  if (key === '8.2') out.insertAdjacentHTML('beforeend', btn('Use this plan', [listAfter('Plan'), label(out, 'Module 1 opening announcement')]));
   if (key === '7.1') {
     const c = cohortOf(pickOf('7.1')), o = out.querySelector('.scen-opt');
     if (c && o) o.insertAdjacentHTML('beforeend', btn('Use this activity', [cohText(c)]));
@@ -1614,6 +1654,9 @@ document.addEventListener('click', e => {
       msg.textContent = "Redrafted. (Demo: recorded responses don't change, so the text stays the same. In the finished tool, the AI rewrites only this box, using your note.)"; }, 900);
     return;
   }
+  if (t.dataset.goto) { const k = t.dataset.goto.split(':')[1]; state.pick = state.pick || {}; state.pick[k] = +t.dataset.pickn; go(t.dataset.goto); return; }
+  if (t.hasAttribute('data-opendoc')) { $('#docBtn').click(); return; }
+  if (t.hasAttribute('data-final')) { const d = $('#doc'); if (!d.innerHTML.trim() || d.hidden) d.innerHTML = renderDoc(); downloadDoc(); return; }
   if (t.hasAttribute('data-derive')) {
     const box = t.closest('.derive'), wait = box.querySelector('.thinking'); t.disabled = true; wait.hidden = false;
     setTimeout(() => { wait.hidden = true; t.disabled = false; t.textContent = 'Redraft from my lesson plan'; box.querySelector('.derive-out').innerHTML = deriveHtml(); }, 900);
