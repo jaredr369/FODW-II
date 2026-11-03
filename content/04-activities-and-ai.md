@@ -95,7 +95,8 @@ university-protected environments.
 - **Hallucination:** when AI states something false with confidence. It's why you test what you
   build, and why you review anything it gives students.
 
-**Choose what you'll build.** You can build the others later with your ID.
+**Choose what you'd like to build (must choose one).** You can build others later; your ID can help,
+too.
 
 ::: choose aiChoice
 - assignment | An AI-integrated assignment | Students work with a Gem you set up as part of one assignment.
@@ -182,11 +183,11 @@ Google Gemini is on by default in Canvas courses. If you don't see it, turn it o
 ::: when aiChoice=grader
 ::: fold How to build a grading assistant in TAMU AI Chat
 1. Open TAMU AI Chat at chat.tamu.ai and sign in with your NetID.
-2. Create a custom assistant (in TAMU AI Chat's workspace, add a new model) and choose the AI model
-   it runs on.
-3. Paste the grading instructions the AI drafts below into the assistant's system prompt, edited
-   into your own words.
-4. Add knowledge files: the assignment prompt and your rubric.
+2. Select **Add a new model** from the options on the left. Give the model a name and select the AI model
+   from the Base Model dropdown.
+3. Copy the grading instructions the AI drafts below and paste them into the TAMU AI Chat
+   assistant's system prompt, edited into your own words.
+4. Add knowledge files: the assignment prompt and your rubric, then save.
 5. Test it on a sample submission with the student's name removed, and compare its comments with
    your own.
 6. Use it one submission at a time, with names removed. Read and edit every comment before you
