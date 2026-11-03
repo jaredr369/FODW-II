@@ -299,7 +299,8 @@ Every cohort session has three documents, each from a team template:
 | Student-facing outline | Students | A welcome, the main topics, each topic's main points and discussion questions, and a wrap-up with what's due |
 | Slides (Flex Online template) | Everyone in the session | A title slide, the agenda, a section slide for each topic, a slide for each poll or question, breakout instructions, and a wrap-up, with your talking points as speaker notes |
 
-You write the lesson plan. The AI drafts the outline and slides from it, and you edit them.
+You write the lesson plan. The AI drafts the outline and slides from it. You edit the outline, and
+your ID builds the final slides or checks yours for accessibility.
 
 ::: when cohortDay=wed,thu,
 **A shape for later in the week.** Students arrive having read the material:
@@ -342,23 +343,16 @@ and keep time, so you can focus on teaching. They can only set up what's in the 
 lesson plan spells out each poll's exact wording and options, each breakout's size and length, and
 anything to post in the chat. Your ID passes the plan along.
 
-**Accessible slides.** Students join from many devices, and some use screen readers, magnifiers, or
-captions. The Flex Online slide template handles much of this; the rest is up to you:
+**Accessible slides.** Your ID helps with the slides: they can build the final deck in the Flex
+Online template from your draft, or check the deck you make for accessibility, so students using
+screen readers, magnifiers, or captions get the same session. A few habits are yours either way:
 
-- **Use the template's layouts.** Each slide's title and text boxes set the order a screen reader
-  reads, and text boxes you add yourself may be read out of order or skipped. Give every slide its
-  own title.
-- **Keep text readable.** Keep the template's fonts and colors. If you change a color, keep the
-  contrast between text and background at 4.5:1 or more (3:1 for large text), and don't use color
-  alone to show meaning.
-- **Describe images.** Add alt text to every image, chart, or diagram that teaches something: what
-  it shows and why it matters. Mark decorative images as decorative.
-- **Use real text.** Type text on the slide instead of using a picture of text, and use link text
-  that says where the link goes instead of a bare web address.
 - **Say what's on the slide.** Read poll questions aloud and say what a chart shows, so students
   who are listening, or watching the recording later, don't miss it.
-- **Check it.** In PowerPoint, select **Review**, then **Check Accessibility**. The checker flags
-  most problems before you share the deck with your ID.
+- **Say what each image is for.** Tell your ID what an image, chart, or diagram is meant to show,
+  so its alt text says that.
+- **Keep slides light.** A few words per slide, typed as real text, with the detail in your talking
+  points.
 
 During development you'll plan the rest of your sessions with your ID.
 
@@ -471,7 +465,8 @@ rewrite part of it. The total under the plan shows whether the minutes add up to
 
 **Student-facing outline and slides.** When your lesson plan is ready, select the button below. The
 AI drafts the outline in the team's outline template and a deck in the Flex Online slide template,
-both from your plan. Edit the outline here; the deck downloads to edit in PowerPoint.
+both from your plan. Edit the outline here. Your ID builds the final deck from the draft, or checks
+the one you make, for accessibility.
 
 ::: derive
 :::
@@ -485,7 +480,7 @@ Checklist:
 - The minutes add up to 90, with a short buffer before the close.
 - Every poll has its exact wording and options.
 - The outline and slides say the same thing as your plan.
-- Your slides are accessible: readable contrast, real text, and nothing important only on a slide.
+- You've told your ID what each image or chart on your slides is meant to show.
 
 ### Checks
 
@@ -499,8 +494,8 @@ When you save, the tool checks that:
 
 Planning document: nothing new; the session's line gains "lesson plan drafted."
 Download: the lesson plan and the student-facing outline as Word files in the team's templates, and
-the slides in the Flex Online slide template, to share with your ID. There's nothing to submit;
-they're there to show and share.
+the draft slides in the Flex Online slide template, to share with your ID, who builds the final deck
+or checks yours for accessibility. There's nothing to submit; they're there to show and share.
 Project file: `lessonPlans[]` (module, title, overview, objectives, topics, context, rows,
 preparation, outline, slides).
 
