@@ -406,7 +406,7 @@
       "kind": "assignment",
       "title": "Building a Course Tutor with AI",
       "module": "m4",
-      "use": "basis for 4.6; supplemental",
+      "use": "basis for 4.1; supplemental",
       "file": "M4 FR Interactive Assignment- Building a Course Tutor with AI.docx",
       "folder": "03 - Learning Activities/Interactive Assignments",
       "notes": "Also covers a faculty grading-assistant Gem, left out of the tool for now."

@@ -1,7 +1,7 @@
 # Module 4. Intentional AI Implementation for Engagement & Feedback
 
 Module id: `m4`
-Steps: 2
+Steps: 3
 ID check-in: live review of this module's sections, at the end of the week or sooner
 
 Faculty complete: learning activities for every module, including third-party tools, checked
@@ -54,7 +54,238 @@ Project file: `reflection.m4`.
 
 ---
 
-## 4.1 Activities for every module
+## 4.1 Choose and build with AI
+
+Time: about 45 minutes
+Pattern: choose, then build (both tracks)
+
+### Learn
+
+::: purpose
+**What you'll do:** Learn three ways to put AI to work in your course, choose one, and build it: an
+AI-integrated assignment, an AI tutor, or a grading assistant.
+
+**Why it matters:** Your students will use AI whether you plan for it or not. Building one thing
+yourself shows you what AI does well and where it needs limits, before you plan the activities for
+every module.
+:::
+
+There are three ways to bring AI into your course on purpose:
+
+| Option | What it is | Who uses it | Where you build it |
+|---|---|---|---|
+| An AI-integrated assignment | An assignment where students work with an AI assistant you set up, such as role-playing a stakeholder from your scenario or critiquing an AI draft | Students | A Gemini Gem in Canvas |
+| An AI tutor | An assistant students use for practice and feedback between assignments. It coaches and asks questions instead of doing graded work | Students | A Gemini Gem in Canvas |
+| A grading assistant | An assistant that drafts rubric-based feedback on student work for you to review and edit | You | TAMU AI Chat |
+
+**Why two different tools.** Gemini is built into our Canvas, so a Gem you create there is easy to
+share with your students. TAMU AI Chat offers several AI models and the most protected environment
+for student records, which matters under FERPA when an assistant reads student work. Both are
+university-protected environments.
+
+**A few terms you'll use:**
+
+- **System instructions:** the standing rules that tell the assistant who it is, what to do, and how
+  to respond in every conversation.
+- **Knowledge files:** documents you attach so its answers fit your course, such as the assignment
+  directions, your scenario, or a rubric. Never attach student work or records to a student-facing
+  Gem.
+- **Guardrails:** what it won't do, such as write a student's graded work for them or assign a
+  final grade.
+- **Hallucination:** when AI states something false with confidence. It's why you test what you
+  build, and why you review anything it gives students.
+
+**Choose what you'll build.** You can build the others later with your ID.
+
+::: choose aiChoice
+- assignment | An AI-integrated assignment | Students work with a Gem you set up as part of one assignment.
+- tutor | An AI tutor | Students practice with a Gem between assignments.
+- grader | A grading assistant | You get draft feedback on student work, built in TAMU AI Chat.
+:::
+
+### See it
+
+::: when aiChoice=
+Choose an option above to see what the MGMT 615 instructor built with it.
+:::
+
+::: when aiChoice=assignment
+For Module 7's change message, the MGMT 615 instructor built a Gem that plays a skeptical member of
+Dana's crew. Students share their draft announcement that the bonus is ending, read the crew
+member's reactions, revise, and submit both drafts with a short note on what they changed and why.
+The AI-risk check in Module 4 had rated this assignment high; the Gem makes students' own judgment
+visible.
+:::
+
+::: when aiChoice=tutor
+For Module 5, the MGMT 615 instructor built "Practice with Greg," a Gem that plays Dana's director.
+Students rehearse telling Greg he's wrong before they write the assignment. Greg pushes back the way
+a busy director would and gives one coaching tip after each exchange, but never writes the graded
+work.
+:::
+
+::: when aiChoice=grader
+The MGMT 615 instructor built a grading assistant in TAMU AI Chat for Module 3's Feedback
+Conversation Script. It drafts two or three comments for each rubric criterion and suggests a
+rating with a reason, but never a final grade. The instructor pastes in one submission at a time,
+with the student's name removed, and edits every comment before posting it in Canvas.
+:::
+
+### Draft (full build) and Review (refresh)
+
+::: when aiChoice=
+Choose an option in Learn first. The build steps and the AI's draft depend on what you choose.
+:::
+
+::: when aiChoice=assignment
+::: fold How to build a Gem in Canvas
+1. In your Canvas course, open Gemini, then create a new Gem. Name it for students, such as "Crew
+   Reactions."
+2. Paste the system instructions the AI drafts below, edited into your own words.
+3. Add knowledge files: the assignment directions, your scenario, and any reading it should draw
+   on. Never add student work or records.
+4. Test it the way a student would, including a request it should refuse, such as "Can you just
+   write my announcement for me?" Revise the instructions until it behaves.
+5. Share the Gem with your students in Canvas. In the assignment directions, say what students do
+   with it and what they submit.
+
+Menu names in Canvas and Gemini can change. Your ID can walk you through the build.
+:::
+:::
+
+::: when aiChoice=tutor
+::: fold How to build a Gem in Canvas
+1. In your Canvas course, open Gemini, then create a new Gem. Name it for students, such as
+   "Practice with Greg."
+2. Paste the system instructions the AI drafts below, edited into your own words.
+3. Add knowledge files: your scenario, the module's key reading, and the assignment directions so
+   it knows what it must not do for students. Never add student work or records.
+4. Test it the way a student would, including a request it should refuse, such as "Can you just
+   write my assignment for me?" Revise the instructions until it behaves.
+5. Share the Gem with your students in Canvas, and tell them when to use it and what it's for.
+
+Menu names in Canvas and Gemini can change. Your ID can walk you through the build.
+:::
+:::
+
+::: when aiChoice=grader
+::: fold How to build a grading assistant in TAMU AI Chat
+1. Open TAMU AI Chat at chat.tamu.ai and sign in with your NetID.
+2. Create a custom assistant (in TAMU AI Chat's workspace, add a new model) and choose the AI model
+   it runs on.
+3. Paste the system instructions the AI drafts below, edited into your own words.
+4. Add knowledge files: the assignment prompt and your rubric.
+5. Test it on a sample submission with the student's name removed, and compare its comments with
+   your own.
+6. Use it one submission at a time, with names removed. Read and edit every comment before you
+   post it in Canvas. The grade is always yours, and your reviewed feedback is what counts as RSI.
+
+Menu names in TAMU AI Chat can change. Your ID can walk you through the build.
+:::
+:::
+
+Answer two questions, then select the button below. The AI drafts the system instructions for what
+you chose, with guardrails built in. Select **Use these instructions** to copy them into the boxes
+under Decide, then paste your final version into your Gem or assistant.
+
+::: fields
+- Which module and activity is this for? | Module 5, Telling Greg He's Wrong.
+- What should it do for students, or for you? | Let students rehearse pushing back on their director before they write the assignment.
+:::
+
+AI instructions:
+
+```text
+Draft system instructions for the faculty member's chosen build (an AI-integrated assignment Gem,
+an AI tutor Gem, or a grading assistant), from their answers and the module's CLOs, scenario, and
+activity. Give it a role, the task, how to respond, and a length limit. Build in guardrails: a
+student-facing Gem never writes graded work for a student and says so if asked; a grading
+assistant never assigns a final grade, quotes the student's own words, flags anything it is
+unsure of, and never refers to a student by name. For an AI-integrated assignment, also draft one
+sentence of student directions. Under 200 words.
+
+Return: {"where": string, "instructions": string, "directions": string | null}
+```
+
+Demo response (MGMT 615):
+
+::: when aiChoice=assignment
+**Where it's used:** Module 7, Ending the Bonus: the change-message assignment. Students use it.
+
+**System instructions:** You are a member of Dana Ortiz's crew at a distribution center, hearing that
+the pick-rate bonus is ending. React to the student's draft announcement as a skeptical but fair
+crew member: say what worries you and what you still don't understand. Stay in role. Don't rewrite
+the message; react to it. If asked to write it, say that's the student's job. Keep replies under
+120 words.
+
+**Student directions:** Share your draft announcement with the Crew Reactions Gem, revise it after
+reading the crew's reactions, and submit both drafts with a short note on what you changed and why.
+:::
+
+::: when aiChoice=tutor
+**Where it's used:** Module 5, Telling Greg He's Wrong: practice before the assignment. Students
+use it.
+
+**System instructions:** You are Greg Halvorsen, regional director for a distribution center. You
+believe Jordan's shift is the problem. When the student, speaking as Dana, presents evidence, push
+back the way a busy director would: ask for the data and question the timeline. Concede only to
+specific evidence and a clear plan. After each exchange, give one coaching tip in brackets. Never
+write the student's graded assignment; if asked, say practice is the point. Keep replies under 120
+words.
+:::
+
+::: when aiChoice=grader
+**Where it's used:** Module 3, Feedback Conversation Script: grading. You use it.
+
+**System instructions:** You help the instructor grade the Feedback Conversation Script, using the
+attached assignment prompt and rubric. For each submission, draft two or three comments for each
+rubric criterion: what works, what to improve, and one suggestion, quoting the student's own words.
+Suggest a rating for each criterion with a one-line reason, but never a final grade. Flag anything
+you're unsure of for the instructor. Never refer to the student by name.
+:::
+
+### Decide
+
+Your final version goes in these boxes. Type in any box to change it, or select **Redraft with AI**
+under a box to have the AI rewrite just that part. Paste the final instructions into your Gem or
+assistant, test it, and note what you changed.
+
+::: fields
+- Where it's used: the module, the activity, and who uses it
+- Its system instructions, as you'll paste them into your Gem or assistant
+- How you tested it, and what you changed
+:::
+
+Checklist:
+
+- It has guardrails: what it won't do.
+- No student names or records are in a student-facing Gem's knowledge files.
+- For a grading assistant: you remove names and review every comment before it reaches a student.
+- Students will know how they may use it, from the assignment directions or the syllabus.
+
+### Checks
+
+When you save, the tool checks that:
+
+- the instructions give a role, a task, and at least one guardrail;
+- a grading assistant never assigns final grades or names a student;
+- the module and activity match ones in your plan.
+
+### Save
+
+Planning document: an "AI in this course" line in the Learning Activities Plan row for the module
+where it's used, naming what you built.
+Project file: `ai.choice`, `ai.where`, `ai.instructions`, `ai.testing`.
+
+### Go deeper (supplemental)
+
+- `src:assignment-m4-course-tutor`: the full lesson on building a course tutor and a grading
+  assistant, with key terms and tool comparisons.
+- `src:ext-bowen-watson-2025-ch15`: custom bots and how to design them for teaching.
+
+---
+
+## 4.2 Activities for every module
 
 Time: about 45 minutes, about 5 minutes a module
 Pattern: pick and combine, one module at a time (full build); edit in place (refresh)
@@ -160,17 +391,8 @@ scores from these tools don't count as RSI on their own; plan what you'll add, s
 the tool's threads.
 :::
 
-::: fold A grading assistant for you (optional)
-You can set up an AI assistant for yourself that drafts feedback on student work. In Google Gemini,
-a Gem holds standing instructions and "knowledge files": you give it the assignment prompt and your
-rubric, then paste in one submission at a time and it drafts rubric-based comments. It can save
-real time in a large course.
-
-Three cautions: use only a tool the university has approved for student data (TAMU licenses Gemini
-with enterprise privacy protection, but confirm with your ID before uploading student work); read
-and edit every comment before it goes to a student, which is also what makes it count as RSI; and
-the grade is always yours. The build steps are under Go deeper.
-:::
+**AI in your activities.** In step 4.1 you built an AI-integrated assignment, a tutor, or a grading
+assistant. Place it in the module you chose, and plan AI use for each high-weight activity below.
 
 ### See it
 
@@ -337,12 +559,10 @@ Project file: `modules[].activities` (with `rsi`, `hours`, `aiRisk`, `aiPolicy`,
 - `src:guide-learning-activities`, `src:guide-rubrics`, `src:guide-third-party-tools`
 - `src:ext-tamu-ai-guidelines`, `src:ext-terry-2023`
 - `src:ext-rice-workload`: estimate student time by reading difficulty and writing type.
-- `src:assignment-m4-course-tutor` and `src:ext-bowen-watson-2025-ch15`: build an AI tutor for
-  your students, or a grading assistant for yourself, in Google Gemini, outside this tool.
 
 ---
 
-## 4.2 A week in your student's shoes
+## 4.3 A week in your student's shoes
 
 Time: about 20 minutes, a few minutes a module
 Pattern: a week in your student's shoes
@@ -359,7 +579,7 @@ as they'll live it shows problems that numbers miss.
 
 The walk-through follows one of your students through the week: what they open on Monday, what they
 read, do, and submit, when they hear from you, and how long it takes. If something needs fixing, go
-back to step 4.1.
+back to step 4.2.
 
 Readings and media aren't planned yet, so the walk-through uses placeholders for them. It updates
 as you plan materials in Module 5 and media in Module 6, and Module 8 shows the full week.
@@ -417,7 +637,7 @@ line is there, about four hours. I hear from the instructor three times this wee
 ### Decide
 
 Note anything you want to change, module by module. These are your own notes, so there's no AI
-redraft here. To make a change, go back to step 4.1 and edit that module's activities.
+redraft here. To make a change, go back to step 4.2 and edit that module's activities.
 
 ::: fields notes
 - Your notes on any week that feels heavy, thin, or silent, one module per line | Module 3: Saturday is the whole assignment. Open the script Wednesday and make it due Sunday.
@@ -430,7 +650,7 @@ Checklist:
 
 ### Checks
 
-None beyond step 4.1's, which run again when you change any activities.
+None beyond step 4.2's, which run again when you change any activities.
 
 ### Save
 

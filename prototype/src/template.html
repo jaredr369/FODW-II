@@ -203,6 +203,11 @@ summary { cursor: pointer; color: var(--muted); font-size: 14px; }
 .scen-opt { border-top: 1px solid #c7d8e0; padding-top: 8px; margin-top: 8px; }
 .scen-opt ul { margin: 6px 0; }
 .scen-note { font-size: 14px; color: var(--muted); }
+.choose { border: 0; padding: 0; margin: 10px 0 14px; display: grid; gap: 8px; }
+.choose .opt { display: flex; gap: 10px; align-items: flex-start; border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; cursor: pointer; background: #fff; }
+.choose .opt.on { border: 2px solid var(--maroon); background: var(--tint); }
+.choose .opt input { margin-top: 4px; }
+.choose .desc { display: block; font-size: 15px; color: var(--muted); }
 .due-dates { border: 1px solid var(--line); border-radius: 8px; padding: 10px 14px; margin: 12px 0; background: #fff; font-size: 15px; }
 .due-dates p { margin: 4px 0; }
 .due-dates ul { margin: 4px 0 6px; }
@@ -533,7 +538,7 @@ function md(text, opts = {}) {
       if (state.track === which) html += md(buf.join('\n'), opts);
       continue;
     }
-    // Steps that work one module at a time (3.2, 4.1, ...): ::: module-picker chooses the module,
+    // Steps that work one module at a time (3.2, 4.2, ...): ::: module-picker chooses the module,
     // ::: module-options shows the AI's draft for it, and ::: module-fields holds the faculty member's version.
     if (/^:::\s*module-(picker|options|fields)\s*$/.test(line)) {
       const which = line.match(/picker|options|fields/)[0], rows = []; i++;
@@ -541,14 +546,32 @@ function md(text, opts = {}) {
       i++; html += moduleBlock(which, rows, opts); continue;
     }
     // ::: week-check shows the picked module's week against the target, live; ::: workload-chart shows all eight.
+    if (/^:::\s*choose\s+\w+/.test(line)) {
+      const setting = line.replace(/^:::\s*choose\s+/, '').trim(), opts2 = []; i++;
+      while (i < lines.length && !/^:::\s*$/.test(lines[i])) { if (/^- /.test(lines[i])) opts2.push(lines[i].slice(2).split(/\s*\|\s*/)); i++; }
+      i++;
+      html += '<fieldset class="choose"><legend class="sr-only">Choose one</legend>' + opts2.map(([v, label, desc]) =>
+        '<label class="opt' + (state[setting] === v ? ' on' : '') + '"><input type="radio" name="' + esc(setting) + '" value="' + esc(v) + '" data-setting="' + esc(setting) + '"' + (state[setting] === v ? ' checked' : '') + '>' +
+        '<span><strong>' + inline(label) + '</strong>' + (desc ? '<span class="desc">' + inline(desc) + '</span>' : '') + '</span></label>').join('') + '</fieldset>';
+      continue;
+    }
+    if (/^:::\s*when\s+\w+=/.test(line)) {
+      const [setting, want] = line.replace(/^:::\s*when\s+/, '').trim().split('='), buf = []; i++;
+      // Blocks can nest (a fold inside a when), so count openings and closings.
+      for (let depth = 1; i < lines.length; i++) {
+        if (/^:::\s*$/.test(lines[i])) { if (--depth === 0) break; } else if (/^:::\s*\S/.test(lines[i])) depth++;
+        buf.push(lines[i]);
+      }
+      i++; if ((state[setting] || '') === (want || '')) html += md(buf.join('\n'), opts); continue;
+    }
     if (/^:::\s*due-dates\s*$/.test(line)) {
       i++; while (i < lines.length && !/^:::\s*$/.test(lines[i])) i++;
-      i++; html += '<div class="due-dates">' + dueDates(pickOf('4.1')) + '</div>'; continue;
+      i++; html += '<div class="due-dates">' + dueDates(pickOf('4.2')) + '</div>'; continue;
     }
     if (/^:::\s*(week-check|workload-chart)\s*$/.test(line)) {
       const which = line.match(/week-check|workload-chart/)[0]; i++;
       while (i < lines.length && !/^:::\s*$/.test(lines[i])) i++;
-      i++; html += which === 'week-check' ? '<div class="week-check" role="status">' + weekCheck(pickOf('4.1')) + '</div>' : '<div class="wl-chart-wrap">' + workloadChart() + '</div>';
+      i++; html += which === 'week-check' ? '<div class="week-check" role="status">' + weekCheck(pickOf('4.2')) + '</div>' : '<div class="wl-chart-wrap">' + workloadChart() + '</div>';
       continue;
     }
     // ::: figure <type> | <title> block: an infographic. Its words come from "- a | b | c" lines in the
@@ -685,7 +708,7 @@ const actLine = a => a.type + ': ' + a.title + ' (' + a.clos.join(', ') + ', ' +
 // Each module-at-a-time step: its boxes, which box marks a module as started, and the AI draft for module n.
 const MODULE_STEPS = {
   '3.2': { parts: SCEN_PARTS, done: 'title', rows: k => k === 'title' ? 1 : 3, draft: scenarioDraft },
-  '4.1': { parts: ACT_PARTS, done: 'activities', rows: k => k === 'activities' ? 5 : 3, draft: activityDraft },
+  '4.2': { parts: ACT_PARTS, done: 'activities', rows: k => k === 'activities' ? 5 : 3, draft: activityDraft },
   '5.1': { parts: [['materials', 'Your materials for this module, one per line: type: title, author (year) (pages or minutes, the activity it prepares students for)']], done: 'materials', rows: () => 6, draft: materialsDraft },
   '5.2': { parts: [['rights', 'Rights status and attribution, one line per material'], ['ainotes', 'AI-use disclosure notes, one per AI-assisted item (leave empty if none)']], done: 'rights', rows: k => k === 'rights' ? 6 : 3, draft: rightsDraft },
 };
@@ -716,7 +739,7 @@ function scenarioDraft(n) {
     '<div class="scen-opt" data-opt="2"><p><strong>Option 2: ' + esc(a.title) + '</strong></p><p>' + esc(a.premise) + '</p>' +
     '<p class="scen-note">This option takes a different angle from your arc. If you use it, select Redraft with AI under each empty box to fill in the five parts.</p></div>';
 }
-// 4.1: the module's activities, then what the checks will find: hours, RSI categories, and AI risk.
+// 4.2: the module's activities, then what the checks will find: hours, RSI categories, and AI risk.
 function activityDraft(n) {
   const d = DATA.demo['mgmt615-activities.json'], m = d.modules[n - 1], acts = m.activities;
   const hours = acts.reduce((s, a) => s + (a.hours || 0), 0);
@@ -763,7 +786,7 @@ function rightsDraft(n) {
   return '<div class="scen-opt" data-opt="1"><p><strong>Rights and attribution</strong></p><ul>' + rs.map(r => '<li>' + esc(r.line) + (r.fix ? '<br><span class="scen-note">Fix: ' + esc(r.fix) + '</span>' : '') + '</li>').join('') + '</ul>' +
     (rs.some(r => r.note) ? '<p><strong>AI-use notes</strong></p><ul>' + rs.filter(r => r.note).map(r => '<li>' + esc(r.note) + '</li>').join('') + '</ul>' : '<p>No items were made with AI help.</p>') + '</div>';
 }
-// Workload: a module's week = activities (typed in 4.1, or the AI draft) + readings and media (estimated until
+// Workload: a module's week = activities (typed in 4.2, or the AI draft) + readings and media (estimated until
 // Modules 5 and 6 are saved) + the 90-minute cohort session (Modules 2 to 8). Module 1's target is about 4 hours.
 const weeklyTarget = () => { const v = +state.weeklyTarget; return v > 0 ? v : 10; };
 function parseActs(text) {
@@ -776,7 +799,7 @@ function parseActs(text) {
 const lineHours = l => { const h = l.match(/(\d+(?:\.\d+)?)\s*(?:hours?|hrs?)\b/i), m = l.match(/(\d+(?:\.\d+)?)\s*(?:minutes?|mins?)\b/i);
   return h ? +h[1] : m ? +m[1] / 60 : 0; };
 const moduleActs = (n, demo) => {
-  const typed = (modText('4.1', n).activities || '').trim();
+  const typed = (modText('4.2', n).activities || '').trim();
   if (!typed && !demo) return null;
   return typed ? parseActs(typed) : DATA.demo['mgmt615-activities.json'].modules[n - 1].activities.map(a => ({ title: a.type + ': ' + a.title, type: a.type, weight: a.weight, hours: a.hours, due: '' }));
 };
@@ -964,7 +987,7 @@ function renderValue(v) {
 
 /* ---------- views ---------- */
 const STEP_DOC = { 'GS.2': ['title'], '1.1': ['catalog', 'plos', 'learners'], '1.2': ['vision'], '1.3': ['clos'], '1.4': ['modules'],
-  '2.1': ['interaction'], '2.3': ['character'], '3.1': ['premise'], '3.2': ['scenario'], '4.1': ['activities', 'tools'],
+  '2.1': ['interaction'], '2.3': ['character'], '3.1': ['premise'], '3.2': ['scenario'], '4.2': ['activities', 'tools'],
   '5.1': ['materials'], '6.1': ['media'], '7.1': ['cohort'], '8.2': ['communication'] };
 function shown(section) {
   if (state.showAll) return true;
@@ -1174,7 +1197,11 @@ function useButtons(sec) {
       : btn('Use this scenario', [c.alternative.title, c.alternative.premise, '', '', '', '', ''])));
   }
   if (key === '4.1') {
-    const m = DATA.demo['mgmt615-activities.json'].modules[pickOf('4.1') - 1], o = out.querySelector('.scen-opt');
+    const p2 = [...out.querySelectorAll('p')].find(x => /^System instructions:/.test(x.textContent));
+    if (p2) p2.insertAdjacentHTML('afterend', btn('Use these instructions', [label(out, "Where it's used"), label(out, 'System instructions')]));
+  }
+  if (key === '4.2') {
+    const m = DATA.demo['mgmt615-activities.json'].modules[pickOf('4.2') - 1], o = out.querySelector('.scen-opt');
     if (o) o.insertAdjacentHTML('beforeend', btn('Use these activities', [m.activities.map(actLine).join('\n')]));
   }
   if (key === '5.1') {
@@ -1246,11 +1273,13 @@ function render() {
 const editable = t => editing && t instanceof Element && t.closest('[data-s]');
 document.addEventListener('focusout', e => { const el = editable(e.target); if (el) recordEdit(el); });
 document.addEventListener('input', e => {
-  if (e.target.dataset && e.target.dataset.setting) { state[e.target.dataset.setting] = e.target.value; save(); return; }
+  if (e.target.dataset && e.target.dataset.setting) { state[e.target.dataset.setting] = e.target.value; save();
+    if (e.target.type === 'radio') { const y = window.scrollY; render(); window.scrollTo(0, y); document.querySelector('input[name="' + e.target.name + '"]:checked').focus({ preventScroll: true }); }
+    return; }
   const k = e.target.dataset && e.target.dataset.mfield; if (!k) return;
   const key = stepKey(), n = pickOf(key); state.mods = state.mods || {}; state.mods[key] = state.mods[key] || {};
   state.mods[key][n] = state.mods[key][n] || {}; state.mods[key][n][k] = e.target.value; save();
-  if (key === '4.1') { const dd = document.querySelector('.due-dates'); if (dd) dd.innerHTML = dueDates(n); const wc = document.querySelector('.week-check'); if (wc) wc.innerHTML = weekCheck(n); const ch = document.querySelector('.wl-chart-wrap'); if (ch) ch.innerHTML = workloadChart(); }
+  if (key === '4.2') { const dd = document.querySelector('.due-dates'); if (dd) dd.innerHTML = dueDates(n); const wc = document.querySelector('.week-check'); if (wc) wc.innerHTML = weekCheck(n); const ch = document.querySelector('.wl-chart-wrap'); if (ch) ch.innerHTML = workloadChart(); }
 });
 document.addEventListener('keydown', e => {
   const el = editable(e.target);
