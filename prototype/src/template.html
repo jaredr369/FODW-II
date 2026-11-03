@@ -209,6 +209,11 @@ summary { cursor: pointer; color: var(--muted); font-size: 14px; }
 .choose .opt.on { border: 2px solid var(--maroon); background: var(--tint); }
 .choose .opt input { margin-top: 4px; }
 .choose .desc { display: block; font-size: 15px; color: var(--muted); }
+.grid-cap { margin: 0 0 6px; }
+.av.gridf thead th:nth-child(n) { width: auto; }
+.av.gridf-lesson thead th:nth-child(1) { width: 12%; } .av.gridf-lesson thead th:nth-child(2) { width: 20%; } .av.gridf-lesson thead th:nth-child(4) { width: 10%; }
+.av.gridf-assets thead th:nth-child(1) { width: 8%; } .av.gridf-assets thead th:nth-child(3) { width: 22%; } .av.gridf-assets thead th:nth-child(5) { width: 10%; }
+.av.gridf input { width: 100%; font: inherit; font-size: 15px; padding: 6px 8px; border: 1px solid #b9b4ad; border-radius: 6px; }
 .av-head { display: grid; grid-template-columns: 2fr 1fr 2fr; gap: 10px; margin-bottom: 10px; }
 .av { width: 100%; border-collapse: collapse; table-layout: fixed; }
 .av th, .av td { border: 1px solid var(--line); padding: 6px; vertical-align: top; text-align: left; }
@@ -567,6 +572,7 @@ function md(text, opts = {}) {
       while (i < lines.length && !/^:::\s*$/.test(lines[i])) { if (/^- /.test(lines[i])) rows.push(lines[i].slice(2).split(/\s*\|\s*/)); i++; }
       i++; html += moduleBlock(which, rows, opts); continue;
     }
+    if (/^:::\s*grid\s+\w+\s*$/.test(line)) { const name = line.replace(/^:::\s*grid\s+/, '').trim(); i++; while (i < lines.length && !/^:::\s*$/.test(lines[i])) i++; i++; html += gridForm(name); continue; }
     // ::: av-script: the A/V/E script form (6.2), laid out like the Learning Media Team's template.
     if (/^:::\s*av-script\s*$/.test(line)) { i++; while (i < lines.length && !/^:::\s*$/.test(lines[i])) i++; i++; html += avForm(); continue; }
     // ::: week-check shows the picked module's week against the target, live; ::: workload-chart shows all eight.
@@ -741,15 +747,16 @@ const MODULE_STEPS = {
   '4.2': { parts: ACT_PARTS, done: 'activities', rows: k => k === 'activities' ? 5 : 3, draft: activityDraft },
   '5.1': { parts: [['materials', 'Your materials for this module, one per line: type: title, author (year) (pages or minutes, the activity it prepares students for)']], done: 'materials', rows: () => 6, draft: materialsDraft },
   '6.1': { parts: [['media', 'Your media for this module, one per line: kind (who makes it): title, minutes. Story: its connection to your storyline']], done: 'media', rows: () => 6, draft: mediaDraft },
+  '7.1': { parts: [['cohort', 'Your session for this module: title and decision, what students get live, each segment with its minutes, and setup for your Instructional Technologist']], done: 'cohort', rows: () => 8, draft: cohortDraft, first: 2 },
   '5.2': { parts: [['rights', 'Rights status and attribution, one line per material'], ['ainotes', 'AI-use disclosure notes, one per AI-assisted item (leave empty if none)']], done: 'rights', rows: k => k === 'rights' ? 6 : 3, draft: rightsDraft },
 };
 const stepKey = () => state.at.split(':')[1];
-const pickOf = key => (state.pick || {})[key] || 1;
+const pickOf = key => (state.pick || {})[key] || (MODULE_STEPS[key] && MODULE_STEPS[key].first) || 1;
 const modText = (key, n) => ((state.mods || {})[key] || {})[n] || {};
 function moduleBlock(which, rows, opts) {
   const key = stepKey(), cfg = MODULE_STEPS[key]; if (!cfg) return '';
   const mods = DATA.demo['mgmt615-foundation.json'].modules, n = pickOf(key), mod = mods[n - 1], saved = modText(key, n);
-  if (which === 'picker') return '<div class="scen-picker" role="group" aria-label="Choose a module">' + mods.map((m, k) =>
+  if (which === 'picker') return '<div class="scen-picker" role="group" aria-label="Choose a module">' + mods.map((m, k) => k + 1 < (cfg.first || 1) ? '' :
     '<button type="button" data-pickmod="' + (k + 1) + '" aria-pressed="' + (k + 1 === n) + '">' +
     '<span class="m">Module ' + (k + 1) + (modText(key, k + 1)[cfg.done] ? ' <span class="ok" aria-label="started">✓</span>' : '') + '</span><span class="t">' + esc(m.title) + '</span></button>').join('') + '</div>';
   if (which === 'options') {
@@ -882,6 +889,51 @@ function avForm() {
 function avRefresh(focusSel) {
   const f = document.querySelector('.av-field'); if (!f) return;
   f.outerHTML = avForm(); if (focusSel) { const el = document.querySelector(focusSel); if (el) el.focus(); }
+}
+// 7.1: the module's cohort session, then the checks: recording test, a low-stakes start, RSI, and 90 minutes.
+const RSI_NAME = { 1: 'direct instruction', 2: 'feedback', 3: 'information and answers', 4: 'facilitated discussion', 5: 'other' };
+const cohortOf = n => DATA.demo['mgmt615-cohort.json'].modules.find(m => m.module === n);
+const lcFirst = s => s.charAt(0).toLowerCase() + s.slice(1);
+const endP = s => /[.?!]$/.test(s) ? s : s + '.';
+const cohText = c => endP(c.title) + ' Decision: ' + lcFirst(c.decision) + '.\nWhat students get live: ' + lcFirst(c.live) + '.\n' + c.segments.join('\n') + '\nSetup: ' + c.setup.map(lcFirst).join('; ') + '.';
+function cohortDraft(n) {
+  const c = cohortOf(n); if (!c) return '<p>Module 1 has no cohort session. Choose Module 2 to 8.</p>';
+  const mins = c.segments.reduce((s, g) => s + (+(g.match(/^(\d+)\s*min/) || [])[1] || 0), 0), low = /poll|chat/i.test(c.segments[0]);
+  const review = state.track === 'refresh' ? (c.review.length ? '<p><strong>Review of your current session:</strong></p><ul>' + c.review.map(r => '<li>' + esc(r) + '</li>').join('') + '</ul>' : '<p>Your current session passed the recording test.</p>') : '';
+  return review + '<div class="scen-opt" data-opt="1"><p><strong>' + (state.track === 'refresh' ? 'Session after the review' : 'Session for this module') + '</strong></p><p>' + esc(endP(c.title)) + ' Decision: ' + esc(lcFirst(c.decision)) + '.</p><p>What students get live: ' + esc(lcFirst(c.live)) + '.</p><ul>' +
+    c.segments.map(g => '<li>' + esc(g) + '</li>').join('') + '</ul><p>Setup: ' + esc(c.setup.map(lcFirst).join('; ')) + '.</p></div>' +
+    '<div class="act-checks"><p><strong>What the checks will find</strong></p><ul>' +
+    '<li><strong>Recording test:</strong> passes. The live part is ' + esc(lcFirst(c.live)) + ', which depends on who’s in the room.</li>' +
+    '<li><strong>Start:</strong> ' + (low ? 'low-stakes, with a poll or the chat.' : 'add a poll or a chat question before small groups.') + '</li>' +
+    '<li><strong>RSI:</strong> ' + c.rsi.map(r => RSI_NAME[r]).join(' and ') + '.</li>' +
+    '<li><strong>Time:</strong> ' + mins + ' minutes' + (Math.abs(mins - 90) <= 5 ? ', on target.' : '; aim for 90.') + '</li></ul></div>';
+}
+// Grid forms follow a team template row by row. Each grid's rows are kept per step in state.grids.
+const GRIDS = {
+  lesson: { caption: 'Cohort Session Lesson Plan', add: 'Add a section', cols: [['min', 'Duration', 'Minutes'], ['section', 'Section', 'Section'], ['details', 'Subtopics, Talking Points, and Other Details', 'What you say or ask, what students do, and any setup']],
+    start: () => ['Introduction', 'Topic 1', 'Topic 2', 'Conclusion'].map(s => ({ min: '', section: s, details: '' })), insertBefore: r => r.section === 'Conclusion',
+    meter: rows => { const m = rows.reduce((s, r) => s + (parseFloat(r.min) || 0), 0);
+      return 'Total: ' + hrs(m) + ' of 90 minutes.' + (!m ? '' : Math.abs(m - 90) <= 2 ? ' <span class="ok">\u2713 On target.</span>' : ' <span class="warn">' + (m > 90 ? 'Over' : 'Under') + ' by ' + hrs(Math.abs(m - 90)) + ' minutes.</span>'); } },
+  assets: { caption: 'Session assets for the XR Run of Show', add: 'Add an asset', order: true, cols: [['name', 'Name', 'Such as your slides'], ['type', 'Asset Type', 'Slides, poll, handout, or video'], ['link', 'Link (Slides in Canvas)', 'Where it lives']],
+    start: () => [{ name: '', type: 'Slides', link: '' }, { name: '', type: '', link: '' }], insertBefore: () => false, meter: null }
+};
+const gridRows = name => { state.grids = state.grids || {}; const k = stepKey(); state.grids[k] = state.grids[k] || {}; return state.grids[k][name] || (state.grids[k][name] = GRIDS[name].start()); };
+function gridForm(name) {
+  const g = GRIDS[name]; if (!g) return ''; const rows = gridRows(name);
+  const headCells = (g.order ? '<th scope="col">Order</th>' : '') + g.cols.map(([, label]) => '<th scope="col">' + esc(label) + '</th>').join('') + '<th scope="col"><span class="sr-only">Remove</span></th>';
+  const body = rows.map((r, i) => '<tr>' + (g.order ? '<th scope="row">' + (i + 1) + '</th>' : '') + g.cols.map(([k, label, ph]) => {
+    const v = r[k] || '', short = k === 'min';
+    return '<td data-col="' + esc(label) + '">' + (short ? '<input data-grid="' + name + '" data-row="' + i + '" data-col="' + k + '" inputmode="decimal" aria-label="' + esc(label + ', row ' + (i + 1)) + '" placeholder="' + esc(ph) + '" value="' + esc(v) + '">'
+      : '<textarea data-grid="' + name + '" data-row="' + i + '" data-col="' + k + '" rows="' + Math.max(k === 'details' ? 3 : 2, Math.ceil(v.length / (k === 'details' ? 60 : 24)) + 1) + '" aria-label="' + esc(label + ', row ' + (i + 1)) + '" placeholder="' + esc(ph) + '">' + esc(v) + '</textarea>') + '</td>';
+  }).join('') + '<td>' + (rows.length > 1 ? '<button type="button" class="linkbtn av-remove" data-grid-remove="' + name + ':' + i + '" aria-label="Remove row ' + (i + 1) + '">Remove</button>' : '') + '</td></tr>').join('');
+  return '<div class="field av-field grid-field" data-gridname="' + name + '"><p class="grid-cap"><strong>' + esc(g.caption) + '</strong></p><div class="scroll"><table class="av gridf gridf-' + name + '"><caption class="sr-only">' + esc(g.caption) + '</caption><thead><tr>' + headCells + '</tr></thead><tbody>' + body + '</tbody></table></div>' +
+    '<div class="row"><button type="button" class="btn sec" data-grid-add="' + name + '">' + esc(g.add) + '</button></div>' +
+    (g.meter ? '<p class="av-meter grid-meter" role="status">' + g.meter(rows) + '</p>' : '') +
+    '<div class="redraft-row"><button type="button" class="linkbtn" data-redraft aria-expanded="false">Redraft with AI</button></div></div>';
+}
+function gridRefresh(name, focusSel) {
+  const f = document.querySelector('[data-gridname="' + name + '"]'); if (!f) return;
+  f.outerHTML = gridForm(name); if (focusSel) { const el = document.querySelector(focusSel); if (el) el.focus(); }
 }
 // Workload: a module's week = activities (typed in 4.2, or the AI draft) + readings and media (estimated until
 // Modules 5 and 6 are saved) + the 90-minute cohort session (Modules 2 to 8). Module 1's target is about 4 hours.
@@ -1320,6 +1372,16 @@ function useButtons(sec) {
     out.insertAdjacentHTML('beforeend', btn('Use this script', { av: { title: grab(/Title:\s*(.+?)\.\s*Duration:/), minutes: grab(/Duration:\s*about\s*([\d.]+)/),
       module: grab(/Module & Section:\s*(.+?)\.?\s*(?:Part|$)/), rows } }));
   }
+  if (key === '7.1') {
+    const c = cohortOf(pickOf('7.1')), o = out.querySelector('.scen-opt');
+    if (c && o) o.insertAdjacentHTML('beforeend', btn('Use this session', [cohText(c)]));
+  }
+  if (key === '7.2') {
+    const tables = [...out.querySelectorAll('table')], cells = tb => [...tb.querySelectorAll('tbody tr')].map(tr => [...tr.cells].map(td => td.textContent.trim()));
+    const lesson = cells(tables[0]).map(([min, section, details]) => ({ min, section, details })), assets = cells(tables[1]).map(([, name, type, link]) => ({ name, type, link }));
+    const prep = label(out, 'Materials, handouts, and room setup');
+    out.insertAdjacentHTML('beforeend', btn('Use this plan', { grids: { lesson, assets }, boxes: [prep, 'Virtual podcast studio, the same one as the course videos.'] }));
+  }
   if (key === '5.2') {
     const n = pickOf('5.2'), rs = DATA.demo['mgmt615-materials.json'].modules[n - 1].materials.map(i => rightsFor(i, n)), o = out.querySelector('.scen-opt');
     if (o) o.insertAdjacentHTML('beforeend', btn('Use these notes', [rs.map(r => r.line).join('\n'), rs.filter(r => r.note).map(r => r.note).join('\n')]));
@@ -1388,6 +1450,10 @@ document.addEventListener('input', e => {
   if (e.target.dataset && e.target.dataset.setting) { state[e.target.dataset.setting] = e.target.value; save();
     if (e.target.type === 'radio') { const y = window.scrollY; render(); window.scrollTo(0, y); document.querySelector('input[name="' + e.target.name + '"]:checked').focus({ preventScroll: true }); }
     return; }
+  if (e.target.dataset && e.target.dataset.grid) {
+    const name = e.target.dataset.grid, rows = gridRows(name); rows[+e.target.dataset.row][e.target.dataset.col] = e.target.value; save();
+    const m = document.querySelector('[data-gridname="' + name + '"] .grid-meter'); if (m) m.innerHTML = GRIDS[name].meter(rows); return;
+  }
   if (e.target.dataset && (e.target.dataset.av || e.target.dataset.avh)) {
     const s = avScript();
     if (e.target.dataset.avh) s[e.target.dataset.avh] = e.target.value;
@@ -1479,6 +1545,26 @@ document.addEventListener('click', e => {
       msg.textContent = "Redrafted. (Demo: recorded responses don't change, so the text stays the same. In the finished tool, the AI rewrites only this box, using your note.)"; }, 900);
     return;
   }
+  if (t.dataset.gridAdd) {
+    const name = t.dataset.gridAdd, g = GRIDS[name], rows = gridRows(name), at = rows.findIndex(g.insertBefore), n = at < 0 ? rows.length : at;
+    rows.splice(n, 0, Object.fromEntries(g.cols.map(([k]) => [k, '']))); save();
+    gridRefresh(name, '[data-grid="' + name + '"][data-row="' + n + '"]'); return;
+  }
+  if (t.dataset.gridRemove) {
+    const [name, n] = t.dataset.gridRemove.split(':'), rows = gridRows(name);
+    if (Object.values(rows[+n]).some(v => String(v).trim()) && !confirm('Remove this row and what you wrote in it?')) return;
+    rows.splice(+n, 1); save(); gridRefresh(name, '[data-grid-add="' + name + '"]'); return;
+  }
+  if (t.dataset.use && USE_TEXT[+t.dataset.use].grids) {
+    const u = USE_TEXT[+t.dataset.use], boxes = [...document.querySelectorAll('#decide textarea:not([data-av]):not([data-grid])')];
+    const filled = Object.keys(u.grids).some(n => gridRows(n).some(r => Object.values(r).some(v => String(v).trim() && !/^(Introduction|Topic \d|Conclusion|Slides)$/.test(v)))) || boxes.some(b => b.value.trim());
+    if (filled && !confirm('Replace what is already in your forms under Decide?')) return;
+    Object.entries(u.grids).forEach(([n, rows]) => { state.grids[stepKey()][n] = JSON.parse(JSON.stringify(rows)); gridRefresh(n); });
+    (u.boxes || []).forEach((v, i) => { const b = boxes[i]; if (b) { b.value = v; b.dispatchEvent(new Event('input', { bubbles: true })); } });
+    save();
+    const f = document.querySelector('.grid-field'); f.insertAdjacentHTML('afterbegin', '<p class="use-note" role="status">Copied. Edit it here until it\u2019s your plan.</p>');
+    f.scrollIntoView({ behavior: 'smooth', block: 'start' }); return;
+  }
   if (t.hasAttribute('data-av-add')) {
     const s = avScript(), at = s.rows.findIndex(r => r.part === 'Conclusion');
     s.rows.splice(at < 0 ? s.rows.length : at, 0, avRow('Content')); save();
@@ -1499,7 +1585,7 @@ document.addEventListener('click', e => {
   }
   if (t.dataset.use) {
     // One text fills the first box; a list of texts fills the boxes in order.
-    const boxes = [...document.querySelectorAll('#decide textarea:not([data-av])')], vals = [].concat(USE_TEXT[+t.dataset.use]), box = boxes[0];
+    const boxes = [...document.querySelectorAll('#decide textarea:not([data-av]):not([data-grid])')], vals = [].concat(USE_TEXT[+t.dataset.use]), box = boxes[0];
     if (!box) return;
     if (boxes.some((b, i) => i < vals.length && b.value.trim() && b.value !== vals[i]) && !confirm('Replace what is already in your boxes under Decide?')) return;
     vals.forEach((v, i) => { const b = boxes[i]; if (b) { b.value = v; b.rows = Math.max(b.rows, v.split('\n').length + 1, Math.ceil(v.length / 90) + 1); b.dispatchEvent(new Event('input', { bubbles: true })); } });

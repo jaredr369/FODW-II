@@ -649,9 +649,18 @@
       "citation": "TLI. (2026). Cohort Sessions [Guide]."
     },
     {
+      "id": "template-cohort-lesson-plan",
+      "kind": "template",
+      "title": "Cohort Session Lesson Plan",
+      "module": "m7",
+      "use": "export template for 7.2",
+      "file": "Template - Cohort Session Lesson Plan.dotx",
+      "folder": "03 - Templates"
+    },
+    {
       "id": "template-run-of-show",
       "kind": "template",
-      "title": "Run of show",
+      "title": "XR Run of Show",
       "module": "m7",
       "use": "export template for 7.2",
       "file": "Run_of_Show.docx",
