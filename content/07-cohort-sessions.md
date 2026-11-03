@@ -58,6 +58,13 @@ Pattern: pick and combine, one module at a time (full build); edit in place (ref
 offer nothing the recording doesn't (Morris et al., 2019).
 :::
 
+Most Flex Online courses hold cohort sessions, but a few don't. Does yours?
+
+::: choose cohort
+- yes | Yes, it has cohort sessions | A 90-minute live session each week in Modules 2 to 8. Most Flex Online courses have them.
+- no | No cohort sessions | Students work on their own schedule every week.
+:::
+
 Flex Online courses hold one cohort session each week from Module 2 to Module 8; Module 1 has none.
 Attendance is optional and every session is recorded, so students decide each week whether to come
 or watch later.
@@ -75,7 +82,33 @@ them:
 | Your judgment on a messy case | You work through a case with no clean answer and explain your reasoning |
 | A preview of the next assessment | Students work a problem shaped like the next assignment with you there |
 
-**A shape that works.** Most sessions follow the same four steps:
+**When your session meets.** Some cohort sessions are early in the week, on Monday or Tuesday;
+others are later, on Wednesday or Thursday. The day changes what students have done before they
+arrive, what the session is for, and how the rest of the week is laid out around it.
+
+| | Early in the week (Monday or Tuesday) | Later in the week (Wednesday or Thursday) |
+|---|---|---|
+| What students have done | Little of this week's work yet | The readings, and they've started the activities |
+| What the session is for | Close last week and launch this one | Practice and decide with what they've learned |
+| How the week builds | The materials and activities follow the session, toward Sunday's assignment | The session is the rehearsal before Sunday's assignment |
+
+**Choose your session day.** If it isn't set yet, choose the day you'd like and design around it;
+your ID can confirm it with the program. You can change it later, and the AI's drafts below follow
+what you choose.
+
+::: choose cohortDay
+- mon | Monday | Early in the week: students haven't started this week's work.
+- tue | Tuesday | Early in the week: students haven't started this week's work.
+- wed | Wednesday | Later in the week: students have read the material.
+- thu | Thursday | Later in the week: students have read and started the activities.
+:::
+
+::: when cohortDay=
+Choose a day above to see the session shape that fits it.
+:::
+
+::: when cohortDay=wed,thu
+**A shape for later in the week.** Students arrive having read the material:
 
 1. **Check understanding (about 10 minutes).** Open with a poll or a few chat questions on the
    week's main concepts. It shows you what students took from the materials, and you can clear up
@@ -86,17 +119,37 @@ them:
    a recording can't give them.
 4. **Debrief and preview.** Groups share, you add your judgment, and you point to what's due next.
 
-Lecturing on new material belongs in the asynchronous content.
-
 **Your story as a live decision.** Let the week's materials carry the scenario up to the
 decision, then stop. The session is where students make the call: vote on the character's
 options and argue the split, role-play the hard conversation in threes (one observer gives
 hesitant students a way in), or give each group a different piece of evidence so the picture
 only comes together in the debrief.
+:::
+
+::: when cohortDay=mon,tue
+**A shape for early in the week.** Students arrive with last week fresh and this week unread:
+
+1. **Recap last week (about 15 minutes).** Revisit last week's decision and what you saw in
+   students' work, and connect it to what comes next. A poll on last week's main idea eases
+   students in.
+2. **Introduce the new module (about 15 minutes).** Present the character's new problem and the
+   week's main ideas in brief, so students know what the materials will help them answer.
+3. **An introductory activity (most of the session).** In small groups, students make a first call
+   on the new problem, list what they'd need to know, or try the new skill once with your coaching.
+   They'll test that first call against the week's materials.
+4. **Preview the week.** Point to the materials, what's due, and how today's first call feeds
+   Sunday's assignment.
+
+**Your story as a live decision.** The session opens the story: students meet the character's new
+problem together and make a first call. The week's materials then give them what they need to
+test that call before Sunday's assignment.
+:::
+
+Either way, lecturing on new material belongs in the asynchronous content.
 
 **Quiet rooms.** Over a third of distance learners feel stressed when asked to participate live
-(Donelan et al., 2025). The check for understanding eases them in: start with a poll or the chat,
-then small groups, then the whole room.
+(Donelan et al., 2025). The opening poll eases them in: start with a poll or the chat, then small
+groups, then the whole room.
 
 **RSI.** A session built this way is facilitated discussion (category 4) every week, often with
 feedback (2) or direct instruction (1) as well.
@@ -107,8 +160,9 @@ the plan. Note poll wording, breakout sizes and timing, and anything to drop in 
 ### See it
 
 ::: full
-Here's the session the MGMT 615 instructor planned for Module 5. It passes the recording test:
-students who only watch the recording miss the role-play itself.
+Here's the session the MGMT 615 instructor planned for Module 5. MGMT 615 meets on Thursdays, so
+students arrive having read the material. The session passes the recording test: students who
+only watch the recording miss the role-play itself.
 :::
 
 ::: refresh
@@ -129,7 +183,7 @@ roundtables didn't: nothing in them depended on who was in the room, so each got
 
 ### Draft (full build) and Review (refresh)
 
-Work through Modules 2 to 8 one at a time. Choose a module, then select the button below. The AI
+Work through Modules 2 to 8 one at a time. The draft follows the session day you chose in Learn. Choose a module, then select the button below. The AI
 proposes a session built on the module's scenario and activities, with what the checks will find.
 Select **Use this session** to copy it into the box under Decide.
 
@@ -145,11 +199,14 @@ says what it would keep or revise and why, and adds a live moment where one is m
 AI instructions:
 
 ```text
-For the given module, using its scenario, activities, and the learner profile, propose a 90-minute
-cohort session. Give: a title; the decision it centers on; which of the five live benefits it
+For the given module, using its scenario, activities, the learner profile, and the session day the
+faculty member chose, propose a 90-minute cohort session. Give: a title; the decision it centers on; which of the five live benefits it
 offers (feedback on own work, own job, practice with peers, instructor judgment, assessment
-preview); 4 or 5 timed segments that open with a quick check for understanding of the week's main
-concepts (a poll or the chat), then guided practice the instructor leads, then small groups;
+preview); 4 or 5 timed segments. For a session later in the week (Wednesday or Thursday), open
+with a quick check for understanding of the week's main concepts (a poll or the chat), then guided
+practice the instructor leads, then small groups. For a session early in the week (Monday or
+Tuesday), open with a recap of last week, then introduce the new module, then an introductory
+activity in small groups;
 the RSI categories it shows; and setup needs for the Instructional Technologist (poll wording,
 breakout sizes and timing, chat links). It must pass the recording test: name the moment that
 depends on who is in the room.
@@ -164,8 +221,9 @@ AI instructions:
 ```text
 For the module's current cohort session, apply the recording test: name what a student who watched
 only the recording would miss, or say "nothing." Check it connects to the module's scenario or
-activities, opens with a check for understanding and guided practice before small groups, and
-gives the Instructional Technologist enough to set up. Use the
+activities, opens the way its day calls for (a check for understanding and guided practice later
+in the week, or a recap and introduction early in the week), and gives the Instructional
+Technologist enough to set up. Use the
 faculty member's reflection on attendance and quiet moments. Suggest keep or revise; for a
 revision, keep the session's purpose and add one live moment.
 
@@ -193,7 +251,7 @@ setup your Instructional Technologist needs. The minutes should add up to 90.
 Checklist:
 
 - You can name what a student watching the recording would miss.
-- The session opens with a check for understanding, then guided practice.
+- The session fits its day: a check for understanding and guided practice later in the week, or a recap and an introduction early in the week.
 - Setup needs are clear enough for your Instructional Technologist.
 
 ### Checks
@@ -202,7 +260,7 @@ When you save each module, the tool checks that:
 
 - the session passes the recording test;
 - it ties to the module's scenario or activities;
-- it opens with a check for understanding (a poll or the chat), then guided practice;
+- it opens the way its day calls for: a check for understanding and guided practice later in the week, or a recap of last week and an introduction early in the week;
 - it shows at least one RSI category;
 - the segments add up to about 90 minutes.
 
@@ -212,7 +270,7 @@ The week walk-through in step 4.3 then includes the session.
 
 Planning document: Learning Activities Plan Part 3 (Cohort Session Activities) row in Tables 1
 and 2, for example "Telling Greg He's Wrong: role-play in threes after a week-long poll."
-Project file: `modules[].cohort`; in refresh, `.original`, `.changeNote`.
+Project file: `course.cohortDay`, `modules[].cohort`; in refresh, `.original`, `.changeNote`.
 
 ### Go deeper (supplemental)
 
@@ -220,6 +278,40 @@ Project file: `modules[].cohort`; in refresh, `.original`, `.changeNote`.
   your story live.
 - `src:reading-m7-active-learning-tools`
 - `src:guide-cohort-sessions`
+
+### No cohort sessions
+
+::: purpose
+**What you'll do:** Plan where students get what a cohort session would give them, since your
+course doesn't have one.
+
+**Why it matters:** Without a weekly session, students still need regular, substantive interaction
+with you and practice with each other. Planning it now keeps every module's week complete.
+:::
+
+Your course details say this course has no cohort sessions. If that's not right, choose Yes and
+this step becomes cohort session planning.
+
+::: choose cohort
+- yes | Yes, it has cohort sessions | A 90-minute live session each week in Modules 2 to 8. Most Flex Online courses have them.
+- no | No cohort sessions | Students work on their own schedule every week.
+:::
+
+A cohort session gives students five things live. Without one, plan where each can go instead:
+
+| What a session gives | Where it can go instead |
+|---|---|
+| Feedback on their own work | Feedback on a draft before the main assignment, in writing or a short video |
+| Applying the concept to their own job | A discussion prompt or reflection that asks students to use the week's framework at work |
+| Practice with peers | Peer review, a small-group discussion, or practice with an AI tutor from step 4.1 |
+| Your judgment on a messy case | A short video or announcement in which you work through the case and explain your call |
+| A preview of the next assessment | A practice problem, shaped like the next assignment, with feedback |
+
+The 90 minutes a session would take go to activities, so check each module's week in step 4.2
+again. Your communication plan in Module 8 carries more of your presence, too. If your program
+allows it, optional live office hours give students a place to ask questions face to face.
+
+Select **Save to plan** to note that this course has no cohort sessions. Step 7.2 isn't needed.
 
 ---
 
@@ -288,6 +380,12 @@ team.
 | 4 | Observer checklist | Handout | Module 5 page in Canvas, linked in the chat |
 
 ### Draft (full build) and Review (refresh)
+
+::: when cohortDay=mon,tue
+MGMT 615 meets on Thursdays, so its lesson plans here follow the later-week shape. Yours will follow
+the early-week shape you chose in step 7.1: recap, introduce the new module, then an introductory
+activity.
+:::
 
 Answer the questions, then select the button below. The AI turns your saved session into a lesson
 plan and a list of session assets. Select **Use this plan** to copy them into the forms under
@@ -390,6 +488,16 @@ Project file: `lessonPlans[]` (module, rows, preparation, background, assets).
 - `src:guide-cohort-sessions`
 - `src:template-cohort-lesson-plan`
 - `src:template-run-of-show`
+
+### No cohort sessions
+
+Your course has no cohort sessions, so there's no session to prepare for the stage. Select **Save to
+plan** and go on to Module 8. If that's not right, choose Yes and this step returns.
+
+::: choose cohort
+- yes | Yes, it has cohort sessions | A 90-minute live session each week in Modules 2 to 8. Most Flex Online courses have them.
+- no | No cohort sessions | Students work on their own schedule every week.
+:::
 
 ---
 

@@ -343,7 +343,8 @@ Thu." Everything else uses these rates:
 - **Reading:** about 8 pages an hour (6 for dense material such as research articles, 10 for
   lighter reading such as trade articles and cases).
 - **Video and audio:** playback time plus about a quarter, for pausing and notes.
-- **Cohort session:** 90 minutes, in Modules 2 to 8.
+- **Cohort session:** 90 minutes, in Modules 2 to 8. If your course doesn't have cohort sessions, give that time to
+  activities.
 
 Until you plan materials in Module 5 and media in Module 6, the checker assumes about 2 hours for
 readings and media (about 1 in Module 1). If your program director sets a different weekly target,

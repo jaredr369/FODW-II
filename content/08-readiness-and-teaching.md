@@ -179,7 +179,7 @@ announcement or the General Q&A discussion, so everyone sees the answer.
 ### See it
 
 MGMT 615's plan: Monday opening announcements carry Dana's story; Wednesday midpoints respond to
-what the instructor sees in the week's drafts and polls; a short Monday note before each Tuesday
+what the instructor sees in the week's drafts and polls; a short Wednesday note before each Thursday
 cohort session says what to bring. Feedback on main assignments is within five days: clickable
 rubric plus a 2-minute video comment, with a comment library built from the first term's most
 common notes. The instructor's reflection said Monday announcements slipped mid-term, so all

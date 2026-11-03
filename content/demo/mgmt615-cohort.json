@@ -1,5 +1,5 @@
 {
-  "about": "Recorded demo data for Module 7 (MGMT 615, fictional). Each module's 90-minute cohort session after the refresh: title, the decision it centers on, what students get live (feedback, own job, practice, instructor judgment, assessment preview), segments (check understanding, guided practice, the live part, then debrief), the RSI moments, and setup needs for the Instructional Technologist. 'review' holds refresh flags and resolutions.",
+  "about": "Recorded demo data for Module 7 (MGMT 615, fictional). Each module's 90-minute cohort session after the refresh: title, the decision it centers on, what students get live (feedback, own job, practice, instructor judgment, assessment preview), segments (check understanding, guided practice, the live part, then debrief), the RSI moments, and setup needs for the Instructional Technologist. 'review' holds refresh flags and resolutions. MGMT 615 meets on Thursdays; 'early' is the same module's session for a Monday or Tuesday meeting.",
   "modules": [
     {
       "module": 2,
@@ -24,7 +24,20 @@
       ],
       "review": [
         "'Diagnosing Motivation Problems Roundtable' named no live moment and failed the recording test as written. Resolution: split-evidence breakouts added."
-      ]
+      ],
+      "early": {
+        "live": "Practice with peers",
+        "segments": [
+          "15 min: recap last week: a poll on what Dana should have done first, and what the instructor saw in the first-week plans",
+          "15 min: introduce the module: the pick-rate bonus, and Luis, who refuses to chase it",
+          "50 min: introductory activity: groups make a first call on keeping, adjusting, or replacing the bonus, and list the evidence they'd need",
+          "10 min: preview the week: the motivation reading, the evidence files, and the diagnosis due Sunday"
+        ],
+        "setup": [
+          "Recap poll",
+          "Breakouts of three or four"
+        ]
+      }
     },
     {
       "module": 3,
@@ -47,7 +60,20 @@
         "Breakouts of three, three 15-minute rounds",
         "Observer checklist in the chat"
       ],
-      "review": []
+      "review": [],
+      "early": {
+        "live": "Practice with peers",
+        "segments": [
+          "15 min: recap last week: a poll on the bonus decision, and what the instructor saw in the diagnoses",
+          "15 min: introduce the module: Greg wants a formal warning for Jordan",
+          "50 min: introductory activity: pairs try the first two minutes of the conversation with Jordan, then list what they'd need to learn to do it well",
+          "10 min: preview the week: the feedback chapter, the SBI model, and the script due Sunday"
+        ],
+        "setup": [
+          "Recap poll",
+          "Breakouts of three or four"
+        ]
+      }
     },
     {
       "module": 4,
@@ -71,7 +97,20 @@
       ],
       "review": [
         "'Team Diagnosis Roundtable' repeated the memo prompt. Resolution: students design a fix for a team they know."
-      ]
+      ],
+      "early": {
+        "live": "Practice with peers",
+        "segments": [
+          "15 min: recap last week: a poll on coach or warn, and what the instructor saw in the scripts",
+          "15 min: introduce the module: the 4:45 p.m. handoff nobody owns",
+          "50 min: introductory activity: groups make a first call (lunch, joint meeting, or a structural fix) and list what they'd need to know",
+          "10 min: preview the week: the team reading and the memo due Sunday"
+        ],
+        "setup": [
+          "Recap poll",
+          "Breakouts of three or four"
+        ]
+      }
     },
     {
       "module": 5,
@@ -93,7 +132,20 @@
         "Show the asynchronous poll results",
         "Breakouts of three"
       ],
-      "review": []
+      "review": [],
+      "early": {
+        "live": "Practice with peers",
+        "segments": [
+          "15 min: recap last week: a poll on the handoff fix, and what the instructor saw in the memos",
+          "15 min: introduce the module: Greg wants a plan by Friday, and Dana thinks he's wrong",
+          "50 min: introductory activity: groups draft Dana's opening line, then try it once in pairs with the instructor coaching",
+          "10 min: preview the week: the conflict reading, the week's poll, and the memo to Greg due Sunday"
+        ],
+        "setup": [
+          "Recap poll",
+          "Breakouts of three or four"
+        ]
+      }
     },
     {
       "module": 6,
@@ -115,7 +167,20 @@
         "Concept-check poll",
         "Shared sorting board link in the chat"
       ],
-      "review": []
+      "review": [],
+      "early": {
+        "live": "Practice with peers",
+        "segments": [
+          "15 min: recap last week: a poll on how Dana answered Greg, and what the instructor saw in the memos",
+          "15 min: introduce the module: twelve things on Dana's peak-season list",
+          "50 min: introductory activity: groups make a first sort of what Dana keeps and what she hands off",
+          "10 min: preview the week: the delegation reading and the decision-rights assignment due Sunday"
+        ],
+        "setup": [
+          "Recap poll",
+          "Breakouts of three or four"
+        ]
+      }
     },
     {
       "module": 7,
@@ -138,7 +203,20 @@
         "Breakouts of four",
         "Students bring their draft"
       ],
-      "review": []
+      "review": [],
+      "early": {
+        "live": "Practice with peers",
+        "segments": [
+          "15 min: recap last week: a poll on Dana's delegation calls, and what the instructor saw in the assignments",
+          "15 min: introduce the module: the bonus is ending, and the floor is calling it a pay cut",
+          "50 min: introductory activity: groups list what the crew will hear first and draft one opening line",
+          "10 min: preview the week: the change reading and the announcement due Sunday"
+        ],
+        "setup": [
+          "Recap poll",
+          "Breakouts of three or four"
+        ]
+      }
     },
     {
       "module": 8,
@@ -161,7 +239,20 @@
         "Breakouts of four",
         "Candidate briefs for volunteers"
       ],
-      "review": []
+      "review": [],
+      "early": {
+        "live": "Practice with peers",
+        "segments": [
+          "15 min: recap last week: a poll on Dana's announcement, and what the instructor saw in the drafts",
+          "15 min: introduce the module: the new shift-lead role, and two finalists, Luis and an outside candidate",
+          "50 min: introductory activity: groups make a first call and list what they'd ask each candidate",
+          "10 min: preview the week: the hiring reading and the scorecard due Sunday"
+        ],
+        "setup": [
+          "Recap poll",
+          "Breakouts of three or four"
+        ]
+      }
     }
   ]
 }

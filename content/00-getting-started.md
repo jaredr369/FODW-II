@@ -205,6 +205,7 @@ Fill in a few details about your course. There's no AI draft in this step.
 | First term taught online | No | Fall 2027 |
 | Course start date | No | Aug. 24, 2026, the first day of Module 1 |
 | Weekly hours target | No | 10, unless your program director sets another |
+| Cohort sessions | No | Yes. Most Flex Online courses hold a 90-minute live session in Modules 2 to 8; a few don't |
 | Track | Yes | Refresh |
 
 ### Review (refresh)
