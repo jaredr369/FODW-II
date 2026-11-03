@@ -468,8 +468,9 @@ function parseModule(m) {
     else if (/^Check-in prep/.test(sec.head)) mod.prep = sec.body;
     else {
       const subs = splitBy(sec.body, '### ');
-      const lead = subs[0].body;
-      const step = { key: sec.head.split(' ')[0], title: sec.head, lead, parts: {} };
+      // "Track: refresh" in a step's opening lines limits the step to that track.
+      const tr = subs[0].body.match(/^Track: (\w+)\s*$/m), lead = subs[0].body.replace(/^Track: .*\n?/m, '');
+      const step = { key: sec.head.split(' ')[0], title: sec.head, lead, track: tr ? tr[1].toLowerCase() : null, parts: {} };
       for (const s of subs.slice(1)) step.parts[s.head] = s.body;
       mod.steps.push(step);
     }
@@ -1466,7 +1467,7 @@ function order() {
   const list = ['welcome'];
   for (const m of MODULES) {
     if (m.reflection && state.track === 'refresh') list.push(m.id + ':reflection');
-    for (const s of m.steps) list.push(m.id + ':' + s.key);
+    for (const s of m.steps) if (!s.track || s.track === state.track) list.push(m.id + ':' + s.key);
     if (m.prep) list.push(m.id + ':prep');
   }
   return list;
@@ -1537,7 +1538,7 @@ function aiPart(title, body) {
   intro = intro.replace(/<details><summary>What the AI is asked to do<\/summary>[\s\S]*?<\/details>/g, m => { prompt += m; return ''; });
   return '<section class="part ai"><h3>' + esc(title) + ' <span class="tag">AI</span></h3>' + intro + recorded +
     demoFiles(body) +
-    '<div class="row"><button type="button" class="btn" data-draft' + (sorting ? ' data-sortmap' : '') + '>' + (sorting ? 'Sort with AI' : title === 'Summary for your ID' ? 'Create summary' : state.track === 'refresh' ? 'Review with AI' : 'Draft with AI') + '</button><span class="thinking" hidden>Working…</span></div>' + prompt + '</section>';
+    '<div class="row"><button type="button" class="btn" data-draft' + (sorting ? ' data-sortmap' : '') + '>' + (sorting ? 'Sort with AI' : title === 'Summary for your ID' ? 'Create summary' : state.track === 'refresh' && title !== 'Draft' ? 'Review with AI' : 'Draft with AI') + '</button><span class="thinking" hidden>Working…</span></div>' + prompt + '</section>';
 }
 function demoFiles(body) {
   const files = [...new Set((body.match(/demo\/mgmt615-[a-z]+\.json/g) || []))];
@@ -1596,7 +1597,7 @@ function renderStep(goKey) {
     if (/no AI draft/i.test(p['Draft (full build)'] || '')) h += aiPart('Draft', p['Draft (full build)']);
     h += aiPart('Review', p['Review (refresh)']);
   }
-  else if (p['Draft (full build)']) h += aiPart('Draft', p['Draft (full build)']);
+  else if (p['Draft (full build)'] || p['Draft']) h += aiPart('Draft', p['Draft (full build)'] || p['Draft']);
   if (p['Decide']) {
     // Join a list item's indented continuation lines first, so a long checklist item stays one item.
     const dec = p['Decide'].replace(/\n {2,}(?=\S)/g, ' ').replace(/(^|\n)- (.+)/g, '$1[[CHK]]$2');
@@ -1607,7 +1608,7 @@ function renderStep(goKey) {
       (l.startsWith('[[CHK]]') && !block ? checks : txt).push(block ? l.replace('[[CHK]]', '- ') : l.replace('[[CHK]]', ''));
     }
     // Steps with an AI draft or review let faculty redraft any one Decide box.
-    const hasAI = !!(both || p['Review (refresh)'] || (p['Draft (full build)'] && !/no AI draft/i.test(p['Draft (full build)'])));
+    const hasAI = !!(both || p['Review (refresh)'] || p['Draft'] || (p['Draft (full build)'] && !/no AI draft/i.test(p['Draft (full build)'])));
     h += '<section class="part" id="decide"><h3>Decide</h3>' + md(txt.join('\n').replace(/Checklist[^:\n]*:/, ''), { redraft: hasAI }) +
       (checks.length ? '<div class="checklist" role="group" aria-label="Checklist">' + checks.map((c, i) => '<label><input type="checkbox" id="c' + i + '"> <span' + tag('li', c, { marker: '- ' }) + '>' + inline(c) + '</span></label>').join('') + '</div>' : '') + '</section>';
   }
@@ -1645,7 +1646,7 @@ function useButtons(sec) {
   const label = (root, name) => { const el = [...root.querySelectorAll('p, li')].find(x => x.textContent.startsWith(name + ':')); return el ? el.textContent.slice(name.length + 1).trim() : ''; };
   const listAfter = name => {
     const p = [...out.querySelectorAll('p')].find(x => x.textContent.trim() === name + ':'), ul = p && p.nextElementSibling;
-    return ul && ul.tagName === 'UL' ? [...ul.children].map(li => li.textContent.trim()).join('\n') : '';
+    return ul && /^[OU]L$/.test(ul.tagName) ? [...ul.children].map(li => li.textContent.trim()).join('\n') : '';
   };
   if (key === '2.1') {
     const p = [...out.querySelectorAll('p')].find(x => /^Statement:/.test(x.textContent));
@@ -1688,6 +1689,7 @@ function useButtons(sec) {
     out.insertAdjacentHTML('beforeend', btn('Use this script', { av: { title: grab(/Title:\s*(.+?)\.\s*Duration:/), minutes: grab(/Duration:\s*about\s*([\d.]+)/),
       module: grab(/Module & Section:\s*(.+?)\.?\s*(?:Part|$)/), rows } }));
   }
+  if (key === '4.4') out.insertAdjacentHTML('beforeend', btn('Use this version', [label(out, 'Overview'), listAfter('Guidelines')]));
   if (key === '8.2') out.insertAdjacentHTML('beforeend', btn('Use this plan', [listAfter('Plan'), label(out, 'Module 1 opening announcement')]));
   if (key === '7.1') {
     const c = cohortOf(pickOf('7.1')), o = out.querySelector('.scen-opt');
@@ -1704,6 +1706,9 @@ function useButtons(sec) {
   }
 }
 
+// Refresh step 4.4 rewrites one assignment inside the story; the demo rewrites Module 3's high-weight assignment.
+const storyAdded = (i, a) => isRefresh() && state.done['4.4'] && i === 2 && a.weight === 'high';
+
 /* ---------- planning document ---------- */
 function renderDoc() {
   const f = DATA.demo['mgmt615-foundation.json'];
@@ -1718,7 +1723,7 @@ function renderDoc() {
     ['M1', 'CLOs met', 'modules', i => esc(f.modules[i].closMet.join(', '))],
     ['M1', 'Module Topics', 'modules', i => ul(f.modules[i].topics)],
     ['M3', 'Scenario', 'scenario', i => '<strong>' + esc(sc[i].chosen.title) + '.</strong> ' + esc(sc[i].chosen.premise)],
-    ['M4', 'Learning Activities Plan Part 1 (Canvas Assignments)', 'activities', i => ul(act[i].activities.filter(a => !isTool(a)).map(a => a.type + ': ' + a.title + ' (' + a.clos.join(', ') + ', ' + a.weight + (a.rsi ? ', RSI ' + a.rsi : '') + ')'))],
+    ['M4', 'Learning Activities Plan Part 1 (Canvas Assignments)', 'activities', i => ul(act[i].activities.filter(a => !isTool(a)).map(a => a.type + ': ' + a.title + ' (' + a.clos.join(', ') + ', ' + a.weight + (a.rsi ? ', RSI ' + a.rsi : '') + (storyAdded(i, a) ? '; story added' : '') + ')'))],
     ['M4', 'Learning Activities Plan Part 2 (Third-Party Tool Activities)', 'tools', i => { const t = act[i].activities.filter(isTool); return t.length ? ul(t.map(a => a.type + ': ' + a.title)) : '<span class="empty">None</span>'; }],
     ['M5', 'Learning Materials Plan', 'materials', i => ul(mat[i].materials.map(x => x.type + ': ' + x.title + ' (' + x.pages + ' pp., ' + x.rights + ')'))],
     ['M6', 'Learning Media Plan', 'media', i => ul(med[i].media.map(medLine))],
