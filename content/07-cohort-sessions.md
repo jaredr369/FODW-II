@@ -333,6 +333,13 @@ material:
 3. **The live activity (most of the session).** Students practice or decide in small groups: the
    activity you chose in step 7.1.
 4. **Debrief and preview.** Groups share, you add your judgment, and you point to what's due next.
+
+::: figure budget | A 90-minute session later in the week
+- Check understanding | about 10 minutes | 11
+- Guided practice | about 15 minutes | 17
+- The live activity | about 50 minutes | 55
+- Debrief and preview | about 15 minutes | 17
+:::
 :::
 
 ::: when cohortDay=mon,tue
@@ -347,6 +354,13 @@ material:
    small groups, with your coaching.
 4. **Preview the week.** Point to the materials, what's due, and how today's first call feeds
    Sunday's assignment.
+
+::: figure budget | A 90-minute session early in the week
+- Recap last week | about 15 minutes | 17
+- Introduce the new module | about 15 minutes | 17
+- The introductory activity | about 50 minutes | 55
+- Preview the week | about 10 minutes | 11
+:::
 :::
 
 Either way, lecturing on new material belongs in the asynchronous content.

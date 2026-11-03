@@ -245,6 +245,16 @@ decisions can come back: in MGMT 615, the bonus Dana questions in Module 2 is th
 announces in Module 7. A scenario that depends on an earlier decision shows students that the
 skills build on each other.
 
+One scenario can carry a whole module. Here's how MGMT 615's Module 4 scenario, "The Handoff Nobody
+Owns," shows up in the steps ahead:
+
+::: figure trace | One scenario, four uses: MGMT 615, Module 4
+- Overview video (Module 6) | Opens on the handoff nobody owns and ends at Dana's decision.
+- Scenario video (Module 6) | "Structural Fixes vs. Pep Talks" sets Greg's team-building lunch against naming a handoff owner.
+- Main assignment (Module 4) | The team diagnosis memo: students find the cause and make the case to Greg.
+- Cohort session (Module 7) | "Fix the Handoff": groups design a fix for a team they know.
+:::
+
 ### See it
 
 Here's one of the eight scenarios the MGMT 615 instructor planned, for Module 4. Its title and

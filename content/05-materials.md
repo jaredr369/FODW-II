@@ -234,12 +234,16 @@ risk. Clear attributions and AI notes also show students the integrity you ask o
 :::
 
 Everything you use is protected by copyright unless it says otherwise, and the lack of a notice
-doesn't make it free. For each material, you need one of four things:
+doesn't make it free. For each material, you need one of four things. Check for them in this
+order:
 
-- **A library link** to the TAMU Libraries record.
-- **An open license**, such as Creative Commons, that you name.
-- **A public page or video you link to.** Never download it and re-upload it.
-- **Permission** from the owner.
+::: figure trace | Can I use it? Check in this order
+- 1. Is it in TAMU Libraries? | Link to the library record. Students sign in with their NetID.
+- 2. Does it have an open license, such as Creative Commons? | Use it, and name the license in your attribution.
+- 3. Is it a public page or video? | Link to it. Never download it and re-upload it.
+- 4. None of these? | Ask the owner for permission, or choose something else.
+- Credit | Based on the Mays Teaching & Learning Innovation guide to copyright and fair use.
+:::
 
 When you're unsure, link instead of uploading.
 
