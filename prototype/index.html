@@ -499,6 +499,7 @@ function toMd(el, kind) {
     const t = c.tagName, inner = walk(c);
     if (t === 'BR') return ' ';
     if (c.dataset.cite) return '`src:' + c.dataset.cite + '`';
+    if (c.dataset.src) return '[' + walk(c) + '](src:' + c.dataset.src + ')';
     if (!inner.trim()) return inner;
     if (t === 'STRONG' || t === 'B') return '**' + inner.trim() + '**';
     if (t === 'EM' || t === 'I') return '*' + inner.trim() + '*';
@@ -598,7 +599,7 @@ function inline(s) {
   });
   s = s.replace(/\[([^\]]+)\]\(src:([a-z0-9-]+)\)/g, (m, text, id) => {
     const src = DATA.sources[id], href = src && (src.url || (src.path ? '../' + encodeURI(src.path).replace(/#/g, '%23') : ''));
-    return href ? '<a href="' + esc(href) + '" target="_blank" rel="noopener">' + text + '</a>' : text;
+    return href ? '<a data-src="' + esc(id) + '" href="' + esc(href) + '" target="_blank" rel="noopener">' + text + '</a>' : text;
   });
   // "step 4.2" in the text jumps to that step.
   s = s.replace(/\b(steps? )(GS\.\d|\d\.\d)\b/g, (m, w, k) => {
