@@ -303,7 +303,7 @@ Demo response (MGMT 615):
 
 Flags:
 
-- Seven sentences; the Course Planning Document asks for 3 or 4.
+- Seven sentences; this workshop asks for 3 or 4.
 - Most sentences describe the course ("sits at the center of the Flex Online people-management
   sequence," "every module asks students to…"). A vision should describe what the course helps
   students do at work.
@@ -600,7 +600,7 @@ current practice keep every later module current.
 :::
 :::
 
-The Course Planning Document has room for eight modules. Give each a title a student would
+The plan has room for eight modules. Give each a title a student would
 understand on day one. Start from the CLOs: list what students need to know or practice to meet each
 one, then cut any topic they don't need to meet a CLO.
 

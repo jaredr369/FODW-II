@@ -31,8 +31,9 @@ section, and the files you save are how your ID sees your work.
 :::
 
 A Flex Online course is a Mays online business course built on a shared template and common
-design standards. In this workshop, you'll build your Course Planning Document, a working plan
-that will guide the future development of the entire course. Each module has you build different
+design standards. In this workshop, you'll build a Course Planning Document, a working plan
+that will guide the future development of the entire course. If your course has already been
+developed and taught, you'll review and update its Course Map instead. Each module has you build different
 sections of your plan. The expected pace is one module per week, with a live check-in each week by
 Zoom or in person with your instructional designer (ID). Your ID is assigned to you before the
 workshop begins and works with you through the development of your course. You can work ahead; if
@@ -176,20 +177,31 @@ Choose a track:
   attention. You keep the section, accept or edit a suggested revision,
   or rewrite it. Each change gets a short note so your ID can see what changed and why.
 
+::: full
 A Course Map is not the same as your Course Planning Document. The Course Map is the finished,
 detailed record of everything in a course, complete enough to rebuild the course in another
 learning management system if it were ever lost from Canvas. The [Course Planning Document](src:template-planning-doc) is
 the working plan you build in this workshop, a section at a time.
+:::
+
+::: refresh
+You've done this once already. In your first workshop you built a Course Planning Document; during
+development your ID turned it into your course and recorded everything in the Course Map, the
+finished, detailed record of the course, complete enough to rebuild it if it were ever lost from
+Canvas. On the Refresh track, the Course Map is your working document. You review and update it
+section by section, and you finish with an updated Course Map and a change log for your ID.
+:::
 
 Both tracks go through every module, and both add a storyline to your course: a recurring
 character and a realistic scenario in each module, which you'll plan in Modules 2 and 3. Most
-existing courses don't have a storyline yet, so refresh courses build one too.
+existing courses don't have a storyline yet, so refresh courses build one too, and it's added to
+the Course Map as new sections.
 
 ### See it
 
 Here's how the MGMT 615 instructor did this step. The course had already been developed and taught
 in the Flex Online program, so they chose Refresh and uploaded their Course Map. The tool sorted it
-into the sections of the Course Planning Document and found most of them: the catalog description,
+into the sections this workshop reviews and found most of them: the catalog description,
 the course vision, five course-level objectives (CLOs) and all eight modules. A few sections weren't
 in the Course Map. The instructor wrote the learner description and added the program outcomes
 themselves in Module 1. For the storyline, the tool drafts a first version in Modules 2 and 3,
@@ -214,7 +226,7 @@ Fill in a few details about your course. There's no AI draft in this step.
 ### Review (refresh)
 
 Next, upload your Course Map as a Word file or paste its text. Select Sort with AI, and the AI
-sorts it into the sections of your Course Planning Document. Without the AI, you skip the upload
+sorts it into the sections this workshop reviews. Without the AI, you skip the upload
 and paste each current section when you reach it.
 
 AI instructions:

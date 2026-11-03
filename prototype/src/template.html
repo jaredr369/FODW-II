@@ -650,7 +650,7 @@ function md(text, opts = {}) {
       const label = line.replace(/^:::\s*plan\s*/, ''); const buf = []; i++;
       while (i < lines.length && !/^:::\s*$/.test(lines[i])) buf.push(lines[i++]);
       i++;
-      html += '<div class="plan-page"><p class="plan-label">MGMT 615 Course Planning Document' + (label ? ': ' + esc(label) : '') + '</p>' + md(buf.join('\n'), opts) + '</div>';
+      html += '<div class="plan-page"><p class="plan-label">MGMT 615 ' + (isRefresh() ? 'Course Map, updated' : 'Course Planning Document') + (label ? ': ' + esc(label) : '') + '</p>' + md(buf.join('\n'), opts) + '</div>';
       continue;
     }
     // ::: refresh / ::: full block: text shown on that track only.
@@ -1006,6 +1006,20 @@ function avRefresh(focusSel) {
 }
 // 7.1: the module's cohort session, then the checks: recording test, a low-stakes start, RSI, and 90 minutes.
 const RSI_NAME = { 1: 'direct instruction', 2: 'feedback', 3: 'information and answers', 4: 'facilitated discussion', 5: 'other' };
+// The workshop's document: a new Course Planning Document on Full build; the faculty member's updated Course Map
+// on Refresh (they already have a Course Map from development, so they review and update it).
+const isRefresh = () => state.track === 'refresh';
+const docName = () => isRefresh() ? 'updated Course Map' : 'Course Planning Document';
+const stepTitle = s => isRefresh() && !editing ? s.title.replace('Your Course Planning Document', 'Your updated Course Map') : s.title;
+// On Refresh, phrases that name the Full Build document are reworded as the page renders (not in Edit mode, which
+// shows the source text). Paragraphs that compare the two documents use their own Refresh wording instead.
+function refreshWording(root) {
+  if (!isRefresh() || editing) return;
+  const swaps = [[/your finished Course Planning Document/g, 'your updated Course Map'], [/your Course Planning Document/g, 'your updated Course Map'],
+    [/the whole planning document/g, 'your whole updated Course Map'], [/\bthe planning document\b/g, 'the updated Course Map']];
+  const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT); const nodes = []; while (walker.nextNode()) nodes.push(walker.currentNode);
+  nodes.forEach(n => { let v = n.nodeValue; swaps.forEach(([a, b]) => { v = v.replace(a, b); }); if (v !== n.nodeValue) n.nodeValue = v; });
+}
 const DAYS = { mon: 'Monday', tue: 'Tuesday', wed: 'Wednesday', thu: 'Thursday' };
 const earlyDay = () => state.cohortDay === 'mon' || state.cohortDay === 'tue';
 // MGMT 615 meets on Thursdays; for a Monday or Tuesday choice the draft uses the module's early-week session.
@@ -1167,7 +1181,7 @@ function planSummary() {
     '<h4>The story thread, module by module</h4><div class="scroll"><table class="summary"><thead><tr><th scope="col">Module</th><th scope="col">Scenario</th><th scope="col">Main activity</th><th scope="col">Materials</th><th scope="col">Media</th><th scope="col">Cohort session</th><th scope="col">Week</th></tr></thead><tbody>' + rows + '</tbody></table></div>' +
     '<h4>Still open</h4>' + (open.length ? '<ul class="open-items">' + open.join('') + '</ul><p class="scen-note">Fix each one, or keep it with a note for your ID in the box below.</p>' : '<p class="wl-ok">✓ Nothing is open.</p>') +
     '<h4>The whole document</h4><p>Read it once, top to bottom, the way your ID and the development team will.</p>' +
-    '<div class="row"><button type="button" class="btn sec" data-opendoc>Open the planning document</button><button type="button" class="btn" data-final>Save final version</button></div></div>';
+    '<div class="row"><button type="button" class="btn sec" data-opendoc>Open the ' + (isRefresh() ? 'updated Course Map' : 'planning document') + '</button><button type="button" class="btn" data-final>Save final version</button></div></div>';
 }
 // Workload: a module's week = activities (typed in 4.2, or the AI draft) + readings and media (estimated until
 // Modules 5 and 6 are saved) + the 90-minute cohort session (Modules 2 to 8). Module 1's target is about 4 hours.
@@ -1411,7 +1425,7 @@ function renderNav() {
     const open = m.id in navOpen ? navOpen[m.id] : m.id === cur;
     h += '<h2><button type="button" class="modhead" data-mod="' + m.id + '" aria-expanded="' + open + '"><span class="chev" aria-hidden="true">' + (open ? '▾' : '▸') + '</span>' +
       '<span class="mt">' + esc(m.title.replace(/^Module (\d+)\. /, 'M$1 · ')) + '</span><span class="count' + (d === keys.length ? ' all' : '') + '">' + d + ' of ' + keys.length + '</span></button></h2>';
-    if (open) h += keys.map(k => navBtn(k, k.endsWith(':reflection') ? 'Reflection' : k.endsWith(':prep') ? 'Check-in prep' : m.steps.find(s => m.id + ':' + s.key === k).title.replace(/\s*\(optional\)/, ''), isDone(k))).join('');
+    if (open) h += keys.map(k => navBtn(k, k.endsWith(':reflection') ? 'Reflection' : k.endsWith(':prep') ? 'Check-in prep' : stepTitle(m.steps.find(s => m.id + ':' + s.key === k)).replace(/\s*\(optional\)/, ''), isDone(k))).join('');
   }
   $('#nav').innerHTML = h;
 }
@@ -1433,7 +1447,7 @@ function pageName(id) {
   const { m, key, step } = findStep(id), mod = m.title.replace(/^Module (\d+)\..*/, 'Module $1');
   if (key === 'reflection') return mod + ': Refresh reflection';
   if (key === 'prep') return mod + ': Check-in prep';
-  return step ? step.title.replace(/\s*\(optional\)/, '') : id;
+  return step ? stepTitle(step).replace(/\s*\(optional\)/, '') : id;
 }
 function pager() {
   const o = order(), i = o.indexOf(state.at), prev = o[i - 1], nxt = o[i + 1];
@@ -1461,8 +1475,8 @@ function bannerArt() {
 }
 function renderWelcome() {
   return '<div class="banner hero">' + bannerArt() + '<div class="txt"><p class="kicker">Flex Online Design Workshop II</p><h2>Plan your Flex Online course</h2>' +
-    '<p class="sub">Build your Course Planning Document, one module a week, with your ID.</p></div></div><div class="welcome">' +
-    '<p>This prototype walks through the workshop with MGMT 615: Managing People and Performance, a fictitious course, and plays back recorded AI responses so the demo never depends on a live connection. Every step builds or reviews one section of the Course Planning Document; open it any time with <strong>Planning document</strong>.</p>' +
+    '<p class="sub">Build your Course Planning Document, or update your Course Map, one module a week, with your ID.</p></div></div><div class="welcome">' +
+    '<p>This prototype walks through the workshop with MGMT 615: Managing People and Performance, a fictitious course, and plays back recorded AI responses so the demo never depends on a live connection. On Full build, every step builds one section of a new Course Planning Document; on Refresh, every step reviews and updates one section of your Course Map. Open it any time with the button at the top right.</p>' +
     '<h3>Choose a track</h3><div class="choice">' +
     '<button type="button" data-track="full" aria-pressed="' + (state.track === 'full') + '"><strong>Full build</strong>A new course, or a course rebuilt from the beginning. Each step drafts its section from your course details.</button>' +
     '<button type="button" data-track="refresh" aria-pressed="' + (state.track === 'refresh') + '"><strong>Refresh</strong>A course already developed and taught in the Flex Online program. You upload its Course Map, and each step reviews your current section with flags and suggested revisions.</button></div>' +
@@ -1534,11 +1548,11 @@ function renderStep(goKey) {
       '<div class="row"><button type="button" class="btn" data-save="' + esc(goKey) + '">' + (key === 'prep' ? 'Ready for check-in' : 'Save answers') + '</button>' + (done ? '<span class="done-note">Saved</span>' : '') + '</div>';
   }
   const p = step.parts;
-  let h = crumb + '<h2 class="step"' + tag('title', step.title) + '>' + esc(step.title) + '</h2><div class="meta">' + md(step.lead) + '</div>';
+  let h = crumb + '<h2 class="step"' + tag('title', step.title) + '>' + esc(stepTitle(step)) + '</h2><div class="meta">' + md(step.lead) + '</div>';
   // A course without cohort sessions sees a short page in 7.1 and 7.2 instead of the planning steps.
   if (p['No cohort sessions'] && !hasCohort()) {
     h = crumb + '<h2 class="step"' + tag('title', step.title) + '>' + esc(step.title) + '</h2><section class="part">' + md(p['No cohort sessions']) + '</section>';
-    return h + '<div class="row"><button type="button" class="btn" data-save="' + esc(key) + '">Save to plan</button>' + (state.done[key] ? '<span class="done-note">Saved to your planning document</span>' : '') + '</div>';
+    return h + '<div class="row"><button type="button" class="btn" data-save="' + esc(key) + '">Save to plan</button>' + (state.done[key] ? '<span class="done-note">Saved to your ' + (isRefresh() ? 'updated Course Map' : 'planning document') + '</span>' : '') + '</div>';
   }
   if (p['Learn']) h += '<section class="part"><h3>Learn</h3>' + md(p['Learn']) + '</section>';
   if (p['See it']) h += '<section class="part example"><h3>See it <span class="tag">Example: MGMT 615 (fictitious course)</span></h3>' + md(p['See it']) + '</section>';
@@ -1569,10 +1583,10 @@ function renderStep(goKey) {
   }
   if (p['Checks'] && !/^None\.?\s*$/.test(p['Checks'].trim())) h += '<section class="part" id="checks" hidden><h3>Checks <span class="tag">ran on save</span></h3>' + md(p['Checks']) +
     '<div class="flag ok">Every flag is fixed or has a note. This section is ready for your ID.</div></section>';
-  if (p['Save']) h += '<section class="part"><h3>Save</h3>' + md(p['Save'].replace(/^Planning document:/gm, 'Goes into your Course Planning Document:').replace(/\s*\((?:[^()]*?;\s*)?see\s+`export\.md`\)/g, '')) + '</section>';
+  if (p['Save']) h += '<section class="part"><h3>Save</h3>' + md(p['Save'].replace(/^Planning document:/gm, 'Goes into your ' + docName() + ':').replace(/\s*\((?:[^()]*?;\s*)?see\s+`export\.md`\)/g, '')) + '</section>';
   if (p['Go deeper (supplemental)']) h += '<details class="part"><summary>Go deeper (supplemental)</summary>' + md(p['Go deeper (supplemental)']) + '</details>';
   h += '<div class="row"><button type="button" class="btn" data-save="' + esc(key) + '">' + (setup.length ? 'Finish setup' : 'Save to plan') + '</button>' +
-    (state.done[key] ? '<span class="done-note">' + (setup.length ? 'Setup finished' : 'Saved to your planning document') + '</span>' : '') + '</div>';
+    (state.done[key] ? '<span class="done-note">' + (setup.length ? 'Setup finished' : 'Saved to your ' + (isRefresh() ? 'updated Course Map' : 'planning document')) + '</span>' : '') + '</div>';
   return h;
 }
 
@@ -1686,7 +1700,7 @@ function renderDoc() {
   let h = '<div class="row" style="margin-top:0"><button type="button" class="btn sec" id="closeDoc">Close</button>' +
     '<label><input type="checkbox" id="showAll"' + (state.showAll ? ' checked' : '') + '> Show the finished plan</label>' +
     '<button type="button" class="btn" id="download">Download (Word)</button></div>';
-  h += '<h2>' + (shown('title') ? esc(f.course.number + ' ' + f.course.title) : '[Course Name and Number]') + ' Course Planning Document</h2>';
+  h += '<h2>' + (shown('title') ? esc(f.course.number + ' ' + f.course.title) : '[Course Name and Number]') + ' ' + (isRefresh() ? 'Course Map, updated' : 'Course Planning Document') + '</h2>';
   h += sec('catalog', 'TAMU Catalog Course Description', '<p>' + esc(f.catalog) + '</p>');
   h += sec('plos', 'Program-Level Outcomes', ul(f.programOutcomes));
   h += sec('vision', 'Course Vision', '<p>' + esc(f.vision) + '</p>');
@@ -1702,7 +1716,7 @@ function downloadDoc() {
   const body = $('#doc').cloneNode(true); body.querySelector('.row').remove();
   const html = '<html><head><meta charset="utf-8"><style>body{font-family:Calibri,Arial,sans-serif}table{border-collapse:collapse}td,th{border:1px solid #999;padding:4px;vertical-align:top}</style></head><body>' + body.innerHTML + '</body></html>';
   const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([html], { type: 'application/msword' }));
-  a.download = 'MGMT 615 Course Planning Document (prototype).doc'; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+  a.download = 'MGMT 615 ' + (isRefresh() ? 'Course Map, updated' : 'Course Planning Document') + ' (prototype).doc'; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 1000);
 }
 
 /* ---------- render and events ---------- */
@@ -1711,6 +1725,9 @@ function render() {
   renderNav();
   SRC = []; CUR = null;
   $('#main').innerHTML = state.at === 'welcome' ? renderWelcome() : renderStep(state.at) + pager();
+  $('#docBtn').textContent = isRefresh() ? 'Updated Course Map' : 'Planning document';
+  $('#doc').setAttribute('aria-label', isRefresh() ? 'Updated Course Map preview' : 'Course Planning Document preview');
+  refreshWording($('#main'));
   $('#credits').innerHTML = 'Banner image: ' + credit('Storyline path', '');
   CUR = null;
   if (!$('#doc').hidden) $('#doc').innerHTML = renderDoc();

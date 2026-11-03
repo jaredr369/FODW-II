@@ -4,8 +4,8 @@ Module id: `m8`
 Steps: 2
 ID check-in: live review of the finished plan; the ID then schedules the kick-off meeting
 
-Faculty complete: a summary review of the whole planning document, and the communication and
-feedback plan.
+Faculty complete: a summary review of the whole Course Planning Document (Full build) or updated
+Course Map (Refresh), and the communication and feedback plan.
 
 Refresh checks for this module: the planning document is complete and aligned; announcement and
 feedback routines are in place.
@@ -97,7 +97,7 @@ version** downloads the planning document as a Word file to share with your ID.
 
 ### Save
 
-Planning document: no new section. The change log (refresh) and check-in summary are complete.
+Planning document: no new section. The change log (Refresh) and check-in summary are complete.
 Project file: `alignment.final`.
 
 ### Go deeper (supplemental)

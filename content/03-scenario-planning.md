@@ -258,7 +258,7 @@ Owns," shows up in the steps ahead:
 ### See it
 
 Here's one of the eight scenarios the MGMT 615 instructor planned, for Module 4. Its title and
-premise go into the Course Planning Document; the five parts guide the activities, media, and
+premise go into the plan; the five parts guide the activities, media, and
 cohort session you'll plan in Modules 4 to 7.
 
 ::: plan Scenario, Module 4

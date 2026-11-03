@@ -19,8 +19,8 @@ the tool underlines; "(glossary only)" terms are too common to underline and app
 | Cohort session | cohort sessions | A 90-minute live class on Zoom, held each week in Modules 2 to 8 in most Flex Online courses. Attendance is optional, and every session is recorded. |
 | Confidence monitor | | A screen on the XR stage, out of the camera's view, that shows your slides and notes while you teach. |
 | Conflict | (glossary only)
-| Course Map | Course Maps | The finished, detailed record of everything in an existing Flex Online course, complete enough to rebuild it. Refresh courses upload theirs in step GS.2. |
-| Course Planning Document | | The working plan you build in this workshop, a section at a time. Your ID and the development team build the course from it. |
+| Course Map | Course Maps | The finished, detailed record of everything in a Flex Online course, complete enough to rebuild it. Your ID creates it during development. On the Refresh track, it's your working document: you upload it in step GS.2, then review and update it section by section. |
+| Course Planning Document | | The working plan you build on the Full Build track, a section at a time. Your ID and the development team build the course from it. Refresh courses already have one from their first workshop and update their Course Map instead. |
 | Curated material | curated reading, curated video | A reading or video from another source that you choose for your course, such as an article, chapter, or video. Curated is the default; it's the least work to produce. |
 | Environment | (glossary only)
 | Flex Online | | Mays Business School's online course format: a shared template, weekly modules, asynchronous work, and, in most courses, weekly live cohort sessions. |
