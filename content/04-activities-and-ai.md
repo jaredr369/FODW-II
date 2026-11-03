@@ -321,6 +321,14 @@ which CLO each activity serves, how much it weighs, and how long it takes.
 you the evidence of whether students met your CLOs.
 :::
 
+::: refresh
+You planned your activities in your first workshop, and you've seen how they went. As you review,
+check that each activity still traces to a CLO and uses its verb, and that each week comes close to
+its target; the week check under Decide adds it up. New since then, below: your storyline as the
+source of activities, and designing major assessments for AI.
+:::
+
+::: refresher
 At this stage you don't write prompts or rubrics. Plan clearly enough that your ID can see what
 students will do.
 
@@ -358,6 +366,7 @@ readings and media (about 1 in Module 1). If your program director sets a differ
 enter it in your course details (step GS.2). For a fuller method, see Rice University's Course
 Workload Estimator: `src:ext-rice-workload`.
 :::
+:::
 
 **Your storyline supplies the activities.** Each scenario ends in a decision, and that is where
 the module's main activity belongs. One decision can become an assignment where students write a
@@ -365,6 +374,7 @@ recommendation, a discussion where they argue what the character should do, or a
 checks they can find the root cause first. Not every activity has to come from the story. Use it
 where it fits.
 
+::: refresher
 **Canvas offers three activity types.** Assignments are for producing something, such as an
 analysis or a plan. Discussions are for dialogue across professional perspectives. Quizzes are
 for low-stakes checks before harder work. Cohort sessions come in Module 7.
@@ -377,6 +387,7 @@ percent. Points and rubrics are finished with your ID during development.
 **Watch the last module.** Courses often stack a final project on the module's normal work, and
 the last week ends up twice as heavy. Start a course-wide synthesis a module early, or let it
 replace that module's main assignment.
+:::
 
 **Design major assessments for AI.** For each high-weight activity, ask whether a student could
 hand the prompt to an AI tool and submit what comes back without doing the thinking the CLO asks

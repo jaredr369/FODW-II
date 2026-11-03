@@ -66,6 +66,11 @@ live class on Zoom, for Modules 2 to 8: something students can only get by being
 offer nothing the recording doesn't ([Morris et al., 2019](src:ext-morris-2019)).
 :::
 
+::: refresh
+You planned cohort sessions in your first workshop. New since then: choosing a session day and
+designing around it, the recording test, and tying each session to your story.
+:::
+
 Most Flex Online courses hold cohort sessions, but a few don't. Does yours?
 
 ::: choose cohort
@@ -311,6 +316,11 @@ slide deck.
 
 **Why it matters:** A lesson plan keeps a 90-minute session on time and on purpose. Drafting the
 outline and slides from the same plan means all three say the same thing.
+:::
+
+::: refresh
+You may have written cohort lesson plans before. New since then: a session shape for your session
+day, and drafting the student-facing outline and slides from your plan.
 :::
 
 Every cohort session has three documents, each from a team template:

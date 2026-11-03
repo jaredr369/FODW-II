@@ -226,6 +226,9 @@ summary { cursor: pointer; color: var(--muted); font-size: 14px; }
 .choose .opt input { margin-top: 4px; }
 .choose .desc { display: block; font-size: 15px; color: var(--muted); }
 .grid-cap { margin: 0 0 6px; }
+.refresher { border: 1px solid var(--line); border-radius: 8px; padding: 8px 14px; margin: 10px 0 14px; background: #fff; }
+.refresher > summary { cursor: pointer; font-weight: 600; color: var(--maroon); }
+.refresher[open] > summary { margin-bottom: 8px; }
 .current { border: 1px solid var(--line); border-left: 4px solid var(--ex); background: var(--ex-tint); border-radius: 6px; padding: 10px 14px; margin: 10px 0 14px; }
 .current-label { margin: 0 0 6px; } .current ul { margin: 4px 0; } .current p { margin: 4px 0; }
 .current-paste { margin-top: 8px; } .current-paste summary { cursor: pointer; font-size: 14px; color: var(--ex); }
@@ -651,6 +654,18 @@ function md(text, opts = {}) {
       while (i < lines.length && !/^:::\s*$/.test(lines[i])) buf.push(lines[i++]);
       i++;
       html += '<div class="plan-page"><p class="plan-label">MGMT 615 ' + (isRefresh() ? 'Course Map, updated' : 'Course Planning Document') + (label ? ': ' + esc(label) : '') + '</p>' + md(buf.join('\n'), opts) + '</div>';
+      continue;
+    }
+    // ::: refresher block: material faculty saw in their first workshop. Full build shows it as is; Refresh folds
+    // it under a short opening, closed until they open it (open in Edit mode, so it can be edited).
+    if (/^:::\s*refresher\s*$/.test(line)) {
+      const buf = []; i++;
+      for (let depth = 1; i < lines.length; i++) {
+        if (/^:::\s*$/.test(lines[i])) { if (--depth === 0) break; } else if (/^:::\s*\S/.test(lines[i])) depth++;
+        buf.push(lines[i]);
+      }
+      i++;
+      html += state.track === 'refresh' ? '<details class="refresher"' + (editing ? ' open' : '') + '><summary>Need a refresher? The full explanation from your first workshop</summary>' + md(buf.join('\n'), opts) + '</details>' : md(buf.join('\n'), opts);
       continue;
     }
     // ::: refresh / ::: full block: text shown on that track only.

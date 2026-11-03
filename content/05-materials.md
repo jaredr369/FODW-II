@@ -66,6 +66,14 @@ watch, or work with to get ready for the module's decision.
 preparing students for a specific activity.
 :::
 
+::: refresh
+You planned your materials in your first workshop. As you review, check that each item still
+prepares students for a named activity, that sources are current, and that each module's required
+reading stays between 5 and 25 pages. New since then, below: your scenario as a material, and
+finding sources with AI.
+:::
+
+::: refresher
 Learning materials are everything in a module that isn't an activity. Choose from least to most
 effort to produce:
 
@@ -76,6 +84,7 @@ effort to produce:
 | Instructor-authored reading (4 to 10 pages) | Several hours each | Nothing curated fits, or your own experience is the point. |
 | Interactive reading (built by your ID) | High | Complex content that benefits from short sections and knowledge checks. |
 | Instructor-recorded video | Highest | Planned in Module 6, up to 30 minutes of scripted video and audio a module. |
+:::
 
 **Your scenario is a material too.** The narrative, and any exhibits the character works from (an
 email from a boss, a dashboard, a complaint), are created content. List them.
@@ -86,10 +95,12 @@ source you want. Check every suggestion before you list it. Each source should h
 author, be current and stable, and tie to an objective. You can also search TAMU Libraries. Link to
 the library record instead of uploading a PDF, so there's no file to manage in Canvas.
 
+::: refresher
 **Load.** Plan 5 to 25 pages of required reading per module, adjusted for density. At 6 to 10 pages
 an hour, that's about 1 to 3 hours. With up to 30 minutes of scripted video and audio, a few short
 curated videos, roughly 6 hours of activities, and the 90-minute cohort session, the week comes to
 close to 10 hours. Module 1 targets about 4 hours in all, so keep any reading in it light.
+:::
 
 ### See it
 
@@ -236,6 +247,13 @@ update any that are missing or out of date.
 risk. Clear attributions and AI notes also show students the integrity you ask of them.
 :::
 
+::: refresh
+You covered copyright and attribution in your first workshop. As you review, check that every
+material still has a library link, an open license, a public link, or permission, plus an
+attribution line. New since then, below: a note for anything made with AI.
+:::
+
+::: refresher
 Everything you use is protected by copyright unless it says otherwise, and the lack of a notice
 doesn't make it free. For each material, you need one of four things. Check for them in this
 order:
@@ -256,6 +274,7 @@ permission, and paywalled content can't be uploaded for students.
 
 **Attribution** credits the creator: title, author, source, and license. Use it even when the
 license doesn't require it.
+:::
 
 **AI-assisted content.** If you used AI to draft a scenario, an exhibit, an image, or part of a
 reading, tell students. Check it for accuracy and for anything that closely reproduces someone

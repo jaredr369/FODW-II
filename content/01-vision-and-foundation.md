@@ -82,6 +82,14 @@ workshop serves them.
 :::
 :::
 
+::: refresh
+You recorded this in your first workshop. Check that it still holds: the catalog text is the current
+official version, your learner description fits the students who take the course now, and your
+program's outcomes haven't changed. If you change your vision or CLOs, confirm the changes with your
+program director before Module 2.
+:::
+
+::: refresher
 Flex Online courses are planned backward (Wiggins & McTighe, 2005), and so is this workshop:
 
 ::: figure backward | Planned backward: the order of this workshop
@@ -109,6 +117,7 @@ Program outcomes describe what students can do after the whole degree; list the 
 course supports. Your ID can find them if you don't have them. Before Module 2, you'll confirm your
 vision and CLOs with your program director, because the storyline in Modules 2 and 3 grows out
 of them. It's worth scheduling that meeting now.
+:::
 
 ### See it
 
@@ -224,17 +233,20 @@ the purpose it was designed for. It can also bring to light opportunities for ch
 :::
 :::
 
+::: refresh
+You wrote your vision in your first workshop. Your current vision, from your Course Map, is shown
+under Review. Read it with two questions in mind: does it still describe what students do at work,
+not what the course covers, and does it still fit the catalog description?
+:::
+
+::: refresher
 Think about the situations your students face at work and what your course helps them do about those
 situations.
 
-::: refresh
-Your current vision, from your Course Map, is shown under Review. Read it with two questions in
-mind: does it still describe what students do at work, and does it still fit the catalog
-description?
-:::
-
 Stay within the scope of your catalog description. Describe what students do on the job, not what
 the course covers or how it's taught.
+:::
+
 ### See it
 
 ::: full
@@ -382,6 +394,13 @@ to say what the course should achieve now.
 :::
 :::
 
+::: refresh
+You wrote your CLOs in your first workshop, and since then you've seen how students did. As you
+review, check that each CLO starts with one observable verb at the apply level or higher, stays
+within the catalog, and still says what students should be able to do.
+:::
+
+::: refresher
 To pitch them at the right level, use Bloom's taxonomy, a widely used framework that sorts
 learning by how much thinking it asks of students (Anderson & Krathwohl, 2001). It has six
 levels, from least to most demanding:
@@ -403,6 +422,7 @@ Start each CLO with one action verb at the apply level or higher, mostly analyze
 create. The students are experienced professionals; they need to use and judge ideas, not just
 recall them. Avoid verbs like "understand" or "know." You can't see them happen, so you can't grade
 them. Describe something within the student's control.
+:::
 
 Each CLO should also suggest a decision someone in your students' role would face. In Module 2
 you'll create a character, someone in your students' role, whose story runs through the course.
@@ -600,14 +620,16 @@ current practice keep every later module current.
 :::
 :::
 
+::: refresh
+You laid out your modules in your first workshop. Check each current title and topic against your
+updated CLOs from step 1.3: every module should trace to a CLO, every title should make sense to a
+student on day one, and any topic students no longer need should be replaced.
+:::
+
+::: refresher
 The plan has room for eight modules. Give each a title a student would
 understand on day one. Start from the CLOs: list what students need to know or practice to meet each
 one, then cut any topic they don't need to meet a CLO.
-
-::: refresh
-Check each current title and topic against your updated CLOs. Rename any module a student wouldn't
-understand on day one, and replace any topic students no longer need.
-:::
 
 Every module should trace back to your CLOs, and through them to the catalog and your program's
 outcomes. Here's one thread through MGMT 615:
@@ -619,6 +641,7 @@ outcomes. Here's one thread through MGMT 615:
 - CLO 1 | Diagnose why an employee or team is underperforming using core theories of motivation and performance.
 - Modules | Module 1, What Managers Actually Do; Module 2, Motivating People; Module 4, Building and Leading Teams; Module 8, Hiring and Building Your Team.
 - Later in this workshop | Each of those modules gets a scenario (Module 3) and activities (Module 4) that practice CLO 1.
+:::
 :::
 
 Order matters. In Module 3, each module becomes a scenario, a realistic situation your character

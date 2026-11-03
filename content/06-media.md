@@ -65,6 +65,14 @@ graphics, including the videos every course requires.
 Learning Media Team time to make it well.
 :::
 
+::: refresh
+You planned media in your first workshop. As you review, check that each module still has its
+overview video, that recorded media stays within 30 minutes a module, and that each item adds
+something a reading can't. New since then, below: media for your story, the XR stage, and One-Touch
+studios.
+:::
+
+::: refresher
 Learning media is the video, audio, and graphics made for your course, by you and the Learning
 Media Team. Curated videos from other sources belong in your materials plan
 (Module 5), not here.
@@ -92,6 +100,7 @@ split anything longer into short parts.
 topic too complex for many students to grasp from reading alone, a process they need to watch, or a
 moment of tension from your story. Keep every item concise, and don't repeat what another material
 already covers.
+:::
 
 **Media for your story.** Go through your scenarios and decide which need production. A scenario
 video opens in the character's situation and ends at the decision, before the answer, so the
