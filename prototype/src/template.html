@@ -628,10 +628,12 @@ function inline(s) {
     const src = DATA.sources[id], href = src && (src.url || (src.path ? '../' + encodeURI(src.path).replace(/#/g, '%23') : ''));
     return href ? '<a data-src="' + esc(id) + '" href="' + esc(href) + '" target="_blank" rel="noopener">' + text + '</a>' : text;
   });
-  // "step 4.2" in the text jumps to that step.
-  s = s.replace(/\b(steps? )(GS\.\d|\d\.\d)\b/g, (m, w, k) => {
-    const id = order().find(x => x.split(':')[1] === k);
-    return id ? '<button type="button" class="linkbtn steplink" data-goto="' + id + '">' + w + k + '</button>' : m;
+  // "step 4.2" in the text jumps to that step. In a list ("steps 1.2 and 1.3", "steps 4.2, 5.1, and 6.1"),
+  // every step number is linked.
+  const stepBtn = (k, label) => { const id = order().find(x => x.split(':')[1] === k); return id ? '<button type="button" class="linkbtn steplink" data-goto="' + id + '">' + label + '</button>' : label; };
+  s = s.replace(/\b(steps? )((?:GS\.\d|\d\.\d)(?:(?:, | and |, and | or |, or )(?:GS\.\d|\d\.\d))*)\b/g, (m, w, list) => {
+    const parts = list.split(/(, and |, or |, | and | or )/);
+    return parts.map((x, i) => i % 2 ? x : stepBtn(x, (i === 0 ? w : '') + x)).join('');
   });
   s = s.replace(/`([^`]+)`/g, '<code>$1</code>');
   s = s.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
