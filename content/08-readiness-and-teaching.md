@@ -53,8 +53,8 @@ Pattern: edit in place
 **What you'll do:** Run every check across your whole planning document and fix what it flags,
 module by module.
 
-**Why it matters:** Your ID builds the course from this document, and it's much easier to adjust the
-plan now than to rebuild a module in development.
+**Why it matters:** This document guides your course's development, and it's much easier to adjust
+the plan now than to rebuild a module later.
 :::
 
 The checks run across the whole document at once and show the results by module.
