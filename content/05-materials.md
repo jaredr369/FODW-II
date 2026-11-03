@@ -132,6 +132,9 @@ materials** to copy the reviewed list into the boxes under Decide.
 ::: module-picker
 :::
 
+::: current materials
+:::
+
 ::: full
 AI instructions:
 

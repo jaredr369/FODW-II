@@ -1,0 +1,258 @@
+{
+  "about": "MGMT 615's Course Map as a Refresh faculty member would upload it in GS.2, before any review (fictional). Refresh review steps show each section here as 'Your current ...'. Taken from the MGMT 615 example Course Map.",
+  "catalog": "MGMT 615 prepares working professionals to manage the people side of organizational performance. Students learn to diagnose why employees and teams underperform, deliver feedback that actually changes behavior, build and repair team dynamics, delegate and make decision-rights calls under pressure, lead a team through change, and hire well. 3 credit hours.",
+  "vision": "MGMT 615 sits at the center of the Flex Online people-management sequence: the course that turns someone who's good at their job into someone who's good at running a team. Other Flex Online courses build a student's functional expertise; this one builds the management judgment that lets them use it, on a team, under real conditions. What sets it apart is a diagnosis-first approach: instead of handing students a checklist of leadership techniques, every module makes them figure out what's actually wrong before choosing a fix, then defend that call to their peers in a live cohort session or a mock interview panel. By the end, students can run the conversations that actually move a career forward: a feedback conversation that changes behavior, a delegation call made under pressure, a change announcement that survives contact with a skeptical team, a structured hire instead of a gut-feel one. These are the skills that separate someone ready to manage a bigger team from someone who's simply good at running the current one. Mastery here means producing the script, the memo, or the scorecard a student would actually use at work.",
+  "clos": [
+    "CLO 1: Apply core theories of motivation and performance to diagnose why an employee or team is underperforming.",
+    "CLO 2: Design a feedback or coaching conversation that changes an employee's behavior, not just documents it.",
+    "CLO 3: Evaluate team dynamics and organizational context to select a management intervention appropriate to the actual problem.",
+    "CLO 4: Make a delegation or decision-rights call and justify the trade-offs involved.",
+    "CLO 5: Communicate a management decision in language a direct report can act on immediately."
+  ],
+  "modules": [
+    {
+      "module": 1,
+      "title": "What Managers Actually Do",
+      "clos": [
+        "CLO 1",
+        "CLO 5"
+      ],
+      "topics": [
+        "What management is (and isn't)",
+        "The shift from doing the work to getting work done through others",
+        "Common first-90-days mistakes",
+        "Course orientation: how the case method works in this course"
+      ],
+      "activities": [
+        "Discussion: Introductions and Your Management Story",
+        "Individual Assignment: Case Analysis, Maria's First Ninety Days",
+        "Interactive Assignment: Manager vs. Individual Contributor Sort"
+      ],
+      "materials": [
+        "Book Chapter: Whitfield, D. (2019). Chapter 2: The Manager's Dilemma. Becoming the Boss: A First-Time Manager's Field Guide. Larkspur Press. (~14 pgs)",
+        "Case: Maria's First Ninety Days [Case study]. (~4 pgs)",
+        "Interactive Reading: Setting Your Management Baseline. (~2 pgs)",
+        "Supplemental: Article: Okafor, T. (2024). Why new managers fail in the first year. Journal of Applied Management Practice, 12(3), 44–51."
+      ],
+      "media": [
+        "Video: Welcome to MGMT 615 (3:00)",
+        "Video: Reyes, P. (2026). The Manager's Shift [Video]. Larkspur Learning Media. (7:30)",
+        "Video: Discussion Primer: Maria's First Ninety Days (2:15)"
+      ],
+      "cohort": null
+    },
+    {
+      "module": 2,
+      "title": "Motivating People",
+      "clos": [
+        "CLO 1",
+        "CLO 5"
+      ],
+      "topics": [
+        "Expectancy theory and self-determination theory",
+        "Why incentives backfire: cases from the field",
+        "Intrinsic vs. extrinsic motivation",
+        "Diagnosing a motivation problem before choosing a fix"
+      ],
+      "activities": [
+        "Individual Assignment: Motivation Diagnosis Memo",
+        "Interactive Assignment: Fix the Incentive",
+        "Quiz: Motivation Theory Check"
+      ],
+      "materials": [
+        "Book Chapter: Whitfield, D. (2019). Chapter 5: What People Actually Want From Work. Becoming the Boss. Larkspur Press. (~16 pgs)",
+        "Article: Han, S. & Okafor, T. (2023). The incentive trap: When rewards reduce performance. Journal of Applied Management Practice, 11(2), 30–39. (~6 pgs)",
+        "Interactive Reading: Diagnose the Motivation Problem. (~2 pgs)",
+        "Supplemental: Case: The Sales Contest That Backfired [Case study]."
+      ],
+      "media": [
+        "Video: Motivation Isn't One Thing (6:00)",
+        "Video: Discussion Primer: The Incentive Trap (2:30)"
+      ],
+      "cohort": "Diagnosing Motivation Problems Roundtable"
+    },
+    {
+      "module": 3,
+      "title": "Performance Management and Feedback",
+      "clos": [
+        "CLO 2",
+        "CLO 5"
+      ],
+      "topics": [
+        "Setting expectations before you need feedback",
+        "The Situation-Behavior-Impact (SBI) feedback model",
+        "Coaching conversations vs. disciplinary conversations",
+        "Handling defensiveness in the room"
+      ],
+      "activities": [
+        "Individual Assignment: Feedback Conversation Script",
+        "Perusall Assignment: Feedback That Lands (annotate Chapter 4)",
+        "Interactive Assignment: Coaching or Discipline? Scenario Sort"
+      ],
+      "materials": [
+        "Book Chapter: Marsh, K. (2021). Chapter 4: Feedback That Lands. The Coaching Manager's Handbook. Brazos Bend Press. (~13 pgs)",
+        "Job Aid: The SBI Feedback Model, One Page.",
+        "Interactive Reading: Script Your Feedback Conversation. (~4 pgs)",
+        "Supplemental: Article: Diallo, R. (2025). Why feedback fails: A field study of manager-employee conversations. Journal of Applied Management Practice, 13(1), 5–17."
+      ],
+      "media": [
+        "Video: Giving Feedback That Actually Changes Behavior (8:00)",
+        "Video: Role-Play Demo: A Coaching Conversation (5:00)",
+        "Video: Role-Play Demo: A Disciplinary Conversation (2:15)"
+      ],
+      "cohort": "Feedback Conversation Practice Roundtable"
+    },
+    {
+      "module": 4,
+      "title": "Building and Leading Teams",
+      "clos": [
+        "CLO 3",
+        "CLO 1"
+      ],
+      "topics": [
+        "What actually predicts team performance (psychological safety, clear roles)",
+        "The stages teams pass through when they form",
+        "Structural fixes vs. motivational fixes",
+        "Designing team assignments that are accessible to every learner"
+      ],
+      "activities": [
+        "Individual Assignment: Team Diagnosis and Structural Fix Memo",
+        "Discussion: Your Best and Worst Team Experience"
+      ],
+      "materials": [
+        "Article: Park, J. & Marsh, K. (2024). What actually predicts team performance: A ten-year review. Journal of Applied Management Practice, 12(4), 60–72. (~11 pgs)",
+        "Case: The Team That Couldn't Ship [Case study]. (~6 pgs)",
+        "Interactive Reading: Diagnose the Team, Not the Person. (~4 pgs)",
+        "Supplemental: Article: Marsh, K. (2024). Designing team assignments every learner can do. Journal of Applied Management Practice, 12(2), 15–22."
+      ],
+      "media": [
+        "Video: Why Some Teams Just Work (6:30)",
+        "Video: Discussion Primer: The Team That Couldn't Ship (2:45)",
+        "Video: Structural Fixes vs. Pep Talks (2:30)"
+      ],
+      "cohort": "Team Diagnosis Roundtable"
+    },
+    {
+      "module": 5,
+      "title": "Managing Conflict and Difficult Conversations",
+      "clos": [
+        "CLO 3",
+        "CLO 2"
+      ],
+      "topics": [
+        "Task, process, and relationship conflict",
+        "Why most managers avoid the conversation that would actually fix things",
+        "Structuring a difficult conversation",
+        "Rehearsing under pressure: why this module leans on practice, not lecture"
+      ],
+      "activities": [
+        "Individual Assignment: Conflict Root-Cause Analysis and Conversation Plan",
+        "Interactive Assignment: Conflict Type Diagnostic Practice",
+        "Perusall Assignment: The Conversation You're Avoiding"
+      ],
+      "materials": [
+        "Book Chapter: Marsh, K. (2021). Chapter 7: The Conversation You're Avoiding. The Coaching Manager's Handbook. Brazos Bend Press. (~12 pgs)",
+        "Interactive Reading: Root-Cause the Conflict. (~3 pgs)",
+        "Job Aid: Conflict Type Diagnostic, One Page.",
+        "Supplemental: Article: Diallo, R. (2024). Conflict avoidance and its cost to team performance. Journal of Applied Management Practice, 12(1), 22–31."
+      ],
+      "media": [
+        "Video: The Conversation Managers Avoid (7:00)",
+        "Video: Role-Play Demo: A Difficult Conversation Done Well (5:00)",
+        "Video: Role-Play Demo: A Difficult Conversation Gone Wrong (2:00)"
+      ],
+      "cohort": "Difficult Conversation Practice Roundtable"
+    },
+    {
+      "module": 6,
+      "title": "Delegation and Decision-Making",
+      "clos": [
+        "CLO 4",
+        "CLO 5"
+      ],
+      "topics": [
+        "Why managers over-hold or over-delegate",
+        "A framework for sorting tasks by delegation readiness",
+        "Decision rights: who decides, who's consulted, who's informed",
+        "Where AI tools help a management decision, and where they mislead it"
+      ],
+      "activities": [
+        "Individual Assignment: Delegation Sort and Decision-Rights Memo",
+        "Quiz: Delegation Framework Check"
+      ],
+      "materials": [
+        "Article: Han, S. (2025). The delegation trap: Why competent managers under-delegate. Journal of Applied Management Practice, 13(2), 18–27. (~9 pgs)",
+        "Job Aid: The Delegation Readiness Framework.",
+        "Interactive Reading: Sort the Tasks. (~5 pgs)",
+        "Supplemental: Job Aid: Where AI Helps (and Where It Doesn't) in a Management Decision."
+      ],
+      "media": [
+        "Video: The Delegation Trap (6:00)",
+        "Video: Discussion Primer: A Decision Made Under Pressure (3:30)",
+        "Video: Where AI Helps, and Where It Doesn't, in Management Decisions (3:15)"
+      ],
+      "cohort": "Decision Rights Roundtable"
+    },
+    {
+      "module": 7,
+      "title": "Leading Through Change",
+      "clos": [
+        "CLO 5",
+        "CLO 3"
+      ],
+      "topics": [
+        "Why change efforts stall after the announcement",
+        "Sources of resistance: loss, uncertainty, and distrust",
+        "Communicating change so it survives contact with the team",
+        "Sustaining momentum after the initial rollout"
+      ],
+      "activities": [
+        "Individual Assignment: Change-Communication Draft and Resistance Map",
+        "Discussion: A Change That Was Announced Badly"
+      ],
+      "materials": [
+        "Book Chapter: Whitfield, D. (2019). Chapter 9: Announcing Change Without Losing the Room. Becoming the Boss. Larkspur Press. (~11 pgs)",
+        "Case: The Reorg Nobody Saw Coming [Case study]. (~4 pgs)",
+        "Interactive Reading: Draft Your Change Message. (~2 pgs)",
+        "Supplemental: Article: Park, J. (2025). Resistance isn't the problem, silence is: A study of failed change announcements. Journal of Applied Management Practice, 13(3), 40–52."
+      ],
+      "media": [
+        "Video: Why Change Announcements Fall Flat (6:00)",
+        "Video: Discussion Primer: The Reorg Nobody Saw Coming (3:00)",
+        "Video: Rewriting a Change Message, Live (4:00)"
+      ],
+      "cohort": "Change Message Table Read"
+    },
+    {
+      "module": 8,
+      "title": "Hiring and Building Your Team",
+      "clos": [
+        "CLO 4",
+        "CLO 1"
+      ],
+      "topics": [
+        "Why gut-feel hiring fails",
+        "Structured interviewing and scorecards",
+        "Proven experience vs. potential: the trade-off",
+        "Onboarding as the first delegation and motivation test",
+        "Course wrap-up: your management approach going forward"
+      ],
+      "activities": [
+        "Individual Assignment: Interview Scorecard and Hiring Decision Memo",
+        "Individual Assignment: Management Approach Summary (integrates all 8 modules)"
+      ],
+      "materials": [
+        "Article: Han, S. & Diallo, R. (2023). Structured interviews outperform gut feel: A meta-analysis for practicing managers. Journal of Applied Management Practice, 11(4), 55–68. (~10 pgs)",
+        "Job Aid: Building an Interview Scorecard.",
+        "Interactive Reading: Potential vs. Proven — Make the Call. (~4 pgs)",
+        "Supplemental: Article: Reyes, P. (2025). Onboarding as your first delegation decision. Journal of Applied Management Practice, 13(4), 12–19."
+      ],
+      "media": [
+        "Video: Stop Hiring on Gut Feel (6:00)",
+        "Video: Discussion Primer: Proven vs. Potential (3:00)",
+        "Video: Course Conclusion (2:30)"
+      ],
+      "cohort": "Mock Structured Interview Panel"
+    }
+  ]
+}

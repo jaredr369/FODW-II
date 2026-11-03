@@ -171,6 +171,9 @@ Decide.
 ::: module-picker
 :::
 
+::: current cohort
+:::
+
 ::: full
 AI instructions:
 

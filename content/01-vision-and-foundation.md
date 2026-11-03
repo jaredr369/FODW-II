@@ -228,8 +228,9 @@ Think about the situations your students face at work and what your course helps
 situations.
 
 ::: refresh
-Read your current vision with two questions in mind: does it still describe what students do at
-work, and does it still fit the catalog description?
+Your current vision, from your Course Map, is shown under Review. Read it with two questions in
+mind: does it still describe what students do at work, and does it still fit the catalog
+description?
 :::
 
 Stay within the scope of your catalog description. Describe what students do on the job, not what
@@ -289,6 +290,9 @@ Demo response (MGMT 615):
 ```
 
 ### Review (refresh)
+
+::: current vision
+:::
 
 The AI reads your current vision and flags anything that doesn't fit, such as too many sentences
 or sentences that describe the course instead of what it helps students do at work. It also
@@ -488,6 +492,9 @@ Demo response (MGMT 615):
 
 ### Review (refresh)
 
+::: current clos
+:::
+
 Each of your current CLOs shows Keep or a suggested revision, with flags.
 
 AI instructions:
@@ -680,6 +687,9 @@ Order: the modules follow the decisions a new manager meets, from understanding 
 building the team.
 
 ### Review (refresh)
+
+::: current modules
+:::
 
 Each module shows Keep or a suggested revision, with flags. CLO numbers are updated to match
 step 1.3.

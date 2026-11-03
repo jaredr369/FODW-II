@@ -226,6 +226,10 @@ summary { cursor: pointer; color: var(--muted); font-size: 14px; }
 .choose .opt input { margin-top: 4px; }
 .choose .desc { display: block; font-size: 15px; color: var(--muted); }
 .grid-cap { margin: 0 0 6px; }
+.current { border: 1px solid var(--line); border-left: 4px solid var(--ex); background: var(--ex-tint); border-radius: 6px; padding: 10px 14px; margin: 10px 0 14px; }
+.current-label { margin: 0 0 6px; } .current ul { margin: 4px 0; } .current p { margin: 4px 0; }
+.current-paste { margin-top: 8px; } .current-paste summary { cursor: pointer; font-size: 14px; color: var(--ex); }
+.current-paste textarea { width: 100%; font: inherit; margin-top: 6px; padding: 6px 8px; border: 1px solid #b9b4ad; border-radius: 6px; }
 .term { background: none; border: 0; padding: 0; font: inherit; color: inherit; text-decoration: underline dotted var(--maroon) 2px; text-underline-offset: 3px; cursor: help; }
 .term[aria-expanded="true"] { background: var(--tint); }
 .term-pop { display: block; margin: 6px 0; padding: 8px 12px; background: #fff; border: 1px solid var(--line); border-left: 4px solid var(--maroon); border-radius: 6px; font-size: 15px; }
@@ -557,7 +561,7 @@ function glossRe(g) {
 }
 const GLOSS_RE = GLOSS.filter(g => g.auto).map(g => [g, glossRe(g)]);
 function markTerms(roots) {
-  const seen = new Set(), skip = 'a, button, code, pre, textarea, input, label, h2, h3, h4, summary, .choose, .term, .fig, .scen-picker, .plan-label, .banner, .meta, .cite, .ros, .plan-summary';
+  const seen = new Set(), skip = 'a, button, code, pre, textarea, input, label, h2, h3, h4, summary, .choose, .term, .fig, .scen-picker, .plan-label, .banner, .meta, .cite, .ros, .plan-summary, .current';
   const nodes = [];
   for (const root of roots) { const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, { acceptNode: n => n.nodeValue.trim() && !n.parentElement.closest(skip) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT });
   while (walker.nextNode()) nodes.push(walker.currentNode); }
@@ -669,6 +673,9 @@ function md(text, opts = {}) {
       i++; html += moduleBlock(which, rows, opts); continue;
     }
     // ::: course-summary: 8.1's look at the whole planning document.
+    // ::: current <section>: on Refresh, the faculty member's current version of the section, from the Course Map.
+    if (/^:::\s*current\s+\w+\s*$/.test(line)) { const which = line.replace(/^:::\s*current\s+/, '').trim(); i++; while (i < lines.length && !/^:::\s*$/.test(lines[i])) i++; i++;
+      if (state.track === 'refresh') html += currentBox(which); continue; }
     if (/^:::\s*run-of-show\s*$/.test(line)) { i++; while (i < lines.length && !/^:::\s*$/.test(lines[i])) i++; i++; html += rosForm(); continue; }
     if (/^:::\s*course-summary\s*$/.test(line)) { i++; while (i < lines.length && !/^:::\s*$/.test(lines[i])) i++; i++; html += planSummary(); continue; }
     if (/^:::\s*derive\s*$/.test(line)) { i++; while (i < lines.length && !/^:::\s*$/.test(lines[i])) i++; i++;
@@ -1113,6 +1120,24 @@ function rosForm() {
       '25 minutes before: Zoom settings, breakout rooms, and polls loaded', '20 minutes before: a walkthrough with you of slide layouts, cues, and hand signals', '15 minutes before: holding slide and music; the room opens', '5 minutes before: a final check with you; recording starts at the session start']) +
     team('Contingency plan and post-session', ['Contacts on site, off site, and with the vendor if something fails', 'After the session: the recording is saved, a short debrief with you on what to change, and the stage is reset']) +
     '<h4>Session assets</h4></div>';
+}
+// Refresh: "Your current ..." boxes show what the review starts from, taken from the Course Map uploaded in GS.2.
+const CUR_LABEL = { vision: 'course vision', clos: 'course-level objectives (CLOs)', modules: 'module titles, CLOs, and topics',
+  activities: 'learning activities', materials: 'learning materials', media: 'learning media', cohort: 'cohort session' };
+function currentBox(which) {
+  const cm = DATA.demo['mgmt615-coursemap.json']; if (!cm || !CUR_LABEL[which]) return '';
+  const perModule = /^(activities|materials|media|cohort)$/.test(which), n = perModule ? pickOf(stepKey()) : 0, m = perModule ? cm.modules[n - 1] : null;
+  const list = a => '<ul>' + a.map(x => '<li>' + esc(x) + '</li>').join('') + '</ul>';
+  let body = '';
+  if (which === 'vision') body = '<p>' + esc(cm.vision) + '</p>';
+  else if (which === 'clos') body = list(cm.clos);
+  else if (which === 'modules') body = '<div class="scroll"><table><thead><tr><th scope="col">Module</th><th scope="col">Title</th><th scope="col">CLOs met</th><th scope="col">Topics</th></tr></thead><tbody>' +
+    cm.modules.map(x => '<tr><td>' + x.module + '</td><td>' + esc(x.title) + '</td><td>' + esc(x.clos.join(', ')) + '</td><td>' + esc(x.topics.join('; ')) + '</td></tr>').join('') + '</tbody></table></div>';
+  else if (which === 'cohort') body = m.cohort ? '<p>' + esc(m.cohort) + '</p>' : '<p>None. Module 1 has no cohort session.</p>';
+  else body = list(m[which]);
+  const what = CUR_LABEL[which] + (perModule ? ' for Module ' + n : '');
+  return '<div class="current"><p class="current-label"><strong>Your current ' + esc(what) + '</strong>, from the Course Map you uploaded in Getting Started (' + inline('step GS.2') + '). The AI reviews this.</p>' + body +
+    '<details class="current-paste"><summary>Didn\u2019t upload a Course Map? Paste your current ' + esc(CUR_LABEL[which]) + ' here.</summary><textarea rows="4" aria-label="Your current ' + esc(what) + '"></textarea></details></div>';
 }
 // 8.1: the whole plan at a glance. Each module's story thread, its week, and anything still open, with a way to
 // jump to the step that fixes it. The demo reads MGMT 615's data wherever the faculty member hasn't typed their own.

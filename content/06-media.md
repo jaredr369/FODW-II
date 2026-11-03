@@ -146,6 +146,9 @@ Select **Use this media plan** to copy the reviewed list into the box under Deci
 ::: module-picker
 :::
 
+::: current media
+:::
+
 ::: full
 AI instructions:
 

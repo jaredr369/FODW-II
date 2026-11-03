@@ -454,6 +454,9 @@ Select **Use these activities** to copy the reviewed list into the boxes under D
 ::: module-picker
 :::
 
+::: current activities
+:::
+
 ::: full
 AI instructions:
 
