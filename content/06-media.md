@@ -224,21 +224,34 @@ Pattern: interview, then draft
 ### Learn
 
 ::: purpose
-**What you'll do:** Draft one A/V script, usually for your welcome video or your Module 1 overview.
+**What you'll do:** Draft one A/V/E script, usually for your welcome video or your Module 1 overview.
 
 **Why it matters:** Writing one script now, with feedback, makes the rest faster during development.
 The script is also what you share with the Learning Media Team before your practice session on the
 XR stage.
 :::
 
-Every instructor video starts with an A/V script in two columns: what you'll say (Dialogue) and what
-appears on screen (Graphics). The template runs in five parts:
+Every video you record on the XR stage starts with an A/V/E script from the Learning Media Team. It
+has three columns:
 
-- **Opening:** the branded intro, with no dialogue.
-- **Introduction:** greet students and frame the topic.
-- **Content:** the main ideas, in short chunks of two to four sentences.
-- **Conclusion:** one clear next step.
-- **Closing:** the branded outro.
+- **Dialogue (Audio):** what you'll say.
+- **Graphics (Video):** what appears on screen, usually your slides.
+- **Environment:** the virtual background behind you on the XR stage.
+
+The script runs in five parts:
+
+- **Opening:** the Flex Online intro graphic and music. There's no dialogue, and the Learning Media
+  Team fills it in.
+- **Video Introduction:** greet students and say exactly what the video covers.
+- **Video Content:** the main ideas, in short chunks of two to four sentences. Add chunks as needed.
+- **Video Conclusion:** restate what matters, give students one thing to do next, and close with
+  your concluding remarks.
+- **Closing:** the Texas A&M branding and music, also filled in for you.
+
+**Keep it simple.** Choose one background with the Learning Media Team and teach with slides. In
+the Graphics column, note the slide or image you want with each chunk; the team builds the final
+graphics. Anything in square brackets, such as [Close-up shot], is a note to the team, not
+something you say.
 
 **Write for the ear.** Use contractions and full sentences, and read it aloud as you write; if a
 sentence is awkward spoken, rewrite it. Say anything a student needs to know, so nothing depends
@@ -247,24 +260,33 @@ only on what's on screen. Most scripts run 250 to 350 words, about 2 to 2.5 minu
 Your ID and the Learning Media Team will help with the rest of your scripts during development.
 
 **Getting ready for the stage.** Send the finished script to your ID, who passes it to the Learning
-Media Team's Writer/Producer. The Writer/Producer gets your script ready for production. Schedule a practice session on the XR stage with the Learning Media Team. Record your
-required videos in as few sessions as you can; MGMT 615 recorded all eight module overviews in
-one.
+Media Team's Writer/Producer. The Writer/Producer gets your script ready for production. Schedule a
+practice session on the XR stage with the Learning Media Team. Record your required videos in as
+few sessions as you can; MGMT 615 recorded all eight module overviews in one.
 
 ### See it
 
-MGMT 615's welcome video, first lines:
+Here's MGMT 615's welcome video, written in the A/V/E script template.
 
-| Dialogue | Graphics |
-|---|---|
-| Howdy, and welcome to MGMT 615. Over the next eight weeks, you'll follow one manager, Dana Ortiz, through the hardest stretch of her first year running a distribution center. | Course title, then the instructor on the XR stage |
-| Each module puts you inside one of Dana's decisions: a shift that's falling behind, a bonus nobody wants to lose, a director who's sure he's right. You'll decide before you find out what she did. | Three snapshots from Dana's story |
+**Title:** Welcome to MGMT 615. **Duration:** about 2.5 minutes. **Module & Section:** Getting
+Started, welcome video.
+
+| Part | Dialogue (Audio) | Graphics (Video) | Environment |
+|---|---|---|---|
+| Opening | (No dialogue) | [Intro Graphic: Flex Online, Mays Business School, MGMT 615, Welcome to MGMT 615] [Intro Music] | |
+| Video Introduction | Howdy, and welcome to MGMT 615. Over the next eight weeks, you'll follow one manager, Dana Ortiz, through the hardest stretch of her first year running a distribution center. | [Close-up shot] Slide: course title and Dana's photo | Virtual podcast studio, chosen with the Learning Media Team |
+| Video Content | Each module puts you inside one of Dana's decisions: a shift that's falling behind, a bonus nobody wants to lose, a director who's sure he's right. You'll decide what you'd do before you find out what she did, and then we'll talk about why. | Slide: three snapshots from Dana's story | Same |
+| Video Content | Here's how a week works. You'll read and watch early in the week, post to the discussion by Wednesday, and finish the main assignment by Sunday night. From Module 2 on, we'll also meet live for a 90-minute cohort session, where you'll work through Dana's decisions with your classmates. | Slide: a typical week, Monday to Sunday | Same |
+| Video Content | You don't need management experience to do well here. You need to be willing to make a call with incomplete information and explain your reasoning. That's the job Dana has, and it's the job many of you have now or will soon. | [Dynamic zoom in] | Same |
+| Video Conclusion | Start with the Getting Started module, then meet Dana in Module 1. Read her Monday report before anything else; it's where her story begins. | Slide: Start here, then Module 1 | Same |
+| Video Conclusion | I'm glad you're here, and I'm looking forward to working through this with you. Thanks, and gig 'em! | [Close-up shot] | Same |
+| Closing | (No dialogue) | [Outro Graphic: Branding of Texas A&M University] [Outro Music] | |
 
 ### Draft (full build) and Review (refresh)
 
-Answer the questions, then select the button below. The AI drafts the script in the template's two
-columns, in your voice and at the planned length. Select **Use this script** to copy it into the
-box under Decide.
+Answer the questions, then select the button below. The AI drafts the script in the A/V/E
+template, in your voice and at the planned length. Select **Use this script** to copy it into the
+script form under Decide.
 
 ::: refresh
 If you already have a script for this video, paste it into the last box. The AI checks it for
@@ -281,43 +303,52 @@ length, spoken style, and the decision ending, and suggests edits instead of sta
 AI instructions:
 
 ```text
-Draft an A/V script for the chosen video in two columns, Dialogue and Graphics, with sections:
-opening (branded intro, no dialogue), introduction, content in chunks of 2 to 4 sentences,
-conclusion with one next step, closing (branded outro). Write conversational spoken English with
-contractions, in the faculty member's voice, using their answers. Keep to the planned minutes at
-about 140 spoken words a minute. For an overview or scenario video, open in the character's
-situation and end at the decision without resolving it. Put everything a student needs in the
-dialogue; graphics only reinforce it. If the faculty member pasted a current script, check it for
-length, spoken style, and the decision ending, and suggest edits to it instead of starting over.
+Draft an A/V/E script for the chosen video, following the Learning Media Team's template: a title,
+the duration in minutes, the module and section, and rows with three columns, Dialogue (Audio),
+Graphics (Video), and Environment. Use these parts: Video Introduction (greet students and say
+exactly what the video covers), Video Content in chunks of 2 to 4 sentences, and Video Conclusion
+(restate what matters and give one next step, then concluding remarks ending "Thanks, and gig
+'em!"). The Opening and Closing are filled in by the template. Write conversational spoken English
+with contractions, in the faculty member's voice, using their answers. Keep to the planned minutes
+at about 140 spoken words a minute. For an overview or scenario video, open in the character's
+situation and end at the decision without resolving it. In Graphics, suggest a slide for each
+chunk; put camera or production notes in square brackets. In Environment, name one background and
+write "Same" after that. Put everything a student needs in the dialogue; graphics only reinforce
+it. If the faculty member pasted a current script, check it for length, spoken style, and the
+decision ending, and suggest edits to it instead of starting over.
 
-Return: {"title": string, "minutes": number, "rows": [{"section": string, "dialogue": string, "graphics": string}]}
+Return: {"title": string, "minutes": number, "module": string, "rows": [{"part": string, "dialogue": string, "graphics": string, "environment": string}]}
 ```
 
 Demo response (MGMT 615):
 
-**Script:** Module 1 overview: What Managers Actually Do. About 2 minutes.
+**Title:** Module 1 overview: What Managers Actually Do. **Duration:** about 2 minutes. **Module &
+Section:** Module 1, overview video.
 
-| Section | Dialogue | Graphics |
-|---|---|---|
-| Opening | (No dialogue) | Branded intro |
-| Introduction | Howdy. This week you meet Dana Ortiz. Eight months ago she was the best shift lead in her distribution center. Now she runs it, and on Monday morning the report says on-time shipping has dropped from 97 to 89 percent. | Dana's Monday report, with 89% highlighted |
-| Introduction | Her director already has an answer. Before you agree with him, this module asks you a different question: what is a manager's job, and how is it different from the job Dana just left? | Greg's email: "Jordan's shift is the problem." |
-| Content | There's a line I've used with every new manager I've coached: your best player isn't automatically your best coach. Dana got this job because she was great at the work. Now her job is getting the work done through other people, and the habits that made her great won't tell her how. | Two columns: "Shift lead's day" and "Manager's day" |
-| Content | Here's what to watch for. When the numbers drop, the fastest answer is usually a person: a slow picker, a weak lead, a bad shift. Sometimes that's right. More often the cause sits between people, in how work gets handed off or who owns a decision. A manager looks there first. | Three words on screen: person, process, handoff |
-| Content | This week's reading looks at how managers actually spend their time. Notice how little of it is doing the work yourself. As you read, keep Dana's report in mind. What would you need to know before you decide whose fault it is? | The reading's title and author |
-| Conclusion | Start with Dana's Monday report, then the reading on what managers actually do. This week's assignment asks what you'd do with Dana's first week, so hold off on deciding about Jordan until you've read it. I'll see you in the discussion. | This week: the report, the reading, the assignment due Sunday |
-| Closing | (No dialogue) | Branded outro |
+| Part | Dialogue (Audio) | Graphics (Video) | Environment |
+|---|---|---|---|
+| Opening | (No dialogue) | [Intro Graphic: Flex Online, Mays Business School, MGMT 615, Module 1 overview] [Intro Music] | |
+| Video Introduction | Howdy. This week you meet Dana Ortiz. Eight months ago she was the best shift lead in her distribution center. Now she runs it, and on Monday morning the report says on-time shipping has dropped from 97 to 89 percent. Her director already has an answer. Before you agree with him, this module asks you a different question: what is a manager's job, and how is it different from the job Dana just left? | Slide: Dana's Monday report, with 89% highlighted. Slide: Greg's email, "Jordan's shift is the problem." | Virtual podcast studio |
+| Video Content | There's a line I've used with every new manager I've coached: your best player isn't automatically your best coach. Dana got this job because she was great at the work. Now her job is getting the work done through other people, and the habits that made her great won't tell her how. | Slide: "Shift lead's day" and "Manager's day," side by side | Same |
+| Video Content | Here's what to watch for. When the numbers drop, the fastest answer is usually a person: a slow picker, a weak lead, a bad shift. Sometimes that's right. More often the cause sits between people, in how work gets handed off or who owns a decision. A manager looks there first. | Slide: person, process, handoff | Same |
+| Video Content | This week's reading looks at how managers actually spend their time. Notice how little of it is doing the work yourself. As you read, keep Dana's report in mind. What would you need to know before you decide whose fault it is? | Slide: the reading's title and author | Same |
+| Video Conclusion | Start with Dana's Monday report, then the reading on what managers actually do. This week's assignment asks what you'd do with Dana's first week, so hold off on deciding about Jordan until you've read it. | Slide: This week, the report, the reading, and the assignment due Sunday | Same |
+| Video Conclusion | I'll see you in the discussion. Thanks, and gig 'em! | [Close-up shot] | Same |
+| Closing | (No dialogue) | [Outro Graphic: Branding of Texas A&M University] [Outro Music: fades out] | |
 
-**Length:** about 260 words, about 2 minutes at 140 words a minute.
+**Length:** about 270 words, about 2 minutes at 140 words a minute.
 
 ### Decide
 
-Read your script aloud, then make it yours in the box below. Type in it to change anything, or
-select **Redraft with AI** under it to have the AI rewrite it, for example shorter or closer to how
-you talk.
+Read your script aloud, then make it yours in the form below. It follows the Learning Media Team's
+A/V/E script template. Type in any box to change it, add a content chunk when you need one, or
+select **Redraft with AI** under the form to have the AI rewrite it, for example shorter or closer to
+how you talk. The count under the form shows how long the dialogue runs.
 
-::: fields
-- Your script: for each part, the dialogue and the graphics
+::: av-script
+:::
+
+::: fields notes
 - What you changed after reading it aloud
 :::
 
@@ -326,6 +357,7 @@ Checklist:
 - It sounds natural read aloud.
 - It fits the planned length.
 - Nothing important appears only on screen.
+- You've chosen a background with the Learning Media Team, or asked your ID to set that up.
 - You've asked your ID to schedule an XR stage practice session.
 
 ### Checks
@@ -333,14 +365,15 @@ Checklist:
 When you save, the tool checks that:
 
 - the spoken length is within 15 percent of the planned minutes, at about 140 words a minute;
-- every graphic has matching dialogue, so nothing important appears only on screen.
+- every graphic has matching dialogue, so nothing important appears only on screen;
+- the Environment column names a background.
 
 ### Save
 
 Planning document: nothing new; the media line for this video gains "script drafted."
-Download: the script as a Word file in the A/V script template format, to share with your ID and
-Learning Media. There's nothing to fill out or submit; it's there to show and share.
-Project file: `scripts[]` (video, rows, status).
+Download: the script as a Word file in the A/V/E script template format, to share with your ID and
+the Learning Media Team. There's nothing to fill out or submit; it's there to show and share.
+Project file: `scripts[]` (video, title, minutes, module, rows, status).
 
 ### Go deeper (supplemental)
 

@@ -209,6 +209,27 @@ summary { cursor: pointer; color: var(--muted); font-size: 14px; }
 .choose .opt.on { border: 2px solid var(--maroon); background: var(--tint); }
 .choose .opt input { margin-top: 4px; }
 .choose .desc { display: block; font-size: 15px; color: var(--muted); }
+.av-head { display: grid; grid-template-columns: 2fr 1fr 2fr; gap: 10px; margin-bottom: 10px; }
+.av { width: 100%; border-collapse: collapse; table-layout: fixed; }
+.av th, .av td { border: 1px solid var(--line); padding: 6px; vertical-align: top; text-align: left; }
+.av thead th:nth-child(1) { width: 15%; } .av thead th:nth-child(2) { width: 41%; } .av thead th:nth-child(3) { width: 26%; } .av thead th:nth-child(4) { width: 18%; }
+.av tbody th { font-size: 15px; }
+.av textarea { width: 100%; font: inherit; font-size: 15px; padding: 6px 8px; border: 1px solid #b9b4ad; border-radius: 6px; background: #fff; resize: vertical; }
+.av tr.fixed td, .av tr.fixed th { background: var(--tint); color: var(--muted); font-size: 14px; }
+.av .av-remove { display: block; font-size: 14px; padding: 4px 0; }
+.av tr.av-flag-row td { border-top: 0; padding-top: 0; }
+.av-flag { margin: 0; color: var(--warn); font-size: 14px; }
+.av-meter { margin: 8px 0 0; font-size: 15px; }
+.av-meter .ok { color: var(--ok); } .av-meter .warn { color: var(--warn); }
+@media (max-width: 760px) {
+  .av-head { grid-template-columns: 1fr; }
+  .av, .av tbody, .av tr, .av th, .av td { display: block; width: 100%; }
+  .av thead { display: none; }
+  .av tr { border: 1px solid var(--line); border-radius: 8px; margin-bottom: 10px; padding: 6px; }
+  .av th, .av td { border: 0; }
+  .av td[data-col]::before { content: attr(data-col); display: block; font-weight: 600; font-size: 14px; }
+  .av tr.av-flag-row { border: 0; margin-top: -8px; }
+}
 .due-dates { border: 1px solid var(--line); border-radius: 8px; padding: 10px 14px; margin: 12px 0; background: #fff; font-size: 15px; }
 .due-dates p { margin: 4px 0; }
 .due-dates ul { margin: 4px 0 6px; }
@@ -546,6 +567,8 @@ function md(text, opts = {}) {
       while (i < lines.length && !/^:::\s*$/.test(lines[i])) { if (/^- /.test(lines[i])) rows.push(lines[i].slice(2).split(/\s*\|\s*/)); i++; }
       i++; html += moduleBlock(which, rows, opts); continue;
     }
+    // ::: av-script: the A/V/E script form (6.2), laid out like the Learning Media Team's template.
+    if (/^:::\s*av-script\s*$/.test(line)) { i++; while (i < lines.length && !/^:::\s*$/.test(lines[i])) i++; i++; html += avForm(); continue; }
     // ::: week-check shows the picked module's week against the target, live; ::: workload-chart shows all eight.
     if (/^:::\s*choose\s+\w+/.test(line)) {
       const setting = line.replace(/^:::\s*choose\s+/, '').trim(), opts2 = []; i++;
@@ -815,6 +838,50 @@ function mediaDraft(n) {
   if (state.track === 'refresh') return (m.review.length ? '<p><strong>Review of your current media:</strong></p><ul>' + m.review.map(r => '<li>' + esc(r) + '</li>').join('') + '</ul>' : '<p>Every current item passed: each adds something a reading can’t and connects to the storyline.</p>') +
     list('Media after the review', m.media) + mediaCheck(n, m.media);
   return list('Media for this module', m.media) + mediaCheck(n, m.media);
+}
+// 6.2: the A/V/E script. Opening and Closing are fixed by the Learning Media Team's template; the faculty member
+// writes the Video Introduction, Video Content chunks, and Video Conclusion, each with dialogue, graphics, and environment.
+const AV_PART = { Introduction: 'Video Introduction', Content: 'Video Content', Conclusion: 'Video Conclusion' };
+const AV_FIXED = { Opening: '[Intro Graphic: Flex Online, Mays Business School, course title, video title] [Intro Music]',
+  Closing: '[Outro Graphic: Branding of Texas A&M University] [Outro Music]' };
+const AV_HINT = { Introduction: 'Howdy! In this video, … Say exactly what the video covers.', Content: 'One idea in two to four sentences, the way you’d say it to a student.',
+  Conclusion: ['Restate what matters most, and give students one thing to do next.', 'Concluding remarks, then “Thanks, and gig ’em!”'] };
+const avRow = part => ({ part, dialogue: '', graphics: '', env: '' });
+const avDefault = () => ({ title: '', minutes: '', module: '', rows: ['Introduction', 'Content', 'Content', 'Conclusion', 'Conclusion'].map(avRow) });
+const avScript = () => state.avScript || (state.avScript = avDefault());
+const words = s => (s.match(/[A-Za-z0-9’']+/g) || []).length;
+function avMeter() {
+  const s = avScript(), w = s.rows.reduce((n, r) => n + words(r.dialogue.replace(/\[[^\]]*\]/g, '')), 0), min = w / 140, plan = parseFloat(s.minutes);
+  const pl = hrs(plan) + (plan === 1 ? ' minute' : ' minutes');
+  const fit = !plan ? '' : Math.abs(min - plan) <= plan * 0.15 ? ' <span class="ok">✓ Within 15 percent of the planned ' + pl + '.</span>'
+    : ' <span class="warn">' + (min > plan ? 'Longer' : 'Shorter') + ' than the planned ' + pl + ' by more than 15 percent.</span>';
+  return 'About ' + w + ' words, about ' + (Math.round(min * 4) / 4).toString() + ' minutes spoken at 140 words a minute.' + fit;
+}
+const avFlag = r => r.graphics.trim() && !r.dialogue.trim() ? 'Add dialogue for this graphic, so nothing important is only on screen.' : '';
+function avForm() {
+  const s = avScript(), contents = s.rows.filter(r => r.part === 'Content').length;
+  let ci = 0;
+  const head = [['title', 'Title', 'The name of your video'], ['minutes', 'Duration (minutes)', '2'], ['module', 'Module & Section', 'Module 1, overview video']].map(([k, l, ph]) =>
+    '<div class="field"><label for="av-' + k + '">' + l + '</label><input id="av-' + k + '" data-avh="' + k + '"' + (k === 'minutes' ? ' inputmode="decimal"' : '') + ' placeholder="' + esc(ph) + '" value="' + esc(s[k] || '') + '"></div>').join('');
+  const fixed = part => '<tr class="fixed"><th scope="row">' + part + '</th><td data-col="Dialogue (Audio)">(No dialogue)</td><td data-col="Graphics (Video)">' + esc(AV_FIXED[part]) + '</td><td data-col="Environment"></td></tr>';
+  const rows = s.rows.map((r, i) => {
+    const name = AV_PART[r.part], hint = r.part === 'Conclusion' ? AV_HINT.Conclusion[s.rows.slice(0, i).filter(x => x.part === 'Conclusion').length ? 1 : 0] : AV_HINT[r.part];
+    const label = name + (r.part === 'Content' ? ' ' + (++ci) : '');
+    const cell = (k, col, ph) => '<td data-col="' + col + '"><textarea data-av="' + k + '" data-row="' + i + '" rows="' + Math.max(k === 'dialogue' ? 4 : 3, Math.ceil((r[k] || '').length / (k === 'dialogue' ? 48 : 26)) + 1) + '" aria-label="' + esc(label + ', ' + col) + '" placeholder="' + esc(ph) + '">' + esc(r[k] || '') + '</textarea></td>';
+    return '<tr><th scope="row">' + esc(label) + (r.part === 'Content' && contents > 1 ? '<button type="button" class="linkbtn av-remove" data-av-remove="' + i + '" aria-label="Remove ' + esc(label) + '">Remove</button>' : '') + '</th>' +
+      cell('dialogue', 'Dialogue (Audio)', hint) + cell('graphics', 'Graphics (Video)', 'Slide or graphic idea') + cell('env', 'Environment', i === 0 ? 'The background you chose with the Learning Media Team' : 'Same') + '</tr>' +
+      '<tr class="av-flag-row"' + (avFlag(r) ? '' : ' hidden') + '><td colspan="4"><p class="av-flag" data-av-flag="' + i + '">' + avFlag(r) + '</p></td></tr>';
+  }).join('');
+  return '<div class="field av-field"><div class="av-head">' + head + '</div>' +
+    '<div class="scroll"><table class="av"><caption class="sr-only">A/V/E script</caption><thead><tr><th scope="col">Part</th><th scope="col">Dialogue (Audio)</th><th scope="col">Graphics (Video)</th><th scope="col">Environment</th></tr></thead><tbody>' +
+    fixed('Opening') + rows + fixed('Closing') + '</tbody></table></div>' +
+    '<div class="row"><button type="button" class="btn sec" data-av-add>Add a content chunk</button></div>' +
+    '<p class="av-meter" role="status">' + avMeter() + '</p>' +
+    '<div class="redraft-row"><button type="button" class="linkbtn" data-redraft aria-expanded="false">Redraft with AI</button></div></div>';
+}
+function avRefresh(focusSel) {
+  const f = document.querySelector('.av-field'); if (!f) return;
+  f.outerHTML = avForm(); if (focusSel) { const el = document.querySelector(focusSel); if (el) el.focus(); }
 }
 // Workload: a module's week = activities (typed in 4.2, or the AI draft) + readings and media (estimated until
 // Modules 5 and 6 are saved) + the 90-minute cohort session (Modules 2 to 8). Module 1's target is about 4 hours.
@@ -1246,8 +1313,12 @@ function useButtons(sec) {
     if (o) o.insertAdjacentHTML('beforeend', btn('Use this media plan', [m.media.map(medLine).join('\n')]));
   }
   if (key === '6.2') {
-    const rows = [...out.querySelectorAll('tbody tr')].map(tr => [...tr.cells].map(td => td.textContent.trim()));
-    out.insertAdjacentHTML('beforeend', btn('Use this script', [rows.map(([s, d, g]) => s + '\nDialogue: ' + d + '\nGraphics: ' + g).join('\n\n')]));
+    const back = Object.fromEntries(Object.entries(AV_PART).map(([k, v]) => [v, k])), txt = out.textContent;
+    const rows = [...out.querySelectorAll('tbody tr')].map(tr => [...tr.cells].map(td => td.textContent.trim())).filter(c => back[c[0]])
+      .map(([part, dialogue, graphics, env]) => ({ part: back[part], dialogue, graphics, env }));
+    const grab = re => ((txt.match(re) || [])[1] || '').trim();
+    out.insertAdjacentHTML('beforeend', btn('Use this script', { av: { title: grab(/Title:\s*(.+?)\.\s*Duration:/), minutes: grab(/Duration:\s*about\s*([\d.]+)/),
+      module: grab(/Module & Section:\s*(.+?)\.?\s*(?:Part|$)/), rows } }));
   }
   if (key === '5.2') {
     const n = pickOf('5.2'), rs = DATA.demo['mgmt615-materials.json'].modules[n - 1].materials.map(i => rightsFor(i, n)), o = out.querySelector('.scen-opt');
@@ -1317,6 +1388,13 @@ document.addEventListener('input', e => {
   if (e.target.dataset && e.target.dataset.setting) { state[e.target.dataset.setting] = e.target.value; save();
     if (e.target.type === 'radio') { const y = window.scrollY; render(); window.scrollTo(0, y); document.querySelector('input[name="' + e.target.name + '"]:checked').focus({ preventScroll: true }); }
     return; }
+  if (e.target.dataset && (e.target.dataset.av || e.target.dataset.avh)) {
+    const s = avScript();
+    if (e.target.dataset.avh) s[e.target.dataset.avh] = e.target.value;
+    else { const n = +e.target.dataset.row; s.rows[n][e.target.dataset.av] = e.target.value;
+      const fl = document.querySelector('[data-av-flag="' + n + '"]'); if (fl) { fl.textContent = avFlag(s.rows[n]); fl.closest('tr').hidden = !fl.textContent; } }
+    save(); const m = document.querySelector('.av-meter'); if (m) m.innerHTML = avMeter(); return;
+  }
   const k = e.target.dataset && e.target.dataset.mfield; if (!k) return;
   const key = stepKey(), n = pickOf(key); state.mods = state.mods || {}; state.mods[key] = state.mods[key] || {};
   state.mods[key][n] = state.mods[key][n] || {}; state.mods[key][n][k] = e.target.value; save();
@@ -1393,7 +1471,7 @@ document.addEventListener('click', e => {
     const panel = t.closest('.redraft-panel'); panel.previousElementSibling.querySelector('[data-redraft]').setAttribute('aria-expanded', 'false'); panel.remove(); return;
   }
   if (t.hasAttribute('data-redraft-go')) {
-    const panel = t.closest('.redraft-panel'), box = panel.closest('.field').querySelector('textarea'), msg = panel.querySelector('.setup-msg'), wait = panel.querySelector('.thinking');
+    const panel = t.closest('.redraft-panel'), box = [...panel.closest('.field').querySelectorAll('textarea')].find(x => x.value.trim()) || panel.closest('.field').querySelector('textarea'), msg = panel.querySelector('.setup-msg'), wait = panel.querySelector('.thinking');
     msg.classList.remove('warn');
     if (!box.value.trim()) { msg.classList.add('warn'); msg.textContent = 'Nothing to redraft yet. Copy the AI draft into this box, or type your own, first.'; return; }
     t.disabled = true; wait.hidden = false;
@@ -1401,9 +1479,27 @@ document.addEventListener('click', e => {
       msg.textContent = "Redrafted. (Demo: recorded responses don't change, so the text stays the same. In the finished tool, the AI rewrites only this box, using your note.)"; }, 900);
     return;
   }
+  if (t.hasAttribute('data-av-add')) {
+    const s = avScript(), at = s.rows.findIndex(r => r.part === 'Conclusion');
+    s.rows.splice(at < 0 ? s.rows.length : at, 0, avRow('Content')); save();
+    avRefresh('[data-av="dialogue"][data-row="' + (at < 0 ? s.rows.length - 1 : at) + '"]'); return;
+  }
+  if (t.dataset.avRemove !== undefined) {
+    const s = avScript(), n = +t.dataset.avRemove;
+    if ((s.rows[n].dialogue || s.rows[n].graphics) && !confirm('Remove this content chunk and what you wrote in it?')) return;
+    s.rows.splice(n, 1); save(); avRefresh('[data-av-add]'); return;
+  }
+  if (t.dataset.use && USE_TEXT[+t.dataset.use].av) {
+    const s = avScript();
+    if (s.rows.some(r => r.dialogue.trim()) && !confirm('Replace the script you\u2019ve written under Decide?')) return;
+    state.avScript = JSON.parse(JSON.stringify(USE_TEXT[+t.dataset.use].av)); save(); avRefresh();
+    const f = document.querySelector('.av-field'); f.insertAdjacentHTML('beforeend', '<p class="use-note" role="status">Copied. Read it aloud, then edit it here until it sounds like you.</p>');
+    f.scrollIntoView({ behavior: 'smooth', block: 'start' }); document.querySelector('[data-av="dialogue"]').focus({ preventScroll: true });
+    return;
+  }
   if (t.dataset.use) {
     // One text fills the first box; a list of texts fills the boxes in order.
-    const boxes = [...document.querySelectorAll('#decide textarea')], vals = [].concat(USE_TEXT[+t.dataset.use]), box = boxes[0];
+    const boxes = [...document.querySelectorAll('#decide textarea:not([data-av])')], vals = [].concat(USE_TEXT[+t.dataset.use]), box = boxes[0];
     if (!box) return;
     if (boxes.some((b, i) => i < vals.length && b.value.trim() && b.value !== vals[i]) && !confirm('Replace what is already in your boxes under Decide?')) return;
     vals.forEach((v, i) => { const b = boxes[i]; if (b) { b.value = v; b.rows = Math.max(b.rows, v.split('\n').length + 1, Math.ceil(v.length / 90) + 1); b.dispatchEvent(new Event('input', { bubbles: true })); } });
