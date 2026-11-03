@@ -658,11 +658,29 @@
       "folder": "03 - Templates"
     },
     {
+      "id": "template-cohort-outline",
+      "kind": "template",
+      "title": "Cohort Session Outline (Student Facing)",
+      "module": "m7",
+      "use": "export template for 7.2",
+      "file": "Template - Cohort Session Outline (Student Facing).dotx",
+      "folder": "03 - Templates"
+    },
+    {
+      "id": "template-flex-slides",
+      "kind": "template",
+      "title": "Flex Online Slides",
+      "module": "m7",
+      "use": "export template for 7.2",
+      "file": "Template - Flex Online Slides.potx",
+      "folder": "03 - Templates"
+    },
+    {
       "id": "template-run-of-show",
       "kind": "template",
       "title": "XR Run of Show",
       "module": "m7",
-      "use": "export template for 7.2",
+      "use": "export template for 7.3",
       "file": "Run_of_Show.docx",
       "folder": "05 - Cohort Sessions"
     },

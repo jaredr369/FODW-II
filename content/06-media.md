@@ -227,8 +227,7 @@ Pattern: interview, then draft
 **What you'll do:** Draft one A/V/E script, usually for your welcome video or your Module 1 overview.
 
 **Why it matters:** Writing one script now, with feedback, makes the rest faster during development.
-The script is also what you share with the Learning Media Team before your practice session on the
-XR stage.
+Your ID reviews it with you before your practice session on the XR stage.
 :::
 
 Every video you record on the XR stage starts with an A/V/E script from the Learning Media Team. It
@@ -371,8 +370,8 @@ When you save, the tool checks that:
 ### Save
 
 Planning document: nothing new; the media line for this video gains "script drafted."
-Download: the script as a Word file in the A/V/E script template format, to share with your ID and
-the Learning Media Team. There's nothing to fill out or submit; it's there to show and share.
+Download: the script as a Word file in the A/V/E script template format, to share with your ID.
+There's nothing to fill out or submit; it's there to show and share.
 Project file: `scripts[]` (video, title, minutes, module, rows, status).
 
 ### Go deeper (supplemental)

@@ -210,6 +210,13 @@ summary { cursor: pointer; color: var(--muted); font-size: 14px; }
 .choose .opt input { margin-top: 4px; }
 .choose .desc { display: block; font-size: 15px; color: var(--muted); }
 .grid-cap { margin: 0 0 6px; }
+.outline { white-space: pre-wrap; font: inherit; font-size: 15px; background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 10px 12px; max-height: 360px; overflow: auto; }
+.slides { list-style: none; padding: 0; margin: 8px 0 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; }
+.slides > li { border: 1px solid var(--line); border-top: 4px solid var(--maroon); border-radius: 6px; background: #fff; padding: 8px 10px; font-size: 14px; aspect-ratio: auto; }
+.slides .lay { display: block; font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: .03em; }
+.slides strong { display: block; margin: 2px 0 4px; font-size: 15px; }
+.slides ul { margin: 0; padding-left: 18px; }
+.slides details { margin-top: 6px; } .slides summary { font-size: 13px; cursor: pointer; }
 .av.gridf thead th:nth-child(n) { width: auto; }
 .av.gridf-lesson thead th:nth-child(1) { width: 12%; } .av.gridf-lesson thead th:nth-child(2) { width: 20%; } .av.gridf-lesson thead th:nth-child(4) { width: 10%; }
 .av.gridf-assets thead th:nth-child(1) { width: 8%; } .av.gridf-assets thead th:nth-child(3) { width: 22%; } .av.gridf-assets thead th:nth-child(5) { width: 10%; }
@@ -572,6 +579,8 @@ function md(text, opts = {}) {
       while (i < lines.length && !/^:::\s*$/.test(lines[i])) { if (/^- /.test(lines[i])) rows.push(lines[i].slice(2).split(/\s*\|\s*/)); i++; }
       i++; html += moduleBlock(which, rows, opts); continue;
     }
+    if (/^:::\s*derive\s*$/.test(line)) { i++; while (i < lines.length && !/^:::\s*$/.test(lines[i])) i++; i++;
+      html += '<div class="derive"><div class="row"><button type="button" class="btn sec" data-derive>Draft the outline and slides</button><span class="thinking" hidden>Working\u2026</span></div><div class="derive-out"></div></div>'; continue; }
     if (/^:::\s*grid\s+\w+\s*$/.test(line)) { const name = line.replace(/^:::\s*grid\s+/, '').trim(); i++; while (i < lines.length && !/^:::\s*$/.test(lines[i])) i++; i++; html += gridForm(name); continue; }
     // ::: av-script: the A/V/E script form (6.2), laid out like the Learning Media Team's template.
     if (/^:::\s*av-script\s*$/.test(line)) { i++; while (i < lines.length && !/^:::\s*$/.test(lines[i])) i++; i++; html += avForm(); continue; }
@@ -749,7 +758,7 @@ const MODULE_STEPS = {
   '4.2': { parts: ACT_PARTS, done: 'activities', rows: k => k === 'activities' ? 5 : 3, draft: activityDraft },
   '5.1': { parts: [['materials', 'Your materials for this module, one per line: type: title, author (year) (pages or minutes, the activity it prepares students for)']], done: 'materials', rows: () => 6, draft: materialsDraft },
   '6.1': { parts: [['media', 'Your media for this module, one per line: kind (who makes it): title, minutes. Story: its connection to your storyline']], done: 'media', rows: () => 6, draft: mediaDraft },
-  '7.1': { parts: [['cohort', 'Your session for this module: title and decision, what students get live, each segment with its minutes, and setup for your Instructional Technologist']], done: 'cohort', rows: () => 8, draft: cohortDraft, first: 2 },
+  '7.1': { parts: [['cohort', 'Your session activity for this module: title, the decision or task, what students do live, and what they get live']], done: 'cohort', rows: () => 5, draft: cohortDraft, first: 2 },
   '5.2': { parts: [['rights', 'Rights status and attribution, one line per material'], ['ainotes', 'AI-use disclosure notes, one per AI-assisted item (leave empty if none)']], done: 'rights', rows: k => k === 'rights' ? 6 : 3, draft: rightsDraft },
 };
 const stepKey = () => state.at.split(':')[1];
@@ -900,20 +909,67 @@ const earlyDay = () => state.cohortDay === 'mon' || state.cohortDay === 'tue';
 const cohortOf = n => { const m = DATA.demo['mgmt615-cohort.json'].modules.find(x => x.module === n); return m && earlyDay() && m.early ? Object.assign({}, m, m.early) : m; };
 const lcFirst = s => s.charAt(0).toLowerCase() + s.slice(1);
 const endP = s => /[.?!]$/.test(s) ? s : s + '.';
-const cohText = c => endP(c.title) + ' Decision: ' + lcFirst(c.decision) + '.\nWhat students get live: ' + lcFirst(c.live) + '.\n' + c.segments.join('\n') + '\nSetup: ' + c.setup.map(lcFirst).join('; ') + '.';
+// The live activity is the session's longest segment, without its minutes or label.
+const liveAct = c => { const g = c.segments.slice().sort((x, y) => parseInt(y) - parseInt(x))[0] || '';
+  return g.replace(/^\d+\s*min:\s*/, '').replace(/^(introductory activity|guided practice):\s*/i, ''); };
+const cohText = c => endP(c.title) + ' Decision: ' + lcFirst(c.decision) + '.\nWhat students do live: ' + endP(liveAct(c)) + '\nWhat students get live: ' + lcFirst(c.live) + '.';
 function cohortDraft(n) {
   const c = cohortOf(n); if (!c) return '<p>Module 1 has no cohort session. Choose Module 2 to 8.</p>';
-  const mins = c.segments.reduce((s, g) => s + (+(g.match(/^(\d+)\s*min/) || [])[1] || 0), 0), low = /check understanding|poll|chat/i.test(c.segments[0]), guided = /guided/i.test(c.segments[1] || '');
+  const scen = DATA.demo['mgmt615-scenarios.json'].modules[n - 1].chosen.title, early = earlyDay();
   const review = state.track === 'refresh' ? (c.review.length ? '<p><strong>Review of your current session:</strong></p><ul>' + c.review.map(r => '<li>' + esc(r) + '</li>').join('') + '</ul>' : '<p>Your current session passed the recording test.</p>') : '';
   const day = DAYS[state.cohortDay], dayNote = day ? '' : '<p class="scen-note">No session day chosen yet, so this draft assumes a later-week session. Choose your day in Learn above.</p>';
-  return review + dayNote + '<div class="scen-opt" data-opt="1"><p><strong>' + (state.track === 'refresh' ? 'Session after the review' : 'Session for this module') + (day ? ' (' + day + ')' : '') + '</strong></p><p>' + esc(endP(c.title)) + ' Decision: ' + esc(lcFirst(c.decision)) + '.</p><p>What students get live: ' + esc(lcFirst(c.live)) + '.</p><ul>' +
-    c.segments.map(g => '<li>' + esc(g) + '</li>').join('') + '</ul><p>Setup: ' + esc(c.setup.map(lcFirst).join('; ')) + '.</p></div>' +
+  return review + dayNote + '<div class="scen-opt" data-opt="1"><p><strong>' + (state.track === 'refresh' ? 'Activity after the review' : 'Activity for this module') + (day ? ' (' + day + ')' : '') + '</strong></p>' +
+    '<p>' + esc(endP(c.title)) + ' Decision: ' + esc(lcFirst(c.decision)) + '.</p><p>What students do live: ' + esc(endP(liveAct(c))) + '</p><p>What students get live: ' + esc(lcFirst(c.live)) + '.</p></div>' +
     '<div class="act-checks"><p><strong>What the checks will find</strong></p><ul>' +
     '<li><strong>Recording test:</strong> passes. The live part is ' + esc(lcFirst(c.live)) + ', which depends on who’s in the room.</li>' +
-    '<li><strong>Opening:</strong> ' + (/recap last week/i.test(c.segments[0]) ? 'a recap of last week, then an introduction to the new module, for an early-week session.' : low && guided ? 'a check for understanding, then guided practice, before small groups. That fits MGMT 615\u2019s Thursday sessions.' :
-      !low ? 'open with a quick check for understanding, such as a poll or a chat question.' : 'add guided practice before small groups.') + '</li>' +
-    '<li><strong>RSI:</strong> ' + c.rsi.map(r => RSI_NAME[r]).join(' and ') + '.</li>' +
-    '<li><strong>Time:</strong> ' + mins + ' minutes' + (Math.abs(mins - 90) <= 5 ? ', on target.' : '; aim for 90.') + '</li></ul></div>';
+    '<li><strong>Story:</strong> ties to this module’s scenario, “' + esc(scen) + '.”</li>' +
+    '<li><strong>Day:</strong> ' + (early ? 'an introductory activity that opens the module, which fits an early-week session.' : 'the decision or practice the week leads up to, which fits a later-week session.') + '</li>' +
+    '<li><strong>RSI:</strong> ' + c.rsi.map(r => RSI_NAME[r]).join(' and ') + '.</li></ul></div>';
+}
+// 7.2 and 7.3 helpers: sentences, and the question inside a sentence such as "Poll: which link breaks?"
+const sents = s => (s || '').split(/(?<=[.?!])\s+/).map(x => x.trim()).filter(Boolean);
+const qOf = s => { const q = s.includes(':') ? s.slice(s.lastIndexOf(':') + 1).trim() : s; return q.charAt(0).toUpperCase() + q.slice(1); };
+const lessonRows = () => (((state.grids || {})['7.2'] || {}).lesson || []).filter(r => (r.section || '').trim() || (r.details || '').trim());
+// 7.3's assets start from the 7.2 lesson plan: the deck, then each poll it names.
+function assetsFromLesson() {
+  const a = [{ name: 'Cohort session slides', type: 'Slides', link: 'Cohort session page in Canvas' }];
+  lessonRows().forEach(r => sents(r.details).filter(x => /poll/i.test(x) && /\?$/.test(x)).forEach(x => a.push({ name: qOf(x), type: 'Poll', link: 'Loaded by the Instructional Technologist' })));
+  return a.concat([{ name: '', type: '', link: '' }]);
+}
+// 7.2: the student-facing outline and the slide deck, drafted from the lesson plan. In the finished tool the AI writes
+// them; the demo builds them straight from the plan's rows so they always match what the faculty member typed.
+function deriveDocs() {
+  const v = n => { const f = [...document.querySelectorAll('#decide .field')].find(x => x.querySelector('label') && x.querySelector('label').textContent.trim().startsWith(n)); return f && f.querySelector('textarea') ? f.querySelector('textarea').value.trim() : ''; };
+  const rows = lessonRows(), title = v('Lesson title') || 'Cohort session', overview = v('Overview');
+  const name = sec => sec.replace(/^Topic\s*\d+:\s*/i, '');
+  const topics = rows.filter(r => /^Topic/i.test(r.section)), concl = rows.find(r => /^Conclu/i.test(r.section));
+  const qs = d => sents(d).filter(x => /\?$/.test(x)).map(qOf), pts = d => sents(d).filter(x => !/\?$/.test(x));
+  const slides = [{ layout: 'Title Slide', title, body: ['Cohort session'] }, { layout: 'Title and Content', title: 'Welcome', body: ['Today:'].concat(topics.map(t => name(t.section))) }];
+  rows.forEach(r => {
+    if (/buffer|^conclu/i.test(r.section)) return;
+    if (/^Topic/i.test(r.section)) slides.push({ layout: 'Section Header', title: name(r.section), body: [], notes: r.details });
+    qs(r.details).forEach(q => slides.push({ layout: 'Question?', title: q, body: [/poll/i.test(r.details) ? 'Poll' : 'Discuss in your group or the chat'], notes: r.details }));
+    if (/breakout/i.test(r.details)) slides.push({ layout: 'Title and Content', title: 'In your breakout', body: pts(r.details).slice(0, 3).concat(r.min ? [r.min + ' minutes'] : []), notes: r.details });
+  });
+  if (concl) slides.push({ layout: 'Title and Content', title: 'Wrap-up', body: pts(concl.details), notes: concl.details });
+  const out = [title, '', 'Welcome', overview || 'Welcome to ' + title + '.', '', 'Main Topics'].concat(topics.map(t => '- ' + name(t.section)));
+  topics.forEach((t, k) => { out.push('', 'Topic ' + (k + 1) + ': ' + name(t.section), 'Main Points'); pts(t.details).forEach(x => out.push('- ' + x));
+    if (qs(t.details).length) { out.push('Discussion Questions'); qs(t.details).forEach(q => out.push('- ' + q)); } });
+  const due = concl ? sents(concl.details).filter(x => /\bdue\b/i.test(x)) : [];
+  out.push('', 'Wrap-Up', 'Assignments'); (due.length ? due : ['See this week’s module for what’s due.']).forEach(x => out.push('- ' + x));
+  out.push('Announcements', '- None this week.', 'Got Questions?', '- Post in the course Q&A discussion, or email me.');
+  return { slides, outline: out.join('\n') };
+}
+let derivedOutline = '';
+function deriveHtml() {
+  if (!lessonRows().some(r => (r.details || '').trim())) return '<p class="setup-msg warn" role="status">Fill in your lesson plan first, or select Use this plan in the Draft section.</p>';
+  const d = deriveDocs(); derivedOutline = d.outline;
+  return '<p class="scen-note">Demo: in the finished tool, the AI writes these for students and fills the Flex Online template. Here they’re built straight from your lesson plan, so they change when it does.</p>' +
+    '<div class="scen-opt"><p><strong>Student-facing outline</strong></p><pre class="outline">' + esc(d.outline) + '</pre>' +
+    '<div class="row use"><button type="button" class="btn sec" data-outline-use>Use this outline</button></div></div>' +
+    '<div class="scen-opt"><p><strong>Slides (' + d.slides.length + ')</strong> in the Flex Online template, with your talking points as speaker notes</p><ol class="slides">' +
+    d.slides.map(s => '<li><span class="lay">' + esc(s.layout) + '</span><strong>' + esc(s.title) + '</strong>' + (s.body.length ? '<ul>' + s.body.map(x => '<li>' + esc(x) + '</li>').join('') + '</ul>' : '') +
+      (s.notes ? '<details><summary>Speaker notes</summary><p>' + esc(s.notes) + '</p></details>' : '') + '</li>').join('') + '</ol></div>';
 }
 // Grid forms follow a team template row by row. Each grid's rows are kept per step in state.grids.
 const GRIDS = {
@@ -922,7 +978,7 @@ const GRIDS = {
     meter: rows => { const m = rows.reduce((s, r) => s + (parseFloat(r.min) || 0), 0);
       return 'Total: ' + hrs(m) + ' of 90 minutes.' + (!m ? '' : Math.abs(m - 90) <= 2 ? ' <span class="ok">\u2713 On target.</span>' : ' <span class="warn">' + (m > 90 ? 'Over' : 'Under') + ' by ' + hrs(Math.abs(m - 90)) + ' minutes.</span>'); } },
   assets: { caption: 'Session assets for the XR Run of Show', add: 'Add an asset', order: true, cols: [['name', 'Name', 'Such as your slides'], ['type', 'Asset Type', 'Slides, poll, handout, or video'], ['link', 'Link (Slides in Canvas)', 'Where it lives']],
-    start: () => [{ name: '', type: 'Slides', link: '' }, { name: '', type: '', link: '' }], insertBefore: () => false, meter: null }
+    start: assetsFromLesson, insertBefore: () => false, meter: null, noRedraft: true }
 };
 const gridRows = name => { state.grids = state.grids || {}; const k = stepKey(); state.grids[k] = state.grids[k] || {}; return state.grids[k][name] || (state.grids[k][name] = GRIDS[name].start()); };
 function gridForm(name) {
@@ -936,7 +992,7 @@ function gridForm(name) {
   return '<div class="field av-field grid-field" data-gridname="' + name + '"><p class="grid-cap"><strong>' + esc(g.caption) + '</strong></p><div class="scroll"><table class="av gridf gridf-' + name + '"><caption class="sr-only">' + esc(g.caption) + '</caption><thead><tr>' + headCells + '</tr></thead><tbody>' + body + '</tbody></table></div>' +
     '<div class="row"><button type="button" class="btn sec" data-grid-add="' + name + '">' + esc(g.add) + '</button></div>' +
     (g.meter ? '<p class="av-meter grid-meter" role="status">' + g.meter(rows) + '</p>' : '') +
-    '<div class="redraft-row"><button type="button" class="linkbtn" data-redraft aria-expanded="false">Redraft with AI</button></div></div>';
+    (g.noRedraft ? '' : '<div class="redraft-row"><button type="button" class="linkbtn" data-redraft aria-expanded="false">Redraft with AI</button></div>') + '</div>';
 }
 function gridRefresh(name, focusSel) {
   const f = document.querySelector('[data-gridname="' + name + '"]'); if (!f) return;
@@ -1388,13 +1444,12 @@ function useButtons(sec) {
   }
   if (key === '7.1') {
     const c = cohortOf(pickOf('7.1')), o = out.querySelector('.scen-opt');
-    if (c && o) o.insertAdjacentHTML('beforeend', btn('Use this session', [cohText(c)]));
+    if (c && o) o.insertAdjacentHTML('beforeend', btn('Use this activity', [cohText(c)]));
   }
   if (key === '7.2') {
-    const tables = [...out.querySelectorAll('table')], cells = tb => [...tb.querySelectorAll('tbody tr')].map(tr => [...tr.cells].map(td => td.textContent.trim()));
-    const lesson = cells(tables[0]).map(([min, section, details]) => ({ min, section, details })), assets = cells(tables[1]).map(([, name, type, link]) => ({ name, type, link }));
-    const prep = label(out, 'Materials, handouts, and room setup');
-    out.insertAdjacentHTML('beforeend', btn('Use this plan', { grids: { lesson, assets }, boxes: [prep, 'Virtual podcast studio, the same one as the course videos.'] }));
+    const tb = out.querySelector('table'); if (!tb) return;
+    const lesson = [...tb.querySelectorAll('tbody tr')].map(tr => [...tr.cells].map(td => td.textContent.trim())).map(([min, section, details]) => ({ min, section, details }));
+    out.insertAdjacentHTML('beforeend', btn('Use this plan', { grids: { lesson }, boxes: ['Lesson title', 'Overview', 'Objectives', 'Main topics', 'Number of students and breakout setup', 'Materials, handouts, and room setup'].map(n => label(out, n)) }));
   }
   if (key === '5.2') {
     const n = pickOf('5.2'), rs = DATA.demo['mgmt615-materials.json'].modules[n - 1].materials.map(i => rightsFor(i, n)), o = out.querySelector('.scen-opt');
@@ -1559,6 +1614,18 @@ document.addEventListener('click', e => {
       msg.textContent = "Redrafted. (Demo: recorded responses don't change, so the text stays the same. In the finished tool, the AI rewrites only this box, using your note.)"; }, 900);
     return;
   }
+  if (t.hasAttribute('data-derive')) {
+    const box = t.closest('.derive'), wait = box.querySelector('.thinking'); t.disabled = true; wait.hidden = false;
+    setTimeout(() => { wait.hidden = true; t.disabled = false; t.textContent = 'Redraft from my lesson plan'; box.querySelector('.derive-out').innerHTML = deriveHtml(); }, 900);
+    return;
+  }
+  if (t.hasAttribute('data-outline-use')) {
+    const f = [...document.querySelectorAll('#decide .field')].find(x => x.querySelector('label') && /^Your student-facing outline/.test(x.querySelector('label').textContent.trim()));
+    const b = f && f.querySelector('textarea'); if (!b) return;
+    if (b.value.trim() && b.value !== derivedOutline && !confirm('Replace the outline you\u2019ve written?')) return;
+    b.value = derivedOutline; b.rows = Math.min(30, derivedOutline.split('\n').length + 1); b.scrollIntoView({ behavior: 'smooth', block: 'center' }); b.focus({ preventScroll: true });
+    return;
+  }
   if (t.dataset.gridAdd) {
     const name = t.dataset.gridAdd, g = GRIDS[name], rows = gridRows(name), at = rows.findIndex(g.insertBefore), n = at < 0 ? rows.length : at;
     rows.splice(n, 0, Object.fromEntries(g.cols.map(([k]) => [k, '']))); save();
@@ -1574,7 +1641,7 @@ document.addEventListener('click', e => {
     const filled = Object.keys(u.grids).some(n => gridRows(n).some(r => Object.values(r).some(v => String(v).trim() && !/^(Introduction|Topic \d|Conclusion|Slides)$/.test(v)))) || boxes.some(b => b.value.trim());
     if (filled && !confirm('Replace what is already in your forms under Decide?')) return;
     Object.entries(u.grids).forEach(([n, rows]) => { state.grids[stepKey()][n] = JSON.parse(JSON.stringify(rows)); gridRefresh(n); });
-    (u.boxes || []).forEach((v, i) => { const b = boxes[i]; if (b) { b.value = v; b.dispatchEvent(new Event('input', { bubbles: true })); } });
+    (u.boxes || []).forEach((v, i) => { const b = boxes[i]; if (b) { b.value = v; b.rows = Math.max(b.rows, Math.ceil(v.length / 90) + 1); b.dispatchEvent(new Event('input', { bubbles: true })); } });
     save();
     const f = document.querySelector('.grid-field'); f.insertAdjacentHTML('afterbegin', '<p class="use-note" role="status">Copied. Edit it here until it\u2019s your plan.</p>');
     f.scrollIntoView({ behavior: 'smooth', block: 'start' }); return;
