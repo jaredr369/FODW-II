@@ -35,7 +35,14 @@ def main():
     for s in json.loads(read(os.path.join(CONTENT, 'sources.json')))['sources']:
         sources[s['id']] = {k: s[k] for k in ('title', 'citation', 'url', 'path') if k in s}
 
-    data = json.dumps({'modules': modules, 'demo': demo, 'sources': sources}, ensure_ascii=False)
+    # The glossary is a Term | Also matches | Definition table in content/glossary.md.
+    glossary = []
+    for line in read(os.path.join(CONTENT, 'glossary.md')).splitlines():
+        cells = [c.strip() for c in line.strip().strip('|').split('|')]
+        if len(cells) == 3 and cells[0] not in ('Term', '---') and not set(cells[0]) <= set('-'):
+            also = [] if cells[1] in ('', '(glossary only)') else [a.strip() for a in cells[1].split(',') if a.strip()]
+            glossary.append({'term': cells[0], 'also': also, 'def': cells[2], 'auto': cells[1] != '(glossary only)'})
+    data = json.dumps({'modules': modules, 'demo': demo, 'sources': sources, 'glossary': glossary}, ensure_ascii=False)
     data = data.replace('</', '<\\/')
     template = read(os.path.join(ROOT, 'prototype', 'src', 'template.html'))
     assert '/*DATA*/null' in template

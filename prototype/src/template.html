@@ -210,6 +210,10 @@ summary { cursor: pointer; color: var(--muted); font-size: 14px; }
 .choose .opt input { margin-top: 4px; }
 .choose .desc { display: block; font-size: 15px; color: var(--muted); }
 .grid-cap { margin: 0 0 6px; }
+.term { background: none; border: 0; padding: 0; font: inherit; color: inherit; text-decoration: underline dotted var(--maroon) 2px; text-underline-offset: 3px; cursor: help; }
+.term[aria-expanded="true"] { background: var(--tint); }
+.term-pop { display: block; margin: 6px 0; padding: 8px 12px; background: #fff; border: 1px solid var(--line); border-left: 4px solid var(--maroon); border-radius: 6px; font-size: 15px; }
+.gloss-list dt { font-weight: 700; margin-top: 14px; } .gloss-list dd { margin: 2px 0 0; } .gloss-list dt.hl { color: var(--maroon); }
 .ros h4 { margin: 14px 0 6px; } .ros-grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
 .ros-fixed { margin: 6px 0 0; color: var(--muted); } .ros-team { border: 1px solid var(--line); border-radius: 6px; padding: 6px 10px; margin: 6px 0; background: var(--tint); }
 .ros-team summary { cursor: pointer; font-weight: 600; } .ros-team ul { margin: 6px 0 2px; }
@@ -373,6 +377,7 @@ body.editing main { padding-bottom: 140px; }
     <button type="button" data-track="refresh">Refresh</button>
   </div>
   <button type="button" class="hbtn" id="editBtn" aria-pressed="false">Edit</button>
+  <button type="button" class="hbtn" id="glossBtn" aria-expanded="false" aria-controls="gloss">Glossary</button>
   <button type="button" class="hbtn" id="docBtn" aria-expanded="false" aria-controls="doc">Planning document</button>
 </header>
 <div class="layout">
@@ -381,6 +386,7 @@ body.editing main { padding-bottom: 140px; }
   <div class="main-wrap"><main id="main" tabindex="-1"></main><footer class="credits" id="credits"></footer></div>
 </div>
 <aside class="doc" id="doc" hidden aria-label="Course Planning Document preview"></aside>
+<aside class="doc gloss" id="gloss" hidden aria-label="Glossary" tabindex="-1"></aside>
 <div class="editbar" id="editbar" hidden role="region" aria-label="Edit mode">
   <span class="msg"><strong>Edit mode.</strong> Click any outlined text and type. Text without an outline can't be changed here; tell Claude instead. <span id="ecount" aria-live="polite"></span></span>
   <button type="button" class="btn" id="saveEdits">Save edits</button>
@@ -521,8 +527,43 @@ function recordEdit(el) {
   saveEdits(); updateBar();
   if (s.kind === 'title') renderNav();
 }
+// Glossary: the first time a term appears in a step, it's underlined; selecting it shows the definition.
+const GLOSS = (DATA.glossary || []).map((g, k) => Object.assign({ k }, g));
+function glossRe(g) {
+  const forms = [g.term].concat(g.also).sort((a, b) => b.length - a.length).map(f => f.replace(/[.*+?^${}()|[\]\\/]/g, '\\$&'));
+  return new RegExp('(^|[^\\w/-])(' + forms.join('|') + ')(?![\\w-])', /^[A-Z/]+$/.test(g.term) ? '' : 'i');
+}
+const GLOSS_RE = GLOSS.filter(g => g.auto).map(g => [g, glossRe(g)]);
+function markTerms(roots) {
+  const seen = new Set(), skip = 'a, button, code, pre, textarea, input, label, h2, h3, h4, summary, .choose, .term, .fig, .scen-picker, .plan-label, .banner, .meta, .cite, .ros, .plan-summary';
+  const nodes = [];
+  for (const root of roots) { const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, { acceptNode: n => n.nodeValue.trim() && !n.parentElement.closest(skip) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT });
+  while (walker.nextNode()) nodes.push(walker.currentNode); }
+  for (let node of nodes) {
+    for (const [g, re] of GLOSS_RE) {
+      if (seen.has(g.k) || !node) continue;
+      const m = re.exec(node.nodeValue); if (!m) continue;
+      seen.add(g.k);
+      const at = m.index + m[1].length, after = node.splitText(at), rest = after.splitText(m[2].length);
+      const b = document.createElement('button'); b.type = 'button'; b.className = 'term'; b.dataset.term = g.k; b.setAttribute('aria-expanded', 'false'); b.textContent = after.nodeValue;
+      after.replaceWith(b); node = rest;
+    }
+  }
+}
+function glossHtml(filter) {
+  const f = (filter || '').toLowerCase(), list = GLOSS.slice().sort((a, b) => a.term.localeCompare(b.term)).filter(g => !f || (g.term + ' ' + g.def).toLowerCase().includes(f));
+  return '<div class="row" style="justify-content:space-between"><h2>Glossary</h2><button type="button" class="btn sec" id="closeGloss">Close</button></div>' +
+    '<div class="field"><label for="glossFind">Find a term</label><input id="glossFind" type="search" value="' + esc(filter || '') + '"></div>' +
+    '<dl class="gloss-list">' + (list.length ? list.map(g => '<dt id="g-' + g.k + '">' + esc(g.term) + '</dt><dd>' + inline(g.def) + '</dd>').join('') : '<dd>No terms match.</dd>') + '</dl>';
+}
+function openGloss(k) {
+  const p = $('#gloss'); p.innerHTML = glossHtml(''); p.hidden = false; $('#glossBtn').setAttribute('aria-expanded', 'true');
+  const el = k != null && document.getElementById('g-' + k);
+  if (el) { el.scrollIntoView({ block: 'center' }); el.classList.add('hl'); } else p.focus();
+}
 function decorate() {
   document.body.classList.toggle('editing', editing);
+  if (!editing) markTerms([...document.querySelectorAll('#main .part')]);
   $('#editBtn').setAttribute('aria-pressed', String(editing));
   $('#editbar').hidden = !editing;
   if (!editing) return;
@@ -1603,6 +1644,7 @@ document.addEventListener('input', e => {
   if (e.target.dataset && e.target.dataset.setting) { state[e.target.dataset.setting] = e.target.value; save();
     if (e.target.type === 'radio') { const y = window.scrollY; render(); window.scrollTo(0, y); document.querySelector('input[name="' + e.target.name + '"]:checked').focus({ preventScroll: true }); }
     return; }
+  if (e.target.id === 'glossFind') { const v = e.target.value; $('#gloss').innerHTML = glossHtml(v); const f = $('#glossFind'); f.focus(); f.setSelectionRange(v.length, v.length); return; }
   if (e.target.dataset && e.target.dataset.ros) { state.ros = state.ros || {}; state.ros[e.target.dataset.ros] = e.target.value; save(); return; }
   if (e.target.dataset && e.target.dataset.grid) {
     const name = e.target.dataset.grid, rows = gridRows(name); rows[+e.target.dataset.row][e.target.dataset.col] = e.target.value; save();
@@ -1773,6 +1815,17 @@ document.addEventListener('click', e => {
     if (!row.querySelector('[data-next]')) row.insertAdjacentHTML('beforeend', '<button type="button" class="btn sec" data-next>Next step</button>');
     return;
   }
+  if (t.classList.contains('term')) {
+    const open = t.getAttribute('aria-expanded') === 'true'; document.querySelectorAll('.term-pop').forEach(x => x.remove());
+    document.querySelectorAll('.term[aria-expanded="true"]').forEach(x => x.setAttribute('aria-expanded', 'false'));
+    if (open) return;
+    const g = GLOSS[+t.dataset.term]; t.setAttribute('aria-expanded', 'true');
+    t.insertAdjacentHTML('afterend', '<span class="term-pop" role="note"><strong>' + esc(g.term) + ':</strong> ' + inline(g.def) + ' <button type="button" class="linkbtn" data-glossopen="' + g.k + '">Open the glossary</button></span>');
+    return;
+  }
+  if (t.dataset.glossopen !== undefined) { openGloss(+t.dataset.glossopen); return; }
+  if (t.id === 'glossBtn') { const p = $('#gloss'); if (p.hidden) openGloss(); else { p.hidden = true; t.setAttribute('aria-expanded', 'false'); } return; }
+  if (t.id === 'closeGloss') { $('#gloss').hidden = true; $('#glossBtn').setAttribute('aria-expanded', 'false'); $('#glossBtn').focus(); return; }
   if (t.id === 'docBtn') { const d = $('#doc'); d.hidden = !d.hidden; t.setAttribute('aria-expanded', String(!d.hidden)); if (!d.hidden) { d.innerHTML = renderDoc(); d.focus(); } return; }
   if (t.id === 'closeDoc') { $('#doc').hidden = true; $('#docBtn').setAttribute('aria-expanded', 'false'); $('#docBtn').focus(); return; }
   if (t.id === 'showAll') { state.showAll = t.checked; save(); $('#doc').innerHTML = renderDoc(); return; }

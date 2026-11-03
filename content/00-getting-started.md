@@ -39,6 +39,9 @@ workshop begins and works with you through the development of your course. You c
 you do, ask your ID to meet more often, so each module is reviewed before the next one builds on
 it.
 
+New terms are underlined the first time they appear in a step; select one to see what it means. The
+**Glossary** button at the top lists them all.
+
 ::: figure timeline | From this workshop to teaching your course
 - Workshop | 8 modules, about one a week, with a weekly check-in | here
 - Kick-off | Plan the development schedule with your ID
