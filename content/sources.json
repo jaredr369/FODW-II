@@ -462,6 +462,15 @@
       "notes": "The course map gives pp. 131-151, which is Chapter 7's range. The PDF's printed page numbers show Chapter 15 on pp. 124-133. The PDF sits in the Module 6 folder."
     },
     {
+      "id": "ext-tamu-lms-gemini",
+      "kind": "ext",
+      "title": "Google Gemini",
+      "citation": "Texas A&M University Learning Management System. (n.d.). Google Gemini [LMS tool].",
+      "module": "m4",
+      "use": "supplemental",
+      "url": "https://lms.tamu.edu/tools/lms-tools/google-gemini.html"
+    },
+    {
       "id": "ext-rice-workload",
       "kind": "ext",
       "title": "Course workload estimator",
