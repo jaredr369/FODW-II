@@ -246,8 +246,8 @@ only on what's on screen. Most scripts run 250 to 350 words, about 2 to 2.5 minu
 
 Your ID and the Learning Media Team will help with the rest of your scripts during development.
 
-**Getting ready for the stage.** Send the finished script to your ID, who passes it to Learning
-Media. Schedule a practice session on the XR stage with the Learning Media Team. Record your
+**Getting ready for the stage.** Send the finished script to your ID, who passes it to the Learning
+Media Team's Writer/Producer. The Writer/Producer gets your script ready for production. Schedule a practice session on the XR stage with the Learning Media Team. Record your
 required videos in as few sessions as you can; MGMT 615 recorded all eight module overviews in
 one.
 
