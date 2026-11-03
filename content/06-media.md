@@ -75,10 +75,16 @@ by the Learning Media team. Curated videos from other sources belong in your mat
 **Why the required videos matter.** The welcome, overview, and closing videos are how students see
 and hear you each week. They're part of your presence in the course and support RSI.
 
-**Limits.** Video and audio you script and record total no more than 30 minutes a module. Engagement
-drops sharply after about six minutes (Guo, Kim, & Rubin, 2014), so split anything longer into
-short parts, one idea each. Every item should add something a reading can't: a process to watch, a
-voice and face, a moment of tension.
+**Limits.** Video and audio you script and record should total no more than 30 minutes a module.
+Curated videos from other sources (planned in Module 5) have no total limit, but each should run
+6 to 10 minutes at most, and their time counts toward the week's roughly 2 hours of readings and
+media. Engagement drops sharply after about six minutes of watching (Guo, Kim, & Rubin, 2014), so
+split anything longer into short parts, one idea each.
+
+**When to record.** Beyond the required videos, save recorded media for what text can't do well: a
+topic too complex for many students to grasp from reading alone, a process they need to watch, or
+a moment of tension from your story. Keep every item concise, and don't repeat what another
+material already covers.
 
 **Media for your story.** Go through your scenarios and decide which need production. A scenario
 video opens in the character's situation and ends at the decision, before the answer, so the
