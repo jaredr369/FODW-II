@@ -898,13 +898,14 @@ const endP = s => /[.?!]$/.test(s) ? s : s + '.';
 const cohText = c => endP(c.title) + ' Decision: ' + lcFirst(c.decision) + '.\nWhat students get live: ' + lcFirst(c.live) + '.\n' + c.segments.join('\n') + '\nSetup: ' + c.setup.map(lcFirst).join('; ') + '.';
 function cohortDraft(n) {
   const c = cohortOf(n); if (!c) return '<p>Module 1 has no cohort session. Choose Module 2 to 8.</p>';
-  const mins = c.segments.reduce((s, g) => s + (+(g.match(/^(\d+)\s*min/) || [])[1] || 0), 0), low = /poll|chat/i.test(c.segments[0]);
+  const mins = c.segments.reduce((s, g) => s + (+(g.match(/^(\d+)\s*min/) || [])[1] || 0), 0), low = /check understanding|poll|chat/i.test(c.segments[0]), guided = /guided/i.test(c.segments[1] || '');
   const review = state.track === 'refresh' ? (c.review.length ? '<p><strong>Review of your current session:</strong></p><ul>' + c.review.map(r => '<li>' + esc(r) + '</li>').join('') + '</ul>' : '<p>Your current session passed the recording test.</p>') : '';
   return review + '<div class="scen-opt" data-opt="1"><p><strong>' + (state.track === 'refresh' ? 'Session after the review' : 'Session for this module') + '</strong></p><p>' + esc(endP(c.title)) + ' Decision: ' + esc(lcFirst(c.decision)) + '.</p><p>What students get live: ' + esc(lcFirst(c.live)) + '.</p><ul>' +
     c.segments.map(g => '<li>' + esc(g) + '</li>').join('') + '</ul><p>Setup: ' + esc(c.setup.map(lcFirst).join('; ')) + '.</p></div>' +
     '<div class="act-checks"><p><strong>What the checks will find</strong></p><ul>' +
     '<li><strong>Recording test:</strong> passes. The live part is ' + esc(lcFirst(c.live)) + ', which depends on who’s in the room.</li>' +
-    '<li><strong>Start:</strong> ' + (low ? 'low-stakes, with a poll or the chat.' : 'add a poll or a chat question before small groups.') + '</li>' +
+    '<li><strong>Opening:</strong> ' + (low && guided ? 'a check for understanding, then guided practice, before small groups.' :
+      !low ? 'open with a quick check for understanding, such as a poll or a chat question.' : 'add guided practice before small groups.') + '</li>' +
     '<li><strong>RSI:</strong> ' + c.rsi.map(r => RSI_NAME[r]).join(' and ') + '.</li>' +
     '<li><strong>Time:</strong> ' + mins + ' minutes' + (Math.abs(mins - 90) <= 5 ? ', on target.' : '; aim for 90.') + '</li></ul></div>';
 }

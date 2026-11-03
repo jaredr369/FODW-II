@@ -75,7 +75,18 @@ them:
 | Your judgment on a messy case | You work through a case with no clean answer and explain your reasoning |
 | A preview of the next assessment | Students work a problem shaped like the next assignment with you there |
 
-Reviewing the reading or lecturing on new material belongs in the asynchronous content.
+**A shape that works.** Most sessions follow the same four steps:
+
+1. **Check understanding (about 10 minutes).** Open with a poll or a few chat questions on the
+   week's main concepts. It shows you what students took from the materials, and you can clear up
+   a misunderstanding before it spreads. Keep it short; don't re-teach the reading.
+2. **Guided practice (about 15 minutes).** Work one example with the class. You lead, students
+   supply the next step or the next move, and you coach as they go.
+3. **The live part (most of the session).** Students practice or decide in small groups: the part
+   a recording can't give them.
+4. **Debrief and preview.** Groups share, you add your judgment, and you point to what's due next.
+
+Lecturing on new material belongs in the asynchronous content.
 
 **Your story as a live decision.** Let the week's materials carry the scenario up to the
 decision, then stop. The session is where students make the call: vote on the character's
@@ -84,7 +95,8 @@ hesitant students a way in), or give each group a different piece of evidence so
 only comes together in the debrief.
 
 **Quiet rooms.** Over a third of distance learners feel stressed when asked to participate live
-(Donelan et al., 2025). Start with a poll or the chat, then small groups, then the whole room.
+(Donelan et al., 2025). The check for understanding eases them in: start with a poll or the chat,
+then small groups, then the whole room.
 
 **RSI.** A session built this way is facilitated discussion (category 4) every week, often with
 feedback (2) or direct instruction (1) as well.
@@ -107,10 +119,11 @@ roundtables didn't: nothing in them depended on who was in the room, so each got
 ::: plan Cohort Session, Module 5
 - Telling Greg He's Wrong. Decision: how Dana answers her director.
 - What students get live: practice with peers.
-- 10 min: the week's Poll Everywhere results, and two students from each side say why
-- 45 min: role-play in threes (Dana, Greg, and an observer), three 15-minute rounds
-- 25 min: two volunteers replay their conversation for the class; instructor feedback
-- 10 min: preview of the memo to Greg
+- 10 min: check understanding: the week's Poll Everywhere results, plus one question on the root causes of disagreement
+- 15 min: guided practice: the instructor and a volunteer play the opening exchange, and the class coaches Dana's next line
+- 40 min: role-play in threes (Dana, Greg, and an observer), three rounds
+- 20 min: two volunteers replay their conversation for the class; instructor feedback
+- 5 min: preview of the memo to Greg
 - Setup: show the poll results; breakouts of three; observer checklist in the chat.
 :::
 
@@ -135,7 +148,8 @@ AI instructions:
 For the given module, using its scenario, activities, and the learner profile, propose a 90-minute
 cohort session. Give: a title; the decision it centers on; which of the five live benefits it
 offers (feedback on own work, own job, practice with peers, instructor judgment, assessment
-preview); 3 to 5 timed segments that start low-stakes (a poll or the chat) before small groups;
+preview); 4 or 5 timed segments that open with a quick check for understanding of the week's main
+concepts (a poll or the chat), then guided practice the instructor leads, then small groups;
 the RSI categories it shows; and setup needs for the Instructional Technologist (poll wording,
 breakout sizes and timing, chat links). It must pass the recording test: name the moment that
 depends on who is in the room.
@@ -150,7 +164,8 @@ AI instructions:
 ```text
 For the module's current cohort session, apply the recording test: name what a student who watched
 only the recording would miss, or say "nothing." Check it connects to the module's scenario or
-activities, starts low-stakes, and gives the Instructional Technologist enough to set up. Use the
+activities, opens with a check for understanding and guided practice before small groups, and
+gives the Instructional Technologist enough to set up. Use the
 faculty member's reflection on attendance and quiet moments. Suggest keep or revise; for a
 revision, keep the session's purpose and add one live moment.
 
@@ -178,7 +193,7 @@ setup your Instructional Technologist needs. The minutes should add up to 90.
 Checklist:
 
 - You can name what a student watching the recording would miss.
-- The session starts with something low-stakes.
+- The session opens with a check for understanding, then guided practice.
 - Setup needs are clear enough for your Instructional Technologist.
 
 ### Checks
@@ -187,7 +202,7 @@ When you save each module, the tool checks that:
 
 - the session passes the recording test;
 - it ties to the module's scenario or activities;
-- it starts with a poll, the chat, or small groups;
+- it opens with a check for understanding (a poll or the chat), then guided practice;
 - it shows at least one RSI category;
 - the segments add up to about 90 minutes.
 
@@ -256,10 +271,11 @@ team.
 
 | Duration | Section | Subtopics, Talking Points, and Other Details |
 |---|---|---|
-| 10 | Introduction | Show the week's Poll Everywhere results: how should Dana answer Greg? Ask two students from each side why. |
-| 45 | Topic 1: Role-play in threes | Breakouts of three: Dana, Greg, and an observer. Three 15-minute rounds, so everyone plays each role. The observer notes the strongest line they hear. |
-| 25 | Topic 2: Replay | Two volunteers replay their conversation for the class. Instructor feedback on what moved Greg, and what didn't. |
-| 8 | Conclusion | Preview the memo to Greg due Sunday: put the strongest line from today in writing. |
+| 10 | Introduction | Check understanding: show the week's Poll Everywhere results (how should Dana answer Greg?), then one poll question on the root causes of disagreement. Clear up any mix-ups. |
+| 15 | Topic 1: Guided practice | The instructor plays Greg and a volunteer plays Dana for the opening exchange. The class coaches Dana's next line in the chat. |
+| 40 | Topic 2: Role-play in threes | Breakouts of three: Dana, Greg, and an observer. Three rounds of about 13 minutes, so everyone plays each role. The observer notes the strongest line they hear. |
+| 20 | Topic 3: Replay | Two volunteers replay their conversation for the class. Instructor feedback on what moved Greg, and what didn't. |
+| 3 | Conclusion | Preview the memo to Greg due Sunday: put the strongest line from today in writing. |
 | 2 | Buffer | Questions from the room, then close. |
 
 **Background environment:** Virtual podcast studio, the same one as the course videos.
@@ -268,7 +284,8 @@ team.
 |---|---|---|---|
 | 1 | Module 5 cohort session slides | Slides | Module 5 cohort session page in Canvas |
 | 2 | How should Dana answer Greg? | Poll results (Poll Everywhere) | Shown from the week's poll |
-| 3 | Observer checklist | Handout | Module 5 page in Canvas, linked in the chat |
+| 3 | Root causes of disagreement | Poll (Zoom) | Loaded by the Instructional Technologist |
+| 4 | Observer checklist | Handout | Module 5 page in Canvas, linked in the chat |
 
 ### Draft (full build) and Review (refresh)
 
@@ -308,22 +325,24 @@ Demo response (MGMT 615):
 
 | Duration | Section | Subtopics, Talking Points, and Other Details |
 |---|---|---|
-| 10 | Introduction | Welcome, and recap Dana's situation: the bonus, the error rates, and Luis. Chat check-in: which piece of evidence worries you most? |
-| 30 | Topic 1: Split evidence | Breakouts of three. Each group gets one piece of evidence: the bonus data, Luis's record, or the crew's view. Timer on screen. |
-| 35 | Topic 2: Recommend | Regroup so each new group holds all three pieces of evidence. Groups recommend keeping, adjusting, or replacing the bonus, with one reason from each piece. |
+| 10 | Introduction | Welcome. Check understanding with a poll: which link in expectancy theory does the pick-rate bonus break? Clear up any mix-ups, then recap Dana's situation. |
+| 15 | Topic 1: Guided practice | Diagnose Luis together. The instructor walks through his record; students name the motivation problem in the chat, and the instructor coaches toward the evidence. |
+| 25 | Topic 2: Split evidence | Breakouts of three. Each group gets one piece of evidence: the bonus data, Luis's record, or the crew's view. Timer on screen. |
+| 25 | Topic 3: Recommend | Regroup so each new group holds all three pieces of evidence. Groups recommend keeping, adjusting, or replacing the bonus, with one reason from each piece. |
 | 13 | Conclusion | Two groups share their recommendation, then the instructor's own call and why. Preview the motivation diagnosis due Sunday. |
 | 2 | Buffer | Last questions, then close. |
 
-**Materials, handouts, and room setup:** Slides; three evidence handouts, one per group. Breakouts
-of three for 30 minutes, then regrouped breakouts of three for 35 minutes, with a timer for each
-round.
+**Materials, handouts, and room setup:** Slides; a concept-check poll; three evidence handouts, one
+per group. Breakouts of three for 25 minutes, then regrouped breakouts of three for 25 minutes, with
+a timer for each round.
 
 | Order | Name | Asset Type | Link (Slides in Canvas) |
 |---|---|---|---|
 | 1 | Module 2 cohort session slides | Slides | Module 2 cohort session page in Canvas |
-| 2 | Evidence A: the bonus data | Handout | Module 2 page in Canvas, linked in the chat |
-| 3 | Evidence B: Luis's record | Handout | Module 2 page in Canvas, linked in the chat |
-| 4 | Evidence C: the crew's view | Handout | Module 2 page in Canvas, linked in the chat |
+| 2 | Which link does the bonus break? | Poll (Zoom) | Loaded by the Instructional Technologist |
+| 3 | Evidence A: the bonus data | Handout | Module 2 page in Canvas, linked in the chat |
+| 4 | Evidence B: Luis's record | Handout | Module 2 page in Canvas, linked in the chat |
+| 5 | Evidence C: the crew's view | Handout | Module 2 page in Canvas, linked in the chat |
 
 ### Decide
 

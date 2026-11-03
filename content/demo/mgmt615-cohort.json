@@ -1,5 +1,5 @@
 {
-  "about": "Recorded demo data for Module 7 (MGMT 615, fictional). Each module's 90-minute cohort session after the refresh: title, the decision it centers on, what students get live (feedback, own job, practice, instructor judgment, assessment preview), segments, the RSI moments, and setup needs for the Instructional Technologist. 'review' holds refresh flags and resolutions.",
+  "about": "Recorded demo data for Module 7 (MGMT 615, fictional). Each module's 90-minute cohort session after the refresh: title, the decision it centers on, what students get live (feedback, own job, practice, instructor judgment, assessment preview), segments (check understanding, guided practice, the live part, then debrief), the RSI moments, and setup needs for the Instructional Technologist. 'review' holds refresh flags and resolutions.",
   "modules": [
     {
       "module": 2,
@@ -7,9 +7,10 @@
       "decision": "Keep, adjust, or replace the pick-rate bonus",
       "live": "Your judgment on a messy case",
       "segments": [
-        "10 min: recap of Dana's situation, with a chat check-in: which piece of evidence worries you most?",
-        "30 min: each breakout gets one piece of evidence (bonus data, Luis's record, the crew's view)",
-        "35 min: groups combine evidence and recommend",
+        "10 min: check understanding: a poll on which link in expectancy theory the bonus breaks, then a recap of Dana's situation",
+        "15 min: guided practice: diagnose Luis together, with students naming the motivation problem in the chat",
+        "25 min: each breakout gets one piece of evidence (bonus data, Luis's record, the crew's view)",
+        "25 min: groups combine evidence and recommend",
         "15 min: instructor's call and why"
       ],
       "rsi": [
@@ -17,6 +18,7 @@
         1
       ],
       "setup": [
+        "Concept-check poll",
         "Three different breakout handouts",
         "Timer for each round"
       ],
@@ -30,9 +32,10 @@
       "decision": "Coach, warn, or coach and document",
       "live": "Practice with peers",
       "segments": [
-        "10 min: setup, with a poll: coach, warn, or coach and document?",
-        "50 min: breakouts of three, rotating Dana, Jordan, and observer",
-        "20 min: observers report the strongest line they heard",
+        "10 min: check understanding: a poll on which part of SBI is missing from Greg's warning",
+        "15 min: guided practice: the instructor models the first two minutes with Jordan, and the class names each SBI part",
+        "40 min: breakouts of three, rotating Dana, Jordan, and observer",
+        "15 min: observers report the strongest line they heard",
         "10 min: preview"
       ],
       "rsi": [
@@ -40,6 +43,7 @@
         2
       ],
       "setup": [
+        "Concept-check poll",
         "Breakouts of three, three 15-minute rounds",
         "Observer checklist in the chat"
       ],
@@ -51,9 +55,10 @@
       "decision": "Lunch, joint meeting, or a structural fix",
       "live": "Applying the concept to their own job",
       "segments": [
-        "10 min: poll on the 4:45 p.m. handoff: lunch, joint meeting, or a structural fix?",
-        "25 min: debate the split",
-        "40 min: groups design a handoff fix for a team they know",
+        "10 min: check understanding: a poll on whether the 4:45 p.m. handoff is a people problem or a structure problem",
+        "15 min: guided practice: map the handoff together with the week's team framework",
+        "15 min: debate the split: lunch, joint meeting, or a structural fix",
+        "35 min: groups design a handoff fix for a team they know",
         "15 min: debrief"
       ],
       "rsi": [
@@ -74,10 +79,11 @@
       "decision": "How Dana answers her director",
       "live": "Practice with peers",
       "segments": [
-        "10 min: the week’s Poll Everywhere results, and two students from each side say why",
-        "45 min: role-play in threes, Dana, Greg, observer",
-        "25 min: two volunteers replay for the class; instructor feedback",
-        "10 min: preview"
+        "10 min: check understanding: the week's Poll Everywhere results, plus one question on the root causes of disagreement",
+        "15 min: guided practice: the instructor and a volunteer play the opening exchange, and the class coaches Dana's next line",
+        "40 min: role-play in threes, Dana, Greg, observer",
+        "20 min: two volunteers replay for the class; instructor feedback",
+        "5 min: preview"
       ],
       "rsi": [
         4,
@@ -95,9 +101,10 @@
       "decision": "Which peak-season tasks Dana keeps",
       "live": "A preview of the next assessment",
       "segments": [
-        "10 min: setup, with a chat question: what's one task you should hand off?",
-        "40 min: groups sort Dana's list, then their own",
-        "30 min: groups defend one decision-rights call",
+        "10 min: check understanding: a poll on which of Dana's tasks only she can decide",
+        "15 min: guided practice: sort the first three items on Dana's list together",
+        "35 min: groups sort the rest of Dana's list, then their own",
+        "20 min: groups defend one decision-rights call",
         "10 min: preview"
       ],
       "rsi": [
@@ -105,6 +112,7 @@
         1
       ],
       "setup": [
+        "Concept-check poll",
         "Shared sorting board link in the chat"
       ],
       "review": []
@@ -115,9 +123,10 @@
       "decision": "How Dana announces the change",
       "live": "Feedback on their own work",
       "segments": [
-        "10 min: setup, with a poll: what will the crew hear first?",
-        "50 min: students read drafts aloud in breakouts; peers play the crew",
-        "20 min: two drafts revised live with the class",
+        "10 min: check understanding: a poll on what people hear first in a change message",
+        "15 min: guided practice: rewrite one line of a sample announcement together",
+        "40 min: students read drafts aloud in breakouts; peers play the crew",
+        "15 min: two drafts revised live with the class",
         "10 min: preview"
       ],
       "rsi": [
@@ -125,6 +134,7 @@
         2
       ],
       "setup": [
+        "Concept-check poll",
         "Breakouts of four",
         "Students bring their draft"
       ],
@@ -136,9 +146,10 @@
       "decision": "Luis or the outside candidate",
       "live": "Practice with peers",
       "segments": [
-        "10 min: setup, with a chat question: what's the one thing you'd ask every candidate?",
-        "50 min: panels of four interview a volunteer candidate with their scorecards",
-        "20 min: panels compare scores",
+        "10 min: check understanding: a poll on which scorecard criterion is gut feel in disguise",
+        "15 min: guided practice: score one sample interview answer together",
+        "40 min: panels of four interview a volunteer candidate with their scorecards",
+        "15 min: panels compare scores",
         "10 min: course close"
       ],
       "rsi": [
@@ -146,6 +157,7 @@
         2
       ],
       "setup": [
+        "Concept-check poll",
         "Breakouts of four",
         "Candidate briefs for volunteers"
       ],
