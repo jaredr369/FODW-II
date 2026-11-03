@@ -334,11 +334,33 @@ Either way, lecturing on new material belongs in the asynchronous content.
 (Donelan et al., 2025). The opening poll eases them in: start with a poll or the chat, then small
 groups, then the whole room.
 
-**Your Instructional Technologist** runs Zoom, polls, breakouts, captions, and timers, if they know
-the plan. Note poll wording, breakout sizes and timing, and anything to drop in the chat.
+**Who runs Zoom with you.** An Instructional Technologist is a member of the Learning Delivery team
+assigned to your cohort sessions. In the weeks before the term, they meet with you to set up your
+Zoom meetings: the settings, polls, pre-assigned breakout rooms, captions, and recording. During
+each session they're your co-host: they admit students, launch polls, open and close breakouts,
+and keep time, so you can focus on teaching. They can only set up what's in the plan, so your
+lesson plan spells out each poll's exact wording and options, each breakout's size and length, and
+anything to post in the chat. Your ID passes the plan along.
 
-**Accessible slides.** Use readable contrast, real text instead of text in images, and nothing
-important only on a slide. During development you'll plan the rest of your sessions with your ID.
+**Accessible slides.** Students join from many devices, and some use screen readers, magnifiers, or
+captions. The Flex Online slide template handles much of this; the rest is up to you:
+
+- **Use the template's layouts.** Each slide's title and text boxes set the order a screen reader
+  reads, and text boxes you add yourself may be read out of order or skipped. Give every slide its
+  own title.
+- **Keep text readable.** Keep the template's fonts and colors. If you change a color, keep the
+  contrast between text and background at 4.5:1 or more (3:1 for large text), and don't use color
+  alone to show meaning.
+- **Describe images.** Add alt text to every image, chart, or diagram that teaches something: what
+  it shows and why it matters. Mark decorative images as decorative.
+- **Use real text.** Type text on the slide instead of using a picture of text, and use link text
+  that says where the link goes instead of a bare web address.
+- **Say what's on the slide.** Read poll questions aloud and say what a chart shows, so students
+  who are listening, or watching the recording later, don't miss it.
+- **Check it.** In PowerPoint, select **Review**, then **Check Accessibility**. The checker flags
+  most problems before you share the deck with your ID.
+
+During development you'll plan the rest of your sessions with your ID.
 
 ### See it
 
@@ -488,6 +510,7 @@ preparation, outline, slides).
 - `src:template-cohort-lesson-plan`
 - `src:template-cohort-outline`
 - `src:template-flex-slides`
+- `src:guide-accessibility`: contrast, alt text, and accessible slides and documents.
 
 ### No cohort sessions
 
