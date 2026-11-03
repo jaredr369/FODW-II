@@ -1013,6 +1013,17 @@ const docName = () => isRefresh() ? 'updated Course Map' : 'Course Planning Docu
 const stepTitle = s => isRefresh() && !editing ? s.title.replace('Your Course Planning Document', 'Your updated Course Map') : s.title;
 // On Refresh, phrases that name the Full Build document are reworded as the page renders (not in Edit mode, which
 // shows the source text). Paragraphs that compare the two documents use their own Refresh wording instead.
+// Refresh: boxes whose answer the Course Map already has are filled in from it, word for word (no AI drafting).
+const PREFILL = [[/^Paste your catalog description/, cm => cm.catalog]];
+function refreshPrefill(root) {
+  const cm = DATA.demo['mgmt615-coursemap.json']; if (!isRefresh() || editing || !cm) return;
+  root.querySelectorAll('.field').forEach(f => {
+    const lab = f.querySelector('label'), box = f.querySelector('textarea'); if (!lab || !box || box.value) return;
+    const hit = PREFILL.find(([re]) => re.test(lab.textContent.trim())); if (!hit) return;
+    box.value = hit[1](cm); box.rows = Math.max(box.rows, Math.ceil(box.value.length / 90) + 1);
+    box.insertAdjacentHTML('afterend', '<p class="hint prefilled">Filled in from your Course Map, word for word. Compare it with the current catalog, which may have changed since the course was built.</p>');
+  });
+}
 function refreshWording(root) {
   if (!isRefresh() || editing) return;
   const swaps = [[/your finished Course Planning Document/g, 'your updated Course Map'], [/your Course Planning Document/g, 'your updated Course Map'],
@@ -1727,7 +1738,7 @@ function render() {
   $('#main').innerHTML = state.at === 'welcome' ? renderWelcome() : renderStep(state.at) + pager();
   $('#docBtn').textContent = isRefresh() ? 'Updated Course Map' : 'Planning document';
   $('#doc').setAttribute('aria-label', isRefresh() ? 'Updated Course Map preview' : 'Course Planning Document preview');
-  refreshWording($('#main'));
+  refreshWording($('#main')); refreshPrefill($('#main'));
   $('#credits').innerHTML = 'Banner image: ' + credit('Storyline path', '');
   CUR = null;
   if (!$('#doc').hidden) $('#doc').innerHTML = renderDoc();
