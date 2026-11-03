@@ -210,6 +210,9 @@ summary { cursor: pointer; color: var(--muted); font-size: 14px; }
 .choose .opt input { margin-top: 4px; }
 .choose .desc { display: block; font-size: 15px; color: var(--muted); }
 .grid-cap { margin: 0 0 6px; }
+.ros h4 { margin: 14px 0 6px; } .ros-grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+.ros-fixed { margin: 6px 0 0; color: var(--muted); } .ros-team { border: 1px solid var(--line); border-radius: 6px; padding: 6px 10px; margin: 6px 0; background: var(--tint); }
+.ros-team summary { cursor: pointer; font-weight: 600; } .ros-team ul { margin: 6px 0 2px; }
 .linkbtn.steplink { padding: 0; font-size: inherit; vertical-align: baseline; }
 .plan-summary h4 { margin: 18px 0 6px; }
 .plan-summary .totals { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(118px, 1fr)); gap: 8px; }
@@ -599,6 +602,7 @@ function md(text, opts = {}) {
       i++; html += moduleBlock(which, rows, opts); continue;
     }
     // ::: course-summary: 8.1's look at the whole planning document.
+    if (/^:::\s*run-of-show\s*$/.test(line)) { i++; while (i < lines.length && !/^:::\s*$/.test(lines[i])) i++; i++; html += rosForm(); continue; }
     if (/^:::\s*course-summary\s*$/.test(line)) { i++; while (i < lines.length && !/^:::\s*$/.test(lines[i])) i++; i++; html += planSummary(); continue; }
     if (/^:::\s*derive\s*$/.test(line)) { i++; while (i < lines.length && !/^:::\s*$/.test(lines[i])) i++; i++;
       html += '<div class="derive"><div class="row"><button type="button" class="btn sec" data-derive>Draft the outline and slides</button><span class="thinking" hidden>Working\u2026</span></div><div class="derive-out"></div></div>'; continue; }
@@ -1018,6 +1022,26 @@ function gridForm(name) {
 function gridRefresh(name, focusSel) {
   const f = document.querySelector('[data-gridname="' + name + '"]'); if (!f) return;
   f.outerHTML = gridForm(name); if (focusSel) { const el = document.querySelector(focusSel); if (el) el.focus(); }
+}
+// 7.3: the faculty member's part of the XR Run of Show. The session date comes from the course start date (GS.2)
+// and the session day (7.1); the production team's parts are shown read-only.
+function rosForm() {
+  const s = state.ros = state.ros || {}, day = state.cohortDay, start = moduleStart(2);
+  const date = start && day ? fmtDate(dayIn(start, day)) : '';
+  const field = (k, label, ph, val) => '<div class="field"><label for="ros-' + k + '">' + label + '</label><input id="ros-' + k + '" data-ros="' + k + '" placeholder="' + esc(ph) + '" value="' + esc(s[k] != null ? s[k] : (val || '')) + '"></div>';
+  const team = (what, items) => '<details class="ros-team"><summary>' + what + ' <span class="tag">production team</span></summary><ul>' + items.map(x => '<li>' + x + '</li>').join('') + '</ul></details>';
+  return '<div class="ros"><h4>Cohort information</h4><div class="av-head ros-grid">' +
+    field('course', 'Course number', 'MGMT 615') + field('section', 'Section number', '700') +
+    field('date', 'Session date', date ? '' : 'Set a start date (GS.2) and session day (7.1) to fill this in', date) + field('time', 'Session time (CT)', '6:00 to 7:30 p.m.') +
+    field('background', 'Background environment', 'Chosen with the Learning Media Team') +
+    '<div class="field"><label>Location</label><p class="ros-fixed">XR stage</p></div>' +
+    '<div class="field"><label>Crew and instructor call times</label><p class="ros-fixed">Set by the production team</p></div></div>' +
+    '<p class="hint">Zoom is opened through the Zoom tool in your Canvas course.</p>' +
+    team('Team and contacts', ['Instructor (you)', 'Producer', 'Stage operator', 'Alternates']) +
+    team('Pre-show checklist', ['An hour before: background loaded on the LED wall, camera tracking, lighting', '45 minutes before: your mic check, with a backup mic', '40 to 30 minutes before: confidence monitor, stage output to Zoom, your slides loaded and clicker tested',
+      '25 minutes before: Zoom settings, breakout rooms, and polls loaded', '20 minutes before: a walkthrough with you of slide layouts, cues, and hand signals', '15 minutes before: holding slide and music; the room opens', '5 minutes before: a final check with you; recording starts at the session start']) +
+    team('Contingency plan and post-session', ['Contacts on site, off site, and with the vendor if something fails', 'After the session: the recording is saved, a short debrief with you on what to change, and the stage is reset']) +
+    '<h4>Session assets</h4></div>';
 }
 // 8.1: the whole plan at a glance. Each module's story thread, its week, and anything still open, with a way to
 // jump to the step that fixes it. The demo reads MGMT 615's data wherever the faculty member hasn't typed their own.
@@ -1571,6 +1595,7 @@ document.addEventListener('input', e => {
   if (e.target.dataset && e.target.dataset.setting) { state[e.target.dataset.setting] = e.target.value; save();
     if (e.target.type === 'radio') { const y = window.scrollY; render(); window.scrollTo(0, y); document.querySelector('input[name="' + e.target.name + '"]:checked').focus({ preventScroll: true }); }
     return; }
+  if (e.target.dataset && e.target.dataset.ros) { state.ros = state.ros || {}; state.ros[e.target.dataset.ros] = e.target.value; save(); return; }
   if (e.target.dataset && e.target.dataset.grid) {
     const name = e.target.dataset.grid, rows = gridRows(name); rows[+e.target.dataset.row][e.target.dataset.col] = e.target.value; save();
     const m = document.querySelector('[data-gridname="' + name + '"] .grid-meter'); if (m) m.innerHTML = GRIDS[name].meter(rows); return;

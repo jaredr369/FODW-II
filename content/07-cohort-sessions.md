@@ -522,27 +522,38 @@ If that's not right, choose Yes and this step returns.
 ## 7.3 Ready for the stage
 
 Time: about 15 minutes
-Pattern: check and complete
+Pattern: check and complete (both tracks)
 
 ### Learn
 
 ::: purpose
-**What you'll do:** Choose your background and list the assets for broadcasting your first cohort
-session from the XR stage.
+**What you'll do:** Fill in your part of the XR Run of Show for your first cohort session: the
+session details, your background, and the assets you'll use, in order.
 
 **Why it matters:** Cohort sessions are broadcast live from the XR stage. When you choose your
 background and list your assets ahead of time, the stage, Zoom, polls, and breakouts can all be set
 up before you go live, and the session starts on time.
 :::
 
-The **[XR Run of Show](src:template-run-of-show)** is the production team's plan for the day: call times, who's on the crew, a
-pre-show checklist, and a backup plan. It sets the order of the session but leaves your teaching
-unscripted. You give your ID two things for it: your **background environment** and your **session
-assets**, such as slides, polls, and handouts, in the order you'll use them.
+The **[XR Run of Show](src:template-run-of-show)** is the production team's plan for each session.
+It sets the order of the session but leaves your teaching unscripted. It has six parts, and you
+fill in three:
+
+| Part | Who fills it in |
+|---|---|
+| Cohort information: course, section, date and time, location, and background | You, except the call times |
+| Team and contacts | The production team |
+| Pre-show checklist, from an hour before to the start | The production team |
+| Session assets: slides, polls, and handouts, in the order you'll use them | You |
+| Contingency plan contacts | The production team |
+| Post-session: saving the recording, a short debrief, resetting the stage | The production team |
+
+**Your assets start from your lesson plan.** The form below lists your slide deck first, then each
+poll your lesson plan in step 7.2 names. Add handouts and anything else you'll show.
 
 **Keep it simple.** Choose one background with the Learning Media Team; the one you chose for your
-videos works well. Teach with your slides from step 7.2, and post handouts in Canvas so a link can
-go in the chat.
+videos works well. Teach with your slides, and post handouts in Canvas so a link can go in the
+chat.
 
 **On the day.** Arrive at the call time the team gives you for a mic check and a walkthrough. Look
 at the camera lens when you speak to students; a confidence monitor shows your slides and notes. The
@@ -554,9 +565,10 @@ the time to try the polls and breakouts, find where to look, and get comfortable
 
 ### See it
 
-Here's what the MGMT 615 instructor gave their ID for the Module 5 session.
+Here's the MGMT 615 instructor's part of the XR Run of Show for the Module 5 session.
 
-**Background environment:** Virtual podcast studio, the same one as the course videos.
+**Cohort information:** MGMT 615, section 700. Thursday, Sept. 24, 6:00 to 7:30 p.m. CT, on the
+XR stage. Background environment: virtual podcast studio, the same one as the course videos.
 
 | Order | Name | Asset Type | Link (Slides in Canvas) |
 |---|---|---|---|
@@ -565,15 +577,12 @@ Here's what the MGMT 615 instructor gave their ID for the Module 5 session.
 | 3 | Root causes of disagreement | Poll | Loaded by the Instructional Technologist |
 | 4 | Observer checklist | Handout | Module 5 page in Canvas, linked in the chat |
 
-### Write (no AI)
-
-Your session assets start from your lesson plan in step 7.2: the slide deck first, then each poll
-and handout the plan names. Check them, add anything missing, and name your background.
-
 ### Decide
 
-::: fields notes
-- Background environment
+Fill in your part of the run of show. The parts the production team fills in are shown so you know
+what happens before and after the session.
+
+::: run-of-show
 :::
 
 ::: grid assets
@@ -589,14 +598,15 @@ Checklist:
 
 When you save, the tool confirms that:
 
-- a background is named;
+- the session date, time, and background are filled in;
 - the slides are listed first, and every poll and handout in the lesson plan is listed.
 
 ### Save
 
 Planning document: nothing new; the session's line gains "ready for the stage."
-Download: your background and session assets for the XR Run of Show, to share with your ID.
-Project file: `stage[]` (module, background, assets).
+Download: your part of the XR Run of Show as a Word file in the team's template, to share with your
+ID.
+Project file: `stage[]` (module, course, section, date, time, background, assets).
 
 ### Go deeper (supplemental)
 
