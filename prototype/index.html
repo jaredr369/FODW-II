@@ -33,6 +33,22 @@ nav .mark.done { color: var(--ok); font-weight: 700; }
 nav h2 { margin: 6px 0 0; }
 nav .modhead { font-size: 13px; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); font-weight: 600; padding: 8px 16px; gap: 6px; }
 nav .modhead .mt { flex: 1; }
+nav .nav-toggle { justify-content: flex-end; color: var(--muted); font-size: 13px; padding: 2px 12px 6px; }
+body.nav-mini .layout { grid-template-columns: 64px 1fr; }
+body.nav-mini nav { padding-top: 6px; }
+body.nav-mini nav .nav-toggle { justify-content: center; font-size: 18px; padding: 4px 0 10px; }
+nav .mini { flex-direction: column; align-items: center; gap: 4px; padding: 8px 0; }
+nav .mini .mini-num { font-weight: 700; font-size: 15px; color: var(--ink); }
+nav .mini .mini-dot { width: 16px; height: 16px; border-radius: 50%; border: 2px solid #b9b4ad; font-size: 11px; line-height: 12px; text-align: center; color: #fff; }
+nav .mini .mini-dot.some { border-color: var(--ok); background: linear-gradient(90deg, var(--ok) 50%, transparent 50%); }
+nav .mini .mini-dot.done { border-color: var(--ok); background: var(--ok); font-weight: 700; }
+nav .mini.here { background: var(--tint); box-shadow: inset 3px 0 0 var(--maroon); }
+.pager { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 28px 0 8px; padding-top: 16px; border-top: 1px solid var(--line); }
+.pager .pg { display: flex; flex-direction: column; gap: 2px; background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 10px 14px; font: inherit; cursor: pointer; text-align: left; color: var(--ink); }
+.pager .pg:hover { border-color: var(--maroon); }
+.pager .pg-next { text-align: right; align-items: flex-end; grid-column: 2; }
+.pager .pg-dir { font-size: 14px; font-weight: 700; color: var(--maroon); }
+.pager .pg-name { font-size: 15px; }
 nav .modhead .chev { width: 12px; flex: none; }
 nav .count { text-transform: none; letter-spacing: 0; font-weight: 500; white-space: nowrap; }
 nav .count.all { color: var(--ok); }
@@ -343,6 +359,8 @@ body.editing main { padding-bottom: 140px; }
   .layout { grid-template-columns: minmax(0, 1fr); }
   nav { position: static; max-height: none; border-right: 0; border-bottom: 1px solid var(--line); display: none; }
   body.nav-open nav { display: block; }
+  body.nav-mini .layout { grid-template-columns: minmax(0, 1fr); }
+  nav .nav-toggle { display: none; }
   .steps-btn { display: block; width: 100%; text-align: left; background: #fff; border: 0; border-bottom: 1px solid var(--line); padding: 12px 16px; font: inherit; font-weight: 600; color: var(--maroon); cursor: pointer; }
   .steps-btn::before { content: "☰  "; }
   header { position: static; }
@@ -1343,10 +1361,23 @@ let navOpen = {};
 const isDone = go => !!state.done[/:(reflection|prep)$/.test(go) ? go : go.split(':')[1]];
 function renderNav() {
   const all = order().slice(1), n = all.filter(isDone).length, cur = state.at.split(':')[0];
+  document.body.classList.toggle('nav-mini', !!state.navMini);
+  if (state.navMini) {
+    let mh = '<button type="button" class="nav-toggle" id="navToggle" aria-label="Expand the sidebar" title="Expand the sidebar">\u00bb</button>';
+    for (const m of MODULES) {
+      const keys = all.filter(k => k.split(':')[0] === m.id), d = keys.filter(isDone).length, done = keys.length && d === keys.length;
+      const num = /^Module (\d+)/.test(m.title) ? m.title.match(/^Module (\d+)/)[1] : 'GS', target = keys.find(k => !isDone(k)) || keys[0];
+      mh += '<button type="button" class="mini' + (m.id === cur ? ' here' : '') + '" data-go="' + esc(target) + '"' + (m.id === cur ? ' aria-current="true"' : '') +
+        ' aria-label="' + esc(m.title + ', ' + d + ' of ' + keys.length + ' steps done') + '" title="' + esc(m.title + ' (' + d + ' of ' + keys.length + ')') + '">' +
+        '<span class="mini-num">' + num + '</span><span class="mini-dot' + (done ? ' done' : d ? ' some' : '') + '" aria-hidden="true">' + (done ? '\u2713' : '') + '</span></button>';
+    }
+    $('#stepsBtn').textContent = 'Steps: ' + n + ' of ' + all.length + ' steps done';
+    $('#nav').innerHTML = mh; return;
+  }
   const progress = n + ' of ' + all.length + ' steps done';
   $('#stepsBtn').textContent = 'Steps: ' + progress;
   $('#stepsBtn').setAttribute('aria-expanded', String(document.body.classList.contains('nav-open')));
-  let h = '<div class="progress"><p>' + (state.track ? progress : 'Choose a track to start') + '</p><div class="bar" role="progressbar" aria-label="Workshop progress" aria-valuemin="0" aria-valuemax="' + all.length + '" aria-valuenow="' + n + '"><span style="width:' + (all.length ? 100 * n / all.length : 0) + '%"></span></div></div>';
+  let h = '<button type="button" class="nav-toggle" id="navToggle" aria-label="Collapse the sidebar" title="Collapse the sidebar">\u00ab Collapse</button><div class="progress"><p>' + (state.track ? progress : 'Choose a track to start') + '</p><div class="bar" role="progressbar" aria-label="Workshop progress" aria-valuemin="0" aria-valuemax="' + all.length + '" aria-valuenow="' + n + '"><span style="width:' + (all.length ? 100 * n / all.length : 0) + '%"></span></div></div>';
   h += '<button type="button" data-go="welcome"' + (state.at === 'welcome' ? ' aria-current="page"' : '') + '><span class="mark" aria-hidden="true"></span>Welcome</button>';
   for (const m of MODULES) {
     const keys = all.filter(k => k.split(':')[0] === m.id), d = keys.filter(isDone).length;
@@ -1368,6 +1399,19 @@ function order() {
     if (m.prep) list.push(m.id + ':prep');
   }
   return list;
+}
+// The name of a page, for the Previous and Next buttons.
+function pageName(id) {
+  if (id === 'welcome') return 'Welcome';
+  const { m, key, step } = findStep(id), mod = m.title.replace(/^Module (\d+)\..*/, 'Module $1');
+  if (key === 'reflection') return mod + ': Refresh reflection';
+  if (key === 'prep') return mod + ': Check-in prep';
+  return step ? step.title.replace(/\s*\(optional\)/, '') : id;
+}
+function pager() {
+  const o = order(), i = o.indexOf(state.at), prev = o[i - 1], nxt = o[i + 1];
+  const cell = (id, dir) => id ? '<button type="button" class="pg pg-' + dir + '" data-go="' + esc(id) + '"><span class="pg-dir">' + (dir === 'prev' ? '\u2190 Previous' : 'Next \u2192') + '</span><span class="pg-name">' + esc(pageName(id)) + '</span></button>' : '<span></span>';
+  return '<nav class="pager" aria-label="Previous and next step">' + cell(prev, 'prev') + cell(nxt, 'next') + '</nav>';
 }
 function go(where) { state.at = where; delete navOpen[where.split(':')[0]]; document.body.classList.remove('nav-open'); save(); render(); $('#main').focus(); window.scrollTo(0, 0); }
 function next() { const o = order(); const i = o.indexOf(state.at); if (i < o.length - 1) go(o[i + 1]); }
@@ -1634,7 +1678,7 @@ function render() {
   document.querySelectorAll('header [data-track]').forEach(b => b.setAttribute('aria-pressed', String(state.track === b.dataset.track)));
   renderNav();
   SRC = []; CUR = null;
-  $('#main').innerHTML = state.at === 'welcome' ? renderWelcome() : renderStep(state.at);
+  $('#main').innerHTML = state.at === 'welcome' ? renderWelcome() : renderStep(state.at) + pager();
   $('#credits').innerHTML = 'Banner image: ' + credit('Storyline path', '');
   CUR = null;
   if (!$('#doc').hidden) $('#doc').innerHTML = renderDoc();
@@ -1683,6 +1727,7 @@ document.addEventListener('click', e => {
     return;
   }
   if (t.dataset.mod) { navOpen[t.dataset.mod] = t.getAttribute('aria-expanded') !== 'true'; renderNav(); $('[data-mod="' + t.dataset.mod + '"]').focus(); return; }
+  if (t.id === 'navToggle') { state.navMini = !state.navMini; save(); renderNav(); $('#navToggle').focus(); return; }
   if (t.id === 'stepsBtn') { const open = document.body.classList.toggle('nav-open'); t.setAttribute('aria-expanded', String(open)); return; }
   if (t.dataset.go) { go(t.dataset.go); return; }
   if (t.hasAttribute('data-next')) { next(); return; }
