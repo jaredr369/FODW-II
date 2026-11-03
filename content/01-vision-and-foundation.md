@@ -133,9 +133,8 @@ lead a team through change; hire well.
 There's no AI in this step. Everything here comes from you, the catalog, and your program.
 
 ::: refresh
-Anything your Course Map included is already filled in below, copied word for word from the Course
-Map you uploaded in Getting Started (step GS.2). MGMT 615's had the catalog description. Check
-what's filled in, then add what's missing:
+If you uploaded your Course Map in Getting Started (step GS.2), anything it included is filled in
+below, copied word for word. Check it, then fill in what's missing:
 
 - **Learner description:** most Course Maps don't have one, so you'll likely write it here.
 - **Catalog description:** copy it from catalog.tamu.edu. If your Course Map has it, compare it

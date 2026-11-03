@@ -1016,7 +1016,7 @@ const stepTitle = s => isRefresh() && !editing ? s.title.replace('Your Course Pl
 // Refresh: boxes whose answer the Course Map already has are filled in from it, word for word (no AI drafting).
 const PREFILL = [[/^Paste your catalog description/, cm => cm.catalog]];
 function refreshPrefill(root) {
-  const cm = DATA.demo['mgmt615-coursemap.json']; if (!isRefresh() || editing || !cm) return;
+  const cm = DATA.demo['mgmt615-coursemap.json']; if (!isRefresh() || editing || !cm || !state.courseMap) return;
   root.querySelectorAll('.field').forEach(f => {
     const lab = f.querySelector('label'), box = f.querySelector('textarea'); if (!lab || !box || box.value) return;
     const hit = PREFILL.find(([re]) => re.test(lab.textContent.trim())); if (!hit) return;
@@ -1161,6 +1161,8 @@ function currentBox(which) {
   else if (which === 'cohort') body = m.cohort ? '<p>' + esc(m.cohort) + '</p>' : '<p>None. Module 1 has no cohort session.</p>';
   else body = list(m[which]);
   const what = CUR_LABEL[which] + (perModule ? ' for Module ' + n : '');
+  if (!state.courseMap) return '<div class="current"><p class="current-label"><strong>Your current ' + esc(what) + '.</strong> You haven’t uploaded a Course Map in Getting Started (' + inline('step GS.2') + '). Paste your current ' + esc(CUR_LABEL[which]) + ' here, or go back and upload the Course Map. The AI reviews this.</p>' +
+    '<textarea rows="4" aria-label="Your current ' + esc(what) + '" style="width:100%;font:inherit;padding:6px 8px;border:1px solid #b9b4ad;border-radius:6px"></textarea></div>';
   return '<div class="current"><p class="current-label"><strong>Your current ' + esc(what) + '</strong>, from the Course Map you uploaded in Getting Started (' + inline('step GS.2') + '). The AI reviews this.</p>' + body +
     '<details class="current-paste"><summary>Didn\u2019t upload a Course Map? Paste your current ' + esc(CUR_LABEL[which]) + ' here.</summary><textarea rows="4" aria-label="Your current ' + esc(what) + '"></textarea></details></div>';
 }
@@ -1518,7 +1520,7 @@ function aiPart(title, body) {
   intro = intro.replace(/<details><summary>What the AI is asked to do<\/summary>[\s\S]*?<\/details>/g, m => { prompt += m; return ''; });
   return '<section class="part ai"><h3>' + esc(title) + ' <span class="tag">AI</span></h3>' + intro + recorded +
     demoFiles(body) +
-    '<div class="row"><button type="button" class="btn" data-draft>' + (sorting ? 'Sort with AI' : title === 'Summary for your ID' ? 'Create summary' : state.track === 'refresh' ? 'Review with AI' : 'Draft with AI') + '</button><span class="thinking" hidden>Working…</span></div>' + prompt + '</section>';
+    '<div class="row"><button type="button" class="btn" data-draft' + (sorting ? ' data-sortmap' : '') + '>' + (sorting ? 'Sort with AI' : title === 'Summary for your ID' ? 'Create summary' : state.track === 'refresh' ? 'Review with AI' : 'Draft with AI') + '</button><span class="thinking" hidden>Working…</span></div>' + prompt + '</section>';
 }
 function demoFiles(body) {
   const files = [...new Set((body.match(/demo\/mgmt615-[a-z]+\.json/g) || []))];
@@ -1793,6 +1795,7 @@ document.addEventListener('click', e => {
   if (t.hasAttribute('data-next')) { next(); return; }
   if (t.id === 'reset') { state = { track: null, done: {}, at: 'welcome', showAll: false, pick: {}, mods: {} }; save(); render(); return; }
   if (t.hasAttribute('data-draft')) {
+    if (t.hasAttribute('data-sortmap')) { state.courseMap = true; save(); }
     const sec = t.closest('section'); const wait = sec.querySelector('.thinking');
     t.disabled = true; wait.hidden = false;
     setTimeout(() => { wait.hidden = true; t.textContent = 'Ask for another version'; t.disabled = false;
