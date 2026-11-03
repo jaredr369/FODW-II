@@ -210,6 +210,7 @@ summary { cursor: pointer; color: var(--muted); font-size: 14px; }
 .choose .opt input { margin-top: 4px; }
 .choose .desc { display: block; font-size: 15px; color: var(--muted); }
 .grid-cap { margin: 0 0 6px; }
+.linkbtn.steplink { padding: 0; font-size: inherit; vertical-align: baseline; }
 .plan-summary h4 { margin: 18px 0 6px; }
 .plan-summary .totals { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(118px, 1fr)); gap: 8px; }
 .plan-summary .totals li { background: var(--tint); border-radius: 6px; padding: 8px 10px; }
@@ -549,6 +550,15 @@ function inline(s) {
     // A public source links to its web page; a team guide or template links to its cleaned copy in guides/.
     const href = src.url || (src.path ? '../' + encodeURI(src.path).replace(/#/g, '%23') : '');
     return href ? '<a class="cite" data-cite="' + esc(id) + '" href="' + esc(href) + '" target="_blank" rel="noopener">' + label + '</a>' : '<span class="cite" data-cite="' + esc(id) + '">' + label + '</span>';
+  });
+  s = s.replace(/\[([^\]]+)\]\(src:([a-z0-9-]+)\)/g, (m, text, id) => {
+    const src = DATA.sources[id], href = src && (src.url || (src.path ? '../' + encodeURI(src.path).replace(/#/g, '%23') : ''));
+    return href ? '<a href="' + esc(href) + '" target="_blank" rel="noopener">' + text + '</a>' : text;
+  });
+  // "step 4.2" in the text jumps to that step.
+  s = s.replace(/\b(steps? )(GS\.\d|\d\.\d)\b/g, (m, w, k) => {
+    const id = order().find(x => x.split(':')[1] === k);
+    return id ? '<button type="button" class="linkbtn steplink" data-goto="' + id + '">' + w + k + '</button>' : m;
   });
   s = s.replace(/`([^`]+)`/g, '<code>$1</code>');
   s = s.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
@@ -1656,7 +1666,7 @@ document.addEventListener('click', e => {
       msg.textContent = "Redrafted. (Demo: recorded responses don't change, so the text stays the same. In the finished tool, the AI rewrites only this box, using your note.)"; }, 900);
     return;
   }
-  if (t.dataset.goto) { const k = t.dataset.goto.split(':')[1]; state.pick = state.pick || {}; state.pick[k] = +t.dataset.pickn; go(t.dataset.goto); return; }
+  if (t.dataset.goto) { const k = t.dataset.goto.split(':')[1]; if (t.dataset.pickn) { state.pick = state.pick || {}; state.pick[k] = +t.dataset.pickn; } go(t.dataset.goto); return; }
   if (t.hasAttribute('data-opendoc')) { $('#docBtn').click(); return; }
   if (t.hasAttribute('data-final')) { const d = $('#doc'); if (!d.innerHTML.trim() || d.hidden) d.innerHTML = renderDoc(); downloadDoc(); return; }
   if (t.hasAttribute('data-derive')) {

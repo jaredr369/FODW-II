@@ -78,7 +78,7 @@ and hear you each week. They're part of your presence in the course and support 
 **Limits.** Video and audio you script and record should total no more than 30 minutes a module.
 Curated videos from other sources (planned in Module 5) have no total limit, but each should run 6
 to 10 minutes at most, and their time counts toward the week's roughly 2 hours of readings and
-media. Engagement drops sharply after about six minutes of watching (Guo, Kim, & Rubin, 2014), so
+media. Engagement drops sharply after about six minutes of watching ([Guo, Kim, & Rubin, 2014](src:ext-guo-2014)), so
 split anything longer into short parts.
 
 **What to record.** Beyond the required videos, save recorded media for what text can't do well: a
@@ -230,7 +230,8 @@ Pattern: interview, then draft
 Your ID reviews it with you before your practice session on the XR stage.
 :::
 
-Every video you record on the XR stage starts with an A/V/E script from the Learning Media Team. It
+Every video you record on the XR stage starts with an A/V/E script, written in the Learning Media Team's
+[A/V/E script template](src:template-av-script). It
 has three columns:
 
 - **Dialogue (Audio):** what you'll say.

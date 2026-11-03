@@ -56,7 +56,7 @@ Pattern: pick and combine, one module at a time (full build); edit in place (ref
 on Zoom, for Modules 2 to 8: something students can only get by being there.
 
 **Why it matters:** Students don't skip sessions because they're recorded; they skip sessions that
-offer nothing the recording doesn't (Morris et al., 2019).
+offer nothing the recording doesn't ([Morris et al., 2019](src:ext-morris-2019)).
 :::
 
 Most Flex Online courses hold cohort sessions, but a few don't. Does yours?
@@ -294,9 +294,9 @@ Every cohort session has three documents, each from a team template:
 
 | Document | Who it's for | What's in it |
 |---|---|---|
-| Cohort Session Lesson Plan | You | Title, overview, objectives, and main topics; how many students and how the breakouts are set up; each section with its minutes and talking points; and the materials, handouts, and room setup you need |
-| Student-facing outline | Students | A welcome, the main topics, each topic's main points and discussion questions, and a wrap-up with what's due |
-| Slides (Flex Online template) | Everyone in the session | A title slide, the agenda, a section slide for each topic, a slide for each poll or question, breakout instructions, and a wrap-up, with your talking points as speaker notes |
+| [Cohort Session Lesson Plan](src:template-cohort-lesson-plan) | You | Title, overview, objectives, and main topics; how many students and how the breakouts are set up; each section with its minutes and talking points; and the materials, handouts, and room setup you need |
+| [Student-facing outline](src:template-cohort-outline) | Students | A welcome, the main topics, each topic's main points and discussion questions, and a wrap-up with what's due |
+| Slides ([Flex Online template](src:template-flex-slides)) | Everyone in the session | A title slide, the agenda, a section slide for each topic, a slide for each poll or question, breakout instructions, and a wrap-up, with your talking points as speaker notes |
 
 You write the lesson plan. The AI drafts the outline and slides from it. You edit the outline, and
 your ID builds the final slides or checks yours for accessibility.
@@ -332,7 +332,7 @@ material:
 Either way, lecturing on new material belongs in the asynchronous content.
 
 **Quiet Zoom rooms.** Over a third of distance learners feel stressed when asked to participate live
-(Donelan et al., 2025). The opening poll eases them in: start with a poll or the chat, then small
+([Donelan et al., 2025](src:ext-donelan-2025)). The opening poll eases them in: start with a poll or the chat, then small
 groups, then the whole room.
 
 **Who runs Zoom with you.** An Instructional Technologist is a member of the Learning Delivery team
@@ -535,7 +535,7 @@ background and list your assets ahead of time, the stage, Zoom, polls, and break
 up before you go live, and the session starts on time.
 :::
 
-The **XR Run of Show** is the production team's plan for the day: call times, who's on the crew, a
+The **[XR Run of Show](src:template-run-of-show)** is the production team's plan for the day: call times, who's on the crew, a
 pre-show checklist, and a backup plan. It sets the order of the session but leaves your teaching
 unscripted. You give your ID two things for it: your **background environment** and your **session
 assets**, such as slides, polls, and handouts, in the order you'll use them.

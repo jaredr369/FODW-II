@@ -233,8 +233,8 @@ license doesn't require it.
 
 **AI-assisted content.** If you used AI to draft a scenario, an exhibit, an image, or part of a
 reading, tell students. Check it for accuracy and for anything that closely reproduces someone
-else's work, and ask your ID before treating it as your own original work. The U.S.
-Copyright Office has said that purely AI-generated material isn't protected by copyright.
+else's work, and ask your ID before treating it as your own original work. The [U.S.
+Copyright Office](src:ext-copyright-office-ai) has said that purely AI-generated material isn't protected by copyright.
 
 **Spot the problem.** Before you check your own materials, practice on one. Read the item below,
 say in a sentence or two what's wrong with it and how you'd fix it, then select **Check my

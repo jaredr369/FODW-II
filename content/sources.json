@@ -66,7 +66,8 @@
       "title": "Critical inquiry in a text-based environment",
       "citation": "Garrison, D. R., Anderson, T., & Archer, W. (2000). Critical inquiry in a text-based environment: Computer conferencing in higher education. The Internet and Higher Education, 2(2-3), 87-105.",
       "module": "gs",
-      "use": "supplemental"
+      "use": "supplemental",
+      "url": "https://doi.org/10.1016/S1096-7516(00)00016-6"
     },
     {
       "id": "ext-richardson-swan-2003",
@@ -74,7 +75,8 @@
       "title": "Examining social presence in online courses",
       "citation": "Richardson, J. C., & Swan, K. (2003). Examining social presence in online courses in relation to students' perceived learning and satisfaction. Journal of Asynchronous Learning Networks, 7(1), 68-88.",
       "module": "gs",
-      "use": "supplemental"
+      "use": "supplemental",
+      "url": "https://doi.org/10.24059/olj.v7i1.1864"
     },
     {
       "id": "ext-pacansky-brock-2020",
@@ -383,7 +385,8 @@
       "title": "Schema induction and analogical transfer",
       "citation": "Gick, M. L., & Holyoak, K. J. (1983). Schema induction and analogical transfer. Cognitive Psychology, 15(1), 1-38.",
       "module": "m3",
-      "use": "cited"
+      "use": "cited",
+      "url": "https://doi.org/10.1016/0010-0285(83)90002-6"
     },
     {
       "id": "reading-m4-crafting-part-1",
@@ -810,6 +813,24 @@
       "module": "m6",
       "use": "supplemental: AI script development",
       "notes": "Listed in the V3 course map. Add the link when known."
+    },
+    {
+      "id": "ext-morris-2019",
+      "kind": "ext",
+      "title": "Lecture recordings to support learning: A contested space between students and teachers",
+      "citation": "Morris, N. P., Swinnerton, B., & Coop, T. (2019). Lecture recordings to support learning: A contested space between students and teachers. Computers & Education, 140, 103604.",
+      "module": "m7",
+      "use": "basis for 7.1",
+      "url": "https://doi.org/10.1016/j.compedu.2019.103604"
+    },
+    {
+      "id": "ext-donelan-2025",
+      "kind": "ext",
+      "title": "Synchronous online learning: Why some students don't actively participate",
+      "citation": "Donelan, H., Kear, K., Rosewell, J., Okada, A., Sheehy, K., Amor, K., Edwards, C., Mooney, A., Cuffe, P., & Elder, T. (2025). Synchronous online learning: Why some students don't actively participate. Online Learning, 29(3).",
+      "module": "m7",
+      "use": "basis for 7.2",
+      "url": "https://doi.org/10.24059/olj.v29i3.4641"
     }
   ]
 }

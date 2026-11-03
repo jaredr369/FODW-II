@@ -30,7 +30,7 @@ Pattern: interview, then draft (full build) or edit in place (refresh)
 **What you'll do:** Write the statement for your syllabus that tells students how and when they'll
 hear from you.
 
-**Why it matters:** Federal rules require every online course to show that the instructor is
+**Why it matters:** [Federal rules](src:ext-cfr-600-2) require every online course to show that the instructor is
 actively teaching, and your syllabus statement is where you commit to it.
 :::
 

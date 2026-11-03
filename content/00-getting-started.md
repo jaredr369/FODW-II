@@ -175,8 +175,8 @@ Choose a track:
 
 A Course Map is not the same as your Course Planning Document. The Course Map is the finished,
 detailed record of everything in a course, complete enough to rebuild the course in another
-learning management system if it were ever lost from Canvas. The Course Planning Document is the
-working plan you build in this workshop, a section at a time.
+learning management system if it were ever lost from Canvas. The [Course Planning Document](src:template-planning-doc) is
+the working plan you build in this workshop, a section at a time.
 
 Both tracks go through every module, and both add a storyline to your course: a recurring
 character and a realistic scenario in each module, which you'll plan in Modules 2 and 3. Most
