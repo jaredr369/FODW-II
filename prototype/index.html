@@ -235,7 +235,8 @@ summary { cursor: pointer; color: var(--muted); font-size: 14px; }
 .current-paste textarea { width: 100%; font: inherit; margin-top: 6px; padding: 6px 8px; border: 1px solid #b9b4ad; border-radius: 6px; }
 .term { background: none; border: 0; padding: 0; font: inherit; color: inherit; text-decoration: underline dotted var(--maroon) 2px; text-underline-offset: 3px; cursor: help; }
 .term[aria-expanded="true"] { background: var(--tint); }
-.term-pop { display: block; margin: 6px 0; padding: 8px 12px; background: #fff; border: 1px solid var(--line); border-left: 4px solid var(--maroon); border-radius: 6px; font-size: 15px; }
+.term-nowrap { white-space: nowrap; }
+.term-pop { display: block; white-space: normal; margin: 6px 0; padding: 8px 12px; background: #fff; border: 1px solid var(--line); border-left: 4px solid var(--maroon); border-radius: 6px; font-size: 15px; }
 .gloss-list dt { font-weight: 700; margin-top: 14px; } .gloss-list dd { margin: 2px 0 0; } .gloss-list dt.hl { color: var(--maroon); }
 .ros h4 { margin: 14px 0 6px; } .ros-grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
 .ros-fixed { margin: 6px 0 0; color: var(--muted); } .ros-team { border: 1px solid var(--line); border-radius: 6px; padding: 6px 10px; margin: 6px 0; background: var(--tint); }
@@ -576,7 +577,13 @@ function markTerms(roots) {
       seen.add(g.k);
       const at = m.index + m[1].length, after = node.splitText(at), rest = after.splitText(m[2].length);
       const b = document.createElement('button'); b.type = 'button'; b.className = 'term'; b.dataset.term = g.k; b.setAttribute('aria-expanded', 'false'); b.textContent = after.nodeValue;
-      after.replaceWith(b); node = rest;
+      // A button is an atomic box, so a line can break right after it ("Course Map | 's"). Keep any
+      // characters attached to the term, such as 's or a comma, on the same line.
+      const tail = (rest.nodeValue.match(/^\S+/) || [''])[0];
+      if (tail) {
+        const remainder = rest.splitText(tail.length), keep = document.createElement('span');
+        keep.className = 'term-nowrap'; after.replaceWith(keep); keep.append(b, rest); node = remainder;
+      } else { after.replaceWith(b); node = rest; }
     }
   }
 }
