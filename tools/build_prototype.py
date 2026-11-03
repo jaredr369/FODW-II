@@ -33,7 +33,7 @@ def main():
 
     sources = {}
     for s in json.loads(read(os.path.join(CONTENT, 'sources.json')))['sources']:
-        sources[s['id']] = {k: s[k] for k in ('title', 'citation', 'url') if k in s}
+        sources[s['id']] = {k: s[k] for k in ('title', 'citation', 'url', 'path') if k in s}
 
     data = json.dumps({'modules': modules, 'demo': demo, 'sources': sources}, ensure_ascii=False)
     data = data.replace('</', '<\\/')

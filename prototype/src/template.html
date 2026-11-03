@@ -546,7 +546,9 @@ function inline(s) {
     const src = DATA.sources[id];
     if (!src) return '<span class="cite" data-cite="' + esc(id) + '">' + esc(id) + '</span>';
     const label = esc(src.citation || src.title);
-    return src.url ? '<a class="cite" data-cite="' + esc(id) + '" href="' + esc(src.url) + '" target="_blank" rel="noopener">' + label + '</a>' : '<span class="cite" data-cite="' + esc(id) + '">' + label + '</span>';
+    // A public source links to its web page; a team guide or template links to its cleaned copy in guides/.
+    const href = src.url || (src.path ? '../' + encodeURI(src.path).replace(/#/g, '%23') : '');
+    return href ? '<a class="cite" data-cite="' + esc(id) + '" href="' + esc(href) + '" target="_blank" rel="noopener">' + label + '</a>' : '<span class="cite" data-cite="' + esc(id) + '">' + label + '</span>';
   });
   s = s.replace(/`([^`]+)`/g, '<code>$1</code>');
   s = s.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
