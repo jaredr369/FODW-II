@@ -1,48 +1,257 @@
 {
   "about": "Recorded demo data for Module 6 (MGMT 615, fictional). 'media' is each module's produced media after the refresh: kind (welcome, overview, teaching, scenario, closing, graphic, audio), title, minutes, where it's made (xr-stage, media-team, faculty-self), and its storyline connection. Curated videos belong to Module 5, not here. 'review' holds refresh flags and resolutions.",
   "modules": [
-    {"module": 1, "minutes": 9.5, "media": [
-      {"kind": "welcome", "title": "Welcome to MGMT 615", "minutes": 3, "where": "xr-stage", "story": "Introduces Dana and the drop in on-time shipping that starts the course"},
-      {"kind": "overview", "title": "Module 1 overview: What Managers Actually Do", "minutes": 2, "where": "xr-stage", "story": "Names Dana's first decision: work the floor or find the cause"},
-      {"kind": "scenario", "title": "The First Bad Week", "minutes": 2.5, "where": "media-team", "story": "Dana's Monday report and Greg's email, ending at her decision"},
-      {"kind": "graphic", "title": "Manager vs. individual contributor: where the time goes", "minutes": 0, "where": "media-team", "story": "Used in Dana's first-week case"}
-    ], "review": ["No module overview video in the course map for Modules 1 to 8; the first teaching video in each module partly does the job. Resolution: add a 2-minute overview per module, recorded on the XR stage in one session."]},
-    {"module": 2, "minutes": 10, "media": [
-      {"kind": "overview", "title": "Module 2 overview: Motivating People", "minutes": 2, "where": "xr-stage", "story": "Picks up the bonus problem"},
-      {"kind": "teaching", "title": "Motivation Isn't One Thing", "minutes": 6, "where": "xr-stage", "story": "Applies expectancy theory to the pick-rate bonus"},
-      {"kind": "scenario", "title": "The Bonus That Backfired", "minutes": 2, "where": "media-team", "story": "Luis keeps missing the bonus he refuses to chase"}
-    ], "review": ["'Discussion Primer: The Incentive Trap' summarized an article without connecting to the story. Resolution: replaced by the scenario video."]},
-    {"module": 3, "minutes": 14, "media": [
-      {"kind": "overview", "title": "Module 3 overview: Performance Management and Feedback", "minutes": 2, "where": "xr-stage", "story": "Greg wants a formal warning for Jordan"},
-      {"kind": "teaching", "title": "Giving Feedback That Actually Changes Behavior", "minutes": 7, "where": "xr-stage", "story": "Uses Jordan's handoff habit as the running example"},
-      {"kind": "scenario", "title": "Role-play: a coaching conversation with Jordan", "minutes": 5, "where": "media-team", "story": "Models the conversation Dana could have"}
-    ], "review": ["The 8-minute teaching video runs past 6 minutes. Resolution: kept at 7 minutes in two clearly marked parts."]},
-    {"module": 4, "minutes": 11, "media": [
-      {"kind": "overview", "title": "Module 4 overview: Building and Leading Teams", "minutes": 2, "where": "xr-stage", "story": "The handoff nobody owns"},
-      {"kind": "teaching", "title": "Why Some Teams Just Work", "minutes": 6, "where": "xr-stage", "story": "Diagnoses the two-shift handoff with the framework"},
-      {"kind": "graphic", "title": "The 4:45 p.m. handoff, day shift to night shift", "minutes": 0, "where": "media-team", "story": "Shows what falls between the shifts"},
-      {"kind": "scenario", "title": "Structural Fixes vs. Pep Talks", "minutes": 3, "where": "media-team", "story": "Greg's team-building lunch against a handoff owner"}
-    ], "review": []},
-    {"module": 5, "minutes": 12, "media": [
-      {"kind": "overview", "title": "Module 5 overview: Managing Conflict and Difficult Conversations", "minutes": 2, "where": "xr-stage", "story": "Greg wants a plan by Friday"},
-      {"kind": "teaching", "title": "The Conversation Managers Avoid", "minutes": 6, "where": "xr-stage", "story": "Maps Dana's disagreement with Greg to its root cause"},
-      {"kind": "scenario", "title": "Role-play: telling Greg he's wrong, done well and done badly", "minutes": 4, "where": "media-team", "story": "Two versions of Dana's conversation"}
-    ], "review": []},
-    {"module": 6, "minutes": 11.5, "media": [
-      {"kind": "overview", "title": "Module 6 overview: Delegation and Decision-Making", "minutes": 2, "where": "xr-stage", "story": "Twelve things on Dana's list"},
-      {"kind": "teaching", "title": "The Delegation Trap", "minutes": 6, "where": "xr-stage", "story": "Sorts Dana's peak-season list"},
-      {"kind": "teaching", "title": "Where AI Helps, and Where It Doesn't, in Management Decisions", "minutes": 3.5, "where": "faculty-self", "story": "The scheduling tool that says cut a shift"}
-    ], "review": []},
-    {"module": 7, "minutes": 12, "media": [
-      {"kind": "overview", "title": "Module 7 overview: Leading Through Change", "minutes": 2, "where": "xr-stage", "story": "The floor is calling it a pay cut"},
-      {"kind": "teaching", "title": "Why Change Announcements Fall Flat", "minutes": 6, "where": "xr-stage", "story": "Uses Dana's bonus change as the case"},
-      {"kind": "teaching", "title": "Rewriting a Change Message, Live", "minutes": 4, "where": "xr-stage", "story": "Rewrites Dana's first draft on screen"}
-    ], "review": []},
-    {"module": 8, "minutes": 13, "media": [
-      {"kind": "overview", "title": "Module 8 overview: Hiring and Building Your Team", "minutes": 2, "where": "xr-stage", "story": "The new shift-lead role"},
-      {"kind": "teaching", "title": "Stop Hiring on Gut Feel", "minutes": 6, "where": "xr-stage", "story": "Builds the scorecard for Dana's two finalists"},
-      {"kind": "scenario", "title": "Proven vs. Potential", "minutes": 2.5, "where": "media-team", "story": "Luis and the outside candidate"},
-      {"kind": "closing", "title": "Course conclusion", "minutes": 2.5, "where": "xr-stage", "story": "Where Dana's story ends and what students take into their own teams"}
-    ], "review": []}
+    {
+      "module": 1,
+      "minutes": 7.5,
+      "media": [
+        {
+          "kind": "welcome",
+          "title": "Welcome to MGMT 615",
+          "minutes": 3,
+          "where": "xr-stage",
+          "story": "Introduces Dana and the drop in on-time shipping that starts the course"
+        },
+        {
+          "kind": "overview",
+          "title": "Module 1 overview: What Managers Actually Do",
+          "minutes": 2,
+          "where": "xr-stage",
+          "story": "Names Dana's first decision: work the floor or find the cause"
+        },
+        {
+          "kind": "scenario",
+          "title": "The First Bad Week",
+          "minutes": 2.5,
+          "where": "media-team",
+          "story": "Dana's Monday report and Greg's email, ending at her decision"
+        },
+        {
+          "kind": "graphic",
+          "title": "Manager vs. individual contributor: where the time goes",
+          "minutes": 0,
+          "where": "media-team",
+          "story": "Used in Dana's first-week case"
+        }
+      ],
+      "review": [
+        "No module overview video in the course map for Modules 1 to 8; the first teaching video in each module partly does the job. Resolution: add a 2-minute overview per module, recorded on the XR stage in one session."
+      ]
+    },
+    {
+      "module": 2,
+      "minutes": 10,
+      "media": [
+        {
+          "kind": "overview",
+          "title": "Module 2 overview: Motivating People",
+          "minutes": 2,
+          "where": "xr-stage",
+          "story": "Picks up the bonus problem"
+        },
+        {
+          "kind": "teaching",
+          "title": "Motivation Isn't One Thing",
+          "minutes": 6,
+          "where": "xr-stage",
+          "story": "Applies expectancy theory to the pick-rate bonus"
+        },
+        {
+          "kind": "scenario",
+          "title": "The Bonus That Backfired",
+          "minutes": 2,
+          "where": "media-team",
+          "story": "Luis keeps missing the bonus he refuses to chase"
+        }
+      ],
+      "review": [
+        "'Discussion Primer: The Incentive Trap' summarized an article without connecting to the story. Resolution: replaced by the scenario video."
+      ]
+    },
+    {
+      "module": 3,
+      "minutes": 14,
+      "media": [
+        {
+          "kind": "overview",
+          "title": "Module 3 overview: Performance Management and Feedback",
+          "minutes": 2,
+          "where": "xr-stage",
+          "story": "Greg wants a formal warning for Jordan"
+        },
+        {
+          "kind": "teaching",
+          "title": "Giving Feedback That Actually Changes Behavior",
+          "minutes": 7,
+          "where": "xr-stage",
+          "story": "Uses Jordan's handoff habit as the running example",
+          "parts": 2
+        },
+        {
+          "kind": "scenario",
+          "title": "Role-play: a coaching conversation with Jordan",
+          "minutes": 5,
+          "where": "media-team",
+          "story": "Models the conversation Dana could have"
+        }
+      ],
+      "review": [
+        "The 8-minute teaching video runs past 6 minutes. Resolution: kept at 7 minutes in two clearly marked parts."
+      ]
+    },
+    {
+      "module": 4,
+      "minutes": 11,
+      "media": [
+        {
+          "kind": "overview",
+          "title": "Module 4 overview: Building and Leading Teams",
+          "minutes": 2,
+          "where": "xr-stage",
+          "story": "The handoff nobody owns"
+        },
+        {
+          "kind": "teaching",
+          "title": "Why Some Teams Just Work",
+          "minutes": 6,
+          "where": "xr-stage",
+          "story": "Diagnoses the two-shift handoff with the framework"
+        },
+        {
+          "kind": "graphic",
+          "title": "The 4:45 p.m. handoff, day shift to night shift",
+          "minutes": 0,
+          "where": "media-team",
+          "story": "Shows what falls between the shifts"
+        },
+        {
+          "kind": "scenario",
+          "title": "Structural Fixes vs. Pep Talks",
+          "minutes": 3,
+          "where": "media-team",
+          "story": "Greg's team-building lunch against a handoff owner"
+        }
+      ],
+      "review": []
+    },
+    {
+      "module": 5,
+      "minutes": 12,
+      "media": [
+        {
+          "kind": "overview",
+          "title": "Module 5 overview: Managing Conflict and Difficult Conversations",
+          "minutes": 2,
+          "where": "xr-stage",
+          "story": "Greg wants a plan by Friday"
+        },
+        {
+          "kind": "teaching",
+          "title": "The Conversation Managers Avoid",
+          "minutes": 6,
+          "where": "xr-stage",
+          "story": "Maps Dana's disagreement with Greg to its root cause"
+        },
+        {
+          "kind": "scenario",
+          "title": "Role-play: telling Greg he's wrong, done well and done badly",
+          "minutes": 4,
+          "where": "media-team",
+          "story": "Two versions of Dana's conversation"
+        }
+      ],
+      "review": []
+    },
+    {
+      "module": 6,
+      "minutes": 11.5,
+      "media": [
+        {
+          "kind": "overview",
+          "title": "Module 6 overview: Delegation and Decision-Making",
+          "minutes": 2,
+          "where": "xr-stage",
+          "story": "Twelve things on Dana's list"
+        },
+        {
+          "kind": "teaching",
+          "title": "The Delegation Trap",
+          "minutes": 6,
+          "where": "xr-stage",
+          "story": "Sorts Dana's peak-season list"
+        },
+        {
+          "kind": "teaching",
+          "title": "Where AI Helps, and Where It Doesn't, in Management Decisions",
+          "minutes": 3.5,
+          "where": "faculty-self",
+          "story": "The scheduling tool that says cut a shift"
+        }
+      ],
+      "review": []
+    },
+    {
+      "module": 7,
+      "minutes": 12,
+      "media": [
+        {
+          "kind": "overview",
+          "title": "Module 7 overview: Leading Through Change",
+          "minutes": 2,
+          "where": "xr-stage",
+          "story": "The floor is calling it a pay cut"
+        },
+        {
+          "kind": "teaching",
+          "title": "Why Change Announcements Fall Flat",
+          "minutes": 6,
+          "where": "xr-stage",
+          "story": "Uses Dana's bonus change as the case"
+        },
+        {
+          "kind": "teaching",
+          "title": "Rewriting a Change Message, Live",
+          "minutes": 4,
+          "where": "xr-stage",
+          "story": "Rewrites Dana's first draft on screen"
+        }
+      ],
+      "review": []
+    },
+    {
+      "module": 8,
+      "minutes": 13.0,
+      "media": [
+        {
+          "kind": "overview",
+          "title": "Module 8 overview: Hiring and Building Your Team",
+          "minutes": 2,
+          "where": "xr-stage",
+          "story": "The new shift-lead role"
+        },
+        {
+          "kind": "teaching",
+          "title": "Stop Hiring on Gut Feel",
+          "minutes": 6,
+          "where": "xr-stage",
+          "story": "Builds the scorecard for Dana's two finalists"
+        },
+        {
+          "kind": "scenario",
+          "title": "Proven vs. Potential",
+          "minutes": 2.5,
+          "where": "media-team",
+          "story": "Luis and the outside candidate"
+        },
+        {
+          "kind": "closing",
+          "title": "Course conclusion",
+          "minutes": 2.5,
+          "where": "xr-stage",
+          "story": "Where Dana's story ends and what students take into their own teams"
+        }
+      ],
+      "review": []
+    }
   ]
 }
