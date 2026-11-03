@@ -80,6 +80,7 @@ table { border-collapse: collapse; width: 100%; margin: 10px 0; font-size: 14px;
 th, td { border: 1px solid var(--line); padding: 6px 8px; text-align: left; vertical-align: top; }
 th { background: var(--tint); }
 .scroll { overflow-x: auto; }
+th.nowrap { white-space: nowrap; }
 /* Tables in an example (See it, recorded AI responses) use the example's blue tones; tables on a
    planning-document page keep the document style. */
 .part.example th, .part.example td, .demo-out th, .demo-out td { border-color: #c2d5de; }
@@ -672,7 +673,8 @@ function md(text, opts = {}) {
         }).join('') + '</div>';
         continue;
       }
-      const cell = (el, r, k, c) => '<' + el + tag('row', rows[r], { cell: k }) + '>' + inline(c) + '</' + el + '>';
+      // Short column headings (20 characters or fewer) stay on one line; longer ones may wrap.
+      const cell = (el, r, k, c) => '<' + el + (el === 'th' && r === 0 && c.length <= 20 ? ' class="nowrap"' : '') + tag('row', rows[r], { cell: k }) + '>' + inline(c) + '</' + el + '>';
       html += '<div class="scroll"><table><thead><tr>' + head.map((h, k) => cell('th', 0, k, h)).join('') + '</tr></thead><tbody>' +
         body.map((r, j) => '<tr>' + r.map((c, k) => cell('td', j + 2, k, c)).join('') + '</tr>').join('') + '</tbody></table></div>';
       continue;
