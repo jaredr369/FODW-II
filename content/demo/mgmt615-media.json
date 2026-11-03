@@ -1,5 +1,5 @@
 {
-  "about": "Recorded demo data for Module 6 (MGMT 615, fictional). 'media' is each module's produced media after the refresh: kind (welcome, overview, teaching, scenario, closing, graphic, audio), title, minutes, where it's made (xr-stage, media-team, faculty-self), and its storyline connection. Curated videos belong to Module 5, not here. 'review' holds refresh flags and resolutions.",
+  "about": "Recorded demo data for Module 6 (MGMT 615, fictional). 'media' is each module's produced media after the refresh: kind (welcome, overview, teaching, scenario, closing, graphic, audio), title, minutes, where it's made (xr-stage, media-team, one-touch), and its storyline connection. Curated videos belong to Module 5, not here. 'review' holds refresh flags and resolutions.",
   "modules": [
     {
       "module": 1,
@@ -184,7 +184,7 @@
           "kind": "teaching",
           "title": "Where AI Helps, and Where It Doesn't, in Management Decisions",
           "minutes": 3.5,
-          "where": "faculty-self",
+          "where": "one-touch",
           "story": "The scheduling tool that says cut a shift"
         }
       ],

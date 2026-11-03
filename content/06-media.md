@@ -55,46 +55,50 @@ Pattern: pick and combine, one module at a time (full build); edit in place (ref
 including the videos every course requires.
 
 **Why it matters:** Media takes the longest to produce, so planning it now gives you and the
-Learning Media team time to make it well.
+Learning Media Team time to make it well.
 :::
 
-Learning media is the video, audio, and graphics made for your course: recorded by you, or produced
-by the Learning Media team. Curated videos from other sources belong in your materials plan
+Learning media is the video, audio, and graphics made for your course, by you and the Learning
+Media Team. Curated videos from other sources belong in your materials plan
 (Module 5), not here.
 
 | Kind | Required? | Typical length | Who makes it |
 |---|---|---|---|
-| Welcome video | Yes, in Module 1 | About 3 minutes | You, on the XR stage |
-| Module overview video | Yes, in every module | About 2 minutes | You, on the XR stage |
-| Closing video | Yes, in the last module | 2 to 3 minutes | You, on the XR stage |
-| Teaching video (lecture, worked example, demonstration) | No | 6 minutes or less, or split into parts | You, on the XR stage or at your desk |
-| Scenario video | No | 2 to 5 minutes | The Learning Media team |
-| Audio, such as a short podcast | No | A few minutes | You, with the Learning Media team |
-| Graphic, such as an infographic | No | None | The Learning Media team |
+| Welcome video | Yes, in Module 1 | About 3 minutes | Learning Media Team records you on an XR stage |
+| Module overview video | Yes, in every module | About 2 minutes | Learning Media Team records you on an XR stage |
+| Closing video | Yes, in the last module | 2 to 3 minutes | Learning Media Team records you on an XR stage |
+| Teaching video (lecture, worked example, demonstration) | No | 6 minutes or less, or split into parts | Learning Media Team records you on an XR stage, or you record in a One-Touch studio |
+| Scenario video | No | 2 to 5 minutes | Learning Media Team records you on an XR stage |
+| Audio, such as a short podcast | No | A few minutes | Learning Media Team records you in the studio |
+| Graphic, such as an infographic | No | None | A graphic designer |
 
 **Why the required videos matter.** The welcome, overview, and closing videos are how students see
 and hear you each week. They're part of your presence in the course and support RSI.
 
 **Limits.** Video and audio you script and record should total no more than 30 minutes a module.
-Curated videos from other sources (planned in Module 5) have no total limit, but each should run
-6 to 10 minutes at most, and their time counts toward the week's roughly 2 hours of readings and
+Curated videos from other sources (planned in Module 5) have no total limit, but each should run 6
+to 10 minutes at most, and their time counts toward the week's roughly 2 hours of readings and
 media. Engagement drops sharply after about six minutes of watching (Guo, Kim, & Rubin, 2014), so
-split anything longer into short parts, one idea each.
+split anything longer into short parts.
 
-**When to record.** Beyond the required videos, save recorded media for what text can't do well: a
-topic too complex for many students to grasp from reading alone, a process they need to watch, or
-a moment of tension from your story. Keep every item concise, and don't repeat what another
-material already covers.
+**What to record.** Beyond the required videos, save recorded media for what text can't do well: a
+topic too complex for many students to grasp from reading alone, a process they need to watch, or a
+moment of tension from your story. Keep every item concise, and don't repeat what another material
+already covers.
 
 **Media for your story.** Go through your scenarios and decide which need production. A scenario
 video opens in the character's situation and ends at the decision, before the answer, so the
 activity that follows has something to work on. Many scenarios work fine as readings or
 discussion cases with no production at all.
 
-**The XR stage.** Most instructor videos, including the required ones, are recorded on the XR
-stage, which places you in a produced setting without filming on location. Each video starts with
-an A/V script (you'll draft your first in step 6.2), and you schedule a practice session on the
-stage with the Learning Media team before recording.
+**The XR stage.** Most instructor videos are recorded on the XR stage, which places you in a
+produced setting without filming on location. Each video starts with an A/V script (you'll draft
+your first in step 6.2), and you schedule a practice session on the stage with the Learning Media
+Team before recording.
+
+**One-Touch studios.** These small studios let you create screen-recorded videos on your own, to
+illustrate a process or teach with your slides. Videos you make there count toward your 30 minutes
+of recorded media.
 
 ### See it
 
@@ -112,8 +116,8 @@ comes to 11 minutes.
 ::: plan Learning Media Plan, Module 4
 - Overview video (XR stage): Module 4 overview, 2 min. Story: The handoff nobody owns.
 - Teaching video (XR stage): Why Some Teams Just Work, 6 min. Story: Diagnoses the two-shift handoff with the framework.
-- Graphic (Learning Media team): The 4:45 p.m. handoff, day shift to night shift. Story: Shows what falls between the shifts.
-- Scenario video (Learning Media team): Structural Fixes vs. Pep Talks, 3 min. Story: Greg's team-building lunch against a handoff owner.
+- Graphic (Learning Media Team): The 4:45 p.m. handoff, day shift to night shift. Story: Shows what falls between the shifts.
+- Scenario video (Learning Media Team): Structural Fixes vs. Pep Talks, 3 min. Story: Greg's team-building lunch against a handoff owner.
 :::
 
 ### Draft (full build) and Review (refresh)
@@ -139,8 +143,8 @@ For the given module, using its scenario, activities, and materials, propose its
 Always include a module overview video of about 2 minutes; include the welcome video in Module 1
 and the closing video in the last module. For each item give: kind (welcome, overview, teaching,
 scenario, closing, graphic, audio), a working title, minutes, where it is made (xr-stage for
-instructor videos, media-team for produced scenarios and graphics, faculty-self for screen
-recordings), one sentence on what it adds that a reading can't, and its connection to the
+instructor videos, media-team for produced scenarios and graphics, one-touch for screen
+recordings made in a One-Touch studio), one sentence on what it adds that a reading can't, and its connection to the
 storyline. Keep scripted video and audio at or under 30 minutes for the module, and each video at
 or under 6 minutes unless it is split into parts.
 
@@ -200,7 +204,7 @@ The week check in Module 4 then uses your real media time instead of an estimate
 ### Save
 
 Planning document: Learning Media Plan row in Tables 1 and 2, one line per item, for example
-"Scenario video (Learning Media team): The First Bad Week, 2.5 min. Story: Dana's Monday report and
+"Scenario video (Learning Media Team): The First Bad Week, 2.5 min. Story: Dana's Monday report and
 Greg's email, ending at her decision."
 Project file: `modules[].media`; in refresh, `.original`, `.changeNote`.
 
@@ -223,7 +227,7 @@ Pattern: interview, then draft
 **What you'll do:** Draft one A/V script, usually for your welcome video or your Module 1 overview.
 
 **Why it matters:** Writing one script now, with feedback, makes the rest faster during development.
-The script is also what you share with the Learning Media team before your practice session on the
+The script is also what you share with the Learning Media Team before your practice session on the
 XR stage.
 :::
 
@@ -240,10 +244,10 @@ appears on screen (Graphics). The template runs in five parts:
 sentence is awkward spoken, rewrite it. Say anything a student needs to know, so nothing depends
 only on what's on screen. Most scripts run 250 to 350 words, about 2 to 2.5 minutes spoken.
 
-Your ID and the Learning Media team will help with the rest of your scripts during development.
+Your ID and the Learning Media Team will help with the rest of your scripts during development.
 
 **Getting ready for the stage.** Send the finished script to your ID, who passes it to Learning
-Media. Schedule a practice session on the XR stage with the Learning Media team. Record your
+Media. Schedule a practice session on the XR stage with the Learning Media Team. Record your
 required videos in as few sessions as you can; MGMT 615 recorded all eight module overviews in
 one.
 

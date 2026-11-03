@@ -796,7 +796,7 @@ function rightsDraft(n) {
 }
 // 6.1: the module's produced media, then the checks: required videos, scripted minutes, and video length.
 const KIND = { welcome: 'Welcome video', overview: 'Overview video', teaching: 'Teaching video', scenario: 'Scenario video', closing: 'Closing video', graphic: 'Graphic', audio: 'Audio' };
-const WHERE = { 'xr-stage': 'XR stage', 'media-team': 'Learning Media team', 'faculty-self': 'recorded at your desk' };
+const WHERE = { 'xr-stage': 'XR stage', 'media-team': 'Learning Media Team', 'one-touch': 'One-Touch studio' };
 const medLine = i => KIND[i.kind] + ' (' + WHERE[i.where] + '): ' + i.title.replace(/^(Module \d+ overview):.*/, '$1') +
   (i.minutes ? ', ' + i.minutes + ' min' + (i.parts ? ' in ' + ['', 'one', 'two', 'three'][i.parts] + ' parts' : '') : '') + '. Story: ' + i.story + '.';
 function mediaCheck(n, items) {

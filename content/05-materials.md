@@ -340,7 +340,7 @@ Demo response (MGMT 615):
 {
   "changed": ["Materials for all eight modules, about 17 to 24 pages each", "Scenario exhibits added in four modules", "SBI job aid redrawn and attributed", "AI disclosure on two items"],
   "keptFlags": ["Whitfield (2019) chapters kept: no newer edition"],
-  "questions": ["Can the Learning Media team redraw the SBI job aid, or should I?", "Do the created cases from earlier terms need any review before reuse?"]
+  "questions": ["Can the Learning Media Team redraw the SBI job aid, or should I?", "Do the created cases from earlier terms need any review before reuse?"]
 }
 ```
 
