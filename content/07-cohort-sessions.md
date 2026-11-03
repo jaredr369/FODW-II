@@ -253,10 +253,8 @@ Project file: `course.cohortDay`, `modules[].cohort`; in refresh, `.original`, `
 
 ### Go deeper (supplemental)
 
-- `src:reading-m7-going-live`: the research behind the recording test, and eight ways to use
-  your story live.
-- `src:reading-m7-active-learning-tools`
 - `src:guide-cohort-sessions`
+- `src:ext-morris-2019`: why students skip sessions that offer nothing the recording doesn't.
 
 ### No cohort sessions
 
@@ -549,10 +547,8 @@ preparation, outline, slides).
 ### Go deeper (supplemental)
 
 - `src:guide-cohort-sessions`
-- `src:template-cohort-lesson-plan`
-- `src:template-cohort-outline`
-- `src:template-flex-slides`
 - `src:guide-accessibility`: contrast, alt text, and accessible slides and documents.
+- `src:ext-donelan-2025`: why some students don't take part in live online sessions.
 
 ### No cohort sessions
 
@@ -654,10 +650,6 @@ Planning document: nothing new; the session's line gains "ready for the stage."
 Download: your part of the XR Run of Show as a Word file in the team's template, to share with your
 ID.
 Project file: `stage[]` (module, course, section, date, time, background, assets).
-
-### Go deeper (supplemental)
-
-- `src:template-run-of-show`
 
 ### No cohort sessions
 

@@ -557,7 +557,6 @@ Project file: `story.character`.
 ### Go deeper (supplemental)
 
 - `src:guide-storytelling`
-- `src:jobaid-media-selection-matrix`
 - `src:ext-greene-2020`
 
 ---

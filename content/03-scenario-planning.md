@@ -391,7 +391,6 @@ Project file: `modules[].scenario` (all five elements, title, premise, and CLOs)
 
 - `src:guide-storytelling`: includes scenario planning, which you'll do with your ID during
   development for scenarios that need production.
-- `src:jobaid-media-selection-matrix`
 - `src:guide-active-learning`
 - `src:guide-adult-learners`
 - `src:ext-mayer-2021`

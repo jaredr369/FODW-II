@@ -229,7 +229,6 @@ Project file: `communication.plan`, `communication.announcement`.
 
 ### Go deeper (supplemental)
 
-- `src:reading-m8-preparing-for-development`
 - `src:guide-online-teaching-practices`
 - `src:guide-rsi`
 

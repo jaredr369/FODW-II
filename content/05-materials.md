@@ -381,7 +381,6 @@ Project file: `modules[].materials[].rights`, `.attribution`, `.aiNote`.
 ### Go deeper (supplemental)
 
 - `src:guide-copyright`
-- `src:assignment-m5-writing-attributions`
 - `src:ext-copyright-office-ai`
 
 ---

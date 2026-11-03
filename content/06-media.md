@@ -234,7 +234,6 @@ Project file: `modules[].media`; in refresh, `.original`, `.changeNote`.
 ### Go deeper (supplemental)
 
 - `src:guide-planning-media`
-- `src:jobaid-media-selection-matrix`
 - `src:ext-guo-2014`
 
 ---
@@ -299,7 +298,9 @@ names the background behind you.
 
 **Write for the ear.** Use contractions and full sentences, and read it aloud as you write; if a
 sentence is awkward spoken, rewrite it. Say anything a student needs to know, so nothing depends
-only on what's on screen. Most scripts run 250 to 350 words, about 2 to 2.5 minutes spoken.
+only on what's on screen. Most scripts run 250 to 350 words, about 2 to 2.5 minutes spoken. An AI
+tool such as ScriptWise can help: paste in your draft and ask it to tighten the wording for the ear
+or cut it to length.
 
 Your ID and the Learning Media Team will help with the rest of your scripts during development.
 
@@ -435,9 +436,6 @@ Project file: `scripts[]` (video, title, minutes, module, rows, status).
 ### Go deeper (supplemental)
 
 - `src:guide-script-writing`
-- `src:template-av-script`
-- `src:tool-scriptwise`: an AI tool for developing scripts. Any AI tool can also help: paste in
-  your draft and ask it to tighten the wording for the ear or cut it to length.
 
 ---
 

@@ -200,7 +200,7 @@ Project file: `learners.profile`, `catalog.text`, `catalog.commitments`, `progra
 
 ### Go deeper (supplemental)
 
-- `src:reading-m1-setting-the-foundation`: the principles behind Flex Online design.
+- `src:guide-adult-learners`: how working professionals learn, and what it means for your course.
 - `src:ext-wiggins-mctighe-2005`, `src:ext-knowles-2015`, `src:ext-cast-2018`
 
 ---

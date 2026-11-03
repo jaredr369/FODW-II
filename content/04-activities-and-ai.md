@@ -292,10 +292,9 @@ Project file: `ai.choice`, `ai.where`, `ai.instructions`, `ai.testing`.
 
 ### Go deeper (supplemental)
 
-- `src:assignment-m4-course-tutor`: the full lesson on building a course tutor and a grading
-  assistant, with key terms and tool comparisons.
 - `src:ext-bowen-watson-2025-ch15`: custom bots and how to design them for teaching.
 - `src:ext-tamu-lms-gemini`: adding Gemini Gems and Notebooks to Canvas courses.
+- `src:ext-tamu-ai-guidelines`: Texas A&M's guidelines for teaching with AI.
 
 ---
 
@@ -595,10 +594,8 @@ Project file: `modules[].activities` (with `rsi`, `hours`, `aiRisk`, `aiPolicy`,
 
 ### Go deeper (supplemental)
 
-- `src:reading-m4-crafting-part-1`, `src:reading-m4-crafting-part-2`
 - `src:guide-learning-activities`, `src:guide-rubrics`, `src:guide-third-party-tools`
 - `src:ext-tamu-ai-guidelines`, `src:ext-terry-2023`
-- `src:ext-rice-workload`: estimate student time by reading difficulty and writing type.
 
 ---
 

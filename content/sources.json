@@ -45,8 +45,7 @@
       "use": "basis",
       "file": "GS - Cidi, Engaging in the Flex Online Process v2.docx",
       "folder": "04 - Learning Materials/Getting Started",
-      "notes": "One knowledge check answer says 16 weeks of development; 13 is correct.",
-      "path": "guides/GS - Cidi, Engaging in the Flex Online Process v2.docx"
+      "notes": "One knowledge check answer says 16 weeks of development; 13 is correct."
     },
     {
       "id": "guide-course-development-process",
@@ -95,8 +94,7 @@
       "use": "basis",
       "file": "M1 - Cidi, Setting the Foundation v2.docx",
       "folder": "04 - Learning Materials/Module 1",
-      "notes": "Says 3 to 7 CLOs; the tool uses 3 to 6.",
-      "path": "guides/M1 - Cidi, Setting the Foundation v2.docx"
+      "notes": "Says 3 to 7 CLOs; the tool uses 3 to 6."
     },
     {
       "id": "guide-course-alignment",
@@ -128,8 +126,7 @@
       "use": "basis",
       "file": "M1 F Interactive Assignment - Building the Framework.docx",
       "folder": "03 - Learning Activities/Interactive Assignments",
-      "notes": "Its embedded submission template is the storytelling template, which belongs to Module 2.",
-      "path": "guides/M1 F Interactive Assignment - Building the Framework.docx"
+      "notes": "Its embedded submission template is the storytelling template, which belongs to Module 2."
     },
     {
       "id": "assignment-m1-redesign-and-refine",
@@ -139,8 +136,7 @@
       "use": "basis",
       "file": "M1 R Interactive Assignment - Redesign and Refine.docx",
       "folder": "03 - Learning Activities/Interactive Assignments",
-      "notes": "Worked example audits the MGMT 615 CLOs and flags CLO 2 and CLO 5 on purpose.",
-      "path": "guides/M1 R Interactive Assignment - Redesign and Refine.docx"
+      "notes": "Worked example audits the MGMT 615 CLOs and flags CLO 2 and CLO 5 on purpose."
     },
     {
       "id": "perusall-m1-clues-to-a-great-story",
@@ -222,8 +218,7 @@
       "module": "m2",
       "use": "basis for 2.1",
       "file": "M2 F Interactive Assignment - Understanding RSI.docx",
-      "folder": "03 - Learning Activities/Interactive Assignments",
-      "path": "guides/M2 F Interactive Assignment - Understanding RSI.docx"
+      "folder": "03 - Learning Activities/Interactive Assignments"
     },
     {
       "id": "assignment-m2-character-conflict",
@@ -233,8 +228,7 @@
       "use": "basis for 2.2 and 2.3",
       "file": "M2 FR Interactive Assignment - Build Your Character and Conflict.docx",
       "folder": "03 - Learning Activities/Interactive Assignments",
-      "notes": "The document's own heading says M1. It belongs to Module 2.",
-      "path": "guides/M2 FR Interactive Assignment - Build Your Character and Conflict.docx"
+      "notes": "The document's own heading says M1. It belongs to Module 2."
     },
     {
       "id": "guide-storytelling",
@@ -256,8 +250,7 @@
       "use": "supplemental; also m3 and m6",
       "file": "The_Media_Selection_Matrix_Guide.png",
       "folder": "04 - Learning Materials/Module 2",
-      "notes": "Listed in the course map as 'Matching Medium to Best Use'. The image carries a Gemini Notebook mark.",
-      "path": "guides/The_Media_Selection_Matrix_Guide.png"
+      "notes": "Listed in the course map as 'Matching Medium to Best Use'. The image carries a Gemini Notebook mark."
     },
     {
       "id": "article-maxwell-2026",
@@ -311,8 +304,7 @@
       "use": "refresh demo input",
       "file": "Course Map_MGMT 615.docx",
       "folder": "MGMT 615 Example",
-      "notes": "Fictional course. Its flaws are kept as the refresh demo's starting point.",
-      "path": "guides/Course Map_MGMT 615.docx"
+      "notes": "Fictional course. Its flaws are kept as the refresh demo's starting point."
     },
     {
       "id": "example-mgmt615-character",
@@ -321,8 +313,7 @@
       "module": "m2",
       "use": "See it and demo responses",
       "file": "MGMT 615 Character Profile - Dana Ortiz.docx",
-      "folder": "MGMT 615 Example",
-      "path": "guides/MGMT 615 Character Profile - Dana Ortiz.docx"
+      "folder": "MGMT 615 Example"
     },
     {
       "id": "example-mgmt615-episodes",
@@ -332,8 +323,7 @@
       "use": "See it and demo responses",
       "file": "MGMT 615 Story Episodes by Module.docx",
       "folder": "MGMT 615 Example",
-      "notes": "Uses the original CLO numbers. Module 8 should map to the new CLO 6.",
-      "path": "guides/MGMT 615 Story Episodes by Module.docx"
+      "notes": "Uses the original CLO numbers. Module 8 should map to the new CLO 6."
     },
     {
       "id": "assignment-m3-identifying-scenarios",
@@ -343,8 +333,7 @@
       "use": "basis for 3.2 to 3.4",
       "file": "M3 FR Interactive Assignment - Identifying Module Scenarios.docx",
       "folder": "03 - Learning Activities/Interactive Assignments",
-      "notes": "Its overview says the character was built in Module 1; it was built in Module 2. The other Module 3 assignment files (Single Module Scenario, Single Module Scene Redesign, Single Module Scenario Design) are blank templates.",
-      "path": "guides/M3 FR Interactive Assignment - Identifying Module Scenarios.docx"
+      "notes": "Its overview says the character was built in Module 1; it was built in Module 2. The other Module 3 assignment files (Single Module Scenario, Single Module Scene Redesign, Single Module Scenario Design) are blank templates."
     },
     {
       "id": "example-mgmt615-scenarios",
@@ -354,8 +343,7 @@
       "use": "See it and demo data",
       "file": "MGMT 615 Story Scenarios by Module - Submission Format.docx",
       "folder": "MGMT 615 Example",
-      "notes": "Uses the original CLO numbers; the demo data in demo/mgmt615-scenarios.json uses the revised ones.",
-      "path": "guides/MGMT 615 Story Scenarios by Module - Submission Format.docx"
+      "notes": "Uses the original CLO numbers; the demo data in demo/mgmt615-scenarios.json uses the revised ones."
     },
     {
       "id": "guide-active-learning",
@@ -395,8 +383,7 @@
       "module": "m4",
       "use": "basis for 4.1 to 4.4",
       "file": "M4 - Cidi, Crafting the Activities (Part 1) v2.docx",
-      "folder": "04 - Learning Materials/Module 4",
-      "path": "guides/M4 - Cidi, Crafting the Activities (Part 1) v2.docx"
+      "folder": "04 - Learning Materials/Module 4"
     },
     {
       "id": "reading-m4-crafting-part-2",
@@ -405,8 +392,7 @@
       "module": "m4",
       "use": "basis for 4.5",
       "file": "M4 - Cidi, Crafting the Activities (Part 2) v2.docx",
-      "folder": "04 - Learning Materials/Module 4",
-      "path": "guides/M4 - Cidi, Crafting the Activities (Part 2) v2.docx"
+      "folder": "04 - Learning Materials/Module 4"
     },
     {
       "id": "assignment-m4-assessment-interaction-plan",
@@ -415,8 +401,7 @@
       "module": "m4",
       "use": "basis",
       "file": "M4 FR Individual Assignment - Assessment and Interaction Plan.docx",
-      "folder": "03 - Learning Activities/Assignments",
-      "path": "guides/M4 FR Individual Assignment - Assessment and Interaction Plan.docx"
+      "folder": "03 - Learning Activities/Assignments"
     },
     {
       "id": "assignment-m4-learning-activities-plan",
@@ -435,8 +420,7 @@
       "use": "basis for 4.1; supplemental",
       "file": "M4 FR Interactive Assignment- Building a Course Tutor with AI.docx",
       "folder": "03 - Learning Activities/Interactive Assignments",
-      "notes": "Also covers a faculty grading-assistant Gem, left out of the tool for now.",
-      "path": "guides/M4 FR Interactive Assignment- Building a Course Tutor with AI.docx"
+      "notes": "Also covers a faculty grading-assistant Gem, left out of the tool for now."
     },
     {
       "id": "guide-learning-activities",
@@ -524,8 +508,7 @@
       "module": "m5",
       "use": "basis",
       "file": "M5 - Cidi, Developing a Learning Materials Plan v2.docx",
-      "folder": "04 - Learning Materials/Module 5",
-      "path": "guides/M5 - Cidi, Developing a Learning Materials Plan v2.docx"
+      "folder": "04 - Learning Materials/Module 5"
     },
     {
       "id": "assignment-m5-materials-rights-review",
@@ -534,8 +517,7 @@
       "module": "m5",
       "use": "basis",
       "file": "M5 FR Individual Assignment - Materials and Rights Review.docx",
-      "folder": "03 - Learning Activities/Assignments",
-      "path": "guides/M5 FR Individual Assignment - Materials and Rights Review.docx"
+      "folder": "03 - Learning Activities/Assignments"
     },
     {
       "id": "assignment-m5-writing-attributions",
@@ -544,8 +526,7 @@
       "module": "m5",
       "use": "supplemental",
       "file": "M5 FR Interactive Assignment - Writing Attributions.docx",
-      "folder": "03 - Learning Activities/Interactive Assignments",
-      "path": "guides/M5 FR Interactive Assignment - Writing Attributions.docx"
+      "folder": "03 - Learning Activities/Interactive Assignments"
     },
     {
       "id": "guide-copyright",
@@ -598,8 +579,7 @@
       "module": "m6",
       "use": "basis",
       "file": "M6 - Cidi, Planning Media Intentionally v2.docx",
-      "folder": "04 - Learning Materials/Module 6",
-      "path": "guides/M6 - Cidi, Planning Media Intentionally v2.docx"
+      "folder": "04 - Learning Materials/Module 6"
     },
     {
       "id": "assignment-m6-media-planning",
@@ -608,8 +588,7 @@
       "module": "m6",
       "use": "basis",
       "file": "M6 F Individual Assignment - Media Planning.docx",
-      "folder": "03 - Learning Activities/Assignments",
-      "path": "guides/M6 F Individual Assignment - Media Planning.docx"
+      "folder": "03 - Learning Activities/Assignments"
     },
     {
       "id": "template-av-script",
@@ -651,8 +630,7 @@
       "use": "basis",
       "file": "M7 - Cidi Going Live with Cohorts v2.docx",
       "folder": "04 - Learning Materials/Module 7",
-      "notes": "Also cites Morris et al. (2019) and Donelan et al. (2025), used in step 7.1.",
-      "path": "guides/M7 - Cidi Going Live with Cohorts v2.docx"
+      "notes": "Also cites Morris et al. (2019) and Donelan et al. (2025), used in step 7.1."
     },
     {
       "id": "reading-m7-active-learning-tools",
@@ -670,8 +648,7 @@
       "module": "m7",
       "use": "basis",
       "file": "M7 F Individual Assignment - Cohort Planning.docx",
-      "folder": "03 - Learning Activities/Assignments",
-      "path": "guides/M7 F Individual Assignment - Cohort Planning.docx"
+      "folder": "03 - Learning Activities/Assignments"
     },
     {
       "id": "assignment-m7-cohort-materials",
@@ -680,8 +657,7 @@
       "module": "m7",
       "use": "background",
       "file": "M7 F Individual Assignment - Cohort Session Materials.docx",
-      "folder": "03 - Learning Activities/Assignments",
-      "path": "guides/M7 F Individual Assignment - Cohort Session Materials.docx"
+      "folder": "03 - Learning Activities/Assignments"
     },
     {
       "id": "guide-cohort-sessions",
@@ -742,8 +718,7 @@
       "use": "basis",
       "file": "M8 - Cidi, Preparing for Development v2.docx",
       "folder": "04 - Learning Materials/Module 8",
-      "notes": "The Fink PDF in the Module 8 folder (a copy of Fink's book from bookzz.org, an unauthorized source) is not used.",
-      "path": "guides/M8 - Cidi, Preparing for Development v2.docx"
+      "notes": "The Fink PDF in the Module 8 folder (a copy of Fink's book from bookzz.org, an unauthorized source) is not used."
     },
     {
       "id": "assignment-m8-course-planning-document",
@@ -752,8 +727,7 @@
       "module": "m8",
       "use": "basis",
       "file": "M8 F Individual Assignment - Course Planning Document.docx",
-      "folder": "03 - Learning Activities/Assignments",
-      "path": "guides/M8 F Individual Assignment - Course Planning Document.docx"
+      "folder": "03 - Learning Activities/Assignments"
     },
     {
       "id": "guide-online-teaching-practices",
