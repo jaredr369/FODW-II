@@ -52,8 +52,15 @@ Pattern: pick and combine, one module at a time (full build); edit in place (ref
 ### Learn
 
 ::: purpose
+::: full
 **What you'll do:** Plan the learning materials for each module: what students will read, watch, or
 work with to get ready for the module's decision.
+:::
+
+::: refresh
+**What you'll do:** Review and update the learning materials for each module: what students read,
+watch, or work with to get ready for the module's decision.
+:::
 
 **Why it matters:** Materials fill much of a student's week, so each item should earn its place by
 preparing students for a specific activity.
@@ -105,16 +112,21 @@ about 21 pages.
 
 ### Draft (full build) and Review (refresh)
 
+::: full
 Work through your modules one at a time. Choose a module, then select the button below. The AI
 suggests what the module's materials should cover, from its CLOs, topics, scenario, and activities.
 It can't check that a specific source exists, so it never names one: for each curated reading it
 gives a search prompt you can paste into TAMU AI Chat or the TAMU Libraries search. Select **Use
 these materials** to copy the list into the boxes under Decide, then replace each suggestion with
 the source you choose.
+:::
 
 ::: refresh
-The AI starts from your Course Map's current materials for the module. It checks each one, says
-what it would keep, replace, or remove and why, and adds any scenario exhibits that are missing.
+Work through your modules one at a time. Choose a module, then select the button below. The AI
+starts from your Course Map's current materials for the module. It checks each one, says what it
+would keep, replace, or remove and why, and adds any scenario exhibits that are missing. It never
+names a new source; for a replacement it gives a search prompt instead. Select **Use these
+materials** to copy the reviewed list into the boxes under Decide.
 :::
 
 ::: module-picker
@@ -207,8 +219,15 @@ Pattern: spot the problem, then edit in place
 ### Learn
 
 ::: purpose
+::: full
 **What you'll do:** For each material, record its rights status, an attribution line, and a note if
 AI helped make it.
+:::
+
+::: refresh
+**What you'll do:** Review the rights status, attribution line, and AI note for each material, and
+update any that are missing or out of date.
+:::
 
 **Why it matters:** Using material without the right permission puts you and the university at legal
 risk. Clear attributions and AI notes also show students the integrity you ask of them.
@@ -265,10 +284,20 @@ own. Two items were drafted with AI, so each got a disclosure note.
 
 ### Draft (full build) and Review (refresh)
 
+::: full
 Work through your modules one at a time. Choose a module, then select the button below. The AI
 proposes each material's rights status, an attribution line, and, for anything made with AI help,
 a disclosure note. It never invents missing details: anything you need to confirm is marked
 [check]. Select **Use these notes** to copy them into the boxes under Decide.
+:::
+
+::: refresh
+Work through your modules one at a time. Choose a module, then select the button below. The AI
+starts from the rights notes and attributions in your Course Map. It flags any rights status that's
+unclear, any attribution that's missing or incomplete, and any AI-assisted item without a note, and
+suggests a fix for each. It never invents missing details: anything you need to confirm is marked
+[check]. Select **Use these notes** to copy them into the boxes under Decide.
+:::
 
 ::: module-picker
 :::
@@ -281,7 +310,8 @@ helped create it), set rights to one of: library, open (name the license), publi
 uploaded), created, ai-assisted, unclear. Write an attribution line with creator, title, source,
 and license where known; do not invent missing details, use [check] instead. For ai-assisted
 items, write a one-sentence disclosure note. For unclear items, suggest the safest fix: link
-instead of upload, find a licensed alternative, or recreate it.
+instead of upload, find a licensed alternative, or recreate it. If the Course Map already has rights
+notes or attributions, start from them and flag what's unclear, missing, or out of date.
 
 Return: {"items": [{"title": string, "rights": string, "attribution": string, "aiNote": string | null, "fix": string | null}]}
 ```
@@ -308,7 +338,7 @@ Checklist:
 
 ### Checks
 
-When you save each module, the tool checks that:
+When you save each module, the tool confirms that:
 
 - no item is left unclear without a fix;
 - every item has an attribution or is your own created work;

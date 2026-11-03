@@ -110,7 +110,7 @@ Project file: `alignment.final`.
 ## 8.2 Communication and feedback plan
 
 Time: about 25 minutes
-Pattern: interview, then draft (full build) or edit in place (refresh)
+Pattern: interview, then draft (both tracks)
 
 ### Learn
 
@@ -147,7 +147,14 @@ session. Feedback on main assignments comes within five days: a clickable rubric
 video comment. The instructor's reflection said Monday announcements slipped mid-term, so all
 opening and closing announcements are drafted before the term and scheduled.
 
-### Draft (full build)
+### Draft (full build) and Review (refresh)
+
+::: refresh
+If your Course Map already has a communication plan or announcements, the AI starts from them. It
+checks them against your interaction statement and the Learn section, and uses your reflection to
+fix what slipped. MGMT 615's Course Map had none, so the AI drafted a plan, and the reflection
+added the line about scheduling announcements before the term.
+:::
 
 Answer the questions, then select the button below. The AI drafts your plan and the Module 1
 opening announcement. Select **Use this plan** to copy them into the boxes under Decide.
@@ -188,13 +195,6 @@ Plan:
 into running a distribution center, with on-time shipping down eight points and a director who's
 already decided whose fault it is. Start with her Monday report and the Whitfield chapter. By
 Sunday, you'll decide what Dana should do with her first week, and why.
-
-### Review (refresh)
-
-The AI checks the announcements, feedback practices, and communication notes in your Course Map
-against your interaction statement and the Learn section, and your reflection points it at what
-slipped. MGMT 615's Course Map had no communication plan, so the full build ran, and the reflection
-added the line about scheduling announcements before the term.
 
 ### Decide
 

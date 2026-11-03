@@ -307,8 +307,15 @@ Pattern: pick and combine, one module at a time (full build); edit in place (ref
 ### Learn
 
 ::: purpose
+::: full
 **What you'll do:** Plan the learning activities for each module: what students will do, which CLO
 each activity serves, how much it weighs, and how long it takes.
+:::
+
+::: refresh
+**What you'll do:** Review and update the learning activities for each module: what students do,
+which CLO each activity serves, how much it weighs, and how long it takes.
+:::
 
 **Why it matters:** Activities are where students practice and show what they've learned. They give
 you the evidence of whether students met your CLOs.
@@ -430,14 +437,18 @@ because the instructor replies in its threads each Thursday.
 
 ### Draft (full build) and Review (refresh)
 
+::: full
 Work through your modules one at a time. Choose a module, then select the button below. The AI
 drafts the module's activities from its CLOs, topics, and scenario, and shows what the checks will
 find: the hours, the RSI categories, and the AI risk of each high-weight activity. Select **Use
 these activities** to copy them into the boxes under Decide.
+:::
 
 ::: refresh
-The AI starts from your Course Map's current activities for the module. It keeps what works, says
-what it would change and why, and adds hours and weight to each activity.
+Work through your modules one at a time. Choose a module, then select the button below. The AI
+starts from your Course Map's current activities for the module. It keeps what works, says what it
+would change and why, adds hours and weight to each activity, and shows what the checks will find.
+Select **Use these activities** to copy the reviewed list into the boxes under Decide.
 :::
 
 ::: module-picker

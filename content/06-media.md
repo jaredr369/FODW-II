@@ -51,8 +51,15 @@ Pattern: pick and combine, one module at a time (full build); edit in place (ref
 ### Learn
 
 ::: purpose
+::: full
 **What you'll do:** Plan the media to be produced for each module: video, audio, and graphics,
 including the videos every course requires.
+:::
+
+::: refresh
+**What you'll do:** Review and update the media to be produced for each module: video, audio, and
+graphics, including the videos every course requires.
+:::
 
 **Why it matters:** Media takes the longest to produce, so planning it now gives you and the
 Learning Media Team time to make it well.
@@ -122,14 +129,18 @@ comes to 11 minutes.
 
 ### Draft (full build) and Review (refresh)
 
+::: full
 Work through your modules one at a time. Choose a module, then select the button below. The AI
 proposes the module's media from its scenario, activities, and materials, including the required
 videos, and checks the time. Select **Use this media plan** to copy the list into the box under
 Decide.
+:::
 
 ::: refresh
-The AI starts from your Course Map's current media for the module. It checks each item, says what
-it would keep, revise, or replace and why, and adds any required video that's missing.
+Work through your modules one at a time. Choose a module, then select the button below. The AI
+starts from your Course Map's current media for the module. It checks each item, says what it would
+keep, revise, or replace and why, adds any required video that's missing, and checks the time.
+Select **Use this media plan** to copy the reviewed list into the box under Decide.
 :::
 
 ::: module-picker
@@ -224,10 +235,24 @@ Pattern: interview, then draft
 ### Learn
 
 ::: purpose
+::: full
 **What you'll do:** Draft one A/V/E script, usually for your welcome video or your Module 1 overview.
+:::
 
+::: refresh
+**What you'll do:** Convert one of your existing A/V scripts to an A/V/E script, usually for your
+welcome video or a module overview.
+:::
+
+::: full
 **Why it matters:** Writing one script now, with feedback, makes the rest faster during development.
 Your ID reviews it with you before your practice session on the XR stage.
+:::
+
+::: refresh
+**Why it matters:** Converting one script now, with feedback, makes the rest faster during
+development. Your ID reviews it with you before your practice session on the XR stage.
+:::
 :::
 
 Every video you record on the XR stage starts with an A/V/E script, written in the Learning Media Team's
@@ -252,6 +277,13 @@ The script runs in five parts:
 the Graphics column, note the slide or image you want with each chunk; the team builds the final
 graphics. Anything in square brackets, such as [Close-up shot], is a note to the team, not
 something you say.
+
+::: refresh
+**Converting a script you already have.** Your course's existing videos were scripted in the
+two-column A/V template. Converting one keeps your dialogue and adds what the XR stage needs: your
+sections become the five parts, your graphics go in the Graphics column, and the Environment column
+names the background behind you.
+:::
 
 **Write for the ear.** Use contractions and full sentences, and read it aloud as you write; if a
 sentence is awkward spoken, rewrite it. Say anything a student needs to know, so nothing depends
@@ -284,20 +316,25 @@ Started, welcome video.
 
 ### Draft (full build) and Review (refresh)
 
+::: full
 Answer the questions, then select the button below. The AI drafts the script in the A/V/E
 template, in your voice and at the planned length. Select **Use this script** to copy it into the
 script form under Decide.
+:::
 
 ::: refresh
-If you already have a script for this video, paste it into the last box. The AI checks it for
-length, spoken style, and the decision ending, and suggests edits instead of starting over.
+Paste one of your current A/V scripts into the last box, usually your welcome video or a module
+overview, and answer the questions it doesn't already cover. The AI converts it to the A/V/E
+template: it keeps your words, maps your sections to the five parts, moves your graphics into the
+Graphics column, adds the Environment column, and flags anything that runs long or appears only on
+screen. Select **Use this script** to copy the converted script into the form under Decide.
 :::
 
 ::: fields
 - Which video are you scripting: your welcome video, a module overview, or a scenario video from your media plan? | The Module 1 overview, 2 minutes.
 - What should students feel or understand by the end? | That a manager's job is different from the job Dana just left, and that Greg's quick answer deserves a second look.
 - Is there a phrase or story you always use when you introduce this? | "Your best player isn't automatically your best coach."
-- Your current script for this video, if you have one
+- Your current A/V script for this video, if you have one (to convert it)
 :::
 
 AI instructions:
@@ -314,13 +351,21 @@ at about 140 spoken words a minute. For an overview or scenario video, open in t
 situation and end at the decision without resolving it. In Graphics, suggest a slide for each
 chunk; put camera or production notes in square brackets. In Environment, name one background and
 write "Same" after that. Put everything a student needs in the dialogue; graphics only reinforce
-it. If the faculty member pasted a current script, check it for length, spoken style, and the
-decision ending, and suggest edits to it instead of starting over.
+it. If the faculty member pasted a current A/V script, convert it instead of starting over: keep
+their dialogue, map its sections to the parts above, move its graphics into the Graphics column,
+and add the Environment column. Then check it for length, spoken style, and the decision ending,
+and suggest edits.
 
 Return: {"title": string, "minutes": number, "module": string, "rows": [{"part": string, "dialogue": string, "graphics": string, "environment": string}]}
 ```
 
 Demo response (MGMT 615):
+
+::: refresh
+**Converted from the current A/V script:** the instructor's two-column overview script kept its
+dialogue. Its four sections became the template's parts, its slide notes moved to Graphics, and the
+Environment column was added. The AI also cut two sentences to bring it to about 2 minutes.
+:::
 
 **Title:** Module 1 overview: What Managers Actually Do. **Duration:** about 2 minutes. **Module &
 Section:** Module 1, overview video.

@@ -71,8 +71,15 @@ Pattern: faculty input (no AI)
 **What you'll do:** Describe who takes your course, and record your catalog description, its
 commitments, and the program outcomes your course supports.
 
+::: full
 **Why it matters:** These set the end point for your whole plan. Every AI draft uses your learner
 description, and later steps check your vision and CLOs against the catalog and program outcomes.
+:::
+
+::: refresh
+**Why it matters:** This step reminds you who your audience is, so every change you make in this
+workshop serves them.
+:::
 :::
 
 Flex Online courses are planned backward (Wiggins & McTighe, 2005), and so is this workshop:
@@ -197,15 +204,33 @@ Pattern: interview, then draft
 ### Learn
 
 ::: purpose
+::: full
 **What you'll do:** Write your course vision: 3 or 4 sentences on what your course helps students do
 in the workplace.
+:::
 
+::: refresh
+**What you'll do:** Recall your course vision, and rewrite it if it no longer fits.
+:::
+
+::: full
 **Why it matters:** Your vision drives every later choice. Each topic, activity, and reading has to
 help students do what it describes.
 :::
 
+::: refresh
+**Why it matters:** Recalling your vision helps you check that everything in the course still serves
+the purpose it was designed for. It can also bring to light opportunities for change.
+:::
+:::
+
 Think about the situations your students face at work and what your course helps them do about those
 situations.
+
+::: refresh
+Read your current vision with two questions in mind: does it still describe what students do at
+work, and does it still fit the catalog description?
+:::
 
 Stay within the scope of your catalog description. Describe what students do on the job, not what
 the course covers or how it's taught.
@@ -333,11 +358,24 @@ Pattern: spot the problem, then pick and combine (full build) or edit in place (
 ### Learn
 
 ::: purpose
+::: full
 **What you'll do:** Write 3 to 6 course-level objectives (CLOs): what students will be able to do by
 the end of the course, in a way you can observe and grade.
+:::
 
+::: refresh
+**What you'll do:** Analyze your course-level objectives (CLOs) and update any that need it.
+:::
+
+::: full
 **Why it matters:** Everything later traces back to your CLOs. Your modules, activities, and
 materials are each checked against them.
+:::
+
+::: refresh
+**Why it matters:** Every module, activity, and material is checked against your CLOs, so they need
+to say what the course should achieve now.
+:::
 :::
 
 To pitch them at the right level, use Bloom's taxonomy, a widely used framework that sorts
@@ -366,7 +404,7 @@ Each CLO should also suggest a decision someone in your students' role would fac
 you'll create a character, someone in your students' role, whose story runs through the course.
 These decisions become that character's story.
 
-**Spot the problem.** Before you draft your own CLOs, practice on a weak one. Read the objective
+**Spot the problem.** Before you work on your own CLOs, practice on a weak one. Read the objective
 below, say in a sentence or two what you would change and why, then select **Check my answer**.
 The AI tells you what you caught and adds anything you missed.
 
@@ -535,16 +573,34 @@ Pattern: pick and combine (full build) or edit in place (refresh)
 ### Learn
 
 ::: purpose
+::: full
 **What you'll do:** Lay out your course's weekly modules, each with a title, the one or two CLOs it
 focuses on, and three to five topics.
+:::
 
+::: refresh
+**What you'll do:** Analyze your module titles and topics, and update any that need it.
+:::
+
+::: full
 **Why it matters:** This list is the backbone of your plan. Every later module fills in your Course
 Planning Document one module at a time.
+:::
+
+::: refresh
+**Why it matters:** Your modules are the backbone of the plan. Titles and topics that reflect
+current practice keep every later module current.
+:::
 :::
 
 The Course Planning Document has room for eight modules. Give each a title a student would
 understand on day one. Start from the CLOs: list what students need to know or practice to meet each
 one, then cut any topic they don't need to meet a CLO.
+
+::: refresh
+Check each current title and topic against your updated CLOs. Rename any module a student wouldn't
+understand on day one, and replace any topic students no longer need.
+:::
 
 Every module should trace back to your CLOs, and through them to the catalog and your program's
 outcomes. Here's one thread through MGMT 615:
@@ -664,7 +720,7 @@ Checklist:
 
 ### Checks
 
-When you save, the tool checks that:
+When you save, the tool confirms that:
 
 - every CLO appears in at least one module;
 - each topic serves a CLO its module lists;

@@ -52,8 +52,15 @@ Pattern: pick and combine, one module at a time (full build); edit in place (ref
 ### Learn
 
 ::: purpose
+::: full
 **What you'll do:** Choose the activity at the heart of each cohort session, a 90-minute live class
 on Zoom, for Modules 2 to 8: something students can only get by being there.
+:::
+
+::: refresh
+**What you'll do:** Review and update the activity at the heart of each cohort session, a 90-minute
+live class on Zoom, for Modules 2 to 8: something students can only get by being there.
+:::
 
 **Why it matters:** Students don't skip sessions because they're recorded; they skip sessions that
 offer nothing the recording doesn't ([Morris et al., 2019](src:ext-morris-2019)).
@@ -146,14 +153,19 @@ roundtables didn't: nothing in them depended on who was in the room, so each got
 
 ### Draft (full build) and Review (refresh)
 
+::: full
 Work through Modules 2 to 8 one at a time. The draft follows the session day you chose in Learn.
 Choose a module, then select the button below. The AI proposes an activity built on the module's
 scenario and activities, with what the checks will find. Select **Use this activity** to copy it
 into the box under Decide.
+:::
 
 ::: refresh
-The AI starts from your Course Map's current session for the module. It applies the recording test,
-says what it would keep or revise and why, and adds a live activity where one is missing.
+Work through Modules 2 to 8 one at a time. The review follows the session day you chose in Learn.
+Choose a module, then select the button below. The AI starts from your Course Map's current session
+for the module. It applies the recording test, says what it would keep or revise and why, and adds
+a live activity where one is missing. Select **Use this activity** to copy it into the box under
+Decide.
 :::
 
 ::: module-picker
@@ -282,9 +294,17 @@ Pattern: interview, then draft; then the AI drafts the outline and slides
 ### Learn
 
 ::: purpose
+::: full
 **What you'll do:** Plan your first cohort session, usually Module 2, minute by minute in the
 team's lesson plan template. From your plan, the AI drafts the student-facing outline and a slide
 deck.
+:::
+
+::: refresh
+**What you'll do:** Review and update your first cohort session, usually Module 2, minute by minute
+in the team's lesson plan template. From your plan, the AI drafts the student-facing outline and a
+slide deck.
+:::
 
 **Why it matters:** A lesson plan keeps a 90-minute session on time and on purpose. Drafting the
 outline and slides from the same plan means all three say the same thing.

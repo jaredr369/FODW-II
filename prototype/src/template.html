@@ -589,7 +589,11 @@ function md(text, opts = {}) {
     // ::: refresh / ::: full block: text shown on that track only.
     if (/^:::\s*(refresh|full)\s*$/.test(line)) {
       const which = line.replace(/^:::\s*/, '').trim(); const buf = []; i++;
-      while (i < lines.length && !/^:::\s*$/.test(lines[i])) buf.push(lines[i++]);
+      // It can hold other blocks (a purpose box, a fold), so count openings and closings.
+      for (let depth = 1; i < lines.length; i++) {
+        if (/^:::\s*$/.test(lines[i])) { if (--depth === 0) break; } else if (/^:::\s*\S/.test(lines[i])) depth++;
+        buf.push(lines[i]);
+      }
       i++;
       if (state.track === which) html += md(buf.join('\n'), opts);
       continue;
@@ -682,7 +686,11 @@ function md(text, opts = {}) {
     // ::: purpose block: the "What you'll do / Why it matters" opener at the top of a step.
     if (/^:::\s*purpose/.test(line)) {
       const buf = []; i++;
-      while (i < lines.length && !/^:::\s*$/.test(lines[i])) buf.push(lines[i++]);
+      // A purpose box can hold track-specific lines (::: full / ::: refresh), so count openings and closings.
+      for (let depth = 1; i < lines.length; i++) {
+        if (/^:::\s*$/.test(lines[i])) { if (--depth === 0) break; } else if (/^:::\s*\S/.test(lines[i])) depth++;
+        buf.push(lines[i]);
+      }
       i++; html += '<div class="purpose">' + md(buf.join('\n'), opts) + '</div>'; continue;
     }
     // ::: fields block: each "- Question | Example answer" line becomes a labeled answer box, with the
