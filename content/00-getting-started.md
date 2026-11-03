@@ -171,7 +171,7 @@ and your track decides whether each step drafts a new section or reviews the one
 
 Choose a track:
 
-- **Full build** if the course is new or you're rebuilding it from the beginning.
+- **Full build** if the course is new.
 - **Refresh** if your course has already been developed and taught in the Flex Online program.
   Upload its Course Map as a Word file, or paste the text. Your ID can help you get the latest version. In each module you'll see the matching section of your Course Map with flags beside it that note what may need
   attention. You keep the section, accept or edit a suggested revision,

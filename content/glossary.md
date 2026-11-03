@@ -24,7 +24,7 @@ the tool underlines; "(glossary only)" terms are too common to underline and app
 | Curated material | curated reading, curated video | A reading or video from another source that you choose for your course, such as an article, chapter, or video. Curated is the default; it's the least work to produce. |
 | Environment | (glossary only)
 | Flex Online | | Mays Business School's online course format: a shared template, weekly modules, asynchronous work, and, in most courses, weekly live cohort sessions. |
-| Full build | | The workshop track for a new course, or a course rebuilt from the beginning. Each step drafts a new section. |
+| Full build | | The workshop track for a new course. Each step drafts a new section. |
 | Gem | Gems, Gemini Gem | A custom Google Gemini assistant you set up with instructions and files. You can add a Gem to a Canvas module for students to use. |
 | Grading assistant | | An AI assistant, built in TAMU AI Chat, that drafts rubric-based feedback on student work for you to review and edit. It never assigns the grade. |
 | Guardrails | | What an AI assistant won't do, such as write a student's graded work or assign a final grade. |
