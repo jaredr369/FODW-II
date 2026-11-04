@@ -330,6 +330,11 @@ summary { cursor: pointer; color: var(--muted); font-size: 14px; }
 .setup-msg { margin: 6px 0 0; font-weight: 600; color: var(--ok); }
 .setup-msg.warn { color: var(--warn); }
 .redraft-row { margin: 2px 0 0; }
+.ai-off { border: 1px solid #d8c9a3; background: #fbf6e9; border-radius: 8px; padding: 10px 14px; margin: 10px 0 16px; }
+.ai-off .btn { margin-left: 8px; }
+.live-out { margin-top: 12px; }
+.reply-box { white-space: pre-wrap; border-left: 3px solid var(--line); padding: 4px 0 4px 12px; margin: 4px 0 12px; }
+.reply-opt { border: 1px solid var(--line); border-radius: 8px; padding: 8px 14px; margin: 10px 0; }
 .ai-folded { font-size: 15px; color: var(--muted, #5f5a54); margin: 8px 0 0; }
 .orig-row { display: flex; gap: 18px; flex-wrap: wrap; margin: 4px 0 0; }
 .orig-row .linkbtn { font-size: 14px; padding: 2px 0; }
@@ -418,6 +423,7 @@ body.editing main { padding-bottom: 140px; }
   <button type="button" class="hbtn" id="editBtn" aria-pressed="false">Edit</button>
   <button type="button" class="hbtn" id="glossBtn" aria-expanded="false" aria-controls="gloss">Glossary</button>
   <button type="button" class="hbtn" id="docBtn" aria-expanded="false" aria-controls="doc">Planning document</button>
+  <button type="button" class="hbtn" id="setBtn" aria-expanded="false" aria-controls="settings">Settings</button>
 </header>
 <div class="layout">
   <button type="button" class="steps-btn" id="stepsBtn" aria-expanded="false" aria-controls="nav">Steps</button>
@@ -426,6 +432,7 @@ body.editing main { padding-bottom: 140px; }
 </div>
 <aside class="doc" id="doc" hidden aria-label="Course Planning Document preview"></aside>
 <aside class="doc gloss" id="gloss" hidden aria-label="Glossary" tabindex="-1"></aside>
+<aside class="doc gloss" id="settings" hidden aria-label="Settings" tabindex="-1"></aside>
 <div class="editbar" id="editbar" hidden role="region" aria-label="Edit mode">
   <span class="msg"><strong>Edit mode.</strong> Click any outlined text and type. Text without an outline can't be changed here; tell Claude instead. <span id="ecount" aria-live="polite"></span></span>
   <button type="button" class="btn" id="saveEdits">Save edits</button>
@@ -795,10 +802,7 @@ function md(text, opts = {}) {
       const which = line.match(/key|folder/)[0]; i++;
       while (i < lines.length && !/^:::\s*$/.test(lines[i])) i++;
       i++;
-      html += which === 'key'
-        ? '<div class="form"><div class="field"><label for="apikey">Your TAMU AI key</label><input id="apikey" type="password" autocomplete="off" placeholder="sk-…"></div>' +
-          '<div class="row"><button type="button" class="btn" data-testkey>Test connection</button><button type="button" class="linkbtn" data-noai>Continue without AI</button><span class="thinking" hidden>Testing…</span></div><p class="setup-msg" role="status"></p></div>'
-        : '<div class="row"><button type="button" class="btn sec" data-folder>Choose save folder</button></div><p class="setup-msg" role="status"></p>';
+      html += which === 'key' ? keyBlock() : '<div class="row"><button type="button" class="btn sec" data-folder>Choose save folder</button></div><p class="setup-msg" role="status"></p>';
       continue;
     }
     // ::: purpose block: the "What you'll do / Why it matters" opener at the top of a step.
@@ -918,9 +922,11 @@ const MODULE_STEPS = {
 const stepKey = () => state.at.split(':')[1];
 const pickOf = key => (state.pick || {})[key] || (MODULE_STEPS[key] && MODULE_STEPS[key].first) || 1;
 const modText = (key, n) => ((state.mods || {})[key] || {})[n] || {};
+const modList = () => isDemo() ? DATA.demo['mgmt615-foundation.json'].modules
+  : Array.from({ length: Math.max(8, myModules().length) }, (_, i) => ({ title: (myModules()[i] || {}).title || 'Title not set yet (step 1.4)' }));
 function moduleBlock(which, rows, opts) {
   const key = stepKey(), cfg = MODULE_STEPS[key]; if (!cfg) return '';
-  const mods = DATA.demo['mgmt615-foundation.json'].modules, n = pickOf(key), mod = mods[n - 1], saved = modText(key, n);
+  const mods = modList(), n = pickOf(key), mod = mods[n - 1], saved = modText(key, n);
   if (which === 'picker') return '<div class="scen-picker" role="group" aria-label="Choose a module">' + mods.map((m, k) => k + 1 < (cfg.first || 1) ? '' :
     '<button type="button" data-pickmod="' + (k + 1) + '" aria-pressed="' + (k + 1 === n) + '">' +
     '<span class="m">Module ' + (k + 1) + (modText(key, k + 1)[cfg.done] ? ' <span class="ok" aria-label="started">✓</span>' : '') + '</span><span class="t">' + esc(m.title) + '</span></button>').join('') + '</div>';
@@ -1071,7 +1077,7 @@ const stepTitle = s => isRefresh() && !editing ? s.title.replace('Your Course Pl
 // Refresh: boxes whose answer the Course Map already has are filled in from it, word for word (no AI drafting).
 const PREFILL = [[/^Paste your catalog description/, cm => cm.catalog]];
 function refreshPrefill(root) {
-  const cm = DATA.demo['mgmt615-coursemap.json']; if (!isDemo() || !isRefresh() || editing || !cm || !state.courseMap) return;
+  const cm = isDemo() ? DATA.demo['mgmt615-coursemap.json'] : state.source; if (!isRefresh() || editing || !cm || !state.courseMap || !cm.catalog) return;
   root.querySelectorAll('.field').forEach(f => {
     const lab = f.querySelector('label'), box = f.querySelector('textarea'); if (!lab || !box || box.value) return;
     const hit = PREFILL.find(([re]) => re.test(lab.textContent.trim())); if (!hit) return;
@@ -1242,7 +1248,7 @@ function prefillInPlace() {
 function foldAI(t) {
   const sec = t.closest('section'); if (!sec) return;
   const outs = [...sec.querySelectorAll('.demo-out')].filter(d => !d.hidden); if (!outs.length) return;
-  outs.forEach(d => d.hidden = true); sec.querySelectorAll('.ai-folded').forEach(x => x.remove());
+  outs.forEach(d => { d.hidden = true; d.dataset.folded = '1'; }); sec.querySelectorAll('.ai-folded').forEach(x => x.remove());
   const row = (sec.querySelector('[data-draft]') || outs[outs.length - 1]).closest('.row') || outs[outs.length - 1];
   const what = isRefresh() ? 'review' : 'draft';
   row.insertAdjacentHTML('afterend', '<p class="ai-folded" role="status"><span aria-hidden="true">✓</span> ' + (inPlace() ? 'Applied to your box. Edit it there.' : 'Copied under Decide. Edit it there.') +
@@ -1501,6 +1507,205 @@ function renderValue(v) {
   return '<div' + (typeof v === 'string' ? tag('json', v) : '') + '>' + esc(v) + '</div>';
 }
 
+/* ---------- TAMU AI Chat ----------
+   The faculty member's own key, kept in this browser only (never in the project file). The tool calls the
+   OpenAI-compatible endpoint, which accepts calls from web pages, and falls back to the address Course Creator uses. */
+const AIK = 'course-plan-builder:apiKey', AIM = 'course-plan-builder:aiModel', AIB = 'course-plan-builder:aiBase', AIL = 'course-plan-builder:aiModels', AIS = 'course-plan-builder:aiSkipped';
+const ls = { get: k => { try { return localStorage.getItem(k) || ''; } catch (e) { return ''; } }, set: (k, v) => { try { if (v) localStorage.setItem(k, v); else localStorage.removeItem(k); } catch (e) {} } };
+const AI_BASES = ['https://chat-api.tamu.ai/openai', 'https://chat.tamu.ai/api'];
+const aiKey = () => ls.get(AIK);
+const aiMsg = s => s === 401 || s === 403 ? 'TAMU AI Chat didn\u2019t accept the key. Check that you copied all of it and that it hasn\u2019t been deleted.'
+  : s === 429 ? 'TAMU AI Chat is busy right now. Wait a moment and try again.'
+  : s === 0 ? 'Couldn\u2019t reach TAMU AI Chat. Check your internet connection. Off campus, you may need the university VPN.'
+  : 'TAMU AI Chat had a problem (error ' + s + '). Try again in a moment.';
+const aiErr = (msg, status) => Object.assign(new Error(msg), { status });
+async function aiFetch(base, path, key, body) {
+  let res;
+  try { res = await fetch(base + path, { method: body ? 'POST' : 'GET', headers: Object.assign({ Authorization: 'Bearer ' + key }, body ? { 'Content-Type': 'application/json' } : {}), body: body ? JSON.stringify(body) : undefined }); }
+  catch (e) { throw aiErr(aiMsg(0), 0); }
+  if (!res.ok) throw aiErr(aiMsg(res.status), res.status);
+  return res.json();
+}
+const pickModel = ids => ['claude.*sonnet', 'claude', 'gpt'].map(pat => ids.find(i => new RegExp(pat, 'i').test(i))).find(Boolean) || ids[0];
+// Test connection: list the key's models, pick one, and remember the key, address, and model in this browser.
+async function aiConnect(key) {
+  let last;
+  for (const base of AI_BASES) {
+    try {
+      const d = await aiFetch(base, '/models', key), ids = (Array.isArray(d) ? d : d.data || []).map(m => m.id || m.name).filter(Boolean);
+      if (!ids.length) throw aiErr('TAMU AI Chat connected, but this key has no models to use. Ask your ID for help.', 200);
+      const model = pickModel(ids);
+      ls.set(AIK, key); ls.set(AIB, base); ls.set(AIM, model); ls.set(AIL, JSON.stringify(ids)); ls.set(AIS, '');
+      return model;
+    } catch (e) { last = e; if (e.status && e.status !== 404) break; }
+  }
+  throw last;
+}
+async function aiAsk(system, user) {
+  const key = aiKey(); if (!key) throw aiErr('Connect TAMU AI Chat first. Select Settings at the top of the page.', 0);
+  const d = await aiFetch(ls.get(AIB) || AI_BASES[0], '/chat/completions', key,
+    { model: ls.get(AIM), messages: [{ role: 'system', content: system }, { role: 'user', content: user }], temperature: 0.4 });
+  const c = d && d.choices && d.choices[0] && d.choices[0].message && d.choices[0].message.content;
+  if (!c) throw aiErr('TAMU AI Chat sent back an empty answer. Try again.', 200);
+  return String(c);
+}
+function forgetKey() { [AIK, AIB, AIM, AIL].forEach(k => ls.set(k, '')); }
+// The key box, on GS.1 and in Settings: connected, or the paste-and-test form.
+function keyBlock() {
+  if (aiKey()) return '<div class="form key-form"><p class="setup-msg"><span aria-hidden="true">\u2713</span> Connected to TAMU AI Chat' + (ls.get(AIM) ? ', using ' + esc(ls.get(AIM)) : '') + '. Your key is saved in this browser only, so you won\u2019t need to enter it again here.</p>' +
+    '<div class="row"><button type="button" class="btn sec" data-change-key>Use a different key</button><button type="button" class="linkbtn" data-forget-key>Forget my key</button></div>' +
+    '<p class="hint">On a shared computer, select Forget my key when you finish.</p></div>';
+  const id = 'ak' + (++formId);
+  return '<div class="form key-form"><div class="field"><label for="' + id + '">Your TAMU AI key</label><input id="' + id + '" data-apikey type="password" autocomplete="off" placeholder="sk-\u2026"></div>' +
+    '<div class="row"><button type="button" class="btn" data-testkey>Test connection</button><button type="button" class="linkbtn" data-noai>Continue without AI</button><span class="thinking" hidden>Testing\u2026</span></div><p class="setup-msg" role="status"></p></div>';
+}
+function renderSettings() {
+  const ids = (() => { try { return JSON.parse(ls.get(AIL) || '[]'); } catch (e) { return []; } })();
+  return '<div class="row" style="margin-top:0"><button type="button" class="btn sec" id="closeSettings">Close</button></div><h2>Settings</h2>' +
+    '<h3>TAMU AI Chat</h3>' + (isDemo() ? '<p class="hint">You\u2019re in example mode, which plays recorded responses. Your key is used when you plan your own course.</p>' : '') + keyBlock() +
+    (aiKey() && ids.length > 1 ? '<div class="field"><label for="aiModel">AI model</label><select id="aiModel" data-aimodel>' + ids.map(i => '<option' + (i === ls.get(AIM) ? ' selected' : '') + '>' + esc(i) + '</option>').join('') + '</select></div>' : '') +
+    '<details class="fold"><summary>How to get your TAMU AI key</summary><ol><li>Open TAMU AI Chat at chat.tamu.ai in a new tab and sign in with your NetID.</li><li>Select your name or profile picture in the lower-left corner, then Settings.</li><li>Select Account, then to the right of API keys, select Show.</li><li>Select Create new secret key, or use one that\u2019s listed.</li><li>Copy the key (it starts with sk-), paste it above, and select Test connection.</li></ol></details>' +
+    '<h3>Save folder</h3><p>' + (saveDir ? 'Saving to \u201c' + esc(saveDir.name) + '\u201d.' : 'No folder chosen in this visit. Choose one in Getting Started (step GS.1), or your files download instead.') + '</p>';
+}
+// Shown at the top of a step with AI when you're planning your own course and no key is connected.
+const aiOffBanner = () => '<div class="ai-off" role="status">Your AI guide is off. Connect it to get drafts and checks for this step.<button type="button" class="btn sec" data-open-settings>Connect</button></div>';
+
+// What the tool tells the AI about the course: everything saved so far, by step.
+function courseContext(exceptGo) {
+  const out = ['Track: ' + (isRefresh() ? 'Refresh' : 'Full build'), 'Course: ' + (courseName() || '(not entered yet)'),
+    'Cohort sessions: ' + (hasCohort() ? 'yes' + (state.cohortDay ? ', on ' + DAYS[state.cohortDay] : '') : 'none')];
+  const name = go => { const f = findStep(go); return f.key === 'reflection' ? 'Refresh reflection' : f.key === 'prep' ? 'Check-in prep' : (f.step ? f.step.title : go); };
+  Object.entries(state.ans || {}).forEach(([go, a]) => {
+    if (go === exceptGo) return; const items = Object.entries(a).filter(([, v]) => String(v).trim()); if (!items.length) return;
+    out.push('', '## ' + (go.split(':')[1] || go) + ' ' + name(go)); items.forEach(([k, v]) => out.push(k + ':\n' + String(v).trim().slice(0, 3000)));
+  });
+  Object.entries(state.mods || {}).forEach(([key, mods]) => Object.entries(mods).forEach(([n, f]) => {
+    const items = Object.entries(f).filter(([, v]) => String(v).trim()); if (!items.length) return;
+    out.push('', '## Step ' + key + ', Module ' + n); items.forEach(([k, v]) => out.push(k + ':\n' + String(v).trim().slice(0, 3000)));
+  }));
+  return out.join('\n').slice(0, 40000);
+}
+// The boxes an AI answer can fill: every box under Decide that has a Redraft link (not your own notes), plus the
+// script form (6.2) and the lesson plan grid (7.2).
+function boxSpec() {
+  const dec = $('#decide'), spec = { boxes: [], av: !!(dec && dec.querySelector('.av-field')), grid: !!(dec && dec.querySelector('[data-gridname="lesson"]')) };
+  if (dec) dec.querySelectorAll('.field').forEach(f => { const l = f.querySelector(':scope > label'), b = f.querySelector(':scope > textarea');
+    if (l && b && f.querySelector(':scope > .redraft-row')) spec.boxes.push({ label: l.textContent.trim(), el: b }); });
+  return spec;
+}
+const formatRules = spec => ['How to write your reply. This replaces the JSON format above; never reply in JSON.',
+  '- Plain text for the faculty member to read. No Markdown tables, no # headings, no bold.',
+  '- Start with any flags, review notes, or checks, one per line, each starting with "- ". Leave this out if there are none.',
+  spec.boxes.length ? '- Then the text for each box below, in this order. Start each with the box name exactly as written, then a colon, on its own line, with the text on the lines after it. For a box that asks for one item per line, put one item on each line with no bullets or numbers.\n' + spec.boxes.map(b => '  ' + b.label).join('\n') : '',
+  spec.av ? '- For the script, write a "Title:" line, a "Duration:" line with the minutes as a number, and a "Module & Section:" line. Then a "Rows:" line, followed by one line per row: Part | Dialogue | Graphics | Environment, where Part is Video Introduction, Video Content, or Video Conclusion.' : '',
+  spec.grid ? '- For the lesson plan, write a "Rows:" line, followed by one line per section: Minutes | Section | Details.' : '',
+  '- If you offer more than one option, start each with "Option 1:", "Option 2:", and so on, on its own line, and give every box inside each option.'].filter(Boolean).join('\n');
+const SPECIAL = ['Title', 'Duration', 'Module & Section', 'Rows'];
+const normL = s => s.toLowerCase().replace(/[^a-z0-9& ]/g, ' ').replace(/\s+/g, ' ').trim();
+function matchLabel(head, labels) {
+  const h = normL(head); if (h.length < 3) return null;
+  return labels.find(L => { const n = normL(L); return n === h || n.startsWith(h) || h.startsWith(n.slice(0, 30)) || n.startsWith(h.slice(0, 30)) && h.length >= 12; }) || null;
+}
+// Split the AI's plain-text answer into notes and, for each option, the text for each box.
+function parseReply(text, spec) {
+  const labels = spec.boxes.map(b => b.label).concat(spec.av || spec.grid ? SPECIAL : []);
+  const lines = String(text).replace(/\r/g, '').split('\n'), notes = [], options = [];
+  let cur = null, sec = null;
+  for (const raw of lines) {
+    const l = raw.replace(/^\s*[#*]+\s*/, '').replace(/\*\*/g, '');
+    const opt = /^\s*Option\s+\d+\b[:.)]?\s*(.*)$/i.exec(l);
+    if (opt && !/^\s*-/.test(raw)) { cur = { title: opt[1].trim(), boxes: {} }; options.push(cur); sec = null; continue; }
+    // A box name can hold its own colon ("Your course vision: what your course ..."), so try whole names first.
+    const lt = l.trim(), whole = !/^\s*-\s/.test(raw) && labels.find(L => lt.toLowerCase().startsWith(L.toLowerCase()));
+    const m = whole ? [null, whole, lt.slice(whole.length).replace(/^\s*:\s*/, '')] : /^\s*([^:\-][^:]{1,150}):\s*(.*)$/.exec(l);
+    const lab = whole || (m && !/^\s*-\s/.test(raw) ? matchLabel(m[1], labels) : null);
+    if (lab) { if (!cur) { cur = { title: '', boxes: {} }; options.push(cur); } sec = lab; cur.boxes[sec] = m[2] ? m[2] + '\n' : ''; continue; }
+    if (sec) cur.boxes[sec] += raw + '\n'; else if (raw.trim()) notes.push(raw.replace(/^\s*[-*•]\s*/, '').trim());
+  }
+  options.forEach(o => Object.keys(o.boxes).forEach(k => {
+    let v = o.boxes[k].replace(/\n{3,}/g, '\n\n').trim();
+    if (/one per line|one point per line|one module per line|one commitment per line/i.test(k)) v = v.split('\n').map(x => x.replace(/^\s*(?:[-*•]|\d+[.)])\s*/, '').trim()).filter(Boolean).join('\n');
+    o.boxes[k] = v;
+  }));
+  // One box and no labels: the whole answer (minus notes) is that box's text.
+  if (!options.length && spec.boxes.length === 1 && notes.length) options.push({ title: '', boxes: { [spec.boxes[0].label]: notes.splice(0).join('\n') } });
+  return { notes, options };
+}
+let AI_USE = [];
+function renderReply(text, spec) {
+  const { notes, options } = parseReply(text, spec), back = Object.fromEntries(Object.entries(AV_PART).map(([k, v]) => [v, k]));
+  let h = '<p class="crumb">From TAMU AI Chat, for your course</p>';
+  if (notes.length) h += '<ul>' + notes.map(n => '<li>' + esc(n) + '</li>').join('') + '</ul>';
+  options.forEach((o, i) => {
+    const use = { boxes: {} };
+    let body = '';
+    Object.entries(o.boxes).forEach(([k, v]) => {
+      if (k === 'Rows') {
+        const rows = v.split('\n').map(x => x.split('|').map(c => c.trim())).filter(c => c.length >= 3);
+        if (spec.av) use.rows = rows.map(([part, dialogue, graphics, env]) => ({ part: back[part] || (/intro/i.test(part) ? 'Introduction' : /conclu/i.test(part) ? 'Conclusion' : 'Content'), dialogue: dialogue || '', graphics: graphics || '', env: env || '' }));
+        else use.grid = rows.map(([min, section, details]) => ({ min: (min || '').replace(/[^\d.]/g, ''), section: section || '', details: details || '' }));
+        body += '<p><strong>Rows</strong></p><div class="scroll"><table><tbody>' + rows.map(c => '<tr>' + c.map(x => '<td>' + esc(x) + '</td>').join('') + '</tr>').join('') + '</tbody></table></div>';
+      } else if (SPECIAL.includes(k)) { use[k] = v; body += '<p><strong>' + esc(k) + ':</strong> ' + esc(v) + '</p>'; }
+      else { use.boxes[k] = v; body += '<p><strong>' + esc(k) + '</strong></p><div class="reply-box">' + esc(v) + '</div>'; }
+    });
+    if (spec.av && use.rows) use.av = { title: use.Title || '', minutes: (use.Duration || '').replace(/[^\d.]/g, ''), module: use['Module & Section'] || '', rows: use.rows };
+    const can = Object.keys(use.boxes).length || use.av || use.grid;
+    const label = (inPlace() ? 'Apply ' : 'Use ') + (options.length > 1 ? 'option ' + (i + 1) : 'this version');
+    h += (options.length > 1 ? '<div class="reply-opt"><p><strong>Option ' + (i + 1) + (o.title ? ': ' + esc(o.title) : '') + '</strong></p>' : '<div>') + body +
+      (can ? '<div class="row use"><button type="button" class="btn sec" data-ai-use="' + (AI_USE.push(use) - 1) + '">' + label + '</button></div>' : '') + '</div>';
+  });
+  if (!options.length && !notes.length) h += '<div class="reply-box">' + esc(text) + '</div>';
+  return h;
+}
+// A step's AI button, in your own course: send the step's instructions with what's saved, and show the answer.
+async function aiDraft(t) {
+  const sec = t.closest('section'), wait = sec.querySelector('.thinking');
+  let out = sec.querySelector('.live-out');
+  if (!out) { t.closest('.row').insertAdjacentHTML('afterend', '<div class="live-out demo-out" aria-live="polite"></div>'); out = sec.querySelector('.live-out'); }
+  sec.querySelectorAll('.ai-folded').forEach(x => x.remove()); out.hidden = false;
+  if (!aiKey()) {
+    out.innerHTML = '<p class="setup-msg warn">Connect TAMU AI Chat to get a draft for your course.</p><div class="row"><button type="button" class="btn sec" data-open-settings>Connect</button>' +
+      (sec.querySelector('.demo-out:not(.live-out)') ? '<button type="button" class="linkbtn" data-show-example>See the MGMT 615 example instead</button>' : '') + '</div>';
+    return;
+  }
+  const prompt = [...sec.querySelectorAll('pre.prompt')].map(x => x.textContent).join('\n\n').replace(/^Return:.*$/gm, '').trim();
+  if (!prompt) { out.innerHTML = '<p class="setup-msg warn">This step has no AI instructions.</p>'; return; }
+  const spec = boxSpec(), key = stepKey(), n = MODULE_STEPS[key] ? pickOf(key) : 0, f = findStep(state.at);
+  const answers = [...sec.querySelectorAll('.field')].map(fl => { const l = fl.querySelector('label'), b = fl.querySelector('textarea, input[type="text"]'); return l && b && b.value.trim() ? l.textContent.trim() + '\n' + b.value.trim() : ''; }).filter(Boolean);
+  const current = spec.boxes.map(b => b.el.value.trim() ? b.label + ':\n' + b.el.value.trim() : '').filter(Boolean);
+  if (spec.av && (state.avScript || {}).rows) current.push('Current script rows:\n' + state.avScript.rows.map(r => [AV_PART[r.part] || r.part, r.dialogue, r.graphics, r.env].join(' | ')).join('\n'));
+  const system = DATA.aiRules.replace(/\n?Return only the JSON[^\n]*/, '') + '\n\n' + prompt + '\n\n' + formatRules(spec);
+  const user = 'What the faculty member has saved so far:\n' + courseContext(state.at) + '\n\n# This step: ' + key + ' ' + (f.step ? f.step.title : '') +
+    (n ? '\nModule ' + n + ': ' + ((modList()[n - 1] || {}).title || '') : '') + (state.aiChoice && key === '4.2' ? '\nWhat they chose to build: ' + state.aiChoice : '') +
+    (answers.length ? '\n\nTheir answers for this step:\n' + answers.join('\n\n') : '') + (current.length ? '\n\nWhat is in their boxes now:\n' + current.join('\n\n') : '');
+  t.disabled = true; wait.hidden = false; out.innerHTML = '';
+  try { out.innerHTML = renderReply(await aiAsk(system, user), spec); t.textContent = 'Ask for another version'; }
+  catch (e) { out.innerHTML = '<p class="setup-msg warn">' + esc(e.message || String(e)) + '</p>'; }
+  finally { wait.hidden = true; t.disabled = false; }
+}
+// GS.2 Refresh: the AI sorts the uploaded Course Map into the sections the workshop reviews.
+async function aiSort(t) {
+  const sec = t.closest('section'), wait = sec.querySelector('.thinking'), box = sec.querySelector('textarea');
+  let out = sec.querySelector('.live-out');
+  if (!out) { t.closest('.row').insertAdjacentHTML('afterend', '<div class="live-out" aria-live="polite"></div>'); out = sec.querySelector('.live-out'); }
+  if (!aiKey()) { out.innerHTML = '<p class="setup-msg warn">Connect TAMU AI Chat to sort your Course Map. Without it, paste each current section when you reach it.</p><div class="row"><button type="button" class="btn sec" data-open-settings>Connect</button></div>'; return; }
+  if (!box || !box.value.trim()) { out.innerHTML = '<p class="setup-msg warn">Upload your Course Map or paste its text first.</p>'; return; }
+  const prompt = [...sec.querySelectorAll('pre.prompt')].map(x => x.textContent).join('\n\n');
+  t.disabled = true; wait.hidden = false; out.innerHTML = '';
+  try {
+    const reply = await aiAsk(DATA.aiRules + '\n\n' + prompt, box.value.slice(0, 60000)), j = JSON.parse(reply.slice(reply.indexOf('{'), reply.lastIndexOf('}') + 1)), s = j.sections || {};
+    const list = v => Array.isArray(v) ? v.map(x => typeof x === 'string' ? x : JSON.stringify(x)) : v ? [String(v)] : [];
+    const mods = Array.isArray(s.modules) ? s.modules : [], perMod = k => mods.map(m => list(m && m[k]).join('\n'));
+    state.source = { catalog: s.catalogDescription || '', vision: s.courseVision || '', clos: list(s.clos).map(c => c.replace(/^\s*CLO\s*\d+\s*[:.)-]\s*/i, '')).join('\n'),
+      modules: mods.map(m => [m.title, list(m.closMet).join(', '), list(m.topics).join('; ')].filter(Boolean).join('. ') + '.').join('\n'),
+      activities: perMod('activities'), materials: perMod('materials'), media: perMod('media'), cohort: mods.map(m => list(m && m.cohortSession).join('\n')) };
+    state.courseMap = true; save();
+    out.innerHTML = '<p class="crumb">From TAMU AI Chat</p><p><strong>Found:</strong> ' + esc(list(j.found).join(', ') || 'nothing') + '</p><p><strong>Missing:</strong> ' + esc(list(j.missing).join(', ') || 'nothing') +
+      '</p><p>Each step will start from the matching section of your Course Map. Check each one when you reach it.</p>';
+  } catch (e) { out.innerHTML = '<p class="setup-msg warn">' + esc(e.status != null ? e.message : 'The AI\u2019s answer couldn\u2019t be read. Try Sort with AI again.') + '</p>'; }
+  finally { wait.hidden = true; t.disabled = false; }
+}
+
 /* ---------- views ---------- */
 const STEP_DOC = { 'GS.2': ['title'], '1.1': ['catalog', 'plos', 'learners'], '1.2': ['vision'], '1.3': ['clos'], '1.4': ['modules'],
   '2.1': ['interaction'], '2.3': ['character'], '3.1': ['premise'], '3.2': ['scenario'], '4.3': ['activities', 'tools'],
@@ -1672,6 +1877,8 @@ function renderStep(goKey) {
     h = crumb + '<h2 class="step"' + tag('title', step.title) + '>' + esc(step.title) + '</h2><section class="part">' + md(p['No cohort sessions']) + '</section>';
     return h + '<div class="row"><button type="button" class="btn" data-save="' + esc(key) + '">Save to plan</button>' + (state.done[key] ? '<span class="done-note">Saved to your ' + (isRefresh() ? 'updated Course Map' : 'planning document') + '</span>' : '') + '</div>';
   }
+  const stepAI = !!(Object.keys(p).some(k => /^Draft \(full build\) and \w+ \(refresh\)$/.test(k)) || p['Review (refresh)'] || p['Draft'] || (p['Draft (full build)'] && !/no AI draft/i.test(p['Draft (full build)'])));
+  if (stepAI && !isDemo() && !aiKey() && !editing) h += aiOffBanner();
   if (p['Learn']) h += '<section class="part"><h3>Learn</h3>' + md(p['Learn']) + '</section>';
   if (p['See it']) h += '<section class="part example"><h3>See it <span class="tag">Example: MGMT 615 (fictitious course)</span></h3>' + md(p['See it']) + '</section>';
   if (p['Write (no AI)']) h += '<section class="part"><h3>Your information <span class="tag">No AI</span></h3>' + md(p['Write (no AI)']) + '</section>';
@@ -1960,6 +2167,7 @@ document.addEventListener('focusout', e => { const el = editable(e.target); if (
 document.addEventListener('input', e => {
   if (e.target.dataset && e.target.dataset.orig !== undefined) diffUpdate(e.target);
   if (isAnswerBox(e.target)) { const k = ansLabel(e.target); if (k) { state.ans = state.ans || {}; (state.ans[state.at] = state.ans[state.at] || {})[k] = e.target.value; save(); } }
+  if (e.target.dataset && e.target.dataset.aimodel !== undefined) { ls.set(AIM, e.target.value); return; }
   if (e.target.dataset && e.target.dataset.setting) { state[e.target.dataset.setting] = e.target.value; save();
     if (e.target.type === 'radio') { const y = window.scrollY; render(); window.scrollTo(0, y); document.querySelector('input[name="' + e.target.name + '"]:checked').focus({ preventScroll: true }); }
     return; }
@@ -2072,6 +2280,22 @@ document.addEventListener('click', e => {
     if (!isDemo() && !confirm('Start over? Everything you\u2019ve entered in this browser will be cleared. Save a project file first if you want to keep it.')) return;
     state = { track: null, done: {}, at: 'welcome', showAll: false, pick: {}, mods: {}, ans: {}, mode: state.mode, otherMode: state.otherMode }; save(); render(); return;
   }
+  if (t.hasAttribute('data-draft') && !isDemo()) { if (t.hasAttribute('data-sortmap')) aiSort(t); else aiDraft(t); return; }
+  if (t.hasAttribute('data-show-example')) {
+    const sec = t.closest('section'); sec.querySelectorAll('.demo-out:not(.live-out)').forEach(d => { d.hidden = false; d.classList.add('example-only'); });
+    const lo = sec.querySelector('.live-out'); if (lo) lo.innerHTML = '<p class="hint">Below is MGMT 615\u2019s recorded response, as an example only. Connect TAMU AI Chat for a draft of your own.</p>'; return;
+  }
+  if (t.dataset.aiUse !== undefined) {
+    const u = AI_USE[+t.dataset.aiUse], spec = boxSpec(); let first = null;
+    const typed = spec.boxes.some(b => u.boxes[b.label] != null && b.el.value.trim() && b.el.value !== b.el.dataset.orig);
+    if (typed && !confirm('Replace what you\u2019ve typed in your boxes?')) return;
+    spec.boxes.forEach(b => { const v = u.boxes[b.label]; if (v == null) return; b.el.value = v; b.el.rows = Math.max(3, v.split('\n').length + 1, Math.ceil(v.length / 90) + 1);
+      b.el.dispatchEvent(new Event('input', { bubbles: true })); first = first || b.el; });
+    if (u.av) { state.avScript = { title: u.av.title, minutes: u.av.minutes, module: u.av.module, rows: [avRow('Opening')].concat(u.av.rows, [avRow('Closing')]) }; save(); avRefresh(); first = first || document.querySelector('.av-field'); }
+    if (u.grid) { state.grids = state.grids || {}; state.grids[stepKey()] = state.grids[stepKey()] || {}; state.grids[stepKey()].lesson = u.grid; save(); gridRefresh('lesson'); first = first || document.querySelector('.grid-field'); }
+    foldAI(t); if (first) { first.scrollIntoView({ behavior: 'smooth', block: 'center' }); if (first.focus) first.focus({ preventScroll: true }); }
+    return;
+  }
   if (t.hasAttribute('data-draft')) {
     if (t.hasAttribute('data-sortmap')) { state.courseMap = true; save(); }
     const sec = t.closest('section'); const wait = sec.querySelector('.thinking');
@@ -2081,7 +2305,7 @@ document.addEventListener('click', e => {
       sec.querySelectorAll('.demo-out').forEach(d => d.hidden = false); useButtons(sec); }, 900);
     return;
   }
-  if (t.hasAttribute('data-unfold')) { const sec = t.closest('section'); sec.querySelectorAll('.demo-out').forEach(d => d.hidden = false); t.closest('.ai-folded').remove(); return; }
+  if (t.hasAttribute('data-unfold')) { const sec = t.closest('section'); sec.querySelectorAll('.demo-out[data-folded]').forEach(d => { d.hidden = false; delete d.dataset.folded; }); t.closest('.ai-folded').remove(); return; }
   if (t.hasAttribute('data-restore') || t.hasAttribute('data-showdiff')) {
     const f = t.closest('.field'), box = f.querySelector('textarea[data-orig]'), d = f.querySelector('.orig-diff'); if (!box) return;
     if (t.hasAttribute('data-restore')) {
@@ -2094,17 +2318,29 @@ document.addEventListener('click', e => {
   }
   // GS.1 setup controls. The prototype acts them out; nothing is sent or saved.
   if (t.hasAttribute('data-testkey') || t.hasAttribute('data-noai')) {
-    const form = t.closest('.form'), msg = form.querySelector('.setup-msg'), key = form.querySelector('#apikey');
+    const form = t.closest('.form'), msg = form.querySelector('.setup-msg'), key = form.querySelector('[data-apikey]');
     msg.classList.remove('warn');
     if (t.hasAttribute('data-noai')) {
       if (!confirm("Without the AI you'll write every section of your plan yourself. You won't get first drafts, checks on your work, or a review of your existing course. You can connect the AI later from Settings.")) return;
-      msg.classList.add('warn'); msg.textContent = 'Continuing without AI. You can connect it later from Settings.'; return;
+      ls.set(AIS, '1'); msg.classList.add('warn'); msg.textContent = 'Continuing without AI. You can connect it later from Settings.'; return;
     }
-    if (!key.value.trim()) { msg.classList.add('warn'); msg.textContent = 'Paste your key first. It starts with sk-.'; key.focus(); return; }
+    const k = key.value.trim();
+    if (!k) { msg.classList.add('warn'); msg.textContent = 'Paste your key first. It starts with sk-.'; key.focus(); return; }
     const wait = form.querySelector('.thinking'); t.disabled = true; wait.hidden = false;
-    setTimeout(() => { wait.hidden = true; t.disabled = false; msg.textContent = "Connected to TAMU AI Chat. (Demo: the key isn't sent anywhere.)"; }, 900);
+    aiConnect(k).then(() => { const y = window.scrollY; render(); if (!$('#settings').hidden) $('#settings').innerHTML = renderSettings(); window.scrollTo(0, y); })
+      .catch(e => { wait.hidden = true; t.disabled = false; msg.classList.add('warn'); msg.textContent = e.message || String(e); });
     return;
   }
+  if (t.hasAttribute('data-forget-key') || t.hasAttribute('data-change-key')) {
+    if (t.hasAttribute('data-forget-key') && !confirm('Forget your TAMU AI key in this browser? You\u2019ll need to paste it again to use the AI.')) return;
+    forgetKey(); const y = window.scrollY; render(); if (!$('#settings').hidden) $('#settings').innerHTML = renderSettings(); window.scrollTo(0, y);
+    const k = document.querySelector('[data-apikey]'); if (k) k.focus(); return;
+  }
+  if (t.id === 'setBtn' || t.hasAttribute('data-open-settings')) {
+    const s = $('#settings'); if (t.id === 'setBtn' && !s.hidden) { s.hidden = true; $('#setBtn').setAttribute('aria-expanded', 'false'); return; }
+    $('#doc').hidden = true; $('#gloss').hidden = true; s.innerHTML = renderSettings(); s.hidden = false; $('#setBtn').setAttribute('aria-expanded', 'true'); s.focus(); return;
+  }
+  if (t.id === 'closeSettings') { $('#settings').hidden = true; $('#setBtn').setAttribute('aria-expanded', 'false'); $('#setBtn').focus(); return; }
   if (t.hasAttribute('data-upload')) { t.parentNode.querySelector('input[type=file]').click(); return; }
   if (t.hasAttribute('data-folder')) {
     const msg = t.closest('.row').nextElementSibling; msg.classList.remove('warn');
@@ -2119,6 +2355,15 @@ document.addEventListener('click', e => {
     const form = t.closest('.form'), box = form.querySelector('textarea'), msg = form.querySelector('.check-msg'), wait = form.querySelector('.thinking');
     if (!box.value.trim()) { msg.textContent = 'Write your answer first.'; box.focus(); return; }
     msg.textContent = ''; t.disabled = true; wait.hidden = false;
+    if (!isDemo()) {
+      const out = form.querySelector('.demo-out'), model = out.textContent.replace(/^AI feedback \(recorded response\)/, '').trim(), q = form.querySelector('label').textContent.trim();
+      if (!aiKey()) { wait.hidden = true; t.disabled = false; out.hidden = false; out.querySelector('.crumb').textContent = 'Sample feedback (connect TAMU AI Chat for feedback on your answer)'; return; }
+      aiAsk(DATA.aiRules.replace(/\n?Return only the JSON[^\n]*/, '') + '\n\nThe faculty member is practicing on a short exercise. Model feedback for this exercise, covering every point to catch:\n' + model +
+        '\n\nConfirm what their answer caught, add what it missed, and end with a stronger version, in two or three sentences of plain text. No JSON.', 'Exercise: ' + q + '\n\nTheir answer:\n' + box.value.trim())
+        .then(fb => { out.innerHTML = '<p class="crumb">AI feedback, from TAMU AI Chat</p><p>' + esc(fb.trim()) + '</p>'; out.hidden = false; })
+        .catch(e => { msg.textContent = e.message || String(e); }).finally(() => { wait.hidden = true; t.disabled = false; });
+      return;
+    }
     setTimeout(() => { wait.hidden = true; t.disabled = false; form.querySelector('.demo-out').hidden = false; }, 900);
     return;
   }
@@ -2142,8 +2387,25 @@ document.addEventListener('click', e => {
     msg.classList.remove('warn');
     if (!box.value.trim()) { msg.classList.add('warn'); msg.textContent = 'Nothing to redraft yet. Copy the AI draft into this box, or type your own, first.'; return; }
     t.disabled = true; wait.hidden = false;
+    if (!isDemo()) {
+      if (!aiKey()) { wait.hidden = true; t.disabled = false; msg.classList.add('warn'); msg.textContent = 'Connect TAMU AI Chat in Settings to redraft.'; return; }
+      const note = panel.querySelector('input').value.trim(), label = panel.closest('.field').querySelector('label').textContent.trim();
+      const stepPrompt = [...document.querySelectorAll('#main pre.prompt')].map(x => x.textContent).join('\n\n').replace(/^Return:.*$/gm, '');
+      aiAsk(DATA.aiRules.replace(/\n?Return only the JSON[^\n]*/, '') + '\n\nThe step\u2019s instructions, for context:\n' + stepPrompt +
+        '\n\nRewrite only the one box you are given, following the faculty member\u2019s note if there is one. Keep their wording wherever the note doesn\u2019t call for a change. Reply with the new text for the box only, as plain text, with no label, notes, or JSON.',
+        'What the faculty member has saved so far:\n' + courseContext(state.at) + '\n\nBox: ' + label + '\nCurrent text:\n' + box.value.trim() + (note ? '\n\nWhat should change: ' + note : ''))
+        .then(v => { const before = box.value; box.value = v.trim(); box.dispatchEvent(new Event('input', { bubbles: true }));
+          msg.innerHTML = 'Redrafted. <button type="button" class="linkbtn" data-undo-redraft>Undo</button>'; msg._before = before; })
+        .catch(e => { msg.classList.add('warn'); msg.textContent = e.message || String(e); }).finally(() => { wait.hidden = true; t.disabled = false; });
+      return;
+    }
     setTimeout(() => { wait.hidden = true; t.disabled = false;
       msg.textContent = "Redrafted. (Demo: recorded responses don't change, so the text stays the same. In the finished tool, the AI rewrites only this box, using your note.)"; }, 900);
+    return;
+  }
+  if (t.hasAttribute('data-undo-redraft')) {
+    const msg = t.closest('.setup-msg'), box = t.closest('.field').querySelector('textarea');
+    if (msg._before != null) { box.value = msg._before; box.dispatchEvent(new Event('input', { bubbles: true })); msg.textContent = 'Back to your text before the redraft.'; }
     return;
   }
   if (t.dataset.goto) { const k = t.dataset.goto.split(':')[1]; if (t.dataset.pickn) { state.pick = state.pick || {}; state.pick[k] = +t.dataset.pickn; } go(t.dataset.goto); return; }
@@ -2245,7 +2507,7 @@ document.addEventListener('click', e => {
     return;
   }
 });
-document.addEventListener('keydown', e => { if (e.key === 'Escape' && !$('#doc').hidden) $('#closeDoc').click(); });
+document.addEventListener('keydown', e => { if (e.key !== 'Escape') return; if (!$('#doc').hidden) $('#closeDoc').click(); else if (!$('#settings').hidden) $('#closeSettings').click(); });
 $('#doc').tabIndex = -1;
 load(); loadEdits(); render();
 </script>

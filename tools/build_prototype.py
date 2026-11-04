@@ -6,7 +6,7 @@ Reads content/*.md, content/demo/*.json and content/sources.json, fills the
 prototype/index.html. Only source ids, titles, citations and public URLs are
 bundled; internal file names and folders stay out of the page.
 """
-import glob
+import re, glob
 import json
 import os
 
@@ -42,7 +42,9 @@ def main():
         if len(cells) == 3 and cells[0] not in ('Term', '---') and not set(cells[0]) <= set('-'):
             also = [] if cells[1] in ('', '(glossary only)') else [a.strip() for a in cells[1].split(',') if a.strip()]
             glossary.append({'term': cells[0], 'also': also, 'def': cells[2], 'auto': cells[1] != '(glossary only)'})
-    data = json.dumps({'modules': modules, 'demo': demo, 'sources': sources, 'glossary': glossary}, ensure_ascii=False)
+    # The shared AI rules (content/ai-rules.md) start every system prompt the tool sends.
+    rules = re.search(r'```text\n(.*?)\n```', read(os.path.join(CONTENT, 'ai-rules.md')), re.S).group(1)
+    data = json.dumps({'modules': modules, 'demo': demo, 'sources': sources, 'glossary': glossary, 'aiRules': rules}, ensure_ascii=False)
     data = data.replace('</', '<\\/')
     template = read(os.path.join(ROOT, 'prototype', 'src', 'template.html'))
     assert '/*DATA*/null' in template
