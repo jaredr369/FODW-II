@@ -1,5 +1,5 @@
 {
-  "about": "MGMT 615 (fictional) foundation sections after the refresh, used by the prototype's planning document preview. Program outcomes are fictional.",
+  "about": "MGMT 615 (fictional) foundation sections after the refresh, used by the example's planning document preview. Program outcomes are fictional.",
   "course": {"number": "MGMT 615", "title": "Managing People and Performance", "credits": 3, "program": "[Program name]", "idName": "[ID name]"},
   "catalog": "Prepares working professionals to manage the people side of organizational performance. Students learn to diagnose why employees and teams underperform, deliver feedback that actually changes behavior, build and repair team dynamics, delegate and make decision-rights calls under pressure, lead a team through change, and hire well. 3 credit hours.",
   "programOutcomes": ["PLO 1: Lead individuals and teams to meet organizational goals.", "PLO 2: Analyze business problems using evidence and established frameworks.", "PLO 3: Communicate decisions clearly to varied audiences."],

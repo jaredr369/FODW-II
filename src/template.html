@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Course Plan Builder Prototype</title>
+<title>Course Plan Builder · Flex Online Design Workshop II</title>
 <style>
 :root {
   --maroon: #500000; --maroon-2: #732f2f; --ink: #1d1d1f; --muted: #5b5b60; --line: #dedbd6;
@@ -442,7 +442,10 @@ body.editing main { padding-bottom: 140px; }
 
 <script>
 const DATA = /*DATA*/null;
-const KEY = 'course-plan-builder-prototype:state';
+const KEY = 'course-plan-builder:state';
+// Work saved before the rename lives under the old names; move it over once.
+try { [['course-plan-builder-prototype:state', 'course-plan-builder:state'], ['course-plan-builder-prototype:edits', 'course-plan-builder:edits']].forEach(([o, n]) => {
+  if (localStorage.getItem(o) != null && localStorage.getItem(n) == null) localStorage.setItem(n, localStorage.getItem(o)); localStorage.removeItem(o); }); } catch (e) {}
 let state = { track: null, done: {}, at: 'welcome', showAll: false, pick: {}, mods: {}, mode: 'mine', ans: {} };
 // Two modes: "mine" plans the faculty member's own course; "demo" walks through MGMT 615 with its example data.
 const isDemo = () => state.mode === 'demo';
@@ -504,7 +507,7 @@ let MODULES = DATA.modules.map(parseModule);
    from (a markdown snippet, a table row, or a JSON string). An edit replaces that snippet, so it
    can be applied to the content files by tools/apply_edits.py. A block is editable only when its
    source text occurs exactly once in its file. */
-const EKEY = 'course-plan-builder-prototype:edits';
+const EKEY = 'course-plan-builder:edits';
 let editing = false, edits = [], SRC = [], CUR = null, noTag = 0, formId = 0;
 const count = (hay, needle) => needle ? hay.split(needle).length - 1 : 0;
 const norm = s => s.replace(/\s+/g, ' ');
@@ -659,11 +662,11 @@ function inline(s) {
     if (!src) return '<span class="cite" data-cite="' + esc(id) + '">' + esc(id) + '</span>';
     const label = esc(src.citation || src.title);
     // A public source links to its web page; a team guide or template links to its cleaned copy in guides/.
-    const href = src.url || (src.path ? '../' + encodeURI(src.path).replace(/#/g, '%23') : '');
+    const href = src.url || (src.path ? encodeURI(src.path).replace(/#/g, '%23') : '');
     return href ? '<a class="cite" data-cite="' + esc(id) + '" href="' + esc(href) + '" target="_blank" rel="noopener">' + label + '</a>' : '<span class="cite" data-cite="' + esc(id) + '">' + label + '</span>';
   });
   s = s.replace(/\[([^\]]+)\]\(src:([a-z0-9-]+)\)/g, (m, text, id) => {
-    const src = DATA.sources[id], href = src && (src.url || (src.path ? '../' + encodeURI(src.path).replace(/#/g, '%23') : ''));
+    const src = DATA.sources[id], href = src && (src.url || (src.path ? encodeURI(src.path).replace(/#/g, '%23') : ''));
     return href ? '<a data-src="' + esc(id) + '" href="' + esc(href) + '" target="_blank" rel="noopener">' + text + '</a>' : text;
   });
   // "step 4.2" in the text jumps to that step. In a list ("steps 1.2 and 1.3", "steps 4.2, 5.1, and 6.1"),
@@ -797,7 +800,7 @@ function md(text, opts = {}) {
       }
       i++; html += '<details class="fold"><summary>' + inline(title) + '</summary>' + md(buf.join('\n'), opts) + '</details>'; continue;
     }
-    // ::: key and ::: folder blocks: the setup controls on GS.1. The prototype acts them out.
+    // ::: key and ::: folder blocks: the setup controls on GS.1.
     if (/^:::\s*(key|folder)\s*$/.test(line)) {
       const which = line.match(/key|folder/)[0]; i++;
       while (i < lines.length && !/^:::\s*$/.test(lines[i])) i++;
@@ -1153,7 +1156,7 @@ let derivedOutline = '';
 function deriveHtml() {
   if (!lessonRows().some(r => (r.details || '').trim())) return '<p class="setup-msg warn" role="status">Fill in your lesson plan first, or select Use this plan in the Draft section.</p>';
   const d = deriveDocs(); derivedOutline = d.outline;
-  return '<p class="scen-note">Demo: in the finished tool, the AI writes these for students and fills the Flex Online template. Here they’re built straight from your lesson plan, so they change when it does.</p>' +
+  return '<p class="scen-note">These are built straight from your lesson plan, so they change when it does.</p>' +
     '<div class="scen-opt"><p><strong>Student-facing outline</strong></p><pre class="outline">' + esc(d.outline) + '</pre>' +
     '<div class="row use"><button type="button" class="btn sec" data-outline-use>Use this outline</button></div></div>' +
     '<div class="scen-opt"><p><strong>Slides (' + d.slides.length + ')</strong> in the Flex Online template, with your talking points as speaker notes</p><ol class="slides">' +
@@ -2316,7 +2319,7 @@ document.addEventListener('click', e => {
     } else { d.hidden = !d.hidden; t.setAttribute('aria-expanded', String(!d.hidden)); t.textContent = d.hidden ? 'Show what changed' : 'Hide what changed'; }
     diffUpdate(box); return;
   }
-  // GS.1 setup controls. The prototype acts them out; nothing is sent or saved.
+  // GS.1 setup controls: test, remember, or skip the TAMU AI key.
   if (t.hasAttribute('data-testkey') || t.hasAttribute('data-noai')) {
     const form = t.closest('.form'), msg = form.querySelector('.setup-msg'), key = form.querySelector('[data-apikey]');
     msg.classList.remove('warn');
@@ -2400,7 +2403,7 @@ document.addEventListener('click', e => {
       return;
     }
     setTimeout(() => { wait.hidden = true; t.disabled = false;
-      msg.textContent = "Redrafted. (Demo: recorded responses don't change, so the text stays the same. In the finished tool, the AI rewrites only this box, using your note.)"; }, 900);
+      msg.textContent = "In example mode, the responses are recorded, so the text stays the same. When you plan your own course, the AI rewrites only this box, using your note."; }, 900);
     return;
   }
   if (t.hasAttribute('data-undo-redraft')) {
@@ -2509,6 +2512,8 @@ document.addEventListener('click', e => {
 });
 document.addEventListener('keydown', e => { if (e.key !== 'Escape') return; if (!$('#doc').hidden) $('#closeDoc').click(); else if (!$('#settings').hidden) $('#closeSettings').click(); });
 $('#doc').tabIndex = -1;
+// Edit mode is for the workshop's authors: shown on their own computer, or online with ?edit in the address.
+if (!(location.protocol === 'file:' || /^(localhost|127\.0\.0\.1)$/.test(location.hostname) || /[?&]edit\b/.test(location.search))) $('#editBtn').hidden = true;
 load(); loadEdits(); render();
 </script>
 </body>

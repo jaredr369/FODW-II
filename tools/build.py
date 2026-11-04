@@ -1,9 +1,9 @@
-"""Bundle the content files into one self-contained prototype page.
+"""Bundle the content files into the tool: one self-contained page.
 
-Usage: python tools/build_prototype.py
+Usage: python tools/build.py
 Reads content/*.md, content/demo/*.json and content/sources.json, fills the
-/*DATA*/ placeholder in prototype/src/template.html, and writes
-prototype/index.html. Only source ids, titles, citations and public URLs are
+/*DATA*/ placeholder in src/template.html, and writes
+index.html at the repository root, which GitHub Pages publishes. Only source ids, titles, citations and public URLs are
 bundled; internal file names and folders stay out of the page.
 """
 import re, glob
@@ -46,12 +46,12 @@ def main():
     rules = re.search(r'```text\n(.*?)\n```', read(os.path.join(CONTENT, 'ai-rules.md')), re.S).group(1)
     data = json.dumps({'modules': modules, 'demo': demo, 'sources': sources, 'glossary': glossary, 'aiRules': rules}, ensure_ascii=False)
     data = data.replace('</', '<\\/')
-    template = read(os.path.join(ROOT, 'prototype', 'src', 'template.html'))
+    template = read(os.path.join(ROOT, 'src', 'template.html'))
     assert '/*DATA*/null' in template
     out = template.replace('/*DATA*/null', data)
-    with open(os.path.join(ROOT, 'prototype', 'index.html'), 'w', encoding='utf-8', newline='\n') as f:
+    with open(os.path.join(ROOT, 'index.html'), 'w', encoding='utf-8', newline='\n') as f:
         f.write(out)
-    print('wrote prototype/index.html', len(out) // 1024, 'KB')
+    print('wrote index.html', len(out) // 1024, 'KB')
 
 
 if __name__ == '__main__':

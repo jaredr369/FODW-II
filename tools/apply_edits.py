@@ -1,4 +1,4 @@
-"""Apply edits saved from the prototype's Edit mode to the content files, then rebuild.
+"""Apply edits saved from the tool's Edit mode to the content files, then rebuild.
 
 Usage: python tools/apply_edits.py [edits.json]
 With no file named, uses the newest fodw-edits-*.json in the Downloads folder. Each edit names
@@ -97,7 +97,7 @@ def main():
     for e, why in problems:
         print('-', e['file'], e.get('step', ''), '(' + why + '):', e['new'][:80])
     if applied:
-        subprocess.run([sys.executable, os.path.join(ROOT, 'tools', 'build_prototype.py')], check=True)
+        subprocess.run([sys.executable, os.path.join(ROOT, 'tools', 'build.py')], check=True)
 
 
 if __name__ == '__main__':
