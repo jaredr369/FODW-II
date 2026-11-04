@@ -44,7 +44,13 @@ def main():
             glossary.append({'term': cells[0], 'also': also, 'def': cells[2], 'auto': cells[1] != '(glossary only)'})
     # The shared AI rules (content/ai-rules.md) start every system prompt the tool sends.
     rules = re.search(r'```text\n(.*?)\n```', read(os.path.join(CONTENT, 'ai-rules.md')), re.S).group(1)
-    data = json.dumps({'modules': modules, 'demo': demo, 'sources': sources, 'glossary': glossary, 'aiRules': rules}, ensure_ascii=False)
+    # The team's Word templates (public, cleaned copies in guides/) are bundled so the download fills the real template
+    # in the browser, online or opened from disk.
+    import base64
+    tpl = lambda name: base64.b64encode(open(os.path.join(ROOT, 'guides', name), 'rb').read()).decode('ascii')
+    templates = {'cpd': tpl('TEMPLATE -Course Planning Document - FODW.docx'), 'cm': tpl('TEMPLATE - Course Map.docx'),
+                 'gen': tpl('TEMPLATE - General pages.docx')}
+    data = json.dumps({'modules': modules, 'demo': demo, 'sources': sources, 'glossary': glossary, 'aiRules': rules, 'templates': templates}, ensure_ascii=False)
     data = data.replace('</', '<\\/')
     template = read(os.path.join(ROOT, 'src', 'template.html'))
     assert '/*DATA*/null' in template

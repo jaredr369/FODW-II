@@ -1682,7 +1682,8 @@ async function aiDraft(t) {
     (n ? '\nModule ' + n + ': ' + ((modList()[n - 1] || {}).title || '') : '') + (state.aiChoice && key === '4.2' ? '\nWhat they chose to build: ' + state.aiChoice : '') +
     (answers.length ? '\n\nTheir answers for this step:\n' + answers.join('\n\n') : '') + (current.length ? '\n\nWhat is in their boxes now:\n' + current.join('\n\n') : '');
   t.disabled = true; wait.hidden = false; out.innerHTML = '';
-  try { out.innerHTML = renderReply(await aiAsk(system, user), spec); t.textContent = 'Ask for another version'; }
+  try { const reply = await aiAsk(system, user); out.innerHTML = renderReply(reply, spec); t.textContent = 'Ask for another version';
+    if (key === 'prep') { state.ans = state.ans || {}; (state.ans[state.at] = state.ans[state.at] || {})['Summary for your ID'] = parseReply(reply, spec).notes.join('\n') || reply.trim(); save(); } }
   catch (e) { out.innerHTML = '<p class="setup-msg warn">' + esc(e.message || String(e)) + '</p>'; }
   finally { wait.hidden = true; t.disabled = false; }
 }
@@ -1701,7 +1702,8 @@ async function aiSort(t) {
     const mods = Array.isArray(s.modules) ? s.modules : [], perMod = k => mods.map(m => list(m && m[k]).join('\n'));
     state.source = { catalog: s.catalogDescription || '', vision: s.courseVision || '', clos: list(s.clos).map(c => c.replace(/^\s*CLO\s*\d+\s*[:.)-]\s*/i, '')).join('\n'),
       modules: mods.map(m => [m.title, list(m.closMet).join(', '), list(m.topics).join('; ')].filter(Boolean).join('. ') + '.').join('\n'),
-      activities: perMod('activities'), materials: perMod('materials'), media: perMod('media'), cohort: mods.map(m => list(m && m.cohortSession).join('\n')) };
+      activities: perMod('activities'), materials: perMod('materials'), media: perMod('media'), cohort: mods.map(m => list(m && m.cohortSession).join('\n')),
+      objectives: perMod('objectives'), overview: mods.map(m => list(m && m.overview).join('\n')) };
     state.courseMap = true; save();
     out.innerHTML = '<p class="crumb">From TAMU AI Chat</p><p><strong>Found:</strong> ' + esc(list(j.found).join(', ') || 'nothing') + '</p><p><strong>Missing:</strong> ' + esc(list(j.missing).join(', ') || 'nothing') +
       '</p><p>Each step will start from the matching section of your Course Map. Check each one when you reach it.</p>';
@@ -1871,7 +1873,8 @@ function renderStep(goKey) {
     const done = state.done[goKey];
     return crumb + '<h2 class="step">' + t + '</h2>' +
       (key === 'prep' ? '<section class="part"><div class="purpose"><p><strong>What you\'ll do:</strong> Review a one-minute summary of this module before your weekly check-in: what you built, any flags you kept, and two questions for your ID. Then select Ready for check-in.</p><p><strong>Why it matters:</strong> Your ID sees what changed before you meet, so your check-in time goes to decisions instead of catching up.</p></div></section>' + aiPart('Summary for your ID', body) : reflectionPart(body)) +
-      '<div class="row"><button type="button" class="btn" data-save="' + esc(goKey) + '">' + (key === 'prep' ? 'Ready for check-in' : 'Save answers') + '</button>' + (done ? '<span class="done-note">Saved</span>' : '') + '</div>';
+      '<div class="row"><button type="button" class="btn" data-save="' + esc(goKey) + '">' + (key === 'prep' ? 'Ready for check-in' : 'Save answers') + '</button>' +
+      (key === 'prep' && !isDemo() ? '<button type="button" class="btn sec" data-stepdoc="prep">Download check-in summary (Word)</button>' : '') + (done ? '<span class="done-note">Saved</span>' : '') + '</div>';
   }
   const p = step.parts;
   let h = crumb + '<h2 class="step"' + tag('title', step.title) + '>' + esc(stepTitle(step)) + '</h2><div class="meta">' + md(step.lead) + '</div>';
@@ -1926,6 +1929,7 @@ function renderStep(goKey) {
   if (p['Save']) h += '<section class="part"><h3>Save</h3>' + md(p['Save'].replace(/^Planning document:/gm, 'Goes into your ' + docName() + ':').replace(/\s*\((?:[^()]*?;\s*)?see\s+`export\.md`\)/g, '')) + '</section>';
   if (p['Go deeper (supplemental)']) h += '<details class="part"><summary>Go deeper (supplemental)</summary>' + md(p['Go deeper (supplemental)']) + '</details>';
   h += '<div class="row"><button type="button" class="btn" data-save="' + esc(key) + '">' + (setup.length ? 'Finish setup' : 'Save to plan') + '</button>' +
+    (STEP_DOCS[key] && !isDemo() ? '<button type="button" class="btn sec" data-stepdoc="' + esc(key) + '">Download (Word)</button>' : '') +
     (state.done[key] ? '<span class="done-note">' + (setup.length ? 'Setup finished' : 'Saved to your ' + (isRefresh() ? 'updated Course Map' : 'planning document')) + '</span>' : '') + '</div>';
   return h;
 }
@@ -2107,12 +2111,325 @@ function renderDoc() {
   h += sec('interaction', 'Instructor Interaction', '<p>' + esc(f.interactionStatement) + '</p>' + (shown('communication') ? '<h4>Communication and feedback plan</h4>' + ul(f.communicationPlan) : ''));
   return h;
 }
-function downloadDoc() {
-  const body = $('#doc').cloneNode(true); body.querySelectorAll('.row, .hint').forEach(x => x.remove());
-  const html = '<html><head><meta charset="utf-8"><style>body{font-family:Calibri,Arial,sans-serif}table{border-collapse:collapse}td,th{border:1px solid #999;padding:4px;vertical-align:top}</style></head><body>' + body.innerHTML + '</body></html>';
-  const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([html], { type: 'application/msword' }));
-  const name = (isDemo() ? 'MGMT 615 example ' : (courseName() || 'My course') + ' ') + (isRefresh() ? 'Course Map, updated' : 'Course Planning Document') + '.doc';
-  saveFile(name, new Blob([html], { type: 'application/msword' }));
+/* ---------- Word: fill the team's template ----------
+   Full build fills the Course Planning Document template; Refresh fills the Course Map template. Both come bundled
+   (DATA.templates). The page reads the .docx (a zip), fills document.xml, and writes a new .docx, all in the browser. */
+async function unzipAll(buf) {
+  const dv = new DataView(buf.buffer, buf.byteOffset, buf.byteLength), out = {}, dec = new TextDecoder();
+  let e = buf.length - 22; while (e >= 0 && dv.getUint32(e, true) !== 0x06054b50) e--;
+  if (e < 0) throw new Error('not a zip file');
+  let pos = dv.getUint32(e + 16, true);
+  for (let k = dv.getUint16(e + 10, true); k > 0; k--) {
+    const method = dv.getUint16(pos + 10, true), size = dv.getUint32(pos + 20, true), nl = dv.getUint16(pos + 28, true),
+      xl = dv.getUint16(pos + 30, true), cl = dv.getUint16(pos + 32, true), off = dv.getUint32(pos + 42, true);
+    const name = dec.decode(buf.subarray(pos + 46, pos + 46 + nl)), start = off + 30 + dv.getUint16(off + 26, true) + dv.getUint16(off + 28, true);
+    const data = buf.subarray(start, start + size);
+    out[name] = method === 0 ? data.slice() : new Uint8Array(await new Response(new Blob([data]).stream().pipeThrough(new DecompressionStream('deflate-raw'))).arrayBuffer());
+    pos += 46 + nl + xl + cl;
+  }
+  return out;
+}
+const CRC_T = (() => { const tb = new Uint32Array(256); for (let n = 0; n < 256; n++) { let c = n; for (let k = 0; k < 8; k++) c = c & 1 ? 0xEDB88320 ^ (c >>> 1) : c >>> 1; tb[n] = c >>> 0; } return tb; })();
+const crc32 = b => { let c = 0xFFFFFFFF; for (let i = 0; i < b.length; i++) c = CRC_T[(c ^ b[i]) & 255] ^ (c >>> 8); return (c ^ 0xFFFFFFFF) >>> 0; };
+// A plain (stored) zip, which Word opens like any other .docx.
+function zipStore(files, type) {
+  const enc = new TextEncoder(), parts = [], central = []; let off = 0;
+  for (const [name, data] of files) {
+    const nm = enc.encode(name), crc = crc32(data), h = new DataView(new ArrayBuffer(30)), c = new DataView(new ArrayBuffer(46));
+    h.setUint32(0, 0x04034b50, true); h.setUint16(4, 20, true); h.setUint16(6, 0x0800, true); h.setUint16(12, 0x21, true);
+    h.setUint32(14, crc, true); h.setUint32(18, data.length, true); h.setUint32(22, data.length, true); h.setUint16(26, nm.length, true);
+    c.setUint32(0, 0x02014b50, true); c.setUint16(4, 20, true); c.setUint16(6, 20, true); c.setUint16(8, 0x0800, true); c.setUint16(14, 0x21, true);
+    c.setUint32(16, crc, true); c.setUint32(20, data.length, true); c.setUint32(24, data.length, true); c.setUint16(28, nm.length, true); c.setUint32(42, off, true);
+    parts.push(new Uint8Array(h.buffer), nm, data); central.push(new Uint8Array(c.buffer), nm); off += 30 + nm.length + data.length;
+  }
+  const size = central.reduce((s, x) => s + x.length, 0), e = new DataView(new ArrayBuffer(22));
+  e.setUint32(0, 0x06054b50, true); e.setUint16(8, files.length, true); e.setUint16(10, files.length, true); e.setUint32(12, size, true); e.setUint32(16, off, true);
+  return new Blob(parts.concat(central, [new Uint8Array(e.buffer)]), { type });
+}
+const WNS = 'http://schemas.openxmlformats.org/wordprocessingml/2006/main';
+const wq = (el, tag) => [...el.getElementsByTagNameNS(WNS, tag)];
+const wkids = (el, tag) => [...el.childNodes].filter(n => n.namespaceURI === WNS && n.localName === tag);
+const ptext = p => wq(p, 't').map(x => x.textContent).join('');
+const pstyle = p => { const s = wq(p, 'pStyle')[0]; return s ? s.getAttributeNS(WNS, 'val') : ''; };
+// A new paragraph shaped like tp (same paragraph style, numbering, and run size), holding the given runs.
+function mkPara(tp, runs) {
+  const doc = tp.ownerDocument, p = tp.cloneNode(true);
+  [...p.childNodes].forEach(n => { if (n.localName !== 'pPr') p.removeChild(n); });
+  const r0 = wq(tp, 'r')[0], rpr0 = r0 && wkids(r0, 'rPr')[0];
+  [].concat(runs).forEach(seg => {
+    seg = typeof seg === 'string' ? { t: seg } : seg; if (!seg.t) return;
+    const r = doc.createElementNS(WNS, 'w:r');
+    let rpr = rpr0 ? rpr0.cloneNode(true) : doc.createElementNS(WNS, 'w:rPr');
+    ['b', 'bCs', 'i', 'iCs', 'color', 'highlight', 'shd', 'rStyle'].forEach(k => wkids(rpr, k).forEach(x => rpr.removeChild(x)));
+    if (seg.b) rpr.insertBefore(doc.createElementNS(WNS, 'w:b'), rpr.firstChild);
+    r.appendChild(rpr);
+    const tx = doc.createElementNS(WNS, 'w:t'); tx.setAttributeNS('http://www.w3.org/XML/1998/namespace', 'xml:space', 'preserve'); tx.textContent = seg.t; r.appendChild(tx);
+    p.appendChild(r);
+  });
+  return p;
+}
+const setText = (p, text) => { const np = mkPara(p, text); const keepB = wq(p, 'b').length && /^Heading|^Title/.test(pstyle(p)); p.parentNode.replaceChild(np, p); return np; };
+// Fill a table cell: one paragraph per line, shaped like the cell's first paragraph. Nothing to fill keeps the placeholder.
+function fillCell(tc, lines) {
+  lines = lines.filter(l => l && (typeof l === 'string' ? l.trim() : true)); if (!lines.length) return;
+  const ps = wkids(tc, 'p'), tp = ps.find(x => ptext(x).trim()) || ps[0];
+  const tpl = tp.cloneNode(true); ps.forEach(x => tc.removeChild(x));
+  lines.forEach(l => tc.appendChild(mkPara(tpl, l)));
+}
+// The paragraphs that follow a heading up to the next heading, caption, or table: the template's placeholders.
+function afterHeading(body, start) {
+  const kids = [...body.childNodes].filter(n => n.nodeType === 1);
+  const i = kids.findIndex(n => n.localName === 'p' && /^(Heading|Title)/.test(pstyle(n)) && ptext(n).trim().startsWith(start)); if (i < 0) return null;
+  const ph = [];
+  for (let j = i + 1; j < kids.length; j++) { const n = kids[j]; if (n.localName !== 'p' || /^(Heading|Title|Caption)/.test(pstyle(n))) break; ph.push(n); }
+  return { head: kids[i], ph };
+}
+function fillAfter(body, start, lines, rename) {
+  const f = afterHeading(body, start); if (!f) return null;
+  if (rename) f.head = setText(f.head, ptext(f.head).replace(/\(Covered in FODW Module \d+\)/, '(Covered in FODW Module ' + rename + ')'));
+  lines = lines.filter(Boolean); if (!lines.length || !f.ph.length) return f;
+  const tp = f.ph.find(x => ptext(x).trim()) || f.ph[0];
+  lines.forEach(l => f.ph[0].parentNode.insertBefore(mkPara(tp, l), f.ph[0])); f.ph.forEach(x => x.parentNode.removeChild(x));
+  return f;
+}
+const paras = s => String(s || '').split(/\n+/).map(x => x.trim()).filter(Boolean);
+// Everything the Word file needs, from your answers, or from MGMT 615 in example mode (only the parts you've reached).
+function planModel() {
+  const isTool = l => /^(Perusall|Peerceptiv|Poll Everywhere)\b/i.test(typeof l === 'string' ? l : l.type);
+  const M = { number: '', title: '', catalog: '', plos: [], supported: '', vision: '', learners: '', clos: [], modules: [], storyline: '', character: [], interaction: '', comm: [] };
+  if (isDemo()) {
+    const D = DATA.demo, f = D['mgmt615-foundation.json'], by = n => (D[n] || { modules: [] }).modules, sc = D['mgmt615-scenarios.json'].modules;
+    const act = by('mgmt615-activities.json'), mat = by('mgmt615-materials.json'), med = by('mgmt615-media.json'), s = shown, c = f.character;
+    if (s('title')) { M.number = f.course.number; M.title = f.course.title; }
+    if (s('catalog')) M.catalog = f.catalog; if (s('plos')) M.plos = f.programOutcomes; if (s('vision')) M.vision = f.vision; if (s('learners')) M.learners = f.learners;
+    if (s('clos')) M.clos = f.clos.map(x => x.replace(/^CLO \d+:\s*/, ''));
+    M.modules = f.modules.map((m, i) => ({ title: s('modules') ? m.title : '', clos: s('modules') ? m.closMet.join(', ') : '', topics: s('modules') ? m.topics : [],
+      scenario: s('scenario') ? sc[i].chosen.title + '. ' + sc[i].chosen.premise : '',
+      activities: s('activities') && act[i] ? act[i].activities.filter(a => !isTool(a)).map(actLine) : [], tools: s('tools') && act[i] ? act[i].activities.filter(isTool).map(a => a.type + ': ' + a.title) : [],
+      materials: s('materials') && mat[i] ? mat[i].materials.map(matLine) : [], media: s('media') && med[i] ? med[i].media.map(medLine) : [],
+      cohort: s('cohort') && hasCohort() && i > 0 && cohortOf(i + 1) ? cohText(cohortOf(i + 1)) : '', mlos: [], overview: '' }));
+    if (s('premise')) M.storyline = D['mgmt615-scenarios.json'].storylinePremise;
+    if (s('character')) M.character = [['Premise statement', c.premise], ['Position', c.position], ['Conflict', c.conflict], ['Peers', c.peers], ['Values and fears', c.valuesFears], ['Backstory', c.backstory]];
+    if (s('interaction')) M.interaction = f.interactionStatement; if (s('communication')) M.comm = f.communicationPlan;
+    return M;
+  }
+  const src = state.source || {}, pick = (k, i) => (Array.isArray(src[k]) ? src[k][i] : '') || '';
+  M.number = ans('gs:GS.2', 'Course number'); M.title = ans('gs:GS.2', 'Course title');
+  M.catalog = ans('m1:1.1', 'Paste your catalog description'); M.plos = linesOf(ans('m1:1.1', 'Paste your program')); M.supported = ans('m1:1.1', 'Which two to four');
+  M.vision = ans('m1:1.2', 'Your course vision'); M.learners = ans('m1:1.1', 'Your learner description');
+  M.clos = linesOf(ans('m1:1.3', 'Your CLOs')).map(c => c.replace(/^CLO \d+:\s*/, ''));
+  const mods = myModules(), n = Math.max(8, mods.length);
+  for (let i = 0; i < n; i++) {
+    const m = mods[i] || { title: '', clos: '', topics: [] }, acts = linesOf(modAns('4.3', i + 1, 'activities'));
+    const ti = modAns('3.2', i + 1, 'title'), pr = modAns('3.2', i + 1, 'premise');
+    M.modules.push({ title: m.title, clos: m.clos, topics: m.topics, scenario: [ti && ti + '.', pr].filter(Boolean).join(' '),
+      activities: acts.filter(l => !isTool(l)), tools: acts.filter(isTool), materials: linesOf(modAns('5.1', i + 1, 'materials')), media: linesOf(modAns('6.1', i + 1, 'media')),
+      cohort: hasCohort() && i > 0 ? modAns('7.1', i + 1, 'cohort') : '', mlos: linesOf(pick('objectives', i)), overview: pick('overview', i) });
+  }
+  M.storyline = ans('m3:3.1', 'Your storyline premise');
+  M.character = ['Premise statement', 'Position', 'Conflict', 'Peers', 'Values and fears', 'Backstory'].map(k => [k, ans('m2:2.3', k)]).filter(([, v]) => v);
+  M.interaction = ans('m2:2.1', 'Your interaction statement'); M.comm = linesOf(ans('m8:8.2', 'Your communication and feedback plan'));
+  return M;
+}
+// Reading pages and media minutes, summed from the lines (supplemental items don't count).
+const sumPages = lines => lines.filter(l => !/^Supplemental\b/i.test(l)).reduce((s, l) => { const m = /(\d+(?:\.\d+)?)\s*(?:pp\b|pages?\b)/i.exec(l); return s + (m ? +m[1] : 0); }, 0);
+const sumMinutes = lines => lines.filter(l => !/^Supplemental\b/i.test(l)).reduce((s, l) => { const a = /(\d+(?:\.\d+)?)\s*min/i.exec(l), b = /\((\d+):(\d{2})\)/.exec(l); return s + (a ? +a[1] : b ? +b[1] + b[2] / 60 : 0); }, 0);
+function fillDoc(xml, M, refresh) {
+  const doc = new DOMParser().parseFromString(xml, 'application/xml'), body = wq(doc, 'body')[0];
+  const name = [M.number, M.title].filter(Boolean).join(refresh ? ' - ' : ' ');
+  // Title.
+  const title = [...body.childNodes].find(n => n.localName === 'p' && /\[Course/.test(ptext(n)));
+  let headTpl = null, bodyTpl = null, listTpl = null;
+  if (title && name) setText(title, ptext(title).replace(/\[Course Name and Number\]|\[Course #\] - \[Course Title\]/, name));
+  // Opening sections, in the workshop's order; the template's module numbers in these headings are off by one.
+  const cat = fillAfter(body, 'TAMU Catalog', paras(M.catalog), 1);
+  const plo = fillAfter(body, 'Program-Level Outcomes', M.plos.concat(M.supported ? ['This course supports: ' + M.supported] : []), 1);
+  const vis = fillAfter(body, 'Course Vision', paras(M.vision), 1);
+  const cloH = afterHeading(body, 'Course-Level Objectives'); if (cloH) listTpl = (cloH.ph.find(x => ptext(x).trim()) || cloH.ph[0] || null);
+  listTpl = listTpl && listTpl.cloneNode(true);
+  fillAfter(body, 'Course-Level Objectives', M.clos.map((c, i) => 'CLO ' + (i + 1) + ': ' + c), 1);
+  if (vis) { headTpl = vis.head.cloneNode(true); const v2 = afterHeading(body, 'Course Vision'); bodyTpl = (v2 && v2.ph[0] || vis.head).cloneNode(true); }
+  // Learners, after the vision (a section the templates don't have).
+  if (M.learners && headTpl) {
+    const v = afterHeading(body, 'Course Vision'), at = (v.ph[v.ph.length - 1] || v.head).nextSibling, h = mkPara(headTpl, 'Learners (Covered in FODW Module 1):');
+    body.insertBefore(h, at); paras(M.learners).forEach(l => body.insertBefore(mkPara(bodyTpl, l), at));
+  }
+  // The module tables.
+  const tables = wq(body, 'tbl');
+  tables.forEach((tbl, ti) => {
+    const rows = wkids(tbl, 'tr'), first = ti * 4;
+    const cellsOf = tr => wkids(tr, 'tc'), lab = tr => ptext(cellsOf(tr)[refresh ? 0 : 1] || tr).trim();
+    const off = refresh ? 1 : 2, col = (tr, k) => cellsOf(tr)[off + k];
+    const each = (tr, fn) => { for (let k = 0; k < 4; k++) { const m = M.modules[first + k]; if (m && col(tr, k)) fillCell(col(tr, k), fn(m, first + k)); } };
+    let topicsRow = null;
+    rows.forEach(tr => {
+      const L = lab(tr);
+      if (refresh) {
+        if (/^Module Title/.test(L)) each(tr, m => [m.title]);
+        else if (/^Learning Objectives/.test(L)) each(tr, m => m.clos || m.mlos.length ? [[{ t: 'Course Learning Objective (CLO):', b: true }], m.clos || 'CLO# [CLO(s) that aligns with this module]', [{ t: 'Module Learning Objectives (MLOs):', b: true }]].concat(m.mlos.length ? m.mlos : ['MLO#: [enter MLOs that align with activities]']) : []);
+        else if (/^Module Topics/.test(L)) { each(tr, m => m.topics); topicsRow = tr; }
+        else if (/^Learning Materials/.test(L)) each(tr, m => { const read = m.materials.filter(l => !/^Supplemental\b/i.test(l)), sup = m.materials.filter(l => /^Supplemental\b/i.test(l)).map(l => l.replace(/^Supplemental:\s*/i, ''));
+          return m.materials.length ? [[{ t: 'Total Page Count (Required): ', b: true }, { t: String(Math.round(sumPages(m.materials))) }], [{ t: 'Required:', b: true }]].concat(read, sup.length ? [[{ t: 'Supplemental:', b: true }]].concat(sup) : []) : []; });
+        else if (!L && cellsOf(tr).length > 1 && /Total Media Time/.test(ptext(col(tr, 0) || tr))) each(tr, m => m.media.length ? [[{ t: 'Total Media Time (Required): ', b: true }, { t: Math.round(sumMinutes(m.media)) + ' minutes' }], [{ t: 'Required:', b: true }]].concat(m.media) : []);
+        else if (/^Learning Activities/.test(L)) each(tr, m => m.activities.concat(m.tools));
+        else if (/^Cohort Sessions/.test(L)) each(tr, (m, i) => i === 0 ? ['No cohort session in Module 1.'] : paras(m.cohort));
+        else if (/^Overview Paragraph/.test(L)) each(tr, m => paras(m.overview));
+      } else {
+        const fix = n => { const c0 = cellsOf(tr)[0]; if (c0) fillCell(c0, [[{ t: 'M' + n, b: true }]]); };
+        if (/^Module Titles/.test(L)) { each(tr, m => [m.title]); fix(1); }
+        else if (/^CLOs met/.test(L)) { each(tr, m => [m.clos]); fix(1); }
+        else if (/^Module Topics/.test(L)) { each(tr, m => m.topics); fix(1); topicsRow = tr; }
+        else if (/^Learning Activities Plan Part 1/.test(L)) { each(tr, m => m.activities); fix(4); }
+        else if (/^Learning Activities Plan Part 2/.test(L)) { each(tr, m => m.tools.length ? m.tools : (m.activities.length ? ['None'] : [])); fix(4); }
+        else if (/^Learning Materials Plan/.test(L)) { each(tr, m => m.materials); fix(5); }
+        else if (/^Learning Media Plan/.test(L)) { each(tr, m => m.media); fix(6); }
+        else if (/^Learning Activities Plan Part 3/.test(L)) { each(tr, (m, i) => i === 0 ? (hasCohort() ? ['No cohort session in Module 1'] : []) : paras(m.cohort)); fix(7); }
+      }
+    });
+    // A Scenario row after the topics (new in this workshop).
+    if (topicsRow) {
+      const sr = topicsRow.cloneNode(true), cs = wkids(sr, 'tc');
+      if (refresh) fillCell(cs[0], ['Scenario']); else { fillCell(cs[0], [[{ t: 'M3', b: true }]]); fillCell(cs[1], ['Scenario']); }
+      for (let k = 0; k < 4; k++) { const m = M.modules[first + k], c = cs[off + k]; if (!c) continue; fillCell(c, m && m.scenario ? [m.scenario] : ['[Enter the episode title and premise]']); }
+      topicsRow.parentNode.insertBefore(sr, topicsRow.nextSibling);
+    }
+  });
+  // Storyline and Instructor Interaction, after the tables.
+  const sect = wkids(body, 'sectPr')[0], add = node => body.insertBefore(node, sect);
+  if (headTpl && bodyTpl) {
+    if (M.storyline || M.character.length) {
+      add(mkPara(headTpl, 'Storyline (Covered in FODW Modules 2 and 3):')); paras(M.storyline).forEach(l => add(mkPara(bodyTpl, l)));
+      if (M.character.length) { add(mkPara(headTpl, 'Character Profile:')); M.character.forEach(([k, v]) => add(mkPara(bodyTpl, [{ t: k + ': ', b: true }, { t: String(v).replace(/\n+/g, '; ') }]))); }
+    }
+    if (M.interaction || M.comm.length) {
+      add(mkPara(headTpl, 'Instructor Interaction (Covered in FODW Modules 2 and 8):')); paras(M.interaction).forEach(l => add(mkPara(bodyTpl, l)));
+      if (M.comm.length) { add(mkPara(bodyTpl, [{ t: 'Communication and feedback plan:', b: true }])); M.comm.forEach(l => add(mkPara(listTpl || bodyTpl, l))); }
+    }
+    // Refresh: the change log, built by comparing each saved section with the uploaded Course Map (no notes needed).
+    const log = refresh ? changeLog() : [];
+    if (log.length) {
+      add(mkPara(headTpl, 'Change log (Refresh):'));
+      log.forEach(c => {
+        add(mkPara(bodyTpl, [{ t: c.label + ': ', b: true }, { t: c.kept ? 'Kept as it was.' : 'Changed.' }]));
+        if (!c.kept) { add(mkPara(bodyTpl, [{ t: 'Before: ', b: true }, { t: c.before.replace(/\n+/g, '; ') }])); add(mkPara(bodyTpl, [{ t: 'Now: ', b: true }, { t: c.now.replace(/\n+/g, '; ') }])); }
+      });
+    }
+  }
+  return '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n' + new XMLSerializer().serializeToString(doc).replace(/^<\?xml[^>]*\?>\s*/, '');
+}
+const DOCX = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
+const today = () => new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+// The templates' footers carry a date placeholder ("January 24, 20XX"), split across runs; put today's date there.
+function fillFooterDates(files) {
+  const enc = new TextEncoder(), dec = new TextDecoder();
+  Object.keys(files).filter(n => /^word\/footer\d*\.xml$/.test(n)).forEach(n => {
+    const doc = new DOMParser().parseFromString(dec.decode(files[n]), 'application/xml');
+    let changed = false;
+    wq(doc, 'p').forEach(p => {
+      const ts = wq(p, 't'); if (!/January\s*24,\s*20\s*XX/.test(ts.map(x => x.textContent).join(''))) return;
+      let on = false;
+      ts.forEach(x => { if (!on && /January/.test(x.textContent)) { on = true; x.textContent = x.textContent.replace(/January.*/, today()); return; }
+        if (on) { const done = /XX/.test(x.textContent); x.textContent = done ? x.textContent.replace(/^.*XX/, '') : ''; if (done) on = false; } });
+      changed = true;
+    });
+    if (changed) files[n] = enc.encode('<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n' + new XMLSerializer().serializeToString(doc).replace(/^<\?xml[^>]*\?>\s*/, ''));
+  });
+}
+const tplFiles = async key => unzipAll(Uint8Array.from(atob(DATA.templates[key]), ch => ch.charCodeAt(0)));
+const packDocx = files => { fillFooterDates(files); const names = Object.keys(files).sort((a, b) => (a === '[Content_Types].xml' ? -1 : b === '[Content_Types].xml' ? 1 : 0)); return zipStore(names.map(n => [n, files[n]]), DOCX); };
+// Refresh: what changed from the Course Map in each section the workshop edits in place, for the change log.
+function changeLog() {
+  if (isDemo() || !isRefresh() || !state.source) return [];
+  const out = [], one = (label, before, now) => { before = String(before || '').trim(); now = String(now || '').trim(); if (!before && !now) return; out.push({ label, before, now, kept: before === now || !now }); };
+  one('Course vision (step 1.2)', curText('vision'), ans('m1:1.2', 'Your course vision'));
+  one('Course-level objectives (step 1.3)', curText('clos'), ans('m1:1.3', 'Your CLOs'));
+  one('Module titles, CLOs, and topics (step 1.4)', curText('modules'), ans('m1:1.4', 'Your modules'));
+  [['4.3', 'activities', 'Learning activities'], ['5.1', 'materials', 'Learning materials'], ['6.1', 'media', 'Learning media'], ['7.1', 'cohort', 'Cohort session']].forEach(([k, w, name]) => {
+    for (let n = 1; n <= 8; n++) one(name + ', Module ' + n + ' (step ' + k + ')', curText(w, n), modAns(k, n, MODULE_STEPS[k].done));
+  });
+  return out;
+}
+async function buildDocx() {
+  const refresh = isRefresh(), files = await tplFiles(refresh ? 'cm' : 'cpd'), enc = new TextEncoder(), dec = new TextDecoder();
+  files['word/document.xml'] = enc.encode(fillDoc(dec.decode(files['word/document.xml']), planModel(), refresh));
+  return packDocx(files);
+}
+// General documents (anything without its own team template) follow TEMPLATE - General pages: its title, subtitle,
+// heading, body, list, and table styles, Mays header, and footer. blocks: [{h2|h3|p|bullets|numbers|table: ...}].
+async function buildGeneral(title, subtitle, blocks) {
+  const files = await tplFiles('gen'), enc = new TextEncoder(), dec = new TextDecoder();
+  const doc = new DOMParser().parseFromString(dec.decode(files['word/document.xml']), 'application/xml'), body = wq(doc, 'body')[0];
+  const kids = [...body.childNodes].filter(n => n.nodeType === 1 && n.localName !== 'sectPr');
+  const byStyle = st => kids.find(n => n.localName === 'p' && pstyle(n) === st);
+  const plain = kids.find(n => n.localName === 'p' && !pstyle(n) && /Lorem/.test(ptext(n))) || byStyle('BodyText');
+  const T = { title: byStyle('DocTitle-Subtitle') || byStyle('Heading1'), sub: byStyle('DocSubtitle'), h2: byStyle('Heading2'), h3: byStyle('Heading3'), p: plain,
+    bullet: byStyle('ListBullet'), number: byStyle('ListNumber') };
+  Object.keys(T).forEach(k => { T[k] = T[k] && T[k].cloneNode(true); });
+  const tbl = kids.find(n => n.localName === 'tbl'), tblT = tbl && tbl.cloneNode(true);
+  kids.forEach(n => body.removeChild(n));
+  const sect = wkids(body, 'sectPr')[0], add = n => body.insertBefore(n, sect);
+  add(mkPara(T.title, title)); if (subtitle && T.sub) add(mkPara(T.sub, subtitle));
+  // A table shaped like the template's: maroon header row, then one row per item, with as many columns as given.
+  const mkTable = rows => {
+    const t = tblT.cloneNode(true), trs = wkids(t, 'tr'), head = trs[0], line = trs[1] || trs[0], cols = rows[0].length;
+    trs.forEach(x => t.removeChild(x));
+    const grid = wkids(t, 'tblGrid')[0]; if (grid) { const gc = wkids(grid, 'gridCol'), w = gc.reduce((s, g) => s + (+g.getAttributeNS(WNS, 'w') || 0), 0);
+      gc.forEach((g, i) => { if (i >= cols) grid.removeChild(g); else g.setAttributeNS(WNS, 'w:w', String(Math.round(w / cols))); }); }
+    rows.forEach((cells, ri) => { const tr = (ri === 0 ? head : line).cloneNode(true), tcs = wkids(tr, 'tc');
+      tcs.forEach((tc, i) => { if (i >= cols) tr.removeChild(tc); else { const w = wkids(wkids(tc, 'tcPr')[0] || tc, 'tcW')[0]; if (w) { w.setAttributeNS(WNS, 'w:type', 'pct'); w.setAttributeNS(WNS, 'w:w', String(Math.round(5000 / cols))); } const v = [].concat(cells[i] || []).flatMap(paras); fillCell(tc, v.length ? v : ['—']); } });
+      t.appendChild(tr); });
+    return t;
+  };
+  blocks.forEach(b => {
+    if (b.h2) add(mkPara(T.h2, b.h2)); else if (b.h3) add(mkPara(T.h3, b.h3));
+    else if (b.p) paras(b.p).forEach(l => add(mkPara(T.p, l)));
+    else if (b.runs) add(mkPara(T.p, b.runs));
+    else if (b.bullets) b.bullets.filter(Boolean).forEach(l => add(mkPara(T.bullet || T.p, l)));
+    else if (b.numbers) b.numbers.filter(Boolean).forEach(l => add(mkPara(T.number || T.p, l)));
+    else if (b.table && tblT) { add(mkTable(b.table)); add(mkPara(T.p, ' ')); }
+  });
+  files['word/document.xml'] = enc.encode('<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n' + new XMLSerializer().serializeToString(doc).replace(/^<\?xml[^>]*\?>\s*/, ''));
+  return packDocx(files);
+}
+// Steps whose Save says "Saved as a Word file": what goes in each, from the faculty member's own answers.
+const AI_CHOICE = { assignment: 'AI-integrated assignment', tutor: 'AI tutor', grader: 'Grading assistant' };
+const STEP_DOCS = {
+  '4.1': () => {
+    const which = isRefresh() ? ans('m4:4.1', 'Which assignment?') : ans('m4:4.1', 'Which module?'), ov = ans('m4:4.1', 'Your overview'), gl = linesOf(ans('m4:4.1', 'Your guidelines'));
+    if (!ov && !gl.length) return null;
+    const blocks = [{ h2: 'Overview' }, { p: ov }, { h2: 'Guidelines' }, { numbers: gl }];
+    if (isRefresh()) {
+      const cov = ans('m4:4.1', 'Its current overview'), cgl = ans('m4:4.1', 'Its current guidelines');
+      if (cov || cgl) blocks.push({ h2: 'Current and rewritten, side by side' }, { table: [['Part', 'Current', 'Rewritten'], ['Overview', cov, ov], ['Guidelines', cgl, gl.join('\n')]] });
+    }
+    return { file: 'Story-based assignment', title: 'Story-based assignment' + (which ? ': ' + which.replace(/^Module \d+:\s*/, '') : ''), blocks };
+  },
+  '4.2': () => {
+    const where = ans('m4:4.2', "Where it's used"), ins = ans('m4:4.2', 'Its system instructions'); if (!where && !ins) return null;
+    return { file: 'AI build', title: 'AI build: ' + (AI_CHOICE[state.aiChoice] || 'AI assistant'), blocks: [{ h2: 'Where it\u2019s used' }, { p: where }, { h2: 'System instructions' }, { p: ins },
+      { h3: 'Before students use it' }, { bullets: ['Test it the way a student would, including a request it should refuse.', 'Keep student names and records out of a student-facing Gem\u2019s knowledge files.', 'Tell students how they may use it, in the assignment directions or the syllabus.'] }] };
+  },
+  '8.2': () => {
+    const plan = linesOf(ans('m8:8.2', 'Your communication and feedback plan')), ann = ans('m8:8.2', 'Your Module 1 opening announcement'); if (!plan.length && !ann) return null;
+    return { file: 'Communication plan and Module 1 announcement', title: 'Communication and feedback plan', blocks: [{ h2: 'Your commitments' }, { bullets: plan }, { h2: 'Module 1 opening announcement' }, { p: ann }] };
+  },
+  prep: go => {
+    const f = findStep(go), m = f.m, sum = ans(go, 'Summary for your ID'), keys = m.steps.filter(s => !s.track || s.track === state.track);
+    const done = keys.filter(s => state.done[s.key]).map(s => s.title), open = keys.filter(s => !state.done[s.key]).map(s => s.title);
+    const refl = ans(m.id + ':reflection', 'Your answers');
+    return { file: 'Check-in summary, ' + m.title.replace(/\..*$/, ''), title: 'Check-in summary: ' + m.title.replace(/^Module (\d+)\.\s*/, 'Module $1, '), blocks: [
+      { h2: 'Summary for your ID' }, { p: sum || 'Select Create summary on the Check-in prep page to add the AI\u2019s one-minute summary.' },
+      { h2: 'Steps saved' }, { bullets: done.length ? done : ['None yet'] }].concat(open.length ? [{ h2: 'Still open' }, { bullets: open }] : [], refl ? [{ h2: 'Refresh reflection' }, { p: refl }] : []) };
+  }
+};
+async function downloadStepDoc(key, go) {
+  const spec = STEP_DOCS[key] && STEP_DOCS[key](go); if (!spec) return null;
+  const name = (courseName() || 'My course') + ' ' + spec.file + '.docx';
+  return saveFile(name, await buildGeneral(spec.title, [courseName(), today()].filter(Boolean).join(' \u00b7 '), spec.blocks));
+}
+async function downloadDoc() {
+  const name = (isDemo() ? 'MGMT 615 example ' : (courseName() || 'My course') + ' ') + (isRefresh() ? 'Course Map, updated' : 'Course Planning Document') + '.docx';
+  return saveFile(name, await buildDocx());
 }
 // Files go to the save folder chosen in GS.1 when the browser allows it (Edge and Chrome); otherwise they download.
 let saveDir = null;
@@ -2124,16 +2441,16 @@ async function saveFile(name, blob) {
   const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = name; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 1000); return 'download';
 }
 // The project file is the whole workshop state, so the plan can be reopened on any computer.
-const projectName = () => (courseName() || 'My course') + ' project.json';
+const projectName = () => (courseName() || 'My course') + ' project (open in Course Plan Builder).json';
 function saveProject() {
   const data = Object.assign({ app: 'fodw-ii', version: 1, savedAt: new Date().toISOString() }, state);
   return saveFile(projectName(), new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' }));
 }
 // Save to plan, in your own course: write the project file and the planning document to the save folder.
-async function saveToFolder() {
+async function saveToFolder(key, go) {
   if (isDemo() || !saveDir) return;
-  await saveProject();
-  const d = $('#doc'), was = d.innerHTML; d.innerHTML = renderDoc(); downloadDoc(); if (d.hidden) d.innerHTML = was;
+  await saveProject(); await downloadDoc();
+  if (STEP_DOCS[key]) await downloadStepDoc(key, go);
 }
 
 /* ---------- render and events ---------- */
@@ -2480,7 +2797,7 @@ document.addEventListener('click', e => {
     return;
   }
   if (t.dataset.save) {
-    state.done[t.dataset.save] = true; save(); saveToFolder();
+    state.done[t.dataset.save] = true; save(); saveToFolder(t.dataset.save.includes(':') ? t.dataset.save.split(':')[1] : t.dataset.save, state.at);
     const checks = $('#checks');
     render();
     const c2 = $('#checks'); if (c2) { c2.hidden = false; c2.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
@@ -2503,6 +2820,9 @@ document.addEventListener('click', e => {
   if (t.id === 'closeDoc') { $('#doc').hidden = true; $('#docBtn').setAttribute('aria-expanded', 'false'); $('#docBtn').focus(); return; }
   if (t.id === 'showAll') { state.showAll = t.checked; save(); $('#doc').innerHTML = renderDoc(); return; }
   if (t.id === 'download') { downloadDoc(); return; }
+  if (t.dataset.stepdoc) {
+    const lbl = t.textContent; downloadStepDoc(t.dataset.stepdoc, state.at).then(w => { t.textContent = w === 'folder' ? 'Saved to your folder' : w ? 'Downloaded' : 'Fill in the boxes first'; setTimeout(() => { t.textContent = lbl; }, 2500); }); return;
+  }
   if (t.id === 'editBtn' || t.id === 'doneEdit') { editing = t.id === 'editBtn' ? !editing : false; render(); return; }
   if (t.id === 'saveEdits') { if (edits.length) downloadEdits(); else alert('No changes to save yet.'); return; }
   if (t.id === 'undoEdits') {

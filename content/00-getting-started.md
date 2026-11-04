@@ -128,7 +128,8 @@ Treat the key like a password. If you don't see API keys in your settings, conta
 Unlike Canvas, this tool doesn't keep your work online. Your work saves in this browser as you go. When you select Save, the
 tool writes two files to a folder you choose: the planning document (Word), which your ID reads,
 and a project file, which lets you reopen your work on any computer and pick up where you left
-off. If possible, choose a folder your ID can see, such as a OneDrive or Teams folder you share
+off. The project file is for this tool only: open it with **Open a project file** on the Welcome
+page, not in Word or another program. If possible, choose a folder your ID can see, such as a OneDrive or Teams folder you share
 with them. This works best in Microsoft Edge or Google Chrome; in other browsers, the files go to
 Downloads, and you move them yourself.
 
