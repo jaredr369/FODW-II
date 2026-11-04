@@ -104,8 +104,9 @@ A story-based overview usually does three things:
 The guidelines refer to the story too: "Write a script for a feedback conversation" becomes "Write
 the conversation Dana has with Jordan."
 
-A story also lowers AI risk. A specific character, situation, and decision are harder to answer
-with a generic AI response than "choose an example from your experience."
+A story also lowers the risk that students hand the work to AI. A specific character, situation,
+and decision are harder to answer with a generic AI response than "choose an example from your
+experience."
 
 ### See it
 
@@ -317,8 +318,8 @@ university-protected environments.
 - **Hallucination:** when AI states something false with confidence. It's why you test what you
   build, and why you review anything it gives students.
 
-**Choose what you'd like to build (must choose one).** You can build others later; your ID can help,
-too.
+**Choose what you'd like to build.** Choose one now. You can build the others later, and your ID
+can help.
 
 ::: refresh
 **Where to start.** Think back to the reflection that opened this module: on which activities did
@@ -404,7 +405,7 @@ its sources.
 :::
 
 Google Gemini is on by default in Canvas courses. If you don't see it, turn it on in **Settings**,
-**Navigation**. Full steps: `src:ext-tamu-lms-gemini`. Your ID can walk you through the build.
+**Navigation**. For full steps, see `src:ext-tamu-lms-gemini`. Your ID can walk you through the build.
 :::
 :::
 
@@ -499,7 +500,7 @@ assistant, test it, and note what you changed.
 
 Checklist:
 
-- It has guardrails: what it won't do.
+- It has guardrails that say what it won't do.
 - No student names or records are in a student-facing Gem's knowledge files.
 - For a grading assistant: you remove names and review every comment before it reaches a student.
 - Students will know how they may use it, from the assignment directions or the syllabus.
@@ -553,8 +554,8 @@ You planned your activities in your first workshop, and you've seen how they wen
 check that each activity still traces to a CLO and uses its verb, and that each week comes close to
 its target; the week check under Decide adds it up. You've just tried the two new ideas on one
 assignment each: your story in step 4.1 and AI in step 4.2. Now decide which other assignments
-should use them. Below: your storyline as the source of activities, and designing major
-assessments for AI.
+should use them. Below is what's new since then: your storyline as the source of activities, and
+designing major assessments for AI.
 :::
 
 ::: refresher
@@ -606,7 +607,7 @@ where it fits.
 ::: refresher
 **Canvas offers three activity types.** Assignments are for producing something, such as an
 analysis or a plan. Discussions are for dialogue across professional perspectives. Quizzes are
-for low-stakes checks before harder work. Cohort sessions come in Module 7.
+for low-stakes checks before harder work. You'll plan cohort sessions in Module 7.
 
 **Weight.** Mark each activity high, medium, or low. Activities that show mastery of a CLO carry
 more weight than the practice that builds toward it. As a guide, finished work such as analyses,
@@ -620,8 +621,8 @@ replace that module's main assignment.
 
 **Design major assessments for AI.** For each high-weight activity, ask whether a student could
 hand the prompt to an AI tool and submit what comes back without doing the thinking the CLO asks
-for. Banning AI rarely solves this, and detection tools are unreliable. Design does better. Changes
-that make a student's own thinking visible:
+for. Banning AI rarely solves this, and detection tools are unreliable. Designing the assessment
+well works better. These changes make a student's own thinking visible:
 
 - **Their own context.** Students apply the concept to their own team, client, or organization,
   which an AI tool doesn't know.
@@ -632,7 +633,7 @@ that make a student's own thinking visible:
 
 You can also allow AI on purpose: let students draft with it, then grade their critique and
 revision of the draft. Say clearly in the prompt what use is allowed. Low-weight practice doesn't
-need this check. The point of practice is the practice.
+need this check: its value is in doing it, and little rides on the grade.
 
 **Aggie Core Values.** Look for one or two places where an activity asks students to act with
 integrity, lead, or consider who their decision affects. Your character's decisions are often
@@ -759,7 +760,7 @@ session. If you've entered your course start date, you'll also see each activity
 
 Checklist (for each module):
 
-- One main activity carries the module's weight.
+- One main activity carries most of the module's grade weight.
 - Students do something professionals in your field do.
 - Each high-weight activity says what AI use is allowed.
 - Each main assignment sits in your story, or you've noted why not.
@@ -922,7 +923,8 @@ Checklist:
 
 ### Checks
 
-None beyond step 4.3's, which run again when you change any activities.
+This step has no checks of its own. Step 4.3's checks run again whenever you change a module's
+activities.
 
 ### Save
 

@@ -18,11 +18,11 @@ the tool underlines; "(glossary only)" terms are too common to underline and app
 | CLO | CLOs, course-level objective, course-level objectives | Course-level objective: what students will be able to do by the end of the course, written so you can observe and grade it. A course has 3 to 6. |
 | Cohort session | cohort sessions | A 90-minute live class on Zoom, held each week in Modules 2 to 8 in most Flex Online courses. Attendance is optional, and every session is recorded. |
 | Confidence monitor | | A screen on the XR stage, out of the camera's view, that shows your slides and notes while you teach. |
-| Conflict | (glossary only)
+| Conflict | (glossary only) | In your course's story, what makes the performance hard in real life, such as conflicting goals, ambiguous data, or time pressure. More information alone wouldn't settle it; it takes judgment. |
 | Course Map | Course Maps | The finished, detailed record of everything in a Flex Online course, complete enough to rebuild it. Your ID creates it during development. On the Refresh track, it's your working document: you upload it in step GS.2, then review and update it section by section. |
 | Course Planning Document | | The working plan you build on the Full Build track, a section at a time. Your ID and the development team build the course from it. Refresh courses already have one from their first workshop and update their Course Map instead. |
 | Curated material | curated reading, curated video | A reading or video from another source that you choose for your course, such as an article, chapter, or video. Curated is the default; it's the least work to produce. |
-| Environment | (glossary only)
+| Environment | (glossary only) | The third column of an A/V/E script: the virtual background behind you on the XR stage. |
 | Flex Online | | Mays Business School's online course format: a shared template, weekly modules, asynchronous work, and, in most courses, weekly live cohort sessions. |
 | Full build | | The workshop track for a new course. Each step drafts a new section. |
 | Gem | Gems, Gemini Gem | A custom Google Gemini assistant you set up with instructions and files. You can add a Gem to a Canvas module for students to use. |
@@ -39,7 +39,7 @@ the tool underlines; "(glossary only)" terms are too common to underline and app
 | Lesson plan | lesson plans, Cohort Session Lesson Plan | Your minute-by-minute plan for a cohort session, in the team's template: each section with its minutes and talking points, plus materials and room setup. |
 | Module | (glossary only) | One week of a Flex Online course. Most courses have eight. |
 | One-Touch studio | One-Touch studios | A small studio where you record screen-recorded videos on your own, to illustrate a process or teach with your slides. |
-| Performance | (glossary only)
+| Performance | (glossary only) | In your course's story, the one thing students must be able to do, taken from one of your CLOs. |
 | Perusall | | A tool for social reading: students annotate a reading together, and you can reply in their threads. |
 | Program outcomes | program outcome, PLO, PLOs | What students can do after the whole degree. Your course supports two to four of them. |
 | Recording test | | The question every cohort session has to pass: if a student watched only the recording, what would they have missed? If the answer is nothing, they'll watch it later. |

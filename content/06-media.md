@@ -68,7 +68,7 @@ Learning Media Team time to make it well.
 ::: refresh
 You planned media in your first workshop. As you review, check that each module still has its
 overview video, that recorded media stays within 30 minutes a module, and that each item adds
-something a reading can't. New since then, below: media for your story, the XR stage, and One-Touch
+something a reading can't. Below is what's new since then: media for your story, the XR stage, and One-Touch
 studios.
 :::
 
@@ -102,13 +102,14 @@ moment of tension from your story. Keep every item concise, and don't repeat wha
 already covers.
 :::
 
-**Media for your story.** Go through your scenarios and decide which need production. A scenario
+**Media for your story.** Go through your scenarios and decide which ones need to be produced as
+video or audio. A scenario
 video opens in the character's situation and ends at the decision, before the answer, so the
 activity that follows has something to work on. Many scenarios work fine as readings or
 discussion cases with no production at all.
 
 **The XR stage.** Most instructor videos are recorded on the XR stage, which places you in a
-produced setting without filming on location. Each video starts with an A/V script (you'll draft
+virtual setting, such as a studio or an office, without filming on location. Each video starts with an A/V script (you'll draft
 your first in step 6.2), and you schedule a practice session on the stage with the Learning Media
 Team before recording.
 
@@ -266,7 +267,8 @@ development. Your ID reviews it with you before your practice session on the XR 
 :::
 :::
 
-Every video you record on the XR stage starts with an A/V/E script, written in the Learning Media Team's
+Every video you record on the XR stage starts with an A/V/E (audio, video, and environment) script,
+written in the Learning Media Team's
 [A/V/E script template](src:template-av-script). It
 has three columns:
 
@@ -340,7 +342,7 @@ before and after:
 | Part | Before (A/V script) | After (A/V/E script) |
 |---|---|---|
 | Opening line | Hello, and welcome to Module 1. | Howdy. This week you meet Dana Ortiz. (story added) |
-| Coaching line | Kept word for word | Kept word for word, now a Video Content chunk |
+| Coaching line | "Your best player isn't automatically your best coach." | The same words, now in a Video Content chunk |
 | Slide notes | In the Video column | In the Graphics column |
 | Background | None | Virtual podcast studio, in the new Environment column |
 | Last line | See you next week. | Hold off on deciding about Jordan until you've read it. (story added) |

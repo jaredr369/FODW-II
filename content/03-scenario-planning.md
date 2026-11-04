@@ -43,7 +43,7 @@ At the course level, the character has one long-term goal, and it lines up with 
 module then puts a new obstacle or decision in the way. Some decisions move the character closer to
 the goal, and some set them back.
 
-A storyline premise keeps it focused. It's one sentence:
+A storyline premise keeps the story focused. It's one sentence in this form:
 
 "[Course] is a story about [character, role] who struggles to [long-term goal] when [the
 conflict]."
@@ -222,9 +222,12 @@ overview video, discussion, assignment, and cohort session.
 A scenario follows the pattern you practiced in step 2.2: something the character needs to do, and a
 conflict that makes it hard. It doesn't need to be dramatic. It needs to be specific.
 
-Look for turning points. Reasonable professionals disagree about a decision. A plan looks sound
-until reality exposes a weakness. New data, or a stakeholder, forces a change in approach. A
-mistake is easy to make and costly to fix.
+Look for turning points, moments like these:
+
+- Reasonable professionals disagree about a decision.
+- A plan looks sound until reality exposes a weakness.
+- New data, or a stakeholder, forces a change in approach.
+- A mistake is easy to make and costly to fix.
 
 Each scenario answers five questions:
 
@@ -342,7 +345,7 @@ Checklist (for each scenario):
 
 - The decision can't be made well without this module's skills.
 - There are two or three options a professional could defend.
-- The stakes are visible.
+- The stakes are visible: students can see what the character could lose.
 - Names, numbers, and relationships match your character profile.
 
 ### Checks
@@ -358,7 +361,7 @@ CLO drives a decision, details stay consistent, no two scenarios turn on the sam
 least one uses a different setting. Flags appear on the modules involved.
 
 In MGMT 615, the storyline check passed four checks and flagged one: every scenario takes place at
-Dana's site. The instructor kept it with a note: "Module 5 uses data from a sister site, and the
+Dana's site. The instructor kept the flag with a note: "Module 5 uses data from a sister site, and the
 existing cases in Modules 1, 2, 4, and 7 give students other companies to compare."
 
 AI instructions:

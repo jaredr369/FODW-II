@@ -38,7 +38,7 @@ The federal term for active teaching is regular and substantive interaction (RSI
 can't show it is treated as a correspondence course, and its students lose eligibility for federal
 financial aid. Your ID's team checks for it in every course review.
 
-**Substantive** refers to teaching, learning, or assessment. An announcement explaining a concept
+**Substantive** means the interaction is about teaching, learning, or assessment. An announcement explaining a concept
 half the class missed counts as substantive; a due-date reminder doesn't. **Regular** means
 predictable, proactive, and responsive to how students are doing. Flex Online instructors typically
 answer student questions within 24 to 48 hours and return feedback on major assignments within 5 to
@@ -57,8 +57,8 @@ categories:
 
 Most of the right-hand column isn't bad teaching. A good industry video helps students learn. So
 does an auto-graded practice quiz. They count as RSI once you add your own engagement, such as a
-two-minute introduction on what to watch for and a follow-up on what students noticed. The fix often
-takes a short amount of time.
+two-minute introduction on what to watch for and a follow-up on what students noticed. Adding that
+engagement often takes only a few minutes.
 
 **Where AI fits.** AI can draft feedback, summarize discussion threads, or flag students who have
 gone quiet. The interaction counts when you review and adjust what goes to students. Feedback an
@@ -211,15 +211,15 @@ thing students must be able to do, and what makes it hard in real life.
 one makes every later step easier.
 :::
 
-The rest of the workshop has elements that build a story through your course. This is achieved by
-developing a character who faces a decision in each module. A story earns its place when it gives
+Over the rest of the workshop, you'll build a story that runs through your course: a character who
+faces a decision in each module. A story earns its place when it gives
 busy professionals a reason to care about a concept now, and a place to file what they learn (Mayer,
 2021).
 
 Start with the **performance**: one sentence, taken from one of your CLOs, saying what students
 should be able to do. Pick the CLO that names the decision your students will face most often.
 
-Then the **conflict**: what makes that performance hard in real life. It pushes directly against
+Then choose the **conflict**: what makes that performance hard in real life. It pushes directly against
 the performance: conflicting goals, ambiguous data, misaligned incentives, or time pressure. If
 more information would settle it, it isn't a conflict yet. A good conflict can come back in most
 modules, so the story holds the course together.
@@ -386,8 +386,9 @@ The profile has six parts:
 5. **Values and fears:** what the character cares about and what they're afraid of.
 6. **Backstory:** three or four points that explain how they got here.
 
-If one character doesn't fit your course, you can rotate characters within one setting, keep one
-recurring problem, or use a narrator. Your ID reviews the character at this module's check-in,
+If one character doesn't fit your course, you have other options: several characters who take
+turns in the same organization, one recurring problem that different people face, or a narrator who
+guides students through the cases. Your ID reviews the character at this module's check-in,
 before Module 3 builds scenarios on it.
 
 ### See it
@@ -537,7 +538,8 @@ Under the AI's draft, select **Use this profile** to copy each part into its box
 Checklist:
 
 - Your students could hold this role in the near future.
-- There's more than one reasonable choice, so students ask "What would I do?"
+- Your character's decisions have more than one reasonable choice, so students ask "What would I
+  do?"
 - All characters, companies, and places are fictional.
 
 ### Checks

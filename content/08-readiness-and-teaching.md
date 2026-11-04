@@ -122,8 +122,8 @@ answers to questions.
 guide, respond, and give feedback. That's also how you meet RSI week after week.
 :::
 
-Plan it now, so it holds up in week ten, not just week one. It joins your interaction statement
-from Module 2 in the planning document.
+Plan your communication now, so it holds up in week ten, not just week one. In the planning
+document, it goes with your interaction statement from Module 2.
 
 **Announcements.** Each module gets an opening announcement (where the story stands and the first
 thing to do) and a closing one (what the module added up to and the next decision). Add a midpoint
@@ -134,14 +134,14 @@ edit each one so it sounds like you.
 
 **Feedback.** Students want to know what they did well, what fell short, and what to change, along
 with the grade. A comment library, clickable rubrics, and short audio or video comments save time
-without thinning feedback. If AI drafts comments, read and edit each one before release.
+without thinning feedback. If AI drafts comments, read and edit each one before you release it.
 
 **Questions.** Reply within 24 to 48 hours, and answer common questions once, in an announcement or
 the General Q&A discussion, so everyone sees the answer.
 
 ### See it
 
-MGMT 615's plan: Monday opening announcements carry Dana's story; Wednesday midpoints respond to
+In MGMT 615's plan, Monday opening announcements carry Dana's story, and Wednesday midpoints respond to
 what the instructor sees in the week's drafts and polls and say what to bring to Thursday's cohort
 session. Feedback on main assignments comes within five days: a clickable rubric plus a 2-minute
 video comment. The instructor's reflection said Monday announcements slipped mid-term, so all

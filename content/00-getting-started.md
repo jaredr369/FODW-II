@@ -26,15 +26,15 @@ Pattern: setup (no AI draft)
 **What you'll do:** Connect the AI, choose where your work is saved, and enter your ID's name and
 check-in details.
 
-**Why it matters:** Every step after this one depends on them. The AI drafts and checks each
-section, and the files you save are how your ID sees your work.
+**Why it matters:** Every step after this one depends on these settings. The AI drafts and checks
+each section, and the files you save are how your ID sees your work.
 :::
 
 A Flex Online course is a Mays online business course built on a shared template and common
 design standards. In this workshop, you'll build a Course Planning Document, a working plan
 that will guide the future development of the entire course. If your course has already been
-developed and taught, you'll review and update its Course Map instead. Each module has you build different
-sections of your plan. The expected pace is one module per week, with a live check-in each week by
+developed and taught, you'll review and update its Course Map instead. In each module, you build
+different sections of your plan. The expected pace is one module per week, with a live check-in each week by
 Zoom or in person with your instructional designer (ID). Your ID is assigned to you before the
 workshop begins and works with you through the development of your course. You can work ahead; if
 you do, ask your ID to meet more often, so each module is reviewed before the next one builds on
@@ -125,7 +125,7 @@ Treat the key like a password. If you don't see API keys in your settings, conta
 
 ### Setup: Choose where to save
 
-This tool is not like Canvas. Your work saves in this browser as you go. When you select Save, the
+Unlike Canvas, this tool doesn't keep your work online. Your work saves in this browser as you go. When you select Save, the
 tool writes two files to a folder you choose: the planning document (Word), which your ID reads,
 and a project file, which lets you reopen your work on any computer and pick up where you left
 off. If possible, choose a folder your ID can see, such as a OneDrive or Teams folder you share
@@ -140,8 +140,8 @@ Downloads, and you move them yourself.
 
 ### Setup: Your ID and check-ins
 
-Enter your ID's name and your weekly check-in. Any of these can wait; if you don't know them yet,
-your ID will share them before your first check-in.
+Enter your ID's name and the day, time, and format of your weekly check-in. Any of these can wait;
+if you don't know them yet, your ID will share them before your first check-in.
 
 | Field | Required | Example (MGMT 615) |
 |---|---|---|
@@ -174,8 +174,8 @@ Choose a track:
 - **Full build** if the course is new.
 - **Refresh** if your course has already been developed and taught in the Flex Online program.
   Upload its Course Map as a Word file, or paste the text. Your ID can help you get the latest version. In each module you'll see the matching section of your Course Map with flags beside it that note what may need
-  attention. You keep the section, accept or edit a suggested revision,
-  or rewrite it. Each change gets a short note so your ID can see what changed and why.
+  attention. For each section, you keep it as it is, accept or edit a
+  suggested revision, or rewrite it. Each change gets a short note so your ID can see what changed and why.
 
 ::: full
 A Course Map is not the same as your Course Planning Document. The Course Map is the finished,
@@ -185,7 +185,7 @@ the working plan you build in this workshop, a section at a time.
 :::
 
 ::: refresh
-You've done this once already. In your first workshop you built a Course Planning Document; during
+You've been through this process once already. In your first workshop you built a Course Planning Document; during
 development your ID turned it into your course and recorded everything in the Course Map, the
 finished, detailed record of the course, complete enough to rebuild it if it were ever lost from
 Canvas. On the Refresh track, the Course Map is your working document. You review and update it

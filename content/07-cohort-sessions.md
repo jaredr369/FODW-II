@@ -67,8 +67,8 @@ offer nothing the recording doesn't ([Morris et al., 2019](src:ext-morris-2019))
 :::
 
 ::: refresh
-You planned cohort sessions in your first workshop. New since then: choosing a session day and
-designing around it, the recording test, and tying each session to your story.
+You planned cohort sessions in your first workshop. Since then, three things are new: choosing a
+session day and designing around it, the recording test, and tying each session to your story.
 :::
 
 Most Flex Online courses hold cohort sessions, but a few don't. Does yours?
@@ -135,8 +135,8 @@ to know, or try the new skill once with your coaching. The week's materials then
 they need to test that call before Sunday's assignment.
 :::
 
-**RSI.** A session built this way is facilitated discussion (category 4) every week, often with
-feedback (2) or direct instruction (1) as well.
+**RSI.** A session built this way counts as facilitating discussion (RSI category 4) every week,
+and often as feedback (2) or direct instruction (1) as well.
 
 ### See it
 
@@ -285,7 +285,7 @@ A cohort session gives students five things live. Without one, plan where each c
 | A preview of the next assessment | A practice problem, shaped like the next assignment, with feedback |
 
 The 90 minutes a session would take go to activities, so check each module's week in step 4.3
-again. Your communication plan in Module 8 carries more of your presence, too. If your program
+again. Your communication plan in Module 8 also needs to carry more of your presence. If your program
 allows it, optional live office hours give students a place to ask questions face to face.
 
 Select **Save to plan** to note that this course has no cohort sessions. Steps 7.2 and 7.3 aren't needed.
@@ -326,7 +326,7 @@ make here are what you'll take to the XR stage in step 7.3.
 
 ::: refresh
 You wrote a lesson plan, outline, and slides for every session when your course was first
-developed. New since then, below: your story in the session, a session shape for your session day,
+developed. Below is what's new since then: your story in the session, a session shape for your session day,
 and drafting the outline and slides with AI. What you already know is under **Need a refresher?**
 :::
 
@@ -356,8 +356,8 @@ step 4.1:
 - **Close by moving the story forward.** Give your own call and why, and connect it to Sunday's
   assignment, where students put their decision in writing.
 
-Questions that ask students about their own work still fit. Ask them after the character's decision,
-so students compare the case with what they've seen.
+You can still ask students about their own work. Ask after they've worked through the character's
+decision, so they can compare the case with what they've seen at work.
 :::
 
 ::: when cohortDay=wed,thu,
@@ -402,7 +402,8 @@ material:
 :::
 :::
 
-Either way, lecturing on new material belongs in the asynchronous content.
+Whichever day you meet, save new material for the asynchronous content instead of lecturing on it
+live.
 
 **Quiet Zoom rooms.** Over a third of distance learners feel stressed when asked to participate live
 ([Donelan et al., 2025](src:ext-donelan-2025)). The opening poll eases them in: start with a poll or the chat, then small
@@ -688,8 +689,8 @@ Pattern: check and complete (both tracks)
 ### Learn
 
 ::: purpose
-**What you'll do:** Fill in your part of the XR Run of Show for your first cohort session: the
-session details, your background, and the assets you'll use, in order.
+**What you'll do:** Fill in your part of the XR Run of Show for the session you planned in step
+7.2: the session details, your background, and the assets you'll use, in order.
 
 **Why it matters:** Cohort sessions are broadcast live from the XR stage. When you choose your
 background and list your assets ahead of time, the stage, Zoom, polls, and breakouts can all be set

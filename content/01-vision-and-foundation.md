@@ -221,7 +221,7 @@ in the workplace.
 :::
 
 ::: refresh
-**What you'll do:** Recall your course vision, and rewrite it if it no longer fits.
+**What you'll do:** Reread your course vision, and rewrite it if it no longer fits.
 :::
 
 ::: full
@@ -230,7 +230,7 @@ help students do what it describes.
 :::
 
 ::: refresh
-**Why it matters:** Recalling your vision helps you check that everything in the course still serves
+**Why it matters:** Rereading your vision helps you check that everything in the course still serves
 the purpose it was designed for. It can also bring to light opportunities for change.
 :::
 :::
@@ -317,7 +317,7 @@ Demo response (MGMT 615):
 
 Flags:
 
-- Seven sentences; this workshop asks for 3 or 4.
+- Your vision has seven sentences; this workshop asks for 3 or 4.
 - Most sentences describe the course ("sits at the center of the Flex Online people-management
   sequence," "every module asks students to…"). A vision should describe what the course helps
   students do at work.
@@ -348,9 +348,9 @@ here.
 
 Checklist:
 
-- 3 or 4 sentences.
-- Describes what the course helps students do at work, not what it covers.
-- Fits the catalog description.
+- Your vision is 3 or 4 sentences long.
+- It describes what the course helps students do at work, not what the course covers.
+- It fits the catalog description.
 - You'd be glad to hear a former student describe the course this way.
 
 ### Checks
@@ -428,7 +428,7 @@ them. Describe something within the student's control.
 
 Each CLO should also suggest a decision someone in your students' role would face. In Module 2
 you'll create a character, someone in your students' role, whose story runs through the course.
-These decisions become that character's story.
+The decisions your CLOs suggest become that character's story.
 
 **Spot the problem.** Before you work on your own CLOs, practice on a weak one. Read the objective
 below, say in a sentence or two what you would change and why, then select **Check my answer**.
@@ -517,7 +517,8 @@ Demo response (MGMT 615):
 ::: current clos
 :::
 
-Each of your current CLOs shows Keep or a suggested revision, with flags.
+The AI marks each of your current CLOs Keep or suggests a revision, and flags any problems it
+finds.
 
 AI instructions:
 
@@ -563,8 +564,8 @@ CLO the AI added.
 
 Checklist:
 
-- 3 to 6 CLOs, one measurable verb each, at apply or above.
-- Each describes what the student does.
+- You have 3 to 6 CLOs, each with one measurable verb at the apply level or above.
+- Each CLO describes what the student does.
 - Each suggests a decision someone in your students' role would face.
 
 ### Checks
@@ -716,8 +717,8 @@ building the team.
 ::: current modules
 :::
 
-Each module shows Keep or a suggested revision, with flags. CLO numbers are updated to match
-step 1.3.
+The AI marks each module Keep or suggests a revision, and flags any problems it finds. It also
+updates the CLO numbers to match your CLOs from step 1.3.
 
 Demo response (MGMT 615):
 
@@ -762,7 +763,7 @@ When you save, the tool confirms that:
 - topics are content for students, not notes about designing the course.
 
 It also notes any CLO that appears in only one module, or in more than five. In MGMT 615, the check noted "CLO 4 and CLO 6 each appear in one module." The instructor
-kept it with the note "Delegation and hiring are each a focused skill, practiced and assessed in
+kept the flag with the note "Delegation and hiring are each a focused skill, practiced and assessed in
 one module."
 
 ### Save
