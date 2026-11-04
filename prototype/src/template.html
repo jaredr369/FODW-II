@@ -1559,7 +1559,7 @@ function aiPart(title, body) {
   intro = intro.replace(/<details><summary>What the AI is asked to do<\/summary>[\s\S]*?<\/details>/g, m => { prompt += m; return ''; });
   return '<section class="part ai"><h3>' + esc(title) + ' <span class="tag">AI</span></h3>' + intro + recorded +
     demoFiles(body) +
-    '<div class="row"><button type="button" class="btn" data-draft' + (sorting ? ' data-sortmap' : '') + '>' + (sorting ? 'Sort with AI' : title === 'Summary for your ID' ? 'Create summary' : state.track === 'refresh' && title !== 'Draft' ? 'Review with AI' : 'Draft with AI') + '</button><span class="thinking" hidden>Working…</span></div>' + prompt + '</section>';
+    '<div class="row"><button type="button" class="btn" data-draft' + (sorting ? ' data-sortmap' : '') + '>' + (sorting ? 'Sort with AI' : title === 'Summary for your ID' ? 'Create summary' : title === 'Convert' ? 'Convert with AI' : state.track === 'refresh' && title !== 'Draft' ? 'Review with AI' : 'Draft with AI') + '</button><span class="thinking" hidden>Working…</span></div>' + prompt + '</section>';
 }
 function demoFiles(body) {
   const files = [...new Set((body.match(/demo\/mgmt615-[a-z]+\.json/g) || []))];
@@ -1612,8 +1612,9 @@ function renderStep(goKey) {
   // A setup page (GS.1) has "Setup: ..." sections in place of Draft, Decide, and Save.
   const setup = Object.keys(p).filter(k => k.startsWith('Setup: '));
   for (const k of setup) h += '<section class="part"><h3>' + esc(k.slice(7)) + '</h3>' + md(p[k]) + '</section>';
-  const both = p['Draft (full build) and Review (refresh)'];
-  if (both) h += aiPart(state.track === 'refresh' ? 'Review' : 'Draft', both);
+  // "Draft (full build) and Review (refresh)", or "... and Convert (refresh)" where Refresh converts an existing file.
+  const bothKey = Object.keys(p).find(k => /^Draft \(full build\) and (Review|Convert) \(refresh\)$/.test(k)), both = bothKey && p[bothKey];
+  if (both) h += aiPart(state.track === 'refresh' ? bothKey.match(/and (\w+)/)[1] : 'Draft', both);
   else if (state.track === 'refresh' && p['Review (refresh)']) {
     if (/no AI draft/i.test(p['Draft (full build)'] || '')) h += aiPart('Draft', p['Draft (full build)']);
     h += aiPart('Review', p['Review (refresh)']);

@@ -241,7 +241,7 @@ Project file: `modules[].media`; in refresh, `.original`, `.changeNote`.
 ## 6.2 Your first script and the XR stage
 
 Time: about 25 minutes
-Pattern: interview, then draft
+Pattern: interview, then draft (full build); upload, then convert (refresh)
 
 ### Learn
 
@@ -294,6 +294,12 @@ something you say.
 two-column A/V template. Converting one keeps your dialogue and adds what the XR stage needs: your
 sections become the five parts, your graphics go in the Graphics column, and the Environment column
 names the background behind you.
+
+**Adding your story.** Your current videos were scripted before your course had a character. An
+overview video works best when it follows the same rule as your story-based assignment in step 4.1:
+open in your character's situation and stop at the decision. When the AI converts your script, it
+suggests an opening and an ending that do this. You keep or skip each suggestion; everything else
+stays in your words.
 :::
 
 **Write for the ear.** Use contractions and full sentences, and read it aloud as you write; if a
@@ -327,27 +333,57 @@ Started, welcome video.
 | Video Conclusion | I'm glad you're here, and I'm looking forward to working through this with you. Thanks, and gig 'em! | [Close-up shot] | Same |
 | Closing | (No dialogue) | [Outro Graphic: Branding of Texas A&M University] [Outro Music] | |
 
-### Draft (full build) and Review (refresh)
+::: refresh
+**Converting a script.** The MGMT 615 instructor converted the Module 1 overview. A few lines,
+before and after:
+
+| Part | Before (A/V script) | After (A/V/E script) |
+|---|---|---|
+| Opening line | Hello, and welcome to Module 1. | Howdy. This week you meet Dana Ortiz. (story added) |
+| Coaching line | Kept word for word | Kept word for word, now a Video Content chunk |
+| Slide notes | In the Video column | In the Graphics column |
+| Background | None | Virtual podcast studio, in the new Environment column |
+| Last line | See you next week. | Hold off on deciding about Jordan until you've read it. (story added) |
+
+The full conversion is the recorded response under Draft.
+:::
+
+### Draft (full build) and Convert (refresh)
 
 ::: full
 Answer the questions, then select the button below. The AI drafts the script in the A/V/E
 template, in your voice and at the planned length. Select **Use this script** to copy it into the
 script form under Decide.
-:::
-
-::: refresh
-Paste one of your current A/V scripts into the last box, usually your welcome video or a module
-overview, and answer the questions it doesn't already cover. The AI converts it to the A/V/E
-template: it keeps your words, maps your sections to the five parts, moves your graphics into the
-Graphics column, adds the Environment column, and flags anything that runs long or appears only on
-screen. Select **Use this script** to copy the converted script into the form under Decide.
-:::
 
 ::: fields
 - Which video are you scripting: your welcome video, a module overview, or a scenario video from your media plan? | The Module 1 overview, 2 minutes.
 - What should students feel or understand by the end? | That a manager's job is different from the job Dana just left, and that Greg's quick answer deserves a second look.
 - Is there a phrase or story you always use when you introduce this? | "Your best player isn't automatically your best coach."
-- Your current A/V script for this video, if you have one (to convert it)
+:::
+:::
+
+::: refresh
+Upload one of your current A/V scripts as a Word file, or paste its text, usually your welcome video
+or a module overview. Then select the button below. The AI converts it to the A/V/E template: it
+keeps your words, maps your sections to the five parts, moves your graphics into the Graphics
+column, and adds the Environment column. It also suggests where your story could open and close the
+video, and flags anything that runs long or appears only on screen. It lists every change, so you
+can keep or skip each one. Select **Use this script** to copy the converted script into the form
+under Decide.
+
+::: fields
+- Your current A/V script. Upload it as a Word file, or paste the text. | MODULE 1 OVERVIEW. Intro. Audio: Hello, and welcome to Module 1. This week we look at what managers actually do, and how that's different from being great at the work yourself. Video: Title slide. Content. Audio: There's a line I've used with every new manager I've coached: your best player isn't automatically your best coach. The skills that got you promoted won't tell you how to manage. Video: Slide: individual contributor and manager, side by side. Audio: When results drop, the fastest answer is usually a person. Sometimes that's right. More often the cause sits between people, in how work gets handed off or who owns a decision. A manager looks there first. Video: Slide: person, process, handoff. Reading. Audio: This week's reading looks at how managers actually spend their time. Notice how little of it is doing the work yourself. Video: Slide: the reading's title and author. Wrap-up. Audio: Start with the reading, then the discussion, and finish the assignment by Sunday. See you next week. Video: Slide: this week's tasks.
+- Which video is it, and how long should it run? | The Module 1 overview, 2 minutes.
+:::
+
+::: fold No script for this video?
+Answer these instead, and the AI drafts a new script, as it does on the full build track.
+
+::: fields
+- What should students feel or understand by the end?
+- Is there a phrase or story you always use when you introduce this?
+:::
+:::
 :::
 
 AI instructions:
@@ -364,20 +400,23 @@ at about 140 spoken words a minute. For an overview or scenario video, open in t
 situation and end at the decision without resolving it. In Graphics, suggest a slide for each
 chunk; put camera or production notes in square brackets. In Environment, name one background and
 write "Same" after that. Put everything a student needs in the dialogue; graphics only reinforce
-it. If the faculty member pasted a current A/V script, convert it instead of starting over: keep
-their dialogue, map its sections to the parts above, move its graphics into the Graphics column,
-and add the Environment column. Then check it for length, spoken style, and the decision ending,
-and suggest edits.
+it. If the faculty member uploaded or pasted a current A/V script, convert it instead of starting
+over: keep their dialogue word for word wherever you can, map its sections to the parts above, move
+its graphics into the Graphics column, and add the Environment column. If it's an overview or
+scenario video and the script doesn't use the story, suggest a new opening line in the character's
+situation and a closing line that stops at the module's decision, using the saved scenario (step
+3.2) and character profile (step 2.3); add story details to other chunks only where a sentence
+already points to them. Then check it for length, spoken style, and the decision ending. List every
+change you made, marking story additions, so the faculty member can keep or skip each one.
 
-Return: {"title": string, "minutes": number, "module": string, "rows": [{"part": string, "dialogue": string, "graphics": string, "environment": string}]}
+Return: {"title": string, "minutes": number, "module": string, "rows": [{"part": string, "dialogue": string, "graphics": string, "environment": string}], "changed": [string]}
 ```
 
 Demo response (MGMT 615):
 
 ::: refresh
-**Converted from the current A/V script:** the instructor's two-column overview script kept its
-dialogue. Its four sections became the template's parts, its slide notes moved to Graphics, and the
-Environment column was added. The AI also cut two sentences to bring it to about 2 minutes.
+**Converted from your A/V script.** Your dialogue is kept except where a change is listed under
+the script.
 :::
 
 **Title:** Module 1 overview: What Managers Actually Do. **Duration:** about 2 minutes. **Module &
@@ -395,6 +434,24 @@ Section:** Module 1, overview video.
 | Closing | (No dialogue) | [Outro Graphic: Branding of Texas A&M University] [Outro Music: fades out] | |
 
 **Length:** about 270 words, about 2 minutes at 140 words a minute.
+
+::: refresh
+What changed:
+
+- Your four sections became the Video Introduction, three Video Content chunks, and the Video
+  Conclusion, which now ends "Thanks, and gig 'em!" Your Video notes moved to Graphics, and the
+  Environment column names one background.
+- Story added: the introduction now opens on Dana's Monday report and Greg's email, in place of
+  "Hello, and welcome to Module 1."
+- Story added: one sentence after your coaching line ties it to Dana, and one in the reading chunk
+  asks students to keep her report in mind.
+- Story added: the conclusion stops before the decision about Jordan, in place of "See you next
+  week."
+- Two slides were added for the opening, and "When results drop" became "Here's what to watch for.
+  When the numbers drop," to match the report.
+
+Skip any story addition by changing that row under Decide, or ask the AI to redraft without it.
+:::
 
 ### Decide
 
