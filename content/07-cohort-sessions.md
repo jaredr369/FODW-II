@@ -489,7 +489,6 @@ into a full lesson plan. Select **Use this plan** to copy it into the lesson pla
 
 ::: fields
 - Which session are you planning? | Module 2, the first session students attend.
-- Is there a point where you'll need help from your Instructional Technologist that isn't obvious? | Regrouping the breakouts halfway through, so each new group has all three pieces of evidence.
 - How do you want to end? | With my own call on the bonus, after two groups share theirs.
 :::
 :::
@@ -504,8 +503,6 @@ Select **Use this plan** to copy the updated plan under Decide.
 
 ::: fields
 - Your current lesson plan. Upload it as a Word file, or paste the text. | Diagnosing Motivation Problems Roundtable (Module 2). 20 minutes: recap of expectancy theory and the week's readings, with slides. 45 minutes: roundtable. Whole-class discussion of the module's questions: What motivates you at work? When has an incentive backfired? Are pick-rate bonuses a good incentive? 15 minutes: students share examples from their own workplaces. 10 minutes: wrap-up, questions, and a preview of the motivation diagnosis due Sunday.
-- Which session is it? | Module 2, the first session students attend.
-- Is there a point where you'll need help from your Instructional Technologist that isn't obvious? | Regrouping the breakouts halfway through, so each new group has all three pieces of evidence.
 :::
 :::
 
@@ -531,8 +528,8 @@ Return: {"title": string, "overview": string, "objectives": [string], "topics": 
 AI instructions:
 
 ```text
-The faculty member uploaded or pasted the lesson plan they've used for one cohort session. You are
-also given the module's saved scenario (step 3.2), the storyline premise (step 3.1), the character
+The faculty member uploaded or pasted the lesson plan they've used for one cohort session. Find
+which module's session it is from the plan; if the plan doesn't say, ask. You are also given the module's saved scenario (step 3.2), the storyline premise (step 3.1), the character
 profile (step 2.3), the module's objectives, the session activity saved for this module in step
 7.1, the session day, and the faculty member's reflection on past sessions. Add the story to the
 plan: open the session in the character's situation at the scenario's trigger (an opening poll can

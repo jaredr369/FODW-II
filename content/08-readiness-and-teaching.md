@@ -162,7 +162,12 @@ opening announcement. Select **Use this plan** to copy them into the boxes under
 ::: fields
 - Which kind of feedback suits you best: written, audio, or video? | Short video comments, with a rubric.
 - Which weeks of the term are your busiest outside the course? | Weeks 5 and 6, during our program's residency.
-- Is there anything you already do in announcements that you want to keep? | A Monday note that starts with a question.
+:::
+
+::: full
+::: fields
+- Is there anything you already do in announcements, in this or another course, that you want to keep? | A Monday note that starts with a question.
+:::
 :::
 
 AI instructions:

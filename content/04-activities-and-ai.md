@@ -143,7 +143,6 @@ version** to copy them into the boxes under Decide.
 ::: fields
 - Which module? Choose one whose scenario you saved in step 3.2. | Module 3: Performance Management and Feedback
 - What will students do and submit? Include the type and length. | Write the feedback conversation, about 600 to 900 words, labeled with the SBI model, and a 250-word reflection.
-- Which CLO does it assess, and how much does it weigh? | CLO 2, high weight
 :::
 
 AI instructions:
@@ -151,7 +150,8 @@ AI instructions:
 ```text
 Draft the overview and guidelines for the main assignment of the given module, from the faculty
 member's answers, the module's CLOs, its saved scenario (step 3.2), the storyline premise (step
-3.1), and the character profile (step 2.3). Write the overview so it opens in the character's
+3.1), and the character profile (step 2.3). The assignment assesses the module's first CLO (step
+1.4) and carries high weight, since it's the module's main assignment; say which CLO it uses. Write the overview so it opens in the character's
 situation at the scenario's trigger and ends at the scenario's decision without resolving it.
 Write 4 to 6 guidelines in order, each referring to the story, ending with what to submit and how
 it is graded. Use the CLO's verb. Include every story detail a student needs, so the assignment
@@ -235,10 +235,6 @@ change it, or select **Redraft with AI** under a box to have the AI rewrite just
 - Your guidelines, one per line
 :::
 
-::: fields notes
-- Notes for your ID: other assignments you'd like to move into your story, and anything the rubric may need
-:::
-
 Checklist:
 
 - A student who skipped the announcement could still do this assignment.
@@ -265,7 +261,7 @@ to update the assignment in Canvas during development.
 Planning document: the assignment's line in Tables 1 and 2. Step 4.3 starts with it in that
 module's list. On the refresh track the line gets a "story added" note, for example "Assignment:
 Feedback Conversation Script: Dana and Jordan (CLO 2, high, RSI 2; story added)".
-Project file: `modules[].activities[].story` (module, overview, guidelines, notes; in refresh,
+Project file: `modules[].activities[].story` (module, overview, guidelines; in refresh,
 `.original`).
 
 ### Go deeper (supplemental)
@@ -489,18 +485,18 @@ you're unsure of for the instructor. Never refer to the student by name.
 ### Decide
 
 Your final version goes in these boxes. Type in any box to change it, or select **Redraft with AI**
-under a box to have the AI rewrite just that part. Paste the final instructions into your Gem or
-assistant, test it, and note what you changed.
+under a box to have the AI rewrite just that part. Then paste the final instructions into your Gem
+or assistant and test it the way a student would.
 
 ::: fields
 - Where it's used: the module, the activity, and who uses it
 - Its system instructions, as you'll paste them into your Gem or assistant
-- How you tested it, and what you changed
 :::
 
 Checklist:
 
 - It has guardrails that say what it won't do.
+- You've tested it, including a request it should refuse, and it behaves.
 - No student names or records are in a student-facing Gem's knowledge files.
 - For a grading assistant: you remove names and review every comment before it reaches a student.
 - Students will know how they may use it, from the assignment directions or the syllabus.
@@ -517,7 +513,7 @@ When you save, the tool checks that:
 
 Planning document: an "AI in this course" line in the Learning Activities Plan row for the module
 where it's used, naming what you built.
-Project file: `ai.choice`, `ai.where`, `ai.instructions`, `ai.testing`.
+Project file: `ai.choice`, `ai.where`, `ai.instructions`.
 
 ### Go deeper (supplemental)
 

@@ -381,13 +381,13 @@ under Decide.
 
 ::: fields
 - Your current A/V script. Upload it as a Word file, or paste the text. | MODULE 1 OVERVIEW. Intro. Audio: Hello, and welcome to Module 1. This week we look at what managers actually do, and how that's different from being great at the work yourself. Video: Title slide. Content. Audio: There's a line I've used with every new manager I've coached: your best player isn't automatically your best coach. The skills that got you promoted won't tell you how to manage. Video: Slide: individual contributor and manager, side by side. Audio: When results drop, the fastest answer is usually a person. Sometimes that's right. More often the cause sits between people, in how work gets handed off or who owns a decision. A manager looks there first. Video: Slide: person, process, handoff. Reading. Audio: This week's reading looks at how managers actually spend their time. Notice how little of it is doing the work yourself. Video: Slide: the reading's title and author. Wrap-up. Audio: Start with the reading, then the discussion, and finish the assignment by Sunday. See you next week. Video: Slide: this week's tasks.
-- Which video is it, and how long should it run? | The Module 1 overview, 2 minutes.
 :::
 
 ::: fold No script for this video?
 Answer these instead, and the AI drafts a new script, as it does on the full build track.
 
 ::: fields
+- Which video are you scripting, from your media plan?
 - What should students feel or understand by the end?
 - Is there a phrase or story you always use when you introduce this?
 :::
@@ -409,7 +409,8 @@ situation and end at the decision without resolving it. In Graphics, suggest a s
 chunk; put camera or production notes in square brackets. In Environment, name one background and
 write "Same" after that. Put everything a student needs in the dialogue; graphics only reinforce
 it. If the faculty member uploaded or pasted a current A/V script, convert it instead of starting
-over: keep their dialogue word for word wherever you can, map its sections to the parts above, move
+over. Find which video it is from the script, and its planned minutes from the media plan (step
+6.1); if the script doesn't say, ask. keep their dialogue word for word wherever you can, map its sections to the parts above, move
 its graphics into the Graphics column, and add the Environment column. If it's an overview or
 scenario video and the script doesn't use the story, suggest a new opening line in the character's
 situation and a closing line that stops at the module's decision, using the saved scenario (step
@@ -469,10 +470,6 @@ select **Redraft with AI** under the form to have the AI rewrite it, for example
 how you talk. The count under the form shows how long the dialogue runs.
 
 ::: av-script
-:::
-
-::: fields notes
-- What you changed after reading it aloud
 :::
 
 Checklist:
