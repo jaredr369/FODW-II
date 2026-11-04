@@ -233,7 +233,8 @@ summary { cursor: pointer; color: var(--muted); font-size: 14px; }
 .current-label { margin: 0 0 6px; } .current ul { margin: 4px 0; } .current p { margin: 4px 0; }
 .current-paste { margin-top: 8px; } .current-paste summary { cursor: pointer; font-size: 14px; color: var(--ex); }
 .current-paste textarea { width: 100%; font: inherit; margin-top: 6px; padding: 6px 8px; border: 1px solid #b9b4ad; border-radius: 6px; }
-.term { background: none; border: 0; padding: 0; font: inherit; color: inherit; text-decoration: underline dotted var(--maroon) 2px; text-underline-offset: 3px; cursor: help; }
+.term { background: none; border: 0; padding: 0; font: inherit; color: inherit; text-decoration: underline dotted #b9b4ad 2px; text-underline-offset: 3px; cursor: help; }
+.term:hover, .term:focus-visible, .term[aria-expanded="true"] { text-decoration-color: var(--maroon); }
 .term[aria-expanded="true"] { background: var(--tint); }
 .term-nowrap { white-space: nowrap; }
 .term-pop { display: block; white-space: normal; margin: 6px 0; padding: 8px 12px; background: #fff; border: 1px solid var(--line); border-left: 4px solid var(--maroon); border-radius: 6px; font-size: 15px; }
