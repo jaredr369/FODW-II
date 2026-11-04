@@ -270,7 +270,8 @@ Project file: `modules[].activities[].story` (module, overview, guidelines, note
 ### Go deeper (supplemental)
 
 - `src:guide-storytelling`
-- `src:guide-learning-activities`, `src:guide-rubrics`
+- `src:guide-learning-activities`
+- `src:guide-rubrics`
 
 ---
 
@@ -825,8 +826,11 @@ Project file: `modules[].activities` (with `rsi`, `hours`, `aiRisk`, `aiPolicy`,
 
 ### Go deeper (supplemental)
 
-- `src:guide-learning-activities`, `src:guide-rubrics`, `src:guide-third-party-tools`
-- `src:ext-tamu-ai-guidelines`, `src:ext-terry-2023`
+- `src:guide-learning-activities`
+- `src:guide-rubrics`
+- `src:guide-third-party-tools`
+- `src:ext-tamu-ai-guidelines`
+- `src:ext-terry-2023`
 
 ---
 

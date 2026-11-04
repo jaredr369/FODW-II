@@ -201,7 +201,9 @@ Project file: `learners.profile`, `catalog.text`, `catalog.commitments`, `progra
 ### Go deeper (supplemental)
 
 - `src:guide-adult-learners`: how working professionals learn, and what it means for your course.
-- `src:ext-wiggins-mctighe-2005`, `src:ext-knowles-2015`, `src:ext-cast-2018`
+- `src:ext-wiggins-mctighe-2005`
+- `src:ext-knowles-2015`
+- `src:ext-cast-2018`
 
 ---
 
