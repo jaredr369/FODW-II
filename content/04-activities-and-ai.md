@@ -1,12 +1,13 @@
 # Module 4. Intentional AI Implementation for Engagement & Feedback
 
 Module id: `m4`
-Steps: 3 (4 on the refresh track)
+Steps: 4
 ID check-in: live review of this module's sections, at the end of the week or sooner
 
-Faculty complete: learning activities for every module, including third-party tools, checked
-automatically for RSI, workload, and AI risk, and a week-in-your-student's-shoes review of each
-module. On the refresh track, they also rewrite one existing assignment inside their story.
+Faculty complete: one assignment drafted (full build) or rewritten (refresh) inside their story,
+one AI build for another assignment, learning activities for every module, including third-party
+tools, checked automatically for RSI, workload, and AI risk, and a week-in-your-student's-shoes
+review of each module.
 
 Refresh checks for this module: at least two RSI categories of instructor activity per module;
 close to 10 hours of student work a week; major assessments that AI could complete without student
@@ -54,7 +55,226 @@ Project file: `reflection.m4`.
 
 ---
 
-## 4.1 Choose and build with AI
+## 4.1 Add your story to one assignment
+
+Time: about 30 minutes
+Pattern: answer, then draft (full build); paste, then rewrite (refresh)
+
+### Learn
+
+::: purpose
+::: full
+**What you'll do:** Choose one module's main assignment and use AI to draft its overview and
+guidelines inside your story, from the scenario you saved for that module in step 3.2.
+:::
+
+::: refresh
+**What you'll do:** Choose one assignment your course already has and use AI to rewrite its overview
+and guidelines so it takes place inside your story. Its CLO, deliverable, weight, and rubric stay
+the same.
+:::
+
+**Why it matters:** Seeing one finished story-based assignment first makes it easier to plan the
+rest. When you plan or review every module's activities in step 4.3, you'll already know what
+"inside the story" looks like to a student.
+:::
+
+::: full
+A story-based assignment asks students to do the work professionals do, for your character, at the
+decision your scenario sets up. Students don't invent a case or recall one from their own work; the
+case is already there, and it builds from module to module.
+:::
+
+::: refresh
+Your existing assignments were written before your course had a character and a storyline. Most
+ask students to apply an idea to a case they invent or remember. Adding the story changes the
+setting, not the assessment. Students do the same work and are graded with the same rubric, but they
+do it for your character, at the decision your scenario for that module sets up.
+:::
+
+A story-based overview usually does three things:
+
+- **Opens in the character's situation.** It starts with what just happened, such as the report,
+  the complaint, or the deadline, instead of with a definition of the skill.
+- **Stops at the decision.** It names the choice the character faces and leaves it open. Making that
+  choice is the student's work.
+- **Stands on its own.** It gives every story detail a student needs, so a student who skipped the
+  announcement can still do the assignment.
+
+The guidelines refer to the story too: "Write a script for a feedback conversation" becomes "Write
+the conversation Dana has with Jordan."
+
+A story also lowers AI risk. A specific character, situation, and decision are harder to answer
+with a generic AI response than "choose an example from your experience."
+
+### See it
+
+::: full
+The MGMT 615 instructor chose Module 3, where Dana has to talk with Jordan, her day-shift lead,
+about the orders slipping at shift change. The main assignment is a feedback conversation script,
+and the module's scenario supplies everything the overview needs: the situation, what triggered
+it, who's involved, and the decision Dana faces. The finished overview and guidelines are the
+recorded response under Draft.
+:::
+
+::: refresh
+The MGMT 615 instructor chose the Module 3 Feedback Conversation Script, the module's main
+assignment, because its scenario puts Dana at a decision about Jordan. A few lines, before and
+after:
+
+| Part | Before | After |
+|---|---|---|
+| Overview opens | Giving feedback is one of the most important skills a manager has. | Orders at Dana's distribution center keep slipping in the hour around shift change. |
+| Overview ends | You will write a script for a feedback conversation with an employee whose performance needs to improve. | You'll decide how she handles that conversation and write it. |
+| First task | Choose a performance problem from your own experience, or make one up. | Decide how Dana approaches Jordan: the warning Greg wants, coaching with no record, or coaching first and documenting the next steps. |
+| Unchanged | CLO 2, the 600- to 900-word script and 250-word reflection, high weight, due Sunday, the rubric | Same |
+
+The full rewrite is the recorded response under Draft.
+:::
+
+### Draft
+
+::: full
+Answer the questions, then select the button below. The AI drafts the overview and guidelines
+inside your story, using the module's CLOs and the scenario you saved in step 3.2. Select **Use this
+version** to copy them into the boxes under Decide.
+
+::: fields
+- Which module? Choose one whose scenario you saved in step 3.2. | Module 3: Performance Management and Feedback
+- What will students do and submit? Include the type and length. | Write the feedback conversation, about 600 to 900 words, labeled with the SBI model, and a 250-word reflection.
+- Which CLO does it assess, and how much does it weigh? | CLO 2, high weight
+:::
+
+AI instructions:
+
+```text
+Draft the overview and guidelines for the main assignment of the given module, from the faculty
+member's answers, the module's CLOs, its saved scenario (step 3.2), the storyline premise (step
+3.1), and the character profile (step 2.3). Write the overview so it opens in the character's
+situation at the scenario's trigger and ends at the scenario's decision without resolving it.
+Write 4 to 6 guidelines in order, each referring to the story, ending with what to submit and how
+it is graded. Use the CLO's verb. Include every story detail a student needs, so the assignment
+stands on its own. Under 200 words for the overview.
+
+Return: {"overview": string, "guidelines": [string]}
+```
+:::
+
+::: refresh
+Choose the assignment and paste its current overview and guidelines from Canvas or the assignment
+document. Then select the button below. The AI rewrites both inside your story, using the scenario
+you saved for that module in step 3.2, and lists what changed and what stayed the same. Select
+**Use this version** to copy the rewrite into the boxes under Decide.
+
+::: fields
+- Which assignment? Choose a high-weight assignment in a module whose scenario you saved in step 3.2. | Module 3: Feedback Conversation Script
+- Its current overview, copied from Canvas | Giving feedback is one of the most important skills a manager has. In this assignment, you will write a script for a feedback conversation with an employee whose performance needs to improve, using the SBI model from this module.
+- Its current guidelines, as written | Choose a performance problem from your own experience, or make one up. Write a script of 600 to 900 words for the conversation, with what you would say and how the employee might respond. Label the Situation, Behavior, and Impact in your script. After the script, write a 250-word reflection on how you would handle defensiveness. Submit a Word document. Your script is graded with the Feedback Conversation Script rubric.
+:::
+
+AI instructions:
+
+```text
+The faculty member pasted the overview and guidelines of one existing assignment. You are also
+given its module and CLOs, the module's saved scenario (step 3.2), the storyline premise (step
+3.1), and the character profile (step 2.3). Rewrite the overview so it opens in the character's
+situation at the scenario's trigger and ends at the scenario's decision without resolving it.
+Rewrite each guideline so it refers to the story, in the same order. Keep exactly: the CLO and its
+verb, the deliverable (type, length, and format), the weight, the due date, any AI-use statement,
+and every requirement the rubric grades. Add no new graded requirement. Include every story detail
+a student needs, so the assignment stands on its own. Use the faculty member's wording wherever
+the story doesn't require a change. Under 200 words for the overview. Then list what changed and
+what stayed the same.
+
+Return: {"overview": string, "guidelines": [string], "changed": [string], "kept": [string]}
+```
+:::
+
+Demo response (MGMT 615):
+
+**Overview:** Orders at Dana's distribution center keep slipping in the hour around shift change,
+when Jordan, her day-shift lead, hands off to night shift. Jordan came up under Dana, avoids hard
+conversations with his crew, and has turned defensive when the delays come up. Dana's director,
+Greg, wants a formal warning on file by Friday. Dana has to talk with Jordan first. In this
+assignment, you'll decide how she handles that conversation and write it, using the SBI model from
+this module.
+
+Guidelines:
+
+1. Decide how Dana approaches Jordan: the formal warning Greg wants, a coaching conversation with no
+   record, or coaching first and documenting only the next steps they agree on.
+2. Write a script of 600 to 900 words for the conversation, with what Dana says and how Jordan might
+   respond.
+3. Label the Situation, Behavior, and Impact in Dana's script.
+4. After the script, write a 250-word reflection on how Dana handles Jordan's defensiveness, and why
+   she chose this approach over the others.
+5. Submit a Word document. Your script is graded with the Feedback Conversation Script rubric.
+
+::: refresh
+What changed:
+
+- The overview opens in Dana's situation and ends at her decision.
+- Students write for Dana and Jordan instead of a problem they choose or make up.
+- The reflection asks about Dana's choice, which the rubric's defensiveness criterion already covers.
+
+What stayed the same:
+
+- CLO 2 and its verb, design.
+- A 600- to 900-word script with SBI labels and a 250-word reflection, submitted as a Word document.
+- High weight, due Sunday at 11:59 p.m. CT, and the Feedback Conversation Script rubric.
+:::
+
+### Decide
+
+Read it as one of your students would, then make it yours in these boxes. Type in either box to
+change it, or select **Redraft with AI** under a box to have the AI rewrite just that part.
+
+::: fields
+- Your overview
+- Your guidelines, one per line
+:::
+
+::: fields notes
+- Notes for your ID: other assignments you'd like to move into your story, and anything the rubric may need
+:::
+
+Checklist:
+
+- A student who skipped the announcement could still do this assignment.
+- The overview stops at the decision and doesn't give away the answer.
+- Students do something professionals in your field do.
+
+### Checks
+
+When you save, the tool checks that:
+
+- **Alignment:** the assignment assesses a CLO the module lists and uses its verb;
+- **Deliverable:** the guidelines say what students submit, how long it is, and how it's graded;
+- **Story:** the overview names your character and the module's scenario, and ends at the decision
+  without resolving it.
+
+On the refresh track, the tool also compares the rewrite with what you pasted: the CLO, weight,
+deliverable, due date, and graded requirements must be unchanged.
+
+### Save
+
+Saved as a Word file in your save folder, with the assignment's name, for your ID. On the refresh
+track it shows the current and rewritten overview and guidelines side by side, and your ID uses it
+to update the assignment in Canvas during development.
+Planning document: the assignment's line in Tables 1 and 2. Step 4.3 starts with it in that
+module's list. On the refresh track the line gets a "story added" note, for example "Assignment:
+Feedback Conversation Script: Dana and Jordan (CLO 2, high, RSI 2; story added)".
+Project file: `modules[].activities[].story` (module, overview, guidelines, notes; in refresh,
+`.original`).
+
+### Go deeper (supplemental)
+
+- `src:guide-storytelling`
+- `src:guide-learning-activities`, `src:guide-rubrics`
+
+---
+
+## 4.2 Add AI to another assignment
 
 Time: about 45 minutes
 Pattern: choose, then build (both tracks)
@@ -62,12 +282,13 @@ Pattern: choose, then build (both tracks)
 ### Learn
 
 ::: purpose
-**What you'll do:** Learn three ways to put AI to work in your course, choose one, and build it: an
-AI-integrated assignment, an AI tutor, or a grading assistant.
+**What you'll do:** Learn three ways to put AI to work in your course, choose one, and build it for a
+different assignment from the one in step 4.1: an AI-integrated assignment, an AI tutor, or a
+grading assistant.
 
 **Why it matters:** Your students will use AI whether you plan for it or not. Building one thing
-yourself shows you what AI does well and where it needs limits, before you plan the activities for
-every module.
+yourself shows you what AI does well and where it needs limits, before you plan or review the
+activities for every module in step 4.3.
 :::
 
 There are three ways to bring AI into your course on purpose:
@@ -98,6 +319,12 @@ university-protected environments.
 **Choose what you'd like to build (must choose one).** You can build others later; your ID can help,
 too.
 
+::: refresh
+**Where to start.** Think back to the reflection that opened this module: on which activities did
+student work look like AI did the thinking? Those are good candidates for an AI-integrated
+assignment or a tutor.
+:::
+
 ::: choose aiChoice
 - assignment | An AI-integrated assignment | Students work with a Gem you set up as part of one assignment.
 - tutor | An AI tutor | Students practice with a Gem between assignments.
@@ -114,7 +341,7 @@ Choose an option above to see what the MGMT 615 instructor built with it.
 For Module 7's change message, the MGMT 615 instructor built a Gem that plays a skeptical member of
 Dana's crew. Students share their draft announcement that the bonus is ending, read the crew
 member's reactions, revise, and submit both drafts with a short note on what they changed and why.
-The AI-risk check in Module 4 had rated this assignment high; the Gem makes students' own judgment
+A general AI tool could write a change message on its own; the Gem makes students' own judgment
 visible.
 :::
 
@@ -126,8 +353,8 @@ work.
 :::
 
 ::: when aiChoice=grader
-The MGMT 615 instructor built a grading assistant in TAMU AI Chat for Module 3's Feedback
-Conversation Script. It drafts two or three comments for each rubric criterion and suggests a
+The MGMT 615 instructor built a grading assistant in TAMU AI Chat for Module 6's
+Decision-Rights Memo. It drafts two or three comments for each rubric criterion and suggests a
 rating with a reason, but never a final grade. The instructor pastes in one submission at a time,
 with the student's name removed, and edits every comment before posting it in Canvas.
 :::
@@ -248,9 +475,9 @@ words.
 :::
 
 ::: when aiChoice=grader
-**Where it's used:** Module 3, Feedback Conversation Script: grading. You use it.
+**Where it's used:** Module 6, Delegation Sort and Decision-Rights Memo: grading. You use it.
 
-**System instructions:** You help the instructor grade the Feedback Conversation Script, using the
+**System instructions:** You help the instructor grade the Decision-Rights Memo, using the
 attached assignment prompt and rubric. For each submission, draft two or three comments for each
 rubric criterion: what works, what to improve, and one suggestion, quoting the student's own words.
 Suggest a rating for each criterion with a one-line reason, but never a final grade. Flag anything
@@ -298,7 +525,7 @@ Project file: `ai.choice`, `ai.where`, `ai.instructions`, `ai.testing`.
 
 ---
 
-## 4.2 Activities for every module
+## 4.3 Activities for every module
 
 Time: about 45 minutes, about 5 minutes a module
 Pattern: pick and combine, one module at a time (full build); edit in place (refresh)
@@ -323,8 +550,10 @@ you the evidence of whether students met your CLOs.
 ::: refresh
 You planned your activities in your first workshop, and you've seen how they went. As you review,
 check that each activity still traces to a CLO and uses its verb, and that each week comes close to
-its target; the week check under Decide adds it up. New since then, below: your storyline as the
-source of activities, and designing major assessments for AI.
+its target; the week check under Decide adds it up. You've just tried the two new ideas on one
+assignment each: your story in step 4.1 and AI in step 4.2. Now decide which other assignments
+should use them. Below: your storyline as the source of activities, and designing major
+assessments for AI.
 :::
 
 ::: refresher
@@ -423,8 +652,9 @@ scores from these tools don't count as RSI on their own; plan what you'll add, s
 the tool's threads.
 :::
 
-**AI in your activities.** In step 4.1 you built an AI-integrated assignment, a tutor, or a grading
-assistant. Place it in the module you chose, and plan AI use for each high-weight activity below.
+**Your assignments from steps 4.1 and 4.2.** Keep the assignment you put inside your story and the
+one you built AI for in their modules. For every other high-weight activity, decide whether it moves
+into your story and what AI use is allowed.
 
 ### See it
 
@@ -457,7 +687,7 @@ these activities** to copy them into the boxes under Decide.
 ::: refresh
 Work through your modules one at a time. Choose a module, then select the button below. The AI
 starts from your Course Map's current activities for the module. It keeps what works, says what it
-would change and why, adds hours and weight to each activity, and shows what the checks will find.
+would change and why, including which activities could move into your story, adds hours and weight to each activity, and shows what the checks will find.
 Select **Use these activities** to copy the reviewed list into the boxes under Decide.
 :::
 
@@ -531,6 +761,7 @@ Checklist (for each module):
 - One main activity carries the module's weight.
 - Students do something professionals in your field do.
 - Each high-weight activity says what AI use is allowed.
+- Each main assignment sits in your story, or you've noted why not.
 
 ### Checks
 
@@ -599,7 +830,7 @@ Project file: `modules[].activities` (with `rsi`, `hours`, `aiRisk`, `aiPolicy`,
 
 ---
 
-## 4.3 A week in your student's shoes
+## 4.4 A week in your student's shoes
 
 Time: about 20 minutes, a few minutes a module
 Pattern: a week in your student's shoes
@@ -616,7 +847,7 @@ as they'll live it shows problems that numbers miss.
 
 The walk-through follows one of your students through the week: what they open on Monday, what they
 read, do, and submit, when they hear from you, and how long it takes. If something needs fixing, go
-back to step 4.2.
+back to step 4.3.
 
 Readings and media aren't planned yet, so the walk-through uses placeholders for them. It updates
 as you plan materials in Module 5 and media in Module 6, and Module 8 shows the full week.
@@ -674,7 +905,7 @@ line is there, about four hours. I hear from the instructor three times this wee
 ### Decide
 
 Note anything you want to change, module by module. These are your own notes, so there's no AI
-redraft here. To make a change, go back to step 4.2 and edit that module's activities.
+redraft here. To make a change, go back to step 4.3 and edit that module's activities.
 
 ::: fields notes
 - Your notes on any week that feels heavy, thin, or silent, one module per line | Module 3: Saturday is the whole assignment. Open the script Wednesday and make it due Sunday.
@@ -687,182 +918,13 @@ Checklist:
 
 ### Checks
 
-None beyond step 4.2's, which run again when you change any activities.
+None beyond step 4.3's, which run again when you change any activities.
 
 ### Save
 
 Saved with your project. Your notes stay with each module's plan for your ID to see at your
 check-in.
 Project file: `modules[].weekWalk` (walk-through, hours, reaction).
-
----
-
-## 4.4 Add your story to an assignment
-
-Track: refresh
-Time: about 30 minutes
-Pattern: paste, then rewrite (refresh only)
-
-### Learn
-
-::: purpose
-**What you'll do:** Choose one assignment your course already has and use AI to rewrite its overview
-and guidelines so the assignment takes place inside your story. Its CLO, deliverable, weight, and
-rubric stay the same.
-
-**Why it matters:** In step 4.2 you planned which activities move onto your storyline. This is where
-students will see that change: the instructions in Canvas. Rewriting one assignment now gives you
-the method for the rest, which you'll update with your ID during development.
-:::
-
-Your existing assignments were written before your course had a character and a storyline. Most
-ask students to apply an idea to a case they invent or remember. Adding the story changes the
-setting, not the assessment. Students do the same work and are graded with the same rubric, but they
-do it for your character, at the decision your scenario for that module sets up (step 3.2).
-
-A story-based overview usually does three things:
-
-- **Opens in the character's situation.** It starts with what just happened, such as the report,
-  the complaint, or the deadline, instead of with a definition of the skill.
-- **Stops at the decision.** It names the choice the character faces and leaves it open. Making that
-  choice is the student's work.
-- **Stands on its own.** It gives every story detail a student needs, so a student who skipped the
-  announcement can still do the assignment.
-
-The guidelines keep their order and requirements. Each task is reworded so it refers to the
-story: "Write a script for a feedback conversation" becomes "Write the conversation Dana has with
-Jordan."
-
-A story also helps with the AI risk you checked in step 4.2. A specific character, situation, and
-decision are harder to answer with a generic AI response than "choose an example from your
-experience."
-
-### See it
-
-The MGMT 615 instructor chose the Module 3 Feedback Conversation Script. In step 4.2 it moved onto
-the storyline, and the instructor added line-by-line notes to lower its AI risk. Here its Canvas
-instructions catch up. A few lines, before and after:
-
-| Part | Before | After |
-|---|---|---|
-| Overview opens | Giving feedback is one of the most important skills a manager has. | Orders at Dana's distribution center keep slipping in the hour around shift change. |
-| Overview ends | You will write a script for a feedback conversation with an employee whose performance needs to improve. | You'll decide how she handles that conversation and write it. |
-| First task | Choose a performance problem from your own experience, or make one up. | Decide how Dana approaches Jordan: the warning Greg wants, coaching with no record, or coaching first and documenting the next steps. |
-| Unchanged | CLO 2, the 600- to 900-word script and 250-word reflection, high weight, due Sunday, the rubric | Same |
-
-The full rewrite is the recorded response under Draft.
-
-### Draft
-
-Choose the assignment and paste its current overview and guidelines from Canvas or the assignment
-document. Then select the button below. The AI rewrites both inside your story, using the scenario
-you saved for that module in step 3.2, and lists what changed and what stayed the same. Select
-**Use this version** to copy the rewrite into the boxes under Decide.
-
-::: fields
-- Which assignment? Choose a high-weight assignment in a module whose scenario you saved in step 3.2. | Module 3: Feedback Conversation Script
-- Its current overview, copied from Canvas | Giving feedback is one of the most important skills a manager has. In this assignment, you will write a script for a feedback conversation with an employee whose performance needs to improve, using the SBI model from this module.
-- Its current guidelines, as written | Choose a performance problem from your own experience, or make one up. Write a script of 600 to 900 words for the conversation, with what you would say and how the employee might respond. Label the Situation, Behavior, and Impact in your script. After the script, write a 250-word reflection on how you would handle defensiveness. Submit a Word document. Your script is graded with the Feedback Conversation Script rubric.
-:::
-
-AI instructions:
-
-```text
-The faculty member pasted the overview and guidelines of one existing assignment. You are also
-given its module, CLO, weight, and AI-use statement (step 4.2), the module's saved scenario (step
-3.2), the storyline premise (step 3.1), and the character profile (step 2.3). Rewrite the overview
-so it opens in the character's situation at the scenario's trigger and ends at the scenario's
-decision without resolving it. Rewrite each guideline so it refers to the story, in the same
-order. Keep exactly: the CLO and its verb, the deliverable (type, length, and format), the weight,
-the due date, the AI-use statement, and every requirement the rubric grades. Add no new graded
-requirement, except a change the faculty member saved for this assignment in step 4.2 (such as
-an AI-risk change); include that change and say the rubric may need a row for it. Include every story detail a student needs, so the assignment stands on its own. Use
-the faculty member's wording wherever the story doesn't require a change. Under 200 words for the
-overview. Then list what changed and what stayed the same.
-
-Return: {"overview": string, "guidelines": [string], "changed": [string], "kept": [string]}
-```
-
-Demo response (MGMT 615):
-
-**Overview:** Orders at Dana's distribution center keep slipping in the hour around shift change,
-when Jordan, her day-shift lead, hands off to night shift. Jordan came up under Dana, avoids hard
-conversations with his crew, and has turned defensive when the delays come up. Dana's director,
-Greg, wants a formal warning on file by Friday. Dana has to talk with Jordan first. In this
-assignment, you'll decide how she handles that conversation and write it, using the SBI model from
-this module.
-
-Guidelines:
-
-1. Decide how Dana approaches Jordan: the formal warning Greg wants, a coaching conversation with no
-   record, or coaching first and documenting only the next steps they agree on.
-2. Write a script of 600 to 900 words for the conversation, with what Dana says and how Jordan might
-   respond.
-3. Label the Situation, Behavior, and Impact in Dana's script, and add a one-line note beside each
-   line on why Dana says it.
-4. After the script, write a 250-word reflection on how Dana handles Jordan's defensiveness, and why
-   she chose this approach over the others.
-5. Submit a Word document. Your script is graded with the Feedback Conversation Script rubric.
-
-What changed:
-
-- The overview opens in Dana's situation and ends at her decision.
-- Students write for Dana and Jordan instead of a problem they choose or make up.
-- The reflection asks about Dana's choice, which the rubric's defensiveness criterion already covers.
-- The line-by-line notes you chose in step 4.2 to lower the AI risk are added. The rubric may need a
-  row for them; ask your ID.
-
-What stayed the same:
-
-- CLO 2 and its verb, design.
-- A 600- to 900-word script with SBI labels and a 250-word reflection, submitted as a Word document.
-- High weight, due Sunday at 11:59 p.m. CT, and the Feedback Conversation Script rubric.
-
-### Decide
-
-Read the rewrite as one of your students would, then make it yours in these boxes. Type in either
-box to change it, or select **Redraft with AI** under a box to have the AI rewrite just that part.
-
-::: fields
-- Your rewritten overview
-- Your rewritten guidelines, one per line
-:::
-
-::: fields notes
-- Notes for your ID: which assignments you'd like to update next, and anything the rubric may need
-:::
-
-Checklist:
-
-- A student who skipped the announcement could still do this assignment.
-- The overview stops at the decision and doesn't give away the answer.
-- Students do the same work and are graded with the same rubric, apart from any change you chose in
-  step 4.2.
-
-### Checks
-
-When you save, the tool compares the rewrite with what you pasted and checks that:
-
-- **Alignment:** the CLO, its verb, and the weight are unchanged;
-- **Deliverable:** the type, length, format, and due date are unchanged;
-- **Rubric:** every graded requirement is still there, and nothing new is graded except a change you
-  saved in step 4.2;
-- **Story:** the overview names your character and the module's scenario, and ends at the decision
-  without resolving it.
-
-### Save
-
-Saved as a Word file in your save folder, with the assignment's name, for your ID: the current and
-rewritten overview and guidelines, side by side. Your ID uses it to update the assignment in Canvas
-during development.
-Planning document: a "story added" note on the assignment's line in Tables 1 and 2, for example
-"Assignment: Feedback Conversation Script: Dana and Jordan (CLO 2, high, RSI 2; story added)".
-Project file: `modules[].activities[].storyRewrite` (original, overview, guidelines, notes).
-
-### Go deeper (supplemental)
-
-- `src:guide-storytelling`
-- `src:guide-learning-activities`, `src:guide-rubrics`
 
 ---
 

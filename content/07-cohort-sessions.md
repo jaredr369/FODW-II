@@ -243,7 +243,7 @@ When you save each module, the tool checks that:
   later in the week;
 - it shows at least one RSI category.
 
-The week walk-through in step 4.3 then includes the session.
+The week walk-through in step 4.4 then includes the session.
 
 ### Save
 
@@ -280,11 +280,11 @@ A cohort session gives students five things live. Without one, plan where each c
 |---|---|
 | Feedback on their own work | Feedback on a draft before the main assignment, in writing or a short video |
 | Applying the concept to their own job | A discussion prompt or reflection that asks students to use the week's framework at work |
-| Practice with peers | Peer review, a small-group discussion, or practice with an AI tutor from step 4.1 |
+| Practice with peers | Peer review, a small-group discussion, or practice with an AI tutor from step 4.2 |
 | Your judgment on a messy case | A short video or announcement in which you work through the case and explain your call |
 | A preview of the next assessment | A practice problem, shaped like the next assignment, with feedback |
 
-The 90 minutes a session would take go to activities, so check each module's week in step 4.2
+The 90 minutes a session would take go to activities, so check each module's week in step 4.3
 again. Your communication plan in Module 8 carries more of your presence, too. If your program
 allows it, optional live office hours give students a place to ask questions face to face.
 

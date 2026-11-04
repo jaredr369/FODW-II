@@ -690,7 +690,7 @@ function md(text, opts = {}) {
       if (state.track === which) html += md(buf.join('\n'), opts);
       continue;
     }
-    // Steps that work one module at a time (3.2, 4.2, ...): ::: module-picker chooses the module,
+    // Steps that work one module at a time (3.2, 4.3, ...): ::: module-picker chooses the module,
     // ::: module-options shows the AI's draft for it, and ::: module-fields holds the faculty member's version.
     if (/^:::\s*module-(picker|options|fields)\s*$/.test(line)) {
       const which = line.match(/picker|options|fields/)[0], rows = []; i++;
@@ -730,12 +730,12 @@ function md(text, opts = {}) {
     }
     if (/^:::\s*due-dates\s*$/.test(line)) {
       i++; while (i < lines.length && !/^:::\s*$/.test(lines[i])) i++;
-      i++; html += '<div class="due-dates">' + dueDates(pickOf('4.2')) + '</div>'; continue;
+      i++; html += '<div class="due-dates">' + dueDates(pickOf('4.3')) + '</div>'; continue;
     }
     if (/^:::\s*(week-check|workload-chart)\s*$/.test(line)) {
       const which = line.match(/week-check|workload-chart/)[0]; i++;
       while (i < lines.length && !/^:::\s*$/.test(lines[i])) i++;
-      i++; html += which === 'week-check' ? '<div class="week-check" role="status">' + weekCheck(pickOf('4.2')) + '</div>' : '<div class="wl-chart-wrap">' + workloadChart() + '</div>';
+      i++; html += which === 'week-check' ? '<div class="week-check" role="status">' + weekCheck(pickOf('4.3')) + '</div>' : '<div class="wl-chart-wrap">' + workloadChart() + '</div>';
       continue;
     }
     // ::: figure <type> | <title> block: an infographic. Its words come from "- a | b | c" lines in the
@@ -883,7 +883,7 @@ const actLine = a => a.type + ': ' + a.title + ' (' + a.clos.join(', ') + ', ' +
 // Each module-at-a-time step: its boxes, which box marks a module as started, and the AI draft for module n.
 const MODULE_STEPS = {
   '3.2': { parts: SCEN_PARTS, done: 'title', rows: k => k === 'title' ? 1 : 3, draft: scenarioDraft },
-  '4.2': { parts: ACT_PARTS, done: 'activities', rows: k => k === 'activities' ? 5 : 3, draft: activityDraft },
+  '4.3': { parts: ACT_PARTS, done: 'activities', rows: k => k === 'activities' ? 5 : 3, draft: activityDraft },
   '5.1': { parts: [['materials', 'Your materials for this module, one per line: type: title, author (year) (pages or minutes, the activity it prepares students for)']], done: 'materials', rows: () => 6, draft: materialsDraft },
   '6.1': { parts: [['media', 'Your media for this module, one per line: kind (who makes it): title, minutes. Story: its connection to your storyline']], done: 'media', rows: () => 6, draft: mediaDraft },
   '7.1': { parts: [['cohort', 'Your session activity for this module: title, the decision or task, what students do live, and what they get live']], done: 'cohort', rows: () => 5, draft: cohortDraft, first: 2 },
@@ -916,7 +916,7 @@ function scenarioDraft(n) {
     '<div class="scen-opt" data-opt="2"><p><strong>Option 2: ' + esc(a.title) + '</strong></p><p>' + esc(a.premise) + '</p>' +
     '<p class="scen-note">This option takes a different angle from your arc. If you use it, select Redraft with AI under each empty box to fill in the five parts.</p></div>';
 }
-// 4.2: the module's activities, then what the checks will find: hours, RSI categories, and AI risk.
+// 4.3: the module's activities, then what the checks will find: hours, RSI categories, and AI risk.
 function activityDraft(n) {
   const d = DATA.demo['mgmt615-activities.json'], m = d.modules[n - 1], acts = m.activities;
   const hours = acts.reduce((s, a) => s + (a.hours || 0), 0);
@@ -1204,7 +1204,7 @@ function planSummary() {
     const storyMedia = med[k].media.some(i => i.kind === 'scenario' || i.kind === 'graphic');
     const c = cohortOf(n), cohort = n === 1 ? 'None in Module 1' : !hasCohort() ? 'No cohort sessions' : c ? c.title : '';
     const target = n === 1 ? 4 : weeklyTarget(), far = w.flags.filter(x => x !== 'crunch');
-    if (far.length) open.push('<li><strong>Module ' + n + ':</strong> about ' + hrs(w.total) + ' hours against a target of ' + (n === 1 ? 'about 4' : 'close to ' + hrs(target)) + '. ' + goto('m4:4.2', n, 'Go to the step') + '</li>');
+    if (far.length) open.push('<li><strong>Module ' + n + ':</strong> about ' + hrs(w.total) + ' hours against a target of ' + (n === 1 ? 'about 4' : 'close to ' + hrs(target)) + '. ' + goto('m4:4.3', n, 'Go to the step') + '</li>');
     if (!storyMedia) open.push('<li><strong>Module ' + n + ':</strong> no scenario video or graphic. Say how the media carries the story, or note why none is needed. ' + goto('m6:6.1', n, 'Go to the step') + '</li>');
     const ok = '<span class="ok" aria-label="connects">✓</span> ';
     return '<tr><th scope="row">' + n + '. ' + esc(m.title) + '</th><td>' + esc(sc[k].chosen.title) + '</td><td>' + esc(main.title) + '</td>' +
@@ -1221,7 +1221,7 @@ function planSummary() {
     '<h4>The whole document</h4><p>Read it once, top to bottom, the way your ID and the development team will.</p>' +
     '<div class="row"><button type="button" class="btn sec" data-opendoc>Open the ' + (isRefresh() ? 'updated Course Map' : 'planning document') + '</button><button type="button" class="btn" data-final>Save final version</button></div></div>';
 }
-// Workload: a module's week = activities (typed in 4.2, or the AI draft) + readings and media (estimated until
+// Workload: a module's week = activities (typed in 4.3, or the AI draft) + readings and media (estimated until
 // Modules 5 and 6 are saved) + the 90-minute cohort session (Modules 2 to 8). Module 1's target is about 4 hours.
 // Most Flex Online courses hold a cohort session in Modules 2 to 8; a course can say it has none.
 const hasCohort = () => state.cohort !== 'no';
@@ -1236,7 +1236,7 @@ function parseActs(text) {
 const lineHours = l => { const h = l.match(/(\d+(?:\.\d+)?)\s*(?:hours?|hrs?)\b/i), m = l.match(/(\d+(?:\.\d+)?)\s*(?:minutes?|mins?)\b/i);
   return h ? +h[1] : m ? +m[1] / 60 : 0; };
 const moduleActs = (n, demo) => {
-  const typed = (modText('4.2', n).activities || '').trim();
+  const typed = (modText('4.3', n).activities || '').trim();
   if (!typed && !demo) return null;
   return typed ? parseActs(typed) : DATA.demo['mgmt615-activities.json'].modules[n - 1].activities.map(a => ({ title: a.type + ': ' + a.title, type: a.type, weight: a.weight, hours: a.hours, due: '' }));
 };
@@ -1427,7 +1427,7 @@ function renderValue(v) {
 
 /* ---------- views ---------- */
 const STEP_DOC = { 'GS.2': ['title'], '1.1': ['catalog', 'plos', 'learners'], '1.2': ['vision'], '1.3': ['clos'], '1.4': ['modules'],
-  '2.1': ['interaction'], '2.3': ['character'], '3.1': ['premise'], '3.2': ['scenario'], '4.2': ['activities', 'tools'],
+  '2.1': ['interaction'], '2.3': ['character'], '3.1': ['premise'], '3.2': ['scenario'], '4.3': ['activities', 'tools'],
   '5.1': ['materials'], '6.1': ['media'], '7.1': ['cohort'], '8.2': ['communication'] };
 function shown(section) {
   if (state.showAll) return true;
@@ -1672,12 +1672,12 @@ function useButtons(sec) {
       ? btn('Use this scenario', SCEN_PARTS.map(([k]) => c.chosen[k] || ''))
       : btn('Use this scenario', [c.alternative.title, c.alternative.premise, '', '', '', '', ''])));
   }
-  if (key === '4.1') {
+  if (key === '4.2') {
     const p2 = [...out.querySelectorAll('p')].find(x => /^System instructions:/.test(x.textContent));
     if (p2) p2.insertAdjacentHTML('afterend', btn('Use these instructions', [label(out, "Where it's used"), label(out, 'System instructions')]));
   }
-  if (key === '4.2') {
-    const m = DATA.demo['mgmt615-activities.json'].modules[pickOf('4.2') - 1], o = out.querySelector('.scen-opt');
+  if (key === '4.3') {
+    const m = DATA.demo['mgmt615-activities.json'].modules[pickOf('4.3') - 1], o = out.querySelector('.scen-opt');
     if (o) o.insertAdjacentHTML('beforeend', btn('Use these activities', [m.activities.map(actLine).join('\n')]));
   }
   if (key === '5.1') {
@@ -1696,7 +1696,7 @@ function useButtons(sec) {
     out.insertAdjacentHTML('beforeend', btn('Use this script', { av: { title: grab(/Title:\s*(.+?)\.\s*Duration:/), minutes: grab(/Duration:\s*about\s*([\d.]+)/),
       module: grab(/Module & Section:\s*(.+?)\.?\s*(?:Part|$)/), rows } }));
   }
-  if (key === '4.4') out.insertAdjacentHTML('beforeend', btn('Use this version', [label(out, 'Overview'), listAfter('Guidelines')]));
+  if (key === '4.1') out.insertAdjacentHTML('beforeend', btn('Use this version', [label(out, 'Overview'), listAfter('Guidelines')]));
   if (key === '8.2') out.insertAdjacentHTML('beforeend', btn('Use this plan', [listAfter('Plan'), label(out, 'Module 1 opening announcement')]));
   if (key === '7.1') {
     const c = cohortOf(pickOf('7.1')), o = out.querySelector('.scen-opt');
@@ -1713,8 +1713,8 @@ function useButtons(sec) {
   }
 }
 
-// Refresh step 4.4 rewrites one assignment inside the story; the demo rewrites Module 3's high-weight assignment.
-const storyAdded = (i, a) => isRefresh() && state.done['4.4'] && i === 2 && a.weight === 'high';
+// Step 4.1 puts one assignment inside the story; on refresh the demo rewrites Module 3's high-weight assignment.
+const storyAdded = (i, a) => isRefresh() && state.done['4.1'] && i === 2 && a.weight === 'high';
 
 /* ---------- planning document ---------- */
 function renderDoc() {
@@ -1797,7 +1797,7 @@ document.addEventListener('input', e => {
   const k = e.target.dataset && e.target.dataset.mfield; if (!k) return;
   const key = stepKey(), n = pickOf(key); state.mods = state.mods || {}; state.mods[key] = state.mods[key] || {};
   state.mods[key][n] = state.mods[key][n] || {}; state.mods[key][n][k] = e.target.value; save();
-  if (key === '4.2') { const dd = document.querySelector('.due-dates'); if (dd) dd.innerHTML = dueDates(n); const wc = document.querySelector('.week-check'); if (wc) wc.innerHTML = weekCheck(n); const ch = document.querySelector('.wl-chart-wrap'); if (ch) ch.innerHTML = workloadChart(); }
+  if (key === '4.3') { const dd = document.querySelector('.due-dates'); if (dd) dd.innerHTML = dueDates(n); const wc = document.querySelector('.week-check'); if (wc) wc.innerHTML = weekCheck(n); const ch = document.querySelector('.wl-chart-wrap'); if (ch) ch.innerHTML = workloadChart(); }
 });
 document.addEventListener('keydown', e => {
   const el = editable(e.target);
