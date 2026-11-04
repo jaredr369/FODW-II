@@ -229,6 +229,10 @@ Next, upload your Course Map as a Word file or paste its text. Select Sort with 
 sorts it into the sections this workshop reviews. Without the AI, you skip the upload
 and paste each current section when you reach it.
 
+::: fields
+- Your Course Map. Upload it as a Word file, or paste the text.
+:::
+
 AI instructions:
 
 ```text

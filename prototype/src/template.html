@@ -330,6 +330,9 @@ summary { cursor: pointer; color: var(--muted); font-size: 14px; }
 .setup-msg { margin: 6px 0 0; font-weight: 600; color: var(--ok); }
 .setup-msg.warn { color: var(--warn); }
 .redraft-row { margin: 2px 0 0; }
+.upload-row { margin: 6px 0 0; }
+.upload-msg { font-size: 14px; color: var(--muted, #5f5a54); }
+.upload-msg.warn { color: #9a3412; }
 .redraft-row .linkbtn { padding: 2px 0; font-size: 14px; }
 .redraft-panel { border-left: 3px solid var(--line); padding: 4px 0 4px 12px; margin: 6px 0 4px; }
 .redraft-panel label { font-weight: 600; font-size: 15px; display: block; }
@@ -830,6 +833,9 @@ function md(text, opts = {}) {
         const [q, hint] = it.split(' | '), id = 'f' + (++formId);
         return '<div class="field"><label for="' + id + '"' + tag('p', q) + '>' + inline(q) + '</label>' +
           '<textarea id="' + id + '" rows="' + (/paste|one per line|sentences/i.test(q) ? 5 : 2) + '"></textarea>' +
+          // "Upload it as a Word file" questions get an upload button that reads the file into the box.
+          (/upload it as a Word file/i.test(q) ? '<div class="row upload-row"><button type="button" class="btn sec" data-upload>Upload a Word file</button>' +
+            '<input type="file" accept=".docx,.txt" data-upload-for="' + id + '" hidden><span class="upload-msg" role="status"></span></div>' : '') +
           (fred ? '<div class="redraft-row"><button type="button" class="linkbtn" data-redraft aria-expanded="false">Redraft with AI</button></div>' : '') +
           (hint ? '<p class="hint">Example (MGMT 615): <span' + tag('p', hint) + '>' + inline(hint) + '</span></p>' : '') + '</div>';
       }).join('') + '</div>';
@@ -1823,6 +1829,50 @@ document.addEventListener('paste', e => {
   e.preventDefault(); document.execCommand('insertText', false, e.clipboardData.getData('text/plain'));
 });
 // In edit mode, clicking text places the cursor instead of following a link or ticking a checkbox.
+// Upload a Word file: read its text in the browser (a .docx is a zip; word/document.xml holds the text)
+// and put it in the answer box. Nothing is sent anywhere.
+async function docxText(file) {
+  if (/\.txt$/i.test(file.name)) return file.text();
+  const buf = new Uint8Array(await file.arrayBuffer()), dv = new DataView(buf.buffer);
+  let e = buf.length - 22; while (e >= 0 && dv.getUint32(e, true) !== 0x06054b50) e--;
+  if (e < 0) throw new Error('not a Word file');
+  let p = dv.getUint32(e + 16, true);
+  for (let k = dv.getUint16(e + 10, true); k > 0; k--) {
+    const method = dv.getUint16(p + 10, true), size = dv.getUint32(p + 20, true), nl = dv.getUint16(p + 28, true),
+      xl = dv.getUint16(p + 30, true), cl = dv.getUint16(p + 32, true), off = dv.getUint32(p + 42, true);
+    if (new TextDecoder().decode(buf.subarray(p + 46, p + 46 + nl)) === 'word/document.xml') {
+      const start = off + 30 + dv.getUint16(off + 26, true) + dv.getUint16(off + 28, true), data = buf.subarray(start, start + size);
+      const raw = method === 0 ? data : new Uint8Array(await new Response(new Blob([data]).stream().pipeThrough(new DecompressionStream('deflate-raw'))).arrayBuffer());
+      const W = 'http://schemas.openxmlformats.org/wordprocessingml/2006/main', doc = new DOMParser().parseFromString(new TextDecoder().decode(raw), 'application/xml');
+      // A paragraph's text: runs' text, tabs, and line breaks.
+      const para = el => [...el.getElementsByTagNameNS(W, '*')].filter(n => n.parentNode.localName === 'r')
+        .map(n => n.localName === 't' ? n.textContent : n.localName === 'tab' ? '\t' : n.localName === 'br' ? '\n' : '').join('');
+      // Tables become one line per row, cells separated by " | ", so a two-column A/V script keeps its columns.
+      const block = el => el.localName === 'p' ? para(el) : el.localName === 'tbl'
+        ? [...el.children].filter(r => r.localName === 'tr').map(r => [...r.children].filter(c => c.localName === 'tc')
+          .map(c => [...c.children].map(block).filter(Boolean).join(' ')).join(' | ')).join('\n')
+        : el.localName === 'sdt' ? [...el.getElementsByTagNameNS(W, 'sdtContent')[0]?.children || []].map(block).join('\n') : '';
+      const body = doc.getElementsByTagNameNS(W, 'body')[0];
+      return [...body.children].map(block).join('\n').replace(/\n{3,}/g, '\n\n').trim();
+    }
+    p += 46 + nl + xl + cl;
+  }
+  throw new Error('not a Word file');
+}
+document.addEventListener('change', async e => {
+  const inp = e.target; if (!inp.matches || !inp.matches('input[data-upload-for]') || !inp.files[0]) return;
+  const box = document.getElementById(inp.dataset.uploadFor), msg = inp.parentNode.querySelector('.upload-msg'), f = inp.files[0];
+  msg.classList.remove('warn');
+  try {
+    box.value = await docxText(f);
+    box.rows = Math.min(16, Math.max(box.rows, box.value.split('\n').length + 1));
+    box.dispatchEvent(new Event('input', { bubbles: true }));
+    msg.textContent = 'Added the text of ' + f.name + '. Check it, then continue.';
+  } catch (err) {
+    msg.classList.add('warn'); msg.textContent = "Couldn't read " + f.name + '. Save it as a .docx file, or paste the text instead.';
+  }
+  inp.value = '';
+});
 document.addEventListener('click', e => { if (editable(e.target) && e.target.closest('a, label')) e.preventDefault(); }, true);
 document.addEventListener('click', e => {
   const t = e.target.closest('button, input'); if (!t) return;
@@ -1859,6 +1909,7 @@ document.addEventListener('click', e => {
     setTimeout(() => { wait.hidden = true; t.disabled = false; msg.textContent = "Connected to TAMU AI Chat. (Demo: the key isn't sent anywhere.)"; }, 900);
     return;
   }
+  if (t.hasAttribute('data-upload')) { t.parentNode.querySelector('input[type=file]').click(); return; }
   if (t.hasAttribute('data-folder')) {
     const msg = t.closest('.row').nextElementSibling;
     msg.textContent = "In the finished tool, this opens your computer's folder picker. (Demo: no folder is chosen.)";
