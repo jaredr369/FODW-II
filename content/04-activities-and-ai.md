@@ -407,7 +407,7 @@ Google Gemini is on by default in Canvas courses. If you don't see it, turn it o
 
 ::: when aiChoice=grader
 ::: fold How to build a grading assistant in TAMU AI Chat
-1. Open TAMU AI Chat at chat.tamu.ai and sign in with your NetID.
+1. Open TAMU AI Chat at [chat.tamu.ai](https://chat.tamu.ai) and sign in with your NetID.
 2. Select **Add a new model** from the options on the left. Give the model a name and select the AI model
    from the Base Model dropdown.
 3. Copy the grading instructions the AI drafts below and paste them into the TAMU AI Chat

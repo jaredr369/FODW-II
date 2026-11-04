@@ -85,7 +85,7 @@ or, if you're updating a course you already teach, a review of it. You can conne
 the Settings button at the top of every page.
 
 ::: fold How to get your TAMU AI key (about a minute)
-1. Open TAMU AI Chat at chat.tamu.ai in a new tab and sign in with your NetID.
+1. Open TAMU AI Chat at [chat.tamu.ai](https://chat.tamu.ai) (it opens in a new tab) and sign in with your NetID.
 2. Select your name or profile picture in the lower-left corner, then Settings.
 3. Select Account from the options on the left. Then to the right of API keys, select Show.
 4. Select Create new secret key. If a key is already listed, you can use that one.
