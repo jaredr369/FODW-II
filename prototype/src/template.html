@@ -409,7 +409,7 @@ body.editing main { padding-bottom: 140px; }
 <body>
 <header>
   <h1>Course Plan Builder</h1>
-  <span class="badge">Prototype · Demo mode: MGMT 615, recorded AI responses</span>
+  <span class="badge" id="modeBadge"></span>
   <span class="spacer"></span>
   <div class="seg" role="group" aria-label="Track">
     <button type="button" data-track="full">Full build</button>
@@ -436,7 +436,9 @@ body.editing main { padding-bottom: 140px; }
 <script>
 const DATA = /*DATA*/null;
 const KEY = 'course-plan-builder-prototype:state';
-let state = { track: null, done: {}, at: 'welcome', showAll: false, pick: {}, mods: {} };
+let state = { track: null, done: {}, at: 'welcome', showAll: false, pick: {}, mods: {}, mode: 'mine', ans: {} };
+// Two modes: "mine" plans the faculty member's own course; "demo" walks through MGMT 615 with its example data.
+const isDemo = () => state.mode === 'demo';
 
 function load() { try { const s = JSON.parse(localStorage.getItem(KEY) || 'null'); if (s) state = Object.assign(state, s); } catch (e) {} }
 function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
@@ -1069,7 +1071,7 @@ const stepTitle = s => isRefresh() && !editing ? s.title.replace('Your Course Pl
 // Refresh: boxes whose answer the Course Map already has are filled in from it, word for word (no AI drafting).
 const PREFILL = [[/^Paste your catalog description/, cm => cm.catalog]];
 function refreshPrefill(root) {
-  const cm = DATA.demo['mgmt615-coursemap.json']; if (!isRefresh() || editing || !cm || !state.courseMap) return;
+  const cm = DATA.demo['mgmt615-coursemap.json']; if (!isDemo() || !isRefresh() || editing || !cm || !state.courseMap) return;
   root.querySelectorAll('.field').forEach(f => {
     const lab = f.querySelector('label'), box = f.querySelector('textarea'); if (!lab || !box || box.value) return;
     const hit = PREFILL.find(([re]) => re.test(lab.textContent.trim())); if (!hit) return;
@@ -1207,6 +1209,8 @@ const CUR_LABEL = { vision: 'course vision', clos: 'course-level objectives (CLO
 const IN_PLACE = { '1.2': 'vision', '1.3': 'clos', '1.4': 'modules', '4.3': 'activities', '5.1': 'materials', '6.1': 'media', '7.1': 'cohort' };
 const inPlace = () => isRefresh() && !editing && IN_PLACE[stepKey()];
 function curText(which, n) {
+  // Your course: the Course Map's sections come from the AI's sort in GS.2 (state.source); example mode uses MGMT 615's.
+  if (!isDemo()) { const s = (state.source || {})[which]; return s == null ? '' : Array.isArray(s) ? (n ? s[n - 1] || '' : s.join('\n')) : String(s); }
   const cm = DATA.demo['mgmt615-coursemap.json']; if (!cm || !state.courseMap) return '';
   if (which === 'vision') return cm.vision;
   if (which === 'clos') return cm.clos.map(c => c.replace(/^CLO \d+:\s*/, '')).join('\n');
@@ -1247,7 +1251,7 @@ function foldAI(t) {
 function currentBox(which) {
   const cm = DATA.demo['mgmt615-coursemap.json']; if (!cm || !CUR_LABEL[which]) return '';
   // Edit in place: the Course Map text is already in the box above, so there's nothing to show twice.
-  if (inPlace()) return state.courseMap ? '' : '<p class="current-label">You haven’t uploaded a Course Map in Getting Started (' + inline('step GS.2') + '). Paste your current ' + esc(CUR_LABEL[which]) + ' into the box above, or go back and upload the Course Map. The AI reviews what’s in the box.</p>';
+  if (inPlace()) return state.courseMap && curText(which, pickOf(stepKey())) ? '' : '<p class="current-label">You haven’t uploaded a Course Map in Getting Started (' + inline('step GS.2') + '). Paste your current ' + esc(CUR_LABEL[which]) + ' into the box above, or go back and upload the Course Map. The AI reviews what’s in the box.</p>';
   const perModule = /^(activities|materials|media|cohort)$/.test(which), n = perModule ? pickOf(stepKey()) : 0, m = perModule ? cm.modules[n - 1] : null;
   const list = a => '<ul>' + a.map(x => '<li>' + esc(x) + '</li>').join('') + '</ul>';
   let body = '';
@@ -1586,12 +1590,16 @@ function bannerArt() {
 function renderWelcome() {
   return '<div class="banner hero">' + bannerArt() + '<div class="txt"><p class="kicker">Flex Online Design Workshop II</p><h2>Plan your Flex Online course</h2>' +
     '<p class="sub">Build your Course Planning Document, or update your Course Map, one module a week, with your ID.</p></div></div><div class="welcome">' +
-    '<p>This prototype walks through the workshop with MGMT 615: Managing People and Performance, a fictitious course, and plays back recorded AI responses so the demo never depends on a live connection. On Full build, every step builds one section of a new Course Planning Document; on Refresh, every step reviews and updates one section of your Course Map. Open it any time with the button at the top right.</p>' +
+    '<p>On Full build, every step builds one section of a new Course Planning Document; on Refresh, every step reviews and updates one section of your Course Map. Open it any time with the button at the top right.</p>' +
+    '<h3>Plan your course, or try the example</h3><div class="choice">' +
+    '<button type="button" data-mode="mine" aria-pressed="' + !isDemo() + '"><strong>Plan my course</strong>Your answers build your own plan, saved in this browser and in the files you save.</button>' +
+    '<button type="button" data-mode="demo" aria-pressed="' + isDemo() + '"><strong>Try the example</strong>Walk through the workshop with MGMT 615, a fictitious course, with recorded AI responses. Nothing you type here touches your own plan.</button></div>' +
     '<h3>Choose a track</h3><div class="choice">' +
     '<button type="button" data-track="full" aria-pressed="' + (state.track === 'full') + '"><strong>Full build</strong>A new course. Each step drafts its section from your course details.</button>' +
     '<button type="button" data-track="refresh" aria-pressed="' + (state.track === 'refresh') + '"><strong>Refresh</strong>A course already developed and taught in the Flex Online program. You upload its Course Map, and each step reviews your current section with flags and suggested revisions.</button></div>' +
     '<div class="row"><button type="button" class="btn" data-next ' + (state.track ? '' : 'disabled') + '>Start</button>' +
-    '<button type="button" class="btn sec" id="reset">Reset the demo</button></div></div>';
+    (isDemo() ? '' : '<button type="button" class="btn sec" data-open-project>Open a project file</button><input type="file" accept=".json,application/json" data-project-file hidden>') +
+    '<button type="button" class="btn sec" id="reset">' + (isDemo() ? 'Reset the example' : 'Start over') + '</button></div><p class="setup-msg" id="openMsg" role="status"></p></div>';
 }
 function findStep(go) {
   const [mid, key] = go.split(':');
@@ -1802,7 +1810,57 @@ function useButtons(sec) {
 const storyAdded = (i, a) => isRefresh() && state.done['4.1'] && i === 2 && a.weight === 'high';
 
 /* ---------- planning document ---------- */
+// Your course: read a saved answer by step and the start of its label, and a module step's box for module n.
+const ans = (go, start) => { const a = (state.ans || {})[go] || {}, k = Object.keys(a).find(x => x.startsWith(start)); return k ? String(a[k]).trim() : ''; };
+const linesOf = s => String(s || '').split('\n').map(x => x.replace(/^\s*[-*•]\s*/, '').trim()).filter(Boolean);
+const modAns = (key, n, k) => String(((((state.mods || {})[key] || {})[n]) || {})[k] || '').trim();
+const courseName = () => isDemo() ? 'MGMT 615 Managing People and Performance' : [ans('gs:GS.2', 'Course number'), ans('gs:GS.2', 'Course title')].filter(Boolean).join(' ');
+// 1.4's box: "Title. CLO 1, CLO 5. Topic; topic; topic." one module per line.
+const myModules = () => linesOf(ans('m1:1.4', 'Your modules')).map(l => {
+  const [title, clos, ...rest] = l.split(/\.\s+/);
+  return { title: title || '', clos: clos || '', topics: rest.join('. ').replace(/\.$/, '').split(';').map(x => x.trim()).filter(Boolean) };
+});
+function renderMyDoc() {
+  const isTool = l => /^(Perusall|Peerceptiv|Poll Everywhere)\b/i.test(l);
+  const empty = '<p class="empty">Not filled in yet.</p>', blank = '<span class="empty">[Enter]</span>';
+  const ul = arr => arr.length ? '<ul>' + arr.map(x => '<li>' + esc(x) + '</li>').join('') + '</ul>' : '';
+  const para = s => s ? s.split(/\n{2,}/).map(x => '<p>' + esc(x).replace(/\n/g, '<br>') + '</p>').join('') : '';
+  const sec = (title, body) => '<h3>' + title + '</h3>' + (body || empty);
+  const mods = myModules();
+  const cell = html => html || blank;
+  const rows = [
+    ['M1', 'Module Titles', i => esc((mods[i] || {}).title || '')],
+    ['M1', 'CLOs met', i => esc((mods[i] || {}).clos || '')],
+    ['M1', 'Module Topics', i => ul((mods[i] || {}).topics || [])],
+    ['M3', 'Scenario', i => { const ti = modAns('3.2', i + 1, 'title'), pr = modAns('3.2', i + 1, 'premise'); return ti || pr ? (ti ? '<strong>' + esc(ti) + '.</strong> ' : '') + esc(pr) : ''; }],
+    ['M4', 'Learning Activities Plan Part 1 (Canvas Assignments)', i => ul(linesOf(modAns('4.3', i + 1, 'activities')).filter(l => !isTool(l)))],
+    ['M4', 'Learning Activities Plan Part 2 (Third-Party Tool Activities)', i => ul(linesOf(modAns('4.3', i + 1, 'activities')).filter(isTool))],
+    ['M5', 'Learning Materials Plan', i => ul(linesOf(modAns('5.1', i + 1, 'materials')))],
+    ['M6', 'Learning Media Plan', i => ul(linesOf(modAns('6.1', i + 1, 'media')))],
+    ['M7', 'Learning Activities Plan Part 3 (Cohort Session Activities)', i => !hasCohort() ? '<span class="empty">No cohort sessions in this course</span>' : i === 0 ? '<span class="empty">No cohort session in Module 1</span>' : para(modAns('7.1', i + 1, 'cohort'))]
+  ];
+  const table = from => '<div class="scroll"><table><thead><tr><th>FODW</th><th>Course Item</th>' + [0, 1, 2, 3].map(k => '<th>Module ' + (from + k + 1) + '</th>').join('') + '</tr></thead><tbody>' +
+    rows.map(([w, label, fn]) => '<tr><td>' + w + '</td><th scope="row">' + label + '</th>' + [0, 1, 2, 3].map(k => '<td>' + cell(fn(from + k)) + '</td>').join('') + '</tr>').join('') + '</tbody></table></div>';
+  const ch = s => ans('m2:2.3', s);
+  const charBody = ['Premise statement', 'Position', 'Conflict', 'Peers', 'Values and fears', 'Backstory'].map(s => ch(s) ? '<p><strong>' + s + ':</strong> ' + esc(ch(s)).replace(/\n/g, '; ') + '</p>' : '').join('');
+  const plos = linesOf(ans('m1:1.1', "Paste your program")), sup = ans('m1:1.1', 'Which two to four');
+  let h = '<div class="row" style="margin-top:0"><button type="button" class="btn sec" id="closeDoc">Close</button>' +
+    '<button type="button" class="btn" id="download">Download (Word)</button><button type="button" class="btn sec" id="saveProject">Save project file</button></div>' +
+    '<p class="hint">This is your plan as you\u2019ve saved it so far. Empty parts fill in as you finish each step.</p>';
+  h += '<h2>' + (courseName() ? esc(courseName()) : '[Course Name and Number]') + ' ' + (isRefresh() ? 'Course Map, updated' : 'Course Planning Document') + '</h2>';
+  h += sec('TAMU Catalog Course Description', para(ans('m1:1.1', 'Paste your catalog description')));
+  h += sec('Program-Level Outcomes', ul(plos) + (sup ? '<p><strong>This course supports:</strong> ' + esc(sup) + '</p>' : ''));
+  h += sec('Course Vision', para(ans('m1:1.2', 'Your course vision')));
+  h += sec('Learners', para(ans('m1:1.1', 'Your learner description')));
+  h += sec('Course-Level Objectives (CLOs)', ul(linesOf(ans('m1:1.3', 'Your CLOs')).map((c, i) => 'CLO ' + (i + 1) + ': ' + c.replace(/^CLO \d+:\s*/, ''))));
+  h += '<h3>Table 1: Course Planning Modules 1-4</h3>' + table(0) + '<h3>Table 2: Course Planning Modules 5-8</h3>' + table(4);
+  h += sec('Storyline', para(ans('m3:3.1', 'Your storyline premise')) + (charBody ? '<h4>Character Profile</h4>' + charBody : ''));
+  const comm = linesOf(ans('m8:8.2', 'Your communication and feedback plan'));
+  h += sec('Instructor Interaction', para(ans('m2:2.1', 'Your interaction statement')) + (comm.length ? '<h4>Communication and feedback plan</h4>' + ul(comm) : ''));
+  return h;
+}
 function renderDoc() {
+  if (!isDemo()) return renderMyDoc();
   const f = DATA.demo['mgmt615-foundation.json'];
   const by = name => (DATA.demo[name] || { modules: [] }).modules;
   const sc = DATA.demo['mgmt615-scenarios.json'].modules, act = by('mgmt615-activities.json'), mat = by('mgmt615-materials.json'), med = by('mgmt615-media.json'), coh = by('mgmt615-cohort.json');
@@ -1840,10 +1898,32 @@ function renderDoc() {
   return h;
 }
 function downloadDoc() {
-  const body = $('#doc').cloneNode(true); body.querySelector('.row').remove();
+  const body = $('#doc').cloneNode(true); body.querySelectorAll('.row, .hint').forEach(x => x.remove());
   const html = '<html><head><meta charset="utf-8"><style>body{font-family:Calibri,Arial,sans-serif}table{border-collapse:collapse}td,th{border:1px solid #999;padding:4px;vertical-align:top}</style></head><body>' + body.innerHTML + '</body></html>';
   const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([html], { type: 'application/msword' }));
-  a.download = 'MGMT 615 ' + (isRefresh() ? 'Course Map, updated' : 'Course Planning Document') + ' (prototype).doc'; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+  const name = (isDemo() ? 'MGMT 615 example ' : (courseName() || 'My course') + ' ') + (isRefresh() ? 'Course Map, updated' : 'Course Planning Document') + '.doc';
+  saveFile(name, new Blob([html], { type: 'application/msword' }));
+}
+// Files go to the save folder chosen in GS.1 when the browser allows it (Edge and Chrome); otherwise they download.
+let saveDir = null;
+async function saveFile(name, blob) {
+  if (saveDir) {
+    try { const fh = await saveDir.getFileHandle(name, { create: true }), w = await fh.createWritable(); await w.write(blob); await w.close(); return 'folder'; }
+    catch (e) { saveDir = null; }
+  }
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = name; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 1000); return 'download';
+}
+// The project file is the whole workshop state, so the plan can be reopened on any computer.
+const projectName = () => (courseName() || 'My course') + ' project.json';
+function saveProject() {
+  const data = Object.assign({ app: 'fodw-ii', version: 1, savedAt: new Date().toISOString() }, state);
+  return saveFile(projectName(), new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' }));
+}
+// Save to plan, in your own course: write the project file and the planning document to the save folder.
+async function saveToFolder() {
+  if (isDemo() || !saveDir) return;
+  await saveProject();
+  const d = $('#doc'), was = d.innerHTML; d.innerHTML = renderDoc(); downloadDoc(); if (d.hidden) d.innerHTML = was;
 }
 
 /* ---------- render and events ---------- */
@@ -1854,16 +1934,32 @@ function render() {
   $('#main').innerHTML = state.at === 'welcome' ? renderWelcome() : renderStep(state.at) + pager();
   $('#docBtn').textContent = isRefresh() ? 'Updated Course Map' : 'Planning document';
   $('#doc').setAttribute('aria-label', isRefresh() ? 'Updated Course Map preview' : 'Course Planning Document preview');
-  refreshWording($('#main')); refreshPrefill($('#main')); if (state.at !== 'welcome') prefillInPlace();
+  refreshWording($('#main')); if (state.at !== 'welcome') { restoreAnswers(); refreshPrefill($('#main')); prefillInPlace(); }
+  $('#modeBadge').textContent = isDemo() ? 'Example mode: MGMT 615, recorded AI responses' : (courseName() || 'Your course');
   $('#credits').innerHTML = 'Banner image: ' + credit('Storyline path', '');
   CUR = null;
   if (!$('#doc').hidden) $('#doc').innerHTML = renderDoc();
   decorate();
 }
 const editable = t => editing && t instanceof Element && t.closest('[data-s]');
+// Answer boxes: any text box in a step that isn't kept somewhere else (module boxes, grids, the script form,
+// the run of show, settings). Each is remembered under its step and its label, so it survives Save and moving around.
+const isAnswerBox = el => el instanceof Element && el.closest('#main') && el.matches('textarea, input[type="text"]') &&
+  !el.dataset.mfield && !el.dataset.grid && !el.dataset.av && !el.dataset.avh && !el.dataset.ros && !el.dataset.setting && el.id !== 'glossFind';
+const ansLabel = el => { const f = el.closest('.field'), l = f && f.querySelector('label');
+  if (l) return l.textContent.replace(/\s*\(required\)\s*$/, '').trim().slice(0, 90);
+  return el.getAttribute('aria-label') || ''; };
+function restoreAnswers() {
+  const saved = (state.ans || {})[state.at]; if (!saved) return;
+  document.querySelectorAll('#main textarea, #main input[type="text"]').forEach(el => {
+    if (!isAnswerBox(el)) return; const k = ansLabel(el); if (!k || saved[k] == null) return;
+    el.value = saved[k]; if (el.tagName === 'TEXTAREA') el.rows = Math.max(el.rows, Math.min(16, el.value.split('\n').length + 1));
+  });
+}
 document.addEventListener('focusout', e => { const el = editable(e.target); if (el) recordEdit(el); });
 document.addEventListener('input', e => {
   if (e.target.dataset && e.target.dataset.orig !== undefined) diffUpdate(e.target);
+  if (isAnswerBox(e.target)) { const k = ansLabel(e.target); if (k) { state.ans = state.ans || {}; (state.ans[state.at] = state.ans[state.at] || {})[k] = e.target.value; save(); } }
   if (e.target.dataset && e.target.dataset.setting) { state[e.target.dataset.setting] = e.target.value; save();
     if (e.target.type === 'radio') { const y = window.scrollY; render(); window.scrollTo(0, y); document.querySelector('input[name="' + e.target.name + '"]:checked').focus({ preventScroll: true }); }
     return; }
@@ -1925,6 +2021,17 @@ async function docxText(file) {
   throw new Error('not a Word file');
 }
 document.addEventListener('change', async e => {
+  if (e.target.matches && e.target.matches('[data-project-file]') && e.target.files[0]) {
+    const f = e.target.files[0], msg = $('#openMsg');
+    try {
+      const d = JSON.parse(await f.text()); if (d.app !== 'fodw-ii') throw new Error('not a project file');
+      delete d.app; delete d.version; delete d.savedAt;
+      if (state.track && !confirm('Replace the work in this browser with ' + f.name + '?')) return;
+      state = Object.assign({ done: {}, pick: {}, mods: {}, ans: {} }, d, { mode: 'mine', at: 'welcome' }); save(); render();
+      $('#openMsg').textContent = 'Opened ' + f.name + '. Pick up where you left off.';
+    } catch (err) { msg.classList.add('warn'); msg.textContent = 'Couldn\u2019t open ' + f.name + '. Choose the project file (.json) this tool saved.'; }
+    e.target.value = ''; return;
+  }
   const inp = e.target; if (!inp.matches || !inp.matches('input[data-upload-for]') || !inp.files[0]) return;
   const box = document.getElementById(inp.dataset.uploadFor), msg = inp.parentNode.querySelector('.upload-msg'), f = inp.files[0];
   msg.classList.remove('warn');
@@ -1942,6 +2049,15 @@ document.addEventListener('click', e => { if (editable(e.target) && e.target.clo
 document.addEventListener('click', e => {
   const t = e.target.closest('button, input'); if (!t) return;
   if (t.dataset.track) { state.track = t.dataset.track; save(); render(); return; }
+  // Each mode keeps its own work: switching stores the current one and brings back the other.
+  if (t.dataset.mode) {
+    if (t.dataset.mode === state.mode) return;
+    const keep = ['track', 'done', 'pick', 'mods', 'ans', 'cohort', 'cohortDay', 'aiChoice', 'courseMap', 'avScript', 'grids', 'ros', 'startDate', 'weeklyTarget', 'source', 'showAll'];
+    const other = state.otherMode || {}, mine = {}; keep.forEach(k => { mine[k] = state[k]; delete state[k]; });
+    Object.assign(state, { done: {}, pick: {}, mods: {}, ans: {} }, other, { mode: t.dataset.mode, otherMode: mine, at: 'welcome' }); save(); render(); return;
+  }
+  if (t.hasAttribute('data-open-project')) { t.parentNode.querySelector('[data-project-file]').click(); return; }
+  if (t.id === 'saveProject') { saveProject().then(w => { t.textContent = w === 'folder' ? 'Saved to your folder' : 'Project file downloaded'; setTimeout(() => { t.textContent = 'Save project file'; }, 2500); }); return; }
   if (t.dataset.pickmod) {
     const key = stepKey(); state.pick = state.pick || {}; state.pick[key] = +t.dataset.pickmod; save(); render();
     const pick = document.querySelector('.scen-picker'); if (pick) { pick.scrollIntoView({ block: 'start' }); window.scrollBy(0, -70); document.querySelector('[data-pickmod="' + state.pick[key] + '"]').focus({ preventScroll: true }); }
@@ -1952,7 +2068,10 @@ document.addEventListener('click', e => {
   if (t.id === 'stepsBtn') { const open = document.body.classList.toggle('nav-open'); t.setAttribute('aria-expanded', String(open)); return; }
   if (t.dataset.go) { go(t.dataset.go); return; }
   if (t.hasAttribute('data-next')) { next(); return; }
-  if (t.id === 'reset') { state = { track: null, done: {}, at: 'welcome', showAll: false, pick: {}, mods: {} }; save(); render(); return; }
+  if (t.id === 'reset') {
+    if (!isDemo() && !confirm('Start over? Everything you\u2019ve entered in this browser will be cleared. Save a project file first if you want to keep it.')) return;
+    state = { track: null, done: {}, at: 'welcome', showAll: false, pick: {}, mods: {}, ans: {}, mode: state.mode, otherMode: state.otherMode }; save(); render(); return;
+  }
   if (t.hasAttribute('data-draft')) {
     if (t.hasAttribute('data-sortmap')) { state.courseMap = true; save(); }
     const sec = t.closest('section'); const wait = sec.querySelector('.thinking');
@@ -1988,8 +2107,12 @@ document.addEventListener('click', e => {
   }
   if (t.hasAttribute('data-upload')) { t.parentNode.querySelector('input[type=file]').click(); return; }
   if (t.hasAttribute('data-folder')) {
-    const msg = t.closest('.row').nextElementSibling;
-    msg.textContent = "In the finished tool, this opens your computer's folder picker. (Demo: no folder is chosen.)";
+    const msg = t.closest('.row').nextElementSibling; msg.classList.remove('warn');
+    if (isDemo()) { msg.textContent = 'In example mode, nothing is saved to a folder. Choose Plan my course on the Welcome page to save your own work.'; return; }
+    if (!window.showDirectoryPicker) { msg.classList.add('warn'); msg.textContent = 'This browser can\u2019t save to a folder. Your work stays in this browser, and Save to plan downloads your files instead. Edge or Chrome can save to a folder.'; return; }
+    window.showDirectoryPicker({ mode: 'readwrite' }).then(d => { saveDir = d; state.saveFolder = d.name; save();
+      msg.textContent = 'Saving to \u201c' + d.name + '\u201d. Each time you select Save to plan, your project file and planning document are written there. If you reopen this page, choose the folder again.'; })
+      .catch(() => { msg.textContent = 'No folder chosen.'; });
     return;
   }
   if (t.hasAttribute('data-check')) {
@@ -2092,7 +2215,7 @@ document.addEventListener('click', e => {
     return;
   }
   if (t.dataset.save) {
-    state.done[t.dataset.save] = true; save();
+    state.done[t.dataset.save] = true; save(); saveToFolder();
     const checks = $('#checks');
     render();
     const c2 = $('#checks'); if (c2) { c2.hidden = false; c2.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
