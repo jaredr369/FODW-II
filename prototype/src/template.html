@@ -330,6 +330,12 @@ summary { cursor: pointer; color: var(--muted); font-size: 14px; }
 .setup-msg { margin: 6px 0 0; font-weight: 600; color: var(--ok); }
 .setup-msg.warn { color: var(--warn); }
 .redraft-row { margin: 2px 0 0; }
+.ai-folded { font-size: 15px; color: var(--muted, #5f5a54); margin: 8px 0 0; }
+.orig-row { display: flex; gap: 18px; flex-wrap: wrap; margin: 4px 0 0; }
+.orig-row .linkbtn { font-size: 14px; padding: 2px 0; }
+.orig-diff { border: 1px solid var(--line); border-radius: 8px; padding: 6px 12px; margin: 6px 0; font-size: 15px; }
+.orig-diff ul { margin: 2px 0 6px; } .orig-diff del { color: #9a3412; } .orig-diff ins { text-decoration: none; background: #e7f3e3; }
+.diff-h { font-weight: 600; margin: 6px 0 2px; }
 .upload-row { margin: 6px 0 0; }
 .upload-msg { font-size: 14px; color: var(--muted, #5f5a54); }
 .upload-msg.warn { color: #9a3412; }
@@ -922,7 +928,9 @@ function moduleBlock(which, rows, opts) {
   }
   return '<p class="scen-for">Module ' + n + ': ' + esc(mod.title) + '</p><div class="form">' + cfg.parts.map(([k, label]) => {
     const id = 'mf-' + k;
-    return '<div class="field"><label for="' + id + '">' + esc(label) + '</label><textarea id="' + id + '" data-mfield="' + k + '" rows="' + cfg.rows(k) + '">' + esc(saved[k] || '') + '</textarea>' +
+    // Edit in place (Refresh): the main box starts with this module's section from the Course Map.
+    const orig = inPlace() && k === cfg.done ? curText(IN_PLACE[key], n) : '', v = saved[k] != null ? saved[k] : orig;
+    return '<div class="field"><label for="' + id + '">' + esc(label) + '</label><textarea id="' + id + '" data-mfield="' + k + '" rows="' + Math.max(cfg.rows(k), v.split('\n').length + 1) + '"' + (orig ? ' data-orig="' + esc(orig) + '"' : '') + '>' + esc(v) + '</textarea>' + (orig ? ORIG_LINKS : '') +
       (opts.redraft ? '<div class="redraft-row"><button type="button" class="linkbtn" data-redraft aria-expanded="false">Redraft with AI</button></div>' : '') + '</div>';
   }).join('') + '</div>';
 }
@@ -1194,8 +1202,52 @@ function rosForm() {
 // Refresh: "Your current ..." boxes show what the review starts from, taken from the Course Map uploaded in GS.2.
 const CUR_LABEL = { vision: 'course vision', clos: 'course-level objectives (CLOs)', modules: 'module titles, CLOs, and topics',
   activities: 'learning activities', materials: 'learning materials', media: 'learning media', cohort: 'cohort session' };
+// Refresh steps that review a Course Map section edit it in place: the section's text fills the box faculty edit
+// and save, and the AI's review sits below it. Step key -> the Course Map section.
+const IN_PLACE = { '1.2': 'vision', '1.3': 'clos', '1.4': 'modules', '4.3': 'activities', '5.1': 'materials', '6.1': 'media', '7.1': 'cohort' };
+const inPlace = () => isRefresh() && !editing && IN_PLACE[stepKey()];
+function curText(which, n) {
+  const cm = DATA.demo['mgmt615-coursemap.json']; if (!cm || !state.courseMap) return '';
+  if (which === 'vision') return cm.vision;
+  if (which === 'clos') return cm.clos.map(c => c.replace(/^CLO \d+:\s*/, '')).join('\n');
+  if (which === 'modules') return cm.modules.map(x => x.title + '. ' + x.clos.join(', ') + '. ' + x.topics.join('; ') + '.').join('\n');
+  const m = cm.modules[n - 1]; if (!m) return '';
+  return which === 'cohort' ? (m.cohort || '') : (m[which] || []).join('\n');
+}
+// Under a box filled from the Course Map: compare it with the original, or put the original back.
+const ORIG_LINKS = '<div class="orig-row"><button type="button" class="linkbtn" data-showdiff aria-expanded="false">Show what changed</button><button type="button" class="linkbtn" data-restore>Back to my Course Map text</button></div><div class="orig-diff" role="status" hidden></div>';
+function diffUpdate(box) {
+  const d = box && box.closest('.field') && box.closest('.field').querySelector('.orig-diff'); if (!d || d.hidden) return;
+  const split = s => (s.includes('\n') ? s.split('\n') : sents(s)).map(x => x.trim()).filter(Boolean);
+  const a = split(box.dataset.orig), b = split(box.value);
+  if (box.value.trim() === box.dataset.orig.trim()) { d.innerHTML = '<p>No changes from your Course Map yet.</p>'; return; }
+  const gone = a.filter(x => !b.includes(x)), added = b.filter(x => !a.includes(x));
+  d.innerHTML = (gone.length ? '<p class="diff-h">Removed or changed</p><ul>' + gone.map(x => '<li><del>' + esc(x) + '</del></li>').join('') + '</ul>' : '') +
+    (added.length ? '<p class="diff-h">New or changed</p><ul>' + added.map(x => '<li><ins>' + esc(x) + '</ins></li>').join('') + '</ul>' : '') +
+    (!gone.length && !added.length ? '<p>Only the order or spacing changed.</p>' : '');
+}
+// One-box steps (1.2 to 1.4): fill the box under Decide with the Course Map's text.
+function prefillInPlace() {
+  const key = stepKey(), which = inPlace(); if (!which || MODULE_STEPS[key]) return;
+  const box = document.querySelector('#decide textarea'), v = curText(which); if (!box || !v) return;
+  if (!box.value) box.value = v;
+  box.dataset.orig = v; box.rows = Math.max(box.rows, v.split('\n').length + 1, Math.ceil(v.length / 90) + 1);
+  box.insertAdjacentHTML('afterend', ORIG_LINKS);
+}
+// After faculty use an AI draft, fold it to one line so the page shows only their version.
+function foldAI(t) {
+  const sec = t.closest('section'); if (!sec) return;
+  const outs = [...sec.querySelectorAll('.demo-out')].filter(d => !d.hidden); if (!outs.length) return;
+  outs.forEach(d => d.hidden = true); sec.querySelectorAll('.ai-folded').forEach(x => x.remove());
+  const row = (sec.querySelector('[data-draft]') || outs[outs.length - 1]).closest('.row') || outs[outs.length - 1];
+  const what = isRefresh() ? 'review' : 'draft';
+  row.insertAdjacentHTML('afterend', '<p class="ai-folded" role="status"><span aria-hidden="true">✓</span> ' + (inPlace() ? 'Applied to your box. Edit it there.' : 'Copied under Decide. Edit it there.') +
+    ' <button type="button" class="linkbtn" data-unfold>Show the AI’s ' + what + '</button></p>');
+}
 function currentBox(which) {
   const cm = DATA.demo['mgmt615-coursemap.json']; if (!cm || !CUR_LABEL[which]) return '';
+  // Edit in place: the Course Map text is already in the box above, so there's nothing to show twice.
+  if (inPlace()) return state.courseMap ? '' : '<p class="current-label">You haven’t uploaded a Course Map in Getting Started (' + inline('step GS.2') + '). Paste your current ' + esc(CUR_LABEL[which]) + ' into the box above, or go back and upload the Course Map. The AI reviews what’s in the box.</p>';
   const perModule = /^(activities|materials|media|cohort)$/.test(which), n = perModule ? pickOf(stepKey()) : 0, m = perModule ? cm.modules[n - 1] : null;
   const list = a => '<ul>' + a.map(x => '<li>' + esc(x) + '</li>').join('') + '</ul>';
   let body = '';
@@ -1621,12 +1673,17 @@ function renderStep(goKey) {
   // "Draft (full build) and Review (refresh)", or another verb where Refresh does something else with an existing
   // file, such as "... and Convert (refresh)" or "... and Update (refresh)". The verb names the Refresh button.
   const bothKey = Object.keys(p).find(k => /^Draft \(full build\) and (\w+) \(refresh\)$/.test(k)), both = bothKey && p[bothKey];
-  if (both) h += aiPart(state.track === 'refresh' ? bothKey.match(/and (\w+)/)[1] : 'Draft', both);
+  // Edit in place (Refresh steps that review a Course Map section): the box comes first, filled with the
+  // Course Map text, then the AI's review, then the checklist. The module picker moves up above the box.
+  const ip = !!(inPlace() && (both || p['Review (refresh)'])), noPicker = s => ip ? s.replace(/^:::\s*module-picker\s*\n:::\s*\n?/m, '') : s;
+  let aiH = '';
+  if (both) aiH += aiPart(state.track === 'refresh' ? bothKey.match(/and (\w+)/)[1] : 'Draft', noPicker(both));
   else if (state.track === 'refresh' && p['Review (refresh)']) {
-    if (/no AI draft/i.test(p['Draft (full build)'] || '')) h += aiPart('Draft', p['Draft (full build)']);
-    h += aiPart('Review', p['Review (refresh)']);
+    if (/no AI draft/i.test(p['Draft (full build)'] || '')) aiH += aiPart('Draft', p['Draft (full build)']);
+    aiH += aiPart('Review', noPicker(p['Review (refresh)']));
   }
-  else if (p['Draft (full build)'] || p['Draft']) h += aiPart('Draft', p['Draft (full build)'] || p['Draft']);
+  else if (p['Draft (full build)'] || p['Draft']) aiH += aiPart('Draft', p['Draft (full build)'] || p['Draft']);
+  if (!ip) h += aiH;
   if (p['Decide']) {
     // Join a list item's indented continuation lines first, so a long checklist item stays one item.
     const dec = p['Decide'].replace(/\n {2,}(?=\S)/g, ' ').replace(/(^|\n)- (.+)/g, '$1[[CHK]]$2');
@@ -1638,9 +1695,14 @@ function renderStep(goKey) {
     }
     // Steps with an AI draft or review let faculty redraft any one Decide box.
     const hasAI = !!(both || p['Review (refresh)'] || p['Draft'] || (p['Draft (full build)'] && !/no AI draft/i.test(p['Draft (full build)'])));
-    h += '<section class="part" id="decide"><h3>Decide</h3>' + md(txt.join('\n').replace(/Checklist[^:\n]*:/, ''), { redraft: hasAI }) +
-      (checks.length ? '<div class="checklist" role="group" aria-label="Checklist">' + checks.map((c, i) => '<label><input type="checkbox" id="c' + i + '"> <span' + tag('li', c, { marker: '- ' }) + '>' + inline(c) + '</span></label>').join('') + '</div>' : '') + '</section>';
-  }
+    const checkH = checks.length ? '<div class="checklist" role="group" aria-label="Checklist">' + checks.map((c, i) => '<label><input type="checkbox" id="c' + i + '"> <span' + tag('li', c, { marker: '- ' }) + '>' + inline(c) + '</span></label>').join('') + '</div>' : '';
+    const decideBody = md(txt.join('\n').replace(/Checklist[^:\n]*:/, ''), { redraft: hasAI });
+    if (ip) {
+      const which = IN_PLACE[key], picker = MODULE_STEPS[key] && /module-picker/.test(both || p['Review (refresh)']) ? moduleBlock('picker', [], {}) : '';
+      h += '<section class="part" id="decide"><h3>Your ' + esc(CUR_LABEL[which]) + ' <span class="tag">From your Course Map</span></h3>' + picker + decideBody + '</section>' + aiH +
+        (checkH ? '<section class="part"><h3>Checklist</h3>' + checkH + '</section>' : '');
+    } else h += '<section class="part" id="decide"><h3>Decide</h3>' + decideBody + checkH + '</section>';
+  } else if (ip) h += aiH;
   if (p['Checks'] && !/^None\.?\s*$/.test(p['Checks'].trim())) h += '<section class="part" id="checks" hidden><h3>Checks <span class="tag">ran on save</span></h3>' + md(p['Checks']) +
     '<div class="flag ok">Every flag is fixed or has a note. This section is ready for your ID.</div></section>';
   if (p['Save']) h += '<section class="part"><h3>Save</h3>' + md(p['Save'].replace(/^Planning document:/gm, 'Goes into your ' + docName() + ':').replace(/\s*\((?:[^()]*?;\s*)?see\s+`export\.md`\)/g, '')) + '</section>';
@@ -1656,7 +1718,8 @@ function useButtons(sec) {
   const out = sec.querySelector('.demo-out'), key = state.at.split(':')[1], refresh = state.track === 'refresh';
   if (!out || out.dataset.used) return;
   out.dataset.used = '1';
-  const btn = (label, text) => '<div class="row use"><button type="button" class="btn sec" data-use="' + (USE_TEXT.push(text) - 1) + '">' + label + '</button></div>';
+  // Edit in place: nothing is copied anywhere, so "Use this revision" becomes "Apply this revision".
+  const btn = (label, text) => '<div class="row use"><button type="button" class="btn sec" data-use="' + (USE_TEXT.push(text) - 1) + '">' + (inPlace() ? label.replace(/^Use /, 'Apply ') : label) + '</button></div>';
   if (key === '1.2' && !refresh) out.querySelectorAll('li').forEach(li => li.insertAdjacentHTML('beforeend', btn('Use this version', li.textContent.trim())));
   if (key === '1.2' && refresh) {
     const p = [...out.querySelectorAll('p')].find(x => /^Suggested revision:/.test(x.textContent));
@@ -1791,7 +1854,7 @@ function render() {
   $('#main').innerHTML = state.at === 'welcome' ? renderWelcome() : renderStep(state.at) + pager();
   $('#docBtn').textContent = isRefresh() ? 'Updated Course Map' : 'Planning document';
   $('#doc').setAttribute('aria-label', isRefresh() ? 'Updated Course Map preview' : 'Course Planning Document preview');
-  refreshWording($('#main')); refreshPrefill($('#main'));
+  refreshWording($('#main')); refreshPrefill($('#main')); if (state.at !== 'welcome') prefillInPlace();
   $('#credits').innerHTML = 'Banner image: ' + credit('Storyline path', '');
   CUR = null;
   if (!$('#doc').hidden) $('#doc').innerHTML = renderDoc();
@@ -1800,6 +1863,7 @@ function render() {
 const editable = t => editing && t instanceof Element && t.closest('[data-s]');
 document.addEventListener('focusout', e => { const el = editable(e.target); if (el) recordEdit(el); });
 document.addEventListener('input', e => {
+  if (e.target.dataset && e.target.dataset.orig !== undefined) diffUpdate(e.target);
   if (e.target.dataset && e.target.dataset.setting) { state[e.target.dataset.setting] = e.target.value; save();
     if (e.target.type === 'radio') { const y = window.scrollY; render(); window.scrollTo(0, y); document.querySelector('input[name="' + e.target.name + '"]:checked').focus({ preventScroll: true }); }
     return; }
@@ -1894,8 +1958,20 @@ document.addEventListener('click', e => {
     const sec = t.closest('section'); const wait = sec.querySelector('.thinking');
     t.disabled = true; wait.hidden = false;
     setTimeout(() => { wait.hidden = true; t.textContent = 'Ask for another version'; t.disabled = false;
+      sec.querySelectorAll('.ai-folded').forEach(x => x.remove());
       sec.querySelectorAll('.demo-out').forEach(d => d.hidden = false); useButtons(sec); }, 900);
     return;
+  }
+  if (t.hasAttribute('data-unfold')) { const sec = t.closest('section'); sec.querySelectorAll('.demo-out').forEach(d => d.hidden = false); t.closest('.ai-folded').remove(); return; }
+  if (t.hasAttribute('data-restore') || t.hasAttribute('data-showdiff')) {
+    const f = t.closest('.field'), box = f.querySelector('textarea[data-orig]'), d = f.querySelector('.orig-diff'); if (!box) return;
+    if (t.hasAttribute('data-restore')) {
+      if (box.value === box.dataset.orig) return;
+      if (!confirm('Put your Course Map text back in this box? What you’ve typed here will be replaced.')) return;
+      box.value = box.dataset.orig; box.dispatchEvent(new Event('input', { bubbles: true }));
+      const note = document.querySelector('#decide .use-note'); if (note) note.remove();
+    } else { d.hidden = !d.hidden; t.setAttribute('aria-expanded', String(!d.hidden)); t.textContent = d.hidden ? 'Show what changed' : 'Hide what changed'; }
+    diffUpdate(box); return;
   }
   // GS.1 setup controls. The prototype acts them out; nothing is sent or saved.
   if (t.hasAttribute('data-testkey') || t.hasAttribute('data-noai')) {
@@ -1980,7 +2056,7 @@ document.addEventListener('click', e => {
     (u.boxes || []).forEach((v, i) => { const b = boxes[i]; if (b) { b.value = v; b.rows = Math.max(b.rows, Math.ceil(v.length / 90) + 1); b.dispatchEvent(new Event('input', { bubbles: true })); } });
     save();
     const f = document.querySelector('.grid-field'); f.insertAdjacentHTML('afterbegin', '<p class="use-note" role="status">Copied. Edit it here until it\u2019s your plan.</p>');
-    f.scrollIntoView({ behavior: 'smooth', block: 'start' }); return;
+    foldAI(t); f.scrollIntoView({ behavior: 'smooth', block: 'start' }); return;
   }
   if (t.hasAttribute('data-av-add')) {
     const s = avScript(), at = s.rows.findIndex(r => r.part === 'Conclusion');
@@ -1997,6 +2073,7 @@ document.addEventListener('click', e => {
     if (s.rows.some(r => r.dialogue.trim()) && !confirm('Replace the script you\u2019ve written under Decide?')) return;
     state.avScript = JSON.parse(JSON.stringify(USE_TEXT[+t.dataset.use].av)); save(); avRefresh();
     const f = document.querySelector('.av-field'); f.insertAdjacentHTML('beforeend', '<p class="use-note" role="status">Copied. Read it aloud, then edit it here until it sounds like you.</p>');
+    foldAI(t);
     f.scrollIntoView({ behavior: 'smooth', block: 'start' }); document.querySelector('[data-av="dialogue"]').focus({ preventScroll: true });
     return;
   }
@@ -2004,11 +2081,13 @@ document.addEventListener('click', e => {
     // One text fills the first box; a list of texts fills the boxes in order.
     const boxes = [...document.querySelectorAll('#decide textarea:not([data-av]):not([data-grid])')], vals = [].concat(USE_TEXT[+t.dataset.use]), box = boxes[0];
     if (!box) return;
-    if (boxes.some((b, i) => i < vals.length && b.value.trim() && b.value !== vals[i]) && !confirm('Replace what is already in your boxes under Decide?')) return;
-    vals.forEach((v, i) => { const b = boxes[i]; if (b) { b.value = v; b.rows = Math.max(b.rows, v.split('\n').length + 1, Math.ceil(v.length / 90) + 1); b.dispatchEvent(new Event('input', { bubbles: true })); } });
+    // A box still holding the untouched Course Map text needs no warning before it's replaced.
+    if (boxes.some((b, i) => i < vals.length && b.value.trim() && b.value !== vals[i] && b.value !== b.dataset.orig) && !confirm(inPlace() ? 'Replace what you’ve typed in your box?' : 'Replace what is already in your boxes under Decide?')) return;
+    vals.forEach((v, i) => { const b = boxes[i]; if (b) { b.value = v; b.rows = Math.max(3, v.split('\n').length + 1, Math.ceil(v.length / 90) + 1); b.dispatchEvent(new Event('input', { bubbles: true })); } });
     let note = document.querySelector('#decide .use-note');
     if (!note) { box.insertAdjacentHTML('afterend', '<p class="use-note" role="status"></p>'); note = document.querySelector('#decide .use-note'); }
-    note.textContent = 'Copied. Edit it here until it says what you mean.';
+    note.textContent = inPlace() ? 'Applied. Edit it here, or select Back to my Course Map text to undo it.' : 'Copied. Edit it here until it says what you mean.';
+    foldAI(t);
     box.scrollIntoView({ behavior: 'smooth', block: 'center' }); box.focus({ preventScroll: true });
     return;
   }

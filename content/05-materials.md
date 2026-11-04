@@ -140,12 +140,11 @@ the source you choose.
 :::
 
 ::: refresh
-Work through your modules one at a time. Choose a module, then select the button below. The AI
-starts from your Course Map's current materials for the module. It checks each one, says what it
-would keep, replace, move to Supplemental, or remove and why, and adds any scenario exhibits that
-are missing. It never
-names a new source; for a replacement it gives a search prompt instead. Select **Use these
-materials** to copy the reviewed list into the boxes under Decide.
+Work through your modules one at a time: choose a module above, then select the button below. The
+AI reviews the materials in your box. It checks each one, says what it would keep, replace, move to
+Supplemental, or remove and why, and adds any scenario exhibits that are missing. It never names a
+new source; for a replacement it gives a search prompt instead. Select **Apply these materials** to
+put the reviewed list in your box.
 :::
 
 ::: module-picker
@@ -198,6 +197,12 @@ Your final materials for each module go in this box. Type in it to change anythi
 **Redraft with AI** under it to have the AI rewrite it. To work on another module, choose it above;
 what you've typed is kept.
 
+::: refresh
+Each module's box starts with that module's materials from your Course Map, and the box is what's saved.
+Select **Review with AI** below for the AI's review, then **Apply these materials** to put its version in the
+box. **Back to my Course Map text** undoes any change.
+:::
+
 For each item, give the type, the title, the author and year if it has them, the pages or minutes,
 and the activity it prepares students for. Start a line with "Supplemental:" for an optional item;
 it stays in the module but isn't counted. The required reading pages feed the week check in Module
@@ -229,7 +234,7 @@ The week check in Module 4 then uses your real reading load instead of an estima
 Planning document: Learning Materials Plan row in Tables 1 and 2, one line per item, for example
 "Article: Park & Marsh (2024), What actually predicts team performance (11 pp.)". Supplemental items
 are listed last, marked "Supplemental".
-Project file: `modules[].materials`; in refresh, `.original`, `.changeNote`.
+Project file: `modules[].materials`; in refresh, `.original`.
 
 ### Go deeper (supplemental)
 

@@ -147,10 +147,10 @@ Decide.
 :::
 
 ::: refresh
-Work through your modules one at a time. Choose a module, then select the button below. The AI
-starts from your Course Map's current media for the module. It checks each item, says what it would
-keep, revise, or replace and why, adds any required video that's missing, and checks the time.
-Select **Use this media plan** to copy the reviewed list into the box under Decide.
+Work through your modules one at a time: choose a module above, then select the button below. The
+AI reviews the media in your box. It checks each item, says what it would keep, revise, or replace
+and why, adds any required video that's missing, and checks the time. Select **Apply this media
+plan** to put the reviewed list in your box.
 :::
 
 ::: module-picker
@@ -201,6 +201,12 @@ Your final media plan for each module goes in this box. Type in it to change any
 **Redraft with AI** under it to have the AI rewrite it. To work on another module, choose it above;
 what you've typed is kept.
 
+::: refresh
+Each module's box starts with that module's media from your Course Map, and the box is what's saved.
+Select **Review with AI** below for the AI's review, then **Apply this media plan** to put its version in the
+box. **Back to my Course Map text** undoes any change.
+:::
+
 For each item, give the kind, who makes it, the title, the minutes, and its connection to your
 story. The minutes feed the week check in Module 4.
 
@@ -230,7 +236,7 @@ The week check in Module 4 then uses your real media time instead of an estimate
 Planning document: Learning Media Plan row in Tables 1 and 2, one line per item, for example
 "Scenario video (Learning Media Team): The First Bad Week, 2.5 min. Story: Dana's Monday report and
 Greg's email, ending at her decision."
-Project file: `modules[].media`; in refresh, `.original`, `.changeNote`.
+Project file: `modules[].media`; in refresh, `.original`.
 
 ### Go deeper (supplemental)
 

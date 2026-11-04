@@ -167,10 +167,9 @@ into the box under Decide.
 
 ::: refresh
 Work through Modules 2 to 8 one at a time. The review follows the session day you chose in Learn.
-Choose a module, then select the button below. The AI starts from your Course Map's current session
-for the module. It applies the recording test, says what it would keep or revise and why, and adds
-a live activity where one is missing. Select **Use this activity** to copy it into the box under
-Decide.
+Choose a module above, then select the button below. The AI reviews the session in your box. It
+applies the recording test, says what it would keep or revise and why, and adds a live activity
+where one is missing. Select **Apply this activity** to put its version in your box.
 :::
 
 ::: module-picker
@@ -221,6 +220,12 @@ Your session activity for each module goes in this box. Type in it to change any
 **Redraft with AI** under it to have the AI rewrite it. To work on another module, choose it above;
 what you've typed is kept.
 
+::: refresh
+Each module's box starts with that module's cohort session from your Course Map, and the box is what's saved.
+Select **Review with AI** below for the AI's review, then **Apply this activity** to put its version in the
+box. **Back to my Course Map text** undoes any change.
+:::
+
 Give the title, the decision or task, what students do live, and what they get live that a
 recording can't give them.
 
@@ -249,7 +254,7 @@ The week walk-through in step 4.4 then includes the session.
 
 Planning document: Learning Activities Plan Part 3 (Cohort Session Activities) row in Tables 1
 and 2, for example "Telling Greg He's Wrong: role-play in threes after a week-long poll."
-Project file: `course.cohortDay`, `modules[].cohort`; in refresh, `.original`, `.changeNote`.
+Project file: `course.cohortDay`, `modules[].cohort`; in refresh, `.original`.
 
 ### Go deeper (supplemental)
 

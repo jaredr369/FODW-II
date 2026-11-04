@@ -552,7 +552,7 @@ you the evidence of whether students met your CLOs.
 ::: refresh
 You planned your activities in your first workshop, and you've seen how they went. As you review,
 check that each activity still traces to a CLO and uses its verb, and that each week comes close to
-its target; the week check under Decide adds it up. You've just tried the two new ideas on one
+its target; the week check under your activities box adds it up. You've just tried the two new ideas on one
 assignment each: your story in step 4.1 and AI in step 4.2. Now decide which other assignments
 should use them. Below is what's new since then: your storyline as the source of activities, and
 designing major assessments for AI.
@@ -687,10 +687,11 @@ these activities** to copy them into the boxes under Decide.
 :::
 
 ::: refresh
-Work through your modules one at a time. Choose a module, then select the button below. The AI
-starts from your Course Map's current activities for the module. It keeps what works, says what it
-would change and why, including which activities could move into your story, adds hours and weight to each activity, and shows what the checks will find.
-Select **Use these activities** to copy the reviewed list into the boxes under Decide.
+Work through your modules one at a time: choose a module above, then select the button below. The
+AI reviews the activities in your box. It keeps what works, says what it would change and why,
+including which activities could move into your story, adds hours and weight to each activity, and
+shows what the checks will find. Select **Apply these activities** to put the reviewed list in your
+box.
 :::
 
 ::: module-picker
@@ -740,6 +741,12 @@ Demo response (MGMT 615):
 Your final activities for each module go in these boxes. Type in any box to change it, or select
 **Redraft with AI** under a box to have the AI rewrite just that part. To work on another module,
 choose it above; what you've typed is kept.
+
+::: refresh
+Each module's box starts with that module's activities from your Course Map, and the box is what's saved.
+Select **Review with AI** below for the AI's review, then **Apply these activities** to put its version in the
+box. **Back to my Course Map text** undoes any change.
+:::
 
 For each high-weight activity, decide what AI use is allowed and say so in the second box. The week
 check below adds up the whole week as you type: your activities, readings and media, and the cohort
@@ -823,7 +830,7 @@ Planning document: Learning Activities Plan Part 1 (Canvas) and Part 2 (third-pa
 in Tables 1 and 2, one line per activity, for example "Assignment: Feedback Conversation Script
 (CLO 2, high, RSI 2; annotated and rehearsed in cohort session)".
 Project file: `modules[].activities` (with `rsi`, `hours`, `aiRisk`, `aiPolicy`, `aiChange`),
-`modules[].toolActivities`; in refresh, `.original` and `.changeNote`.
+`modules[].toolActivities`; in refresh, `.original`.
 
 ### Go deeper (supplemental)
 

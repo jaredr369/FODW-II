@@ -19,7 +19,7 @@ supports what's in them.
 | 9 | Table 2, Modules 5 to 8 | Modules 1 to 7 | `modules[4..7]` | Yes, with a new Scenario row |
 | 10 | Storyline: storyline premise and character profile | 2.5, Module 3 | `story` | No, added |
 | 11 | Instructor Interaction: syllabus statement, then the communication and feedback plan | 2.1, Module 8 | `rsi.statement`, `communication` | No, added |
-| 12 | Change log (refresh track only) | Every Review step | `*.original`, `*.changeNote` | No, added |
+| 12 | Change log (refresh track only) | Every Review step | `*.original`, compared with the saved section | No, added |
 | 13 | Check-in summary (working copies only) | Every module | `checkins`, practice and reflection answers, open checklist items | No, added |
 
 Sections 1 to 7 should fit on about one page, so the tables start on page one or two.
@@ -61,15 +61,16 @@ After the tables:
 ## Change log (refresh track)
 
 One entry per section the faculty member reviewed, in document order: the section name, what it
-was, what changed and why. Sections kept as they were are listed as "Kept" with no further
+was, and what it is now. The tool builds it by comparing the saved section with the original from
+the Course Map; faculty don't write change notes. Sections kept as they were are listed as "Kept" with no further
 detail. Sections that ran as a full build because the original course had none are listed as
 "New".
 
 ## Check-in summary
 
 Added to working copies only, at the end, so the ID can prepare for a check-in without opening
-the tool. Lists the modules finished since the last check-in, new and changed sections with
-change notes, practice and reflection answers, and open items (unchecked checklist items and
+the tool. Lists the modules finished since the last check-in, new and changed sections (on
+the refresh track, what changed from the Course Map), practice and reflection answers, and open items (unchecked checklist items and
 AI flags the faculty member chose to keep). The app leaves it out when the faculty member
 exports the final version for kick-off.
 

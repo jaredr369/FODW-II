@@ -236,8 +236,8 @@ the purpose it was designed for. It can also bring to light opportunities for ch
 :::
 
 ::: refresh
-You wrote your vision in your first workshop. Your current vision, from your Course Map, is shown
-under Review. Read it with two questions in mind: does it still describe what students do at work,
+You wrote your vision in your first workshop. Your current vision, from your Course Map, is
+already in the box below. Read it with two questions in mind: does it still describe what students do at work,
 not what the course covers, and does it still fit the catalog description?
 :::
 
@@ -310,8 +310,8 @@ Demo response (MGMT 615):
 
 The AI reads your current vision and flags anything that doesn't fit, such as too many sentences
 or sentences that describe the course instead of what it helps students do at work. It also
-suggests one revision that keeps your language. To start from it, select **Use this revision**
-to copy it into the box under Decide.
+suggests one revision that keeps your language. To start from it, select **Apply this revision**:
+it replaces the text in your box, where you can keep editing it.
 
 Demo response (MGMT 615):
 
@@ -324,22 +324,23 @@ Flags:
 
 Suggested revision: "MGMT 615 helps new managers run a team instead of doing the team's work themselves. When someone on their team struggles, students find out what is actually wrong before they act. They give feedback that changes behavior, delegate real decisions, and have the hard conversations managers often avoid. They lead their teams through change and hire people who fit the work."
 
-Change note: "Cut to four sentences. Replaced the course and program description with what
-the course helps students do at work; kept the diagnosis-first idea."
+What changed: cut to four sentences, and replaced the course and program description with what
+the course helps students do at work. The diagnosis-first idea is kept.
 
 ### Decide
 
+::: full
 Your final vision goes in this box. It's what's saved to your Course Planning Document. Type in the
 box to change anything, or select **Redraft with AI** under it to have the AI rewrite it.
 
-::: full
 Edit the version you copied into your own words. You can also bring in a phrase from the other
 version, or write your own.
 :::
 
 ::: refresh
-Edit the revision you copied into your own words. To keep your current vision instead, paste it
-here.
+Your current vision, from your Course Map, is in this box, and the box is what's saved. Edit it
+here, select **Review with AI** below for flags and a suggested revision, or select **Redraft with
+AI** under the box to have the AI rewrite it. **Back to my Course Map text** undoes any change.
 :::
 
 ::: fields
@@ -364,7 +365,7 @@ When you save, the tool checks that your vision:
 ### Save
 
 Planning document: Course Vision.
-Project file: `vision.text`; in refresh, `vision.original`, `vision.changeNote`.
+Project file: `vision.text`; in refresh, `vision.original`.
 
 ---
 
@@ -533,7 +534,7 @@ Return: {"clos": [{"original": string, "action": "keep" | "revise", "issues": [s
 
 Demo response (MGMT 615):
 
-| Current | Action | Revision | Change note |
+| Current | Action | Revision | Why |
 |---|---|---|---|
 | CLO 1: Apply core theories of motivation and performance to diagnose why an employee or team is underperforming. | Revise | Diagnose why an employee or team is underperforming using core theories of motivation and performance. | Dropped "apply" so the CLO has one verb. |
 | CLO 2: Design a feedback or coaching conversation that changes an employee's behavior, not just documents it. | Revise | Design a feedback or coaching conversation that targets a specific behavior and states the change expected. | Now graded on the conversation the student designs. Matches the reflection: scripts never said what should change. |
@@ -544,8 +545,10 @@ Demo response (MGMT 615):
 
 ### Decide
 
+::: full
 Your final CLOs go in this box. They're what's saved to your Course Planning Document. Type in the
 box to change anything, or select **Redraft with AI** under it to have the AI rewrite it.
+:::
 
 ::: full
 Under the AI's draft, select **Use these CLOs** to copy them here. Then edit, reorder, remove, or
@@ -553,9 +556,10 @@ add CLOs.
 :::
 
 ::: refresh
-Under the AI's suggestions, select **Use the suggested CLOs** to copy them here. Then, for each
-CLO, keep the suggestion, go back to your current wording, or rewrite it. Keep or delete each new
-CLO the AI added.
+Your current CLOs, from your Course Map, are in this box, one per line, and the box is what's
+saved. Edit them here, or select **Review with AI** below. To use the AI's suggestions, select
+**Apply the suggested CLOs**, then keep, change, or undo each one. Keep or delete any new CLO the AI
+added. **Back to my Course Map text** undoes every change.
 :::
 
 ::: fields
@@ -584,7 +588,7 @@ The new CLO 6 fixed it.
 
 Planning document: Course-Level Objectives (CLOs).
 Project file: `clos` (text, verb, level, commitments, programOutcomes, decision); in refresh,
-`clos[].original`, `clos[].changeNote`.
+`clos[].original`.
 
 ### Go deeper (supplemental)
 
@@ -731,8 +735,10 @@ Demo response (MGMT 615):
 
 ### Decide
 
+::: full
 Your final modules go in this box. They're what's saved to your Course Planning Document. Type in
 the box to change anything, or select **Redraft with AI** under it to have the AI rewrite it.
+:::
 
 ::: full
 Under the AI's draft, select **Use these modules** to copy them here. Then edit titles, CLOs met,
@@ -740,8 +746,10 @@ and topics, and reorder modules as needed.
 :::
 
 ::: refresh
-Under the AI's suggestions, select **Use the suggested modules** to copy them here. Then, for
-each module, keep the suggestion, go back to your current wording, or rewrite it.
+Your current modules, from your Course Map, are in this box, one per line, and the box is what's
+saved. Edit them here, or select **Review with AI** below. To use the AI's suggestions, select
+**Apply the suggested modules**, then keep, change, or undo each one. **Back to my Course Map
+text** undoes every change.
 :::
 
 ::: fields
@@ -770,7 +778,7 @@ one module."
 
 Planning document: each module's title, CLOs met, and topics.
 Project file: `modules[].title`, `modules[].closMet`, `modules[].topics`; in refresh,
-`.original` and `.changeNote`. Other columns from an uploaded course map stay in
+`.original`. Other columns from an uploaded course map stay in
 `source.sections` for later modules.
 
 ### Go deeper (supplemental)
@@ -786,8 +794,8 @@ Project file: `modules[].title`, `modules[].closMet`, `modules[].topics`; in ref
 AI instructions:
 
 ```text
-From this module's saved sections, change notes, and kept flags, list what's new or changed since
-the last check-in, the flags kept with their notes, and two questions worth raising with the ID.
+From this module's saved sections, what changed from the Course Map (Refresh), and kept flags,
+list what's new or changed since the last check-in, the flags kept with their notes, and two questions worth raising with the ID.
 Keep it under 150 words.
 
 Return: {"changed": [string], "keptFlags": [string], "questions": [string, string]}

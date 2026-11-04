@@ -186,7 +186,7 @@ When you save, the tool checks that your statement:
 
 Planning document: Instructor Interaction. Module 8 adds the communication and feedback plan to
 the same section.
-Project file: `rsi.statement`; in refresh, `rsi.original`, `rsi.changeNote`.
+Project file: `rsi.statement`; in refresh, `rsi.original`.
 
 ### Go deeper (supplemental)
 
