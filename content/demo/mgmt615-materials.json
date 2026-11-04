@@ -1,5 +1,5 @@
 {
-  "about": "Recorded demo data for Module 5 (MGMT 615, fictional; every source below is fictional). 'materials' are each module's required materials after the refresh. 'rights' values: library (link to TAMU Libraries record), open (open license, named), public (publicly available web page or video, linked), created (made for the course), ai-assisted (created with AI help; needs a disclosure note), unclear. 'review' holds refresh flags and the faculty member's resolution.",
+  "about": "Recorded demo data for Module 5 (MGMT 615, fictional; every source below is fictional). 'materials' are each module's required materials after the refresh. 'rights' values: library (link to TAMU Libraries record), open (open license, named), public (publicly available web page or video, linked), created (made for the course), ai-assisted (created with AI help; needs a disclosure note), unclear. 'supplemental': true marks an optional item that doesn't count toward the reading load. 'review' holds refresh flags and the faculty member's resolution.",
   "modules": [
     {"module": 1, "pages": 20, "materials": [
       {"type": "Book chapter", "title": "Whitfield (2019), Ch. 2: The Manager's Dilemma", "pages": 14, "rights": "library", "supports": "Case analysis"},
@@ -10,8 +10,9 @@
     {"module": 2, "pages": 24, "materials": [
       {"type": "Book chapter", "title": "Whitfield (2019), Ch. 5: What People Actually Want From Work", "pages": 16, "rights": "library", "supports": "Motivation memo"},
       {"type": "Article", "title": "Han & Okafor (2023), The incentive trap", "pages": 6, "rights": "library", "supports": "Motivation memo"},
-      {"type": "Scenario exhibit", "title": "Pick-rate bonus sheet and mis-pick report", "pages": 1, "rights": "ai-assisted", "supports": "Motivation memo"}
-    ], "review": ["The bonus sheet was drafted with AI. Resolution: disclosure note added and numbers checked against the scenario."]},
+      {"type": "Scenario exhibit", "title": "Pick-rate bonus sheet and mis-pick report", "pages": 1, "rights": "ai-assisted", "supports": "Motivation memo"},
+      {"type": "Case", "title": "The Sales Contest That Backfired", "pages": 8, "rights": "library", "supports": "Motivation memo", "supplemental": true}
+    ], "review": ["Required reading comes to about 32 pages, over the 25-page limit. Nothing here is weak; it's just too much for one week. Resolution: The Sales Contest That Backfired moved to Supplemental, where students can read it if they want another example. The chapter and the incentive-trap article cover what the memo needs.", "The bonus sheet was drafted with AI. Resolution: disclosure note added and numbers checked against the scenario."]},
     {"module": 3, "pages": 19, "materials": [
       {"type": "Book chapter", "title": "Marsh (2021), Ch. 4: Feedback That Lands", "pages": 13, "rights": "library", "supports": "Perusall and feedback script"},
       {"type": "Job aid", "title": "The SBI Feedback Model, One Page", "pages": 1, "rights": "unclear", "supports": "Feedback script"},

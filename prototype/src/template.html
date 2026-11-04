@@ -936,13 +936,15 @@ function activityDraft(n) {
 }
 // 5.1: on the full build the AI says what each item must cover (never a named source) with a search prompt;
 // on refresh it reviews the module's current materials. Both show the reading load.
-const matLine = i => i.type + ': ' + i.title + ' (' + i.pages + (i.pages === 1 ? ' page' : ' pages') + ', for ' + i.supports + ')';
+const matLine = i => (i.supplemental ? 'Supplemental: ' : '') + i.type + ': ' + i.title + ' (' + i.pages + (i.pages === 1 ? ' page' : ' pages') + (i.supplemental ? ', optional)' : ', for ' + i.supports + ')');
+// Required reading pages: supplemental items are optional and don't count toward the week.
+const reqPages = list => list.filter(i => !i.supplemental).reduce((s, i) => s + (i.pages || 0), 0);
 const topicOf = i => i.title.replace(/^[^,]+\(\d{4}\),\s*(Ch\.\s*\d+:\s*)?/, '');
 const CURATED = { 'Book chapter': 'Curated reading', Article: 'Curated reading' };
 const sugLine = i => CURATED[i.type] ? 'Curated reading: [a source on ' + topicOf(i).toLowerCase() + '] (about ' + i.pages + ' pages, for ' + i.supports + ')' : matLine(i);
 function materialsDraft(n) {
-  const m = DATA.demo['mgmt615-materials.json'].modules[n - 1], pages = m.materials.reduce((s, i) => s + i.pages, 0);
-  const load = '<div class="act-checks"><p><strong>Reading load:</strong> about ' + pages + ' pages, about ' + hrs(pages / 8) + ' hours at 8 pages an hour' +
+  const m = DATA.demo['mgmt615-materials.json'].modules[n - 1], pages = reqPages(m.materials);
+  const load = '<div class="act-checks"><p><strong>Reading load:</strong> about ' + pages + ' pages of required reading, about ' + hrs(pages / 8) + ' hours at 8 pages an hour' +
     (n === 1 ? (pages > 8 ? '. Heavy for Module 1, which aims for about 8 pages or fewer.' : '.') : pages < 5 || pages > 25 ? '. Outside the 5-to-25-page range.' : ', within the 5-to-25-page range.') + '</p></div>';
   if (state.track === 'refresh') return (m.review.length ? '<p><strong>Review of your current materials:</strong></p><ul>' + m.review.map(r => '<li>' + esc(r) + '</li>').join('') + '</ul>' : '<p>Every current material passed: each prepares students for a named activity.</p>') +
     '<div class="scen-opt" data-opt="1"><p><strong>Materials after the review</strong></p><ul>' + m.materials.map(i => '<li>' + esc(matLine(i)) + '</li>').join('') + '</ul></div>' + load;
@@ -1201,7 +1203,7 @@ function planSummary() {
   const goto = (step, n, text) => '<button type="button" class="linkbtn" data-goto="' + step + '" data-pickn="' + n + '">' + text + '</button>';
   const rows = mods.map((m, k) => {
     const n = k + 1, w = weekLoad(n, true), main = act[k].activities.slice().sort((x, y) => (W[y.weight] - W[x.weight]) || (y.hours - x.hours))[0];
-    const pages = mat[k].materials.reduce((s, i) => s + (i.pages || 0), 0), mins = med[k].media.reduce((s, i) => s + (i.minutes || 0), 0);
+    const pages = reqPages(mat[k].materials), mins = med[k].media.reduce((s, i) => s + (i.minutes || 0), 0);
     const storyMedia = med[k].media.some(i => i.kind === 'scenario' || i.kind === 'graphic');
     const c = cohortOf(n), cohort = n === 1 ? 'None in Module 1' : !hasCohort() ? 'No cohort sessions' : c ? c.title : '';
     const target = n === 1 ? 4 : weeklyTarget(), far = w.flags.filter(x => x !== 'crunch');
@@ -1212,7 +1214,7 @@ function planSummary() {
       '<td>' + mat[k].materials.length + ' items, ' + pages + ' pp.</td><td>' + (storyMedia ? ok : '<span class="warn">Not tied to the scenario.</span> ') + hrs(mins) + ' min</td>' +
       '<td>' + esc(cohort) + '</td><td' + (far.length ? ' class="warn"' : '') + '>' + hrs(w.total) + ' h</td></tr>';
   }).join('');
-  const nActs = act.reduce((s, m) => s + m.activities.length, 0), pages = mat.reduce((s, m) => s + m.materials.reduce((x, i) => x + (i.pages || 0), 0), 0);
+  const nActs = act.reduce((s, m) => s + m.activities.length, 0), pages = mat.reduce((s, m) => s + reqPages(m.materials), 0);
   const mins = med.reduce((s, m) => s + m.media.reduce((x, i) => x + (i.minutes || 0), 0), 0), sessions = hasCohort() ? mods.length - 1 : 0;
   return '<div class="plan-summary"><h4>Your course at a glance</h4><ul class="totals">' +
     '<li><strong>' + f.clos.length + '</strong> CLOs</li><li><strong>' + mods.length + '</strong> modules</li><li><strong>' + nActs + '</strong> activities</li>' +
@@ -1272,12 +1274,12 @@ function weekLoad(n, demo) {
   const mat = DATA.demo['mgmt615-materials.json'].modules[n - 1], med = DATA.demo['mgmt615-media.json'].modules[n - 1];
   // Readings: the faculty member's 5.1 list (pages at about 8 an hour, minutes plus a quarter), else an estimate.
   const typedMat = (modText('5.1', n).materials || '').trim();
-  const matHours = typedMat ? typedMat.split('\n').reduce((s, l) => { const pg = l.match(/(\d+)\s*(?:pages?|pp\.?)\b/i); return s + (pg ? +pg[1] / 8 : lineHours(l) * 1.25); }, 0) : null;
+  const matHours = typedMat ? typedMat.split('\n').filter(l => !/^\s*Supplemental\b/i.test(l)).reduce((s, l) => { const pg = l.match(/(\d+)\s*(?:pages?|pp\.?)\b/i); return s + (pg ? +pg[1] / 8 : lineHours(l) * 1.25); }, 0) : null;
   // Media: the faculty member's 6.1 list (minutes plus a quarter for pausing and rewatching), else an estimate.
   const typedMed = (modText('6.1', n).media || '').trim();
   const medHours = typedMed ? typedMed.split('\n').reduce((s, l) => s + lineHours(l) * 1.25, 0) : null;
   const rdgEst = matHours === null && !state.done['5.1'], medEst = medHours === null && !state.done['6.1'];
-  const rdg = matHours !== null ? matHours : rdgEst ? (n === 1 ? 0.75 : 1.5) : mat.materials.reduce((s, i) => s + (i.pages || 0), 0) / 8;
+  const rdg = matHours !== null ? matHours : rdgEst ? (n === 1 ? 0.75 : 1.5) : reqPages(mat.materials) / 8;
   const media = medHours !== null ? medHours : medEst ? (n === 1 ? 0.25 : 0.5) : med.minutes * 1.25 / 60;
   const coh = n > 1 && hasCohort() ? 1.5 : 0, total = act + rdg + media + coh, target = n === 1 ? 4 : weeklyTarget();
   // Crunch: two high-weight activities due the same day, or one activity over about 4 hours.
@@ -1733,7 +1735,7 @@ function renderDoc() {
     ['M3', 'Scenario', 'scenario', i => '<strong>' + esc(sc[i].chosen.title) + '.</strong> ' + esc(sc[i].chosen.premise)],
     ['M4', 'Learning Activities Plan Part 1 (Canvas Assignments)', 'activities', i => ul(act[i].activities.filter(a => !isTool(a)).map(a => a.type + ': ' + a.title + ' (' + a.clos.join(', ') + ', ' + a.weight + (a.rsi ? ', RSI ' + a.rsi : '') + (storyAdded(i, a) ? '; story added' : '') + ')'))],
     ['M4', 'Learning Activities Plan Part 2 (Third-Party Tool Activities)', 'tools', i => { const t = act[i].activities.filter(isTool); return t.length ? ul(t.map(a => a.type + ': ' + a.title)) : '<span class="empty">None</span>'; }],
-    ['M5', 'Learning Materials Plan', 'materials', i => ul(mat[i].materials.map(x => x.type + ': ' + x.title + ' (' + x.pages + ' pp., ' + x.rights + ')'))],
+    ['M5', 'Learning Materials Plan', 'materials', i => ul(mat[i].materials.map(x => (x.supplemental ? 'Supplemental: ' : '') + x.type + ': ' + x.title + ' (' + x.pages + ' pp., ' + x.rights + ')'))],
     ['M6', 'Learning Media Plan', 'media', i => ul(med[i].media.map(medLine))],
     ['M7', 'Learning Activities Plan Part 3 (Cohort Session Activities)', 'cohort', i => { if (!hasCohort()) return '<span class="empty">No cohort sessions in this course</span>'; const c = coh.find(x => x.module === i + 1); return c ? esc(c.title + ': ' + c.live.toLowerCase()) : '<span class="empty">No cohort session in Module 1</span>'; }]
   ];

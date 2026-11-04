@@ -71,6 +71,11 @@ You planned your materials in your first workshop. As you review, check that eac
 prepares students for a named activity, that sources are current, and that each module's required
 reading stays between 5 and 25 pages. New since then, below: your scenario as a material, and
 finding sources with AI.
+
+**Too much, not too weak.** Sometimes every material is good but a module simply has more than a
+week can hold. You don't have to cut it: move it to **Supplemental**. Supplemental items stay in
+the module for students who want more, but they're optional, no activity depends on them, and they
+don't count toward the week.
 :::
 
 ::: refresher
@@ -135,7 +140,8 @@ the source you choose.
 ::: refresh
 Work through your modules one at a time. Choose a module, then select the button below. The AI
 starts from your Course Map's current materials for the module. It checks each one, says what it
-would keep, replace, or remove and why, and adds any scenario exhibits that are missing. It never
+would keep, replace, move to Supplemental, or remove and why, and adds any scenario exhibits that
+are missing. It never
 names a new source; for a replacement it gives a search prompt instead. Select **Use these
 materials** to copy the reviewed list into the boxes under Decide.
 :::
@@ -169,10 +175,13 @@ AI instructions:
 For each current material in the given module, check: it prepares students for a named activity;
 it is content for students; its date (flag anything older than 5 years unless it is a classic in
 the field, and say so); the scenario narrative and exhibits are listed. Suggest keep, replace (say
-what a replacement should cover, never a specific source), or remove, with a reason. Add missing
-scenario exhibits.
+what a replacement should cover, never a specific source), supplemental, or remove, with a reason.
+If required reading is over 25 pages (about 8 in Module 1) and the items are sound, suggest moving
+the ones that least directly prepare students for the main activity to supplemental instead of
+removing them, until the module is back in range. Supplemental items don't count toward the load.
+Add missing scenario exhibits.
 
-Return: {"items": [{"original": string, "action": "keep" | "replace" | "remove", "issues": [string], "replacementCovers": string | null}], "add": [string]}
+Return: {"items": [{"original": string, "action": "keep" | "replace" | "supplemental" | "remove", "issues": [string], "replacementCovers": string | null}], "add": [string]}
 ```
 :::
 
@@ -188,7 +197,9 @@ Your final materials for each module go in this box. Type in it to change anythi
 what you've typed is kept.
 
 For each item, give the type, the title, the author and year if it has them, the pages or minutes,
-and the activity it prepares students for. The reading pages feed the week check in Module 4.
+and the activity it prepares students for. Start a line with "Supplemental:" for an optional item;
+it stays in the module but isn't counted. The required reading pages feed the week check in Module
+4.
 
 ::: module-fields
 :::
@@ -203,7 +214,7 @@ Checklist:
 
 When you save each module, the tool checks that:
 
-- every item is tied to an activity;
+- every required item is tied to an activity;
 - required reading comes to 5 to 25 pages (about 8 or fewer in Module 1), adjusted for how dense it
   is;
 - items older than 5 years are flagged unless they're classics;
@@ -214,7 +225,8 @@ The week check in Module 4 then uses your real reading load instead of an estima
 ### Save
 
 Planning document: Learning Materials Plan row in Tables 1 and 2, one line per item, for example
-"Article: Park & Marsh (2024), What actually predicts team performance (11 pp.)".
+"Article: Park & Marsh (2024), What actually predicts team performance (11 pp.)". Supplemental items
+are listed last, marked "Supplemental".
 Project file: `modules[].materials`; in refresh, `.original`, `.changeNote`.
 
 ### Go deeper (supplemental)
