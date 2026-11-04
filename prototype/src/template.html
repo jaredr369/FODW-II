@@ -571,12 +571,23 @@ function markTerms(roots) {
   const nodes = [];
   for (const root of roots) { const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, { acceptNode: n => n.nodeValue.trim() && !n.parentElement.closest(skip) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT });
   while (walker.nextNode()) nodes.push(walker.currentNode); }
+  // Mark a term where faculty will see it first: text inside a closed section (such as a Refresh
+  // "Need a refresher?" fold) comes after everything that's showing.
+  const hidden = n => { const d = n.parentElement.closest('details'); return !!d && !d.open; };
+  nodes.sort((a, b) => hidden(a) - hidden(b));
   for (let node of nodes) {
-    for (const [g, re] of GLOSS_RE) {
-      if (seen.has(g.k) || !node) continue;
-      const m = re.exec(node.nodeValue); if (!m) continue;
+    // Take the terms in the order they appear in the text, so an earlier term isn't skipped.
+    while (node) {
+      let best = null;
+      for (const [g, re] of GLOSS_RE) {
+        if (seen.has(g.k)) continue;
+        const m = re.exec(node.nodeValue);
+        if (m && (!best || m.index + m[1].length < best.at)) best = { g, m, at: m.index + m[1].length };
+      }
+      if (!best) break;
+      const { g, m, at } = best;
       seen.add(g.k);
-      const at = m.index + m[1].length, after = node.splitText(at), rest = after.splitText(m[2].length);
+      const after = node.splitText(at), rest = after.splitText(m[2].length);
       const b = document.createElement('button'); b.type = 'button'; b.className = 'term'; b.dataset.term = g.k; b.setAttribute('aria-expanded', 'false'); b.textContent = after.nodeValue;
       // A button is an atomic box, so a line can break right after it ("Course Map | 's"). Keep any
       // characters attached to the term, such as 's or a comma, on the same line.
