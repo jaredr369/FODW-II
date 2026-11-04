@@ -295,7 +295,8 @@ Select **Save to plan** to note that this course has no cohort sessions. Steps 7
 ## 7.2 Cohort session lesson plan
 
 Time: about 40 minutes
-Pattern: interview, then draft; then the AI drafts the outline and slides
+Pattern: interview, then draft (full build); upload, then add your story (refresh); then the AI
+drafts the outline and slides
 
 ### Learn
 
@@ -307,20 +308,29 @@ deck.
 :::
 
 ::: refresh
-**What you'll do:** Review and update your first cohort session, usually Module 2, minute by minute
-in the team's lesson plan template. From your plan, the AI drafts the student-facing outline and a
-slide deck.
+**What you'll do:** Choose one of your cohort session lesson plans and use AI to add your story to
+it. From the updated plan, the AI drafts the student-facing outline and a slide deck.
 :::
 
+::: full
 **Why it matters:** A lesson plan keeps a 90-minute session on time and on purpose. Drafting the
 outline and slides from the same plan means all three say the same thing.
 :::
 
 ::: refresh
-You may have written cohort lesson plans before. New since then: a session shape for your session
-day, and drafting the student-facing outline and slides from your plan.
+**Why it matters:** Your sessions were planned before your course had a character. Seeing one
+session through your story shows you what to change in the rest. The plan, outline, and slides you
+make here are what you'll take to the XR stage in step 7.3.
+:::
 :::
 
+::: refresh
+You wrote a lesson plan, outline, and slides for every session when your course was first
+developed. New since then, below: your story in the session, a session shape for your session day,
+and drafting the outline and slides with AI. What you already know is under **Need a refresher?**
+:::
+
+::: refresher
 Every cohort session has three documents, each from a team template:
 
 | Document | Who it's for | What's in it |
@@ -328,9 +338,27 @@ Every cohort session has three documents, each from a team template:
 | [Cohort Session Lesson Plan](src:template-cohort-lesson-plan) | You | Title, overview, objectives, and main topics; how many students and how the breakouts are set up; each section with its minutes and talking points; and the materials, handouts, and room setup you need |
 | [Student-facing outline](src:template-cohort-outline) | Students | A welcome, the main topics, each topic's main points and discussion questions, and a wrap-up with what's due |
 | Slides ([Flex Online template](src:template-flex-slides)) | Everyone in the session | A title slide, the agenda, a section slide for each topic, a slide for each poll or question, breakout instructions, and a wrap-up, with your talking points as speaker notes |
+:::
 
 You write the lesson plan. The AI drafts the outline and slides from it. You edit the outline, and
 your ID builds the final slides or checks yours for accessibility.
+
+::: refresh
+**Your story in the session.** Adding your story usually doesn't change what students do in a
+session. It changes what they do it for. Three moves, the same ones you used for an assignment in
+step 4.1:
+
+- **Open where your character is this week.** Start with the report, the email, or the deadline
+  from the module's scenario, not a recap of the reading. An opening poll can ask what students
+  think the character should do.
+- **Make the activity the character's decision.** Students work on the choice your character faces,
+  with the evidence the character has, instead of a general question about the topic.
+- **Close by moving the story forward.** Give your own call and why, and connect it to Sunday's
+  assignment, where students put their decision in writing.
+
+Questions that ask students about their own work still fit. Ask them after the character's decision,
+so students compare the case with what they've seen.
+:::
 
 ::: when cohortDay=wed,thu,
 **A shape for cohort sessions that are later in the week.** Students arrive having read the
@@ -380,6 +408,7 @@ Either way, lecturing on new material belongs in the asynchronous content.
 ([Donelan et al., 2025](src:ext-donelan-2025)). The opening poll eases them in: start with a poll or the chat, then small
 groups, then the whole room.
 
+::: refresher
 **Who runs Zoom with you.** An Instructional Technologist is a member of the Learning Delivery team
 assigned to your cohort sessions. In the weeks before the term, they meet with you to set up your
 Zoom meetings: the settings, polls, pre-assigned breakout rooms, captions, and recording. During
@@ -398,8 +427,16 @@ screen readers, magnifiers, or captions get the same session. A few habits are y
   so its alt text says that.
 - **Keep slides light.** A few words per slide, typed as real text, with the detail in your talking
   points.
+:::
 
+::: full
 During development you'll plan the rest of your sessions with your ID.
+:::
+
+::: refresh
+During development, you and your ID add your story to your other session plans the same way,
+starting with any session you revised in step 7.1.
+:::
 
 ### See it
 
@@ -417,7 +454,22 @@ later-week shape.
 
 From this plan, the AI drafted a one-page student outline and a nine-slide deck.
 
-### Draft (full build) and Review (refresh)
+::: refresh
+**Adding the story to a plan.** The MGMT 615 instructor chose the Module 2 session, a roundtable
+on motivation written before the course had Dana. A few parts, before and after:
+
+| Part | Before | After |
+|---|---|---|
+| Opening | A recap of expectancy theory and the readings | A poll on Dana's pick-rate bonus: which link in expectancy theory does it break? |
+| Main question | What motivates you at work? | Should Dana keep, adjust, or replace the bonus? |
+| Evidence | Students' own examples | What Dana has: the bonus data, Luis's record, and the crew's view |
+| Workplace question | A 15-minute share-out | Asked after groups decide for Dana |
+| Close | Questions and a preview of Sunday's assignment | The instructor's own call on the bonus, then the preview |
+
+The full plan is the recorded response under Draft.
+:::
+
+### Draft (full build) and Update (refresh)
 
 ::: when cohortDay=mon,tue
 MGMT 615 meets on Thursdays, so its lesson plans here follow the later-week shape. Yours will follow
@@ -425,21 +477,33 @@ the early-week shape you chose in step 7.1: recap, introduce the new module, the
 activity.
 :::
 
+::: full
 Answer the questions, then select the button below. The AI turns the activity you chose in step 7.1
 into a full lesson plan. Select **Use this plan** to copy it into the lesson plan under Decide.
-
-::: refresh
-If you already have a lesson plan for this session, paste it into the last box. The AI checks it
-against the same instructions and suggests edits instead of starting over.
-:::
 
 ::: fields
 - Which session are you planning? | Module 2, the first session students attend.
 - Is there a point where you'll need help from your Instructional Technologist that isn't obvious? | Regrouping the breakouts halfway through, so each new group has all three pieces of evidence.
 - How do you want to end? | With my own call on the bonus, after two groups share theirs.
-- Your current lesson plan for this session, if you have one
+:::
 :::
 
+::: refresh
+Choose any one of your lesson plans, for a module whose scenario you saved in step 3.2. Upload it
+as a Word file, or paste it; your ID can help you get the latest version. Then select the button
+below. The AI adds your story: it opens the session in your character's situation, turns the main
+activity into the character's decision, and closes by moving the story forward. It keeps your
+activity, timing, and wording wherever the story doesn't need a change, and lists every change.
+Select **Use this plan** to copy the updated plan under Decide.
+
+::: fields
+- Your current lesson plan. Upload it as a Word file, or paste the text. | Diagnosing Motivation Problems Roundtable (Module 2). 20 minutes: recap of expectancy theory and the week's readings, with slides. 45 minutes: roundtable. Whole-class discussion of the module's questions: What motivates you at work? When has an incentive backfired? Are pick-rate bonuses a good incentive? 15 minutes: students share examples from their own workplaces. 10 minutes: wrap-up, questions, and a preview of the motivation diagnosis due Sunday.
+- Which session is it? | Module 2, the first session students attend.
+- Is there a point where you'll need help from your Instructional Technologist that isn't obvious? | Regrouping the breakouts halfway through, so each new group has all three pieces of evidence.
+:::
+:::
+
+::: full
 AI instructions:
 
 ```text
@@ -451,13 +515,40 @@ Conclusion), and the subtopics, talking points, and other details (what the inst
 asks, what students do, and setup such as poll wording and options, breakout size and length, and
 chat links). Follow the shape for the session day the faculty member chose. Durations total 90
 minutes and include a two-minute buffer before the close. Then list the materials, handouts, and
-room setup. Use the faculty member's answers. If they pasted a current plan, check it against these
-instructions and suggest edits instead of starting over.
+room setup. Use the faculty member's answers.
 
 Return: {"title": string, "overview": string, "objectives": [string], "topics": [string], "context": string, "rows": [{"minutes": number, "section": string, "details": string}], "preparation": string}
 ```
+:::
+
+::: refresh
+AI instructions:
+
+```text
+The faculty member uploaded or pasted the lesson plan they've used for one cohort session. You are
+also given the module's saved scenario (step 3.2), the storyline premise (step 3.1), the character
+profile (step 2.3), the module's objectives, the session activity saved for this module in step
+7.1, the session day, and the faculty member's reflection on past sessions. Add the story to the
+plan: open the session in the character's situation at the scenario's trigger (an opening poll can
+ask what the character should do); make the main activity the character's decision, using the
+evidence the character has; ask questions about students' own work after that decision; and close
+with the instructor's own call and its link to Sunday's assignment. If the session's activity was
+changed in step 7.1, use the new activity. Keep the faculty member's activity, sections, timing,
+and wording wherever the story doesn't require a change. Also add any setup details the
+Instructional Technologist needs (exact poll wording and options, breakout size and length) and a
+two-minute buffer, and note anything that doesn't fit the shape for the session day. Write the plan
+in the team's Cohort Session Lesson Plan template (same fields as the full build draft). List what
+changed, marking story changes, and what stayed the same.
+
+Return: {"plan": {...same shape as full build...}, "changed": [{"change": string, "story": boolean}], "kept": [string]}
+```
+:::
 
 Demo response (MGMT 615):
+
+::: refresh
+Your plan with the story added:
+:::
 
 **Lesson title:** Who Gets the Bonus? (Module 2)
 
@@ -479,13 +570,36 @@ evidence, then regrouped breakouts of three so each group holds all three pieces
 | 10 | Introduction | Welcome. Check understanding with a poll: which link in expectancy theory does the pick-rate bonus break? Clear up any mix-ups, then recap Dana's situation. |
 | 15 | Topic 1: Guided practice | Diagnose Luis together. The instructor walks through his record; students name the motivation problem in the chat, and the instructor coaches toward the evidence. |
 | 25 | Topic 2: Split evidence | Breakouts of three. Each group gets one piece of evidence: the bonus data, Luis's record, or the crew's view. Timer on screen. |
-| 25 | Topic 3: Recommend | Regroup so each new group holds all three pieces of evidence. Groups recommend keeping, adjusting, or replacing the bonus, with one reason from each piece. What would you tell Dana to do first? |
+| 25 | Topic 3: Recommend | Regroup so each new group holds all three pieces of evidence. Groups recommend keeping, adjusting, or replacing the bonus, with one reason from each piece. What would you tell Dana to do first? Have you seen an incentive like this backfire at work? |
 | 13 | Conclusion | Two groups share their recommendation, then the instructor's own call and why. Preview the motivation diagnosis due Sunday. |
 | 2 | Buffer | Last questions, then close. |
 
 **Materials, handouts, and room setup:** Slides; a concept-check poll; three evidence handouts, one
 per group. Breakouts of three for 25 minutes, then regrouped breakouts of three for 25 minutes,
 with a timer for each round.
+
+::: refresh
+What changed:
+
+- Story: the session opens on Dana's pick-rate bonus. The recap of the reading became a poll on
+  which link in expectancy theory her bonus breaks; students have read it by Thursday.
+- Story: "What motivates you at work?" became Dana's decision. Students test her bonus against the
+  evidence she has, the bonus data, Luis's record, and the crew's view, and recommend what she
+  should do.
+- Story: your workplace question stays, now asked after groups decide for Dana. You noted the room
+  goes quiet on open questions to everyone, so groups answer it first.
+- Story: the session closes with your own call on Dana's bonus and how it feeds Sunday's motivation
+  diagnosis.
+- From step 7.1: the roundtable became the split-evidence breakouts you chose there.
+- For your Instructional Technologist: the poll's wording, breakout sizes, the regrouping, and a
+  two-minute buffer.
+
+What stayed the same:
+
+- The session's purpose: diagnosing a motivation problem before choosing a fix.
+- Your question about incentives that backfire at work.
+- The preview of the motivation diagnosis due Sunday, and 90 minutes in all.
+:::
 
 ### Decide
 
@@ -535,9 +649,13 @@ When you save, the tool checks that:
 - every poll and breakout has its setup details;
 - every topic in the plan appears in the outline and the slides.
 
+On the refresh track, the tool also checks that the plan names your character and the module's
+scenario, and that the main activity centers on the character's decision.
+
 ### Save
 
-Planning document: nothing new; the session's line gains "lesson plan drafted."
+Planning document: nothing new; the session's line gains "lesson plan drafted" (full build) or
+"story added to lesson plan" (refresh).
 Download: the lesson plan and the student-facing outline as Word files in the team's templates, and
 the draft slides in the Flex Online slide template, to share with your ID, who builds the final deck
 or checks yours for accessibility. There's nothing to submit; they're there to show and share.
@@ -671,7 +789,7 @@ Demo response (MGMT 615):
 
 ```json
 {
-  "changed": ["Cohort sessions for Modules 2 to 8", "Module 2 and 4 roundtables given a live moment", "Module 2 lesson plan, student outline, and slides drafted", "Background and session assets for the stage"],
+  "changed": ["Cohort sessions for Modules 2 to 8", "Module 2 and 4 roundtables given a live moment", "Story added to the Module 2 lesson plan; student outline and slides drafted", "Background and session assets for the stage"],
   "keptFlags": [],
   "questions": ["When can I practice on the XR stage before the first session?", "Can the Instructional Technologist show the week's Poll Everywhere results at the start of Module 5?"]
 }
